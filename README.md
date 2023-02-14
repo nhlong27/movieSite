@@ -69,6 +69,8 @@
 [![Product Name Screen Shot][product-screenshot]](https://dengueapp.vercel.app/)
 
 This application .. long description
+
+An UI that doesn't overwhelm user
 <br/>
 <br/>
 Problems to solve:
@@ -80,11 +82,13 @@ Problems to solve:
 </ul>
 Features:
 <ul>
-  <li>Feature 1
+  <li>
   </li>
   <li>Feature 2
   </li>
 </ul>
+
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -205,8 +209,100 @@ _ Facility page: show room & bed creation
 **Prototype**
 <!-- ![Original project snapshot](assets/img/readme/project-screenshot.png?raw=true) -->
 
-### Todos
-- [x] Refresh buttons 
+<!-- ### Todos
+- [x] Refresh buttons  -->
+
+*API Movies*
+# /movie/now_playing
+"dates": {
+        "maximum": "2023-02-11",
+        "minimum": "2022-12-25"
+    },
+
+# /movie/popular 
+"page": 1,
+"results": [
+    {
+        "adult": false,
+        "backdrop_path": "/xDMIl84Qo5Tsu62c9DGWhmPI67A.jpg",
+        "genre_ids": [
+            28,
+            12,
+            878
+        ],
+        "id": 505642,
+        "original_language": "en",
+        "original_title": "Black Panther: Wakanda Forever",
+        "overview": "Queen Ramonda, Shuri, M’Baku, Okoye and the Dora Milaje fight to protect their nation from intervening world powers in the wake of King T’Challa’s death.  As the Wakandans strive to embrace their next chapter, the heroes must band together with the help of War Dog Nakia and Everett Ross and forge a new path for the kingdom of Wakanda.",
+        "popularity": 7895.146,
+        "poster_path": "/sv1xJUazXeYqALzczSZ3O6nkH75.jpg",
+        "release_date": "2022-11-09",
+        "title": "Black Panther: Wakanda Forever",
+        "video": false,
+        "vote_average": 7.5,
+        "vote_count": 2963
+    },
+  ],
+"total pages": 
+
+*API Tvs*
+
+
+***Logic Pass***
+***Component Pass***
+1 User shall search for x <movies/tv shows>
+  1.1 user shall search by shows'/people's attributes:
+    query: /search/multi
+  1.2 user shall filter by
+  trending, now playing, upcoming
+    *popular, *top rated, vote count, *latest - release year
+    genres
+    include_adult
+    
+    1.2.1 user shall see similar shows
+2 User shall watch x 
+  2.1 user shall watch shows in Vietnamese subtitle as a default
+3 User shall save information
+    3.* user shall sign up/ login/ logout, edit personal information
+  3.1 user shall see watch history
+  3.2 user shall see search history
+
+**Demo**
+**Test**
+**Bonus**
+1.2.2 user shall search for shows belong to a certain cast
+3.3 user shall bookmark and favorite shows
+3.4 user shall leave comments and see comment history
+3.5 user shall leave reviews and see review history
+3.6 user shall search for others' favorites movies/ comments/ reviews
+0.* Dark/Light theme
+
+*Unknown*
+state syncrhonization 
+  debounce
+  react loading skeleton
+  lazyload
+    image
+    <LazyLoadImage
+//               src={resizeImage(movie?.poster_path, 'w154')}
+//               className='w-full h-full object-cover rounded-md'
+//               alt='poster'
+//               effect='blur'
+//             />
+      browser lazyload
+      react component
+      blurhash
+    code splitting
+      router
+      conditional
+styling 
+  swiper
+  framer motion - route transition
+  react auto animate - parent & children
+  route change 
+    progress bar
+index.js /features
+
 
 
 See the [open issues](https://github.com/nhlong27/dengueapp/issues) for a full list of proposed features (and known issues).
@@ -252,6 +348,9 @@ Use this space to list resources you find helpful and would like to give credit 
 * [Font Awesome](https://fontawesome.com)
 * [React Icons](https://react-icons.github.io/react-icons/search)
 * [Why choose Vite over Webpack?](https://www.reddit.com/r/vuejs/comments/r0fbfw/eli5_why_is_vite_so_much_faster_than_webpack/)
+* RefactoringUI
+* React bulletproof https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md
+* Dribbble inspirations
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
