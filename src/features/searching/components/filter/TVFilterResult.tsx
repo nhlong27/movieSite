@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
-import { useFilteredTVListQuery } from '../hooks/useFilteredTVListQuery';
+import { useFilteredTVListQuery } from '../../hooks/useFilteredTVListQuery';
 import { useAtom } from 'jotai';
-import { tvFilterListAtom } from '../atoms';
+import { tvFilterListAtom } from '../../atoms';
 import { ErrorBoundary } from 'react-error-boundary';
 import { TVType } from '@/types/types';
 import TVCard from '@/components/tv/TVCard';
@@ -13,7 +13,7 @@ const TVFilterResult = () => {
     <div>
       <pre>{JSON.stringify(filterList, null, '\t')}</pre>
       {filteredTVList?.results?.map((filteredTV: TVType, index: number) => {
-        return <TVCard key={index} tv={filteredTV} />
+        return <TVCard key={index} tv={filteredTV} />;
       })}
     </div>
   );

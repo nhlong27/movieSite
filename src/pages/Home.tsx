@@ -1,10 +1,11 @@
+import {HomeContainer} from '@/features/searching';
 import React from 'react';
 
 const Home = () => {
   return (
-    <>
-      Home
-    </>
+    <div>
+      <HomeContainer />
+    </div>
   );
 };
 

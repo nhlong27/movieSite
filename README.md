@@ -212,52 +212,18 @@ _ Facility page: show room & bed creation
 <!-- ### Todos
 - [x] Refresh buttons  -->
 
-*API Movies*
-# /movie/now_playing
-"dates": {
-        "maximum": "2023-02-11",
-        "minimum": "2022-12-25"
-    },
-
-# /movie/popular 
-"page": 1,
-"results": [
-    {
-        "adult": false,
-        "backdrop_path": "/xDMIl84Qo5Tsu62c9DGWhmPI67A.jpg",
-        "genre_ids": [
-            28,
-            12,
-            878
-        ],
-        "id": 505642,
-        "original_language": "en",
-        "original_title": "Black Panther: Wakanda Forever",
-        "overview": "Queen Ramonda, Shuri, M’Baku, Okoye and the Dora Milaje fight to protect their nation from intervening world powers in the wake of King T’Challa’s death.  As the Wakandans strive to embrace their next chapter, the heroes must band together with the help of War Dog Nakia and Everett Ross and forge a new path for the kingdom of Wakanda.",
-        "popularity": 7895.146,
-        "poster_path": "/sv1xJUazXeYqALzczSZ3O6nkH75.jpg",
-        "release_date": "2022-11-09",
-        "title": "Black Panther: Wakanda Forever",
-        "video": false,
-        "vote_average": 7.5,
-        "vote_count": 2963
-    },
-  ],
-"total pages": 
-
-*API Tvs*
-
-
 ***Logic Pass***
 ***Component Pass***
 1 User shall search for x <movies/tv shows>
   1.1 user shall search by shows'/people's attributes:
     query: /search/multi
   1.2 user shall filter by
-  trending, now playing, upcoming
-    *popular, *top rated, vote count, *latest - release year
-    genres
-    include_adult
+    statusList: trending, now_playing, upcoming - trending, airing_now, on_the_air
+    filterList
+    *popularity, *vote_average, vote_count, *release_date - first_air_date
+    year - first_air_date_year
+    with_genres
+    include_adult - with_status, with_type
     
     1.2.1 user shall see similar shows
 2 User shall watch x 

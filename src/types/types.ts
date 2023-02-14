@@ -59,4 +59,14 @@ type TVType = z.infer<typeof TVSchema>;
 type PersonType = z.infer<typeof PersonSchema>;
 type GenreType = z.infer<typeof GenreSchema>;
 
-export {MovieSchema, TVSchema, PersonSchema, MovieType, TVType, PersonType, GenreListSchema, GenreType}
+interface MediaType {
+    statusList: string[];
+    filterList: string[];
+    trendingBy: string[];
+    sort_by: string[];
+    with_status?: string[];
+    with_type?: string[];
+    [key: string]: any;
+}
+
+export {MovieSchema, TVSchema, PersonSchema, MovieType, TVType, PersonType, GenreListSchema, GenreType, MediaType}

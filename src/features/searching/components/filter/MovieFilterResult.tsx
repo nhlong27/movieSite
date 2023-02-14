@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
-import { useFilteredMovieListQuery } from '../hooks/useFilteredMovieListQuery';
+import { useFilteredMovieListQuery } from '../../hooks/useFilteredMovieListQuery';
 import { useAtom } from 'jotai';
-import { movieFilterListAtom } from '../atoms';
+import { movieFilterListAtom } from '../../atoms';
 import { ErrorBoundary } from 'react-error-boundary';
 import { MovieType } from '@/types/types';
 import MovieCard from '@/components/movie/MovieCard';
@@ -13,7 +13,7 @@ const MovieFilterResult = () => {
     <div>
       <pre>{JSON.stringify(filterList, null, '\t')}</pre>
       {filteredMovieList?.results?.map((filteredMovie: MovieType, index: number) => {
-        return <MovieCard key={index} movie={filteredMovie} />
+        return <MovieCard key={index} movie={filteredMovie} />;
       })}
     </div>
   );

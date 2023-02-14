@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAtom } from 'jotai';
-import { queryAtom } from '../atoms';
+import { queryAtom } from '../../atoms';
 
 const SearchBar = () => {
   const [query, setQuery] = useAtom(queryAtom);
@@ -12,7 +12,7 @@ const SearchBar = () => {
         id='search'
         type='text'
         className='ml-4 ring-2 ring-black'
-        value={query?? ''}
+        value={query ?? ''}
         onBlur={() => setQuery(null)}
         onChange={(e) => {
           setQuery(e.currentTarget.value);

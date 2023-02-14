@@ -7,6 +7,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Provider } from 'jotai';
 import { getMovieGenresQuery, getTVGenresQuery } from '@/queries';
 import Explore from '@/pages/Explore';
+import { queries } from '@/features/searching';
 
 const queryClient = new QueryClient();
 
@@ -17,6 +18,10 @@ export const appLoader = async (queryClient: QueryClient) => {
     }),
   );
 };
+
+export const exploreLoader = async(queryClient: QueryClient) => {
+  return await queryClient.ensureQueryData(queries.getFilteredTVListQuery({ sort_by: 'popularity.desc'}));
+}
 
 export const router = createBrowserRouter([
   {
@@ -38,7 +43,7 @@ export const router = createBrowserRouter([
       {
         path: '/discover',
         element: <Explore />,
-        // loader: () => homeLoader(queryClient),
+        loader: () => exploreLoader(queryClient),
       },
       {
         path: '/profile',
