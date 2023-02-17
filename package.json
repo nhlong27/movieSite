@@ -24,6 +24,7 @@
     "react-icons": "^4.7.1",
     "react-infinite-scroll-component": "^6.1.0",
     "react-lazy-load-image-component": "^1.5.6",
+    "react-player": "^2.11.2",
     "react-router-dom": "^6.8.1",
     "use-debounce": "^9.0.3",
     "zustand": "^4.3.3"
@@ -32,6 +33,7 @@
     "@tanstack/react-query-devtools": "^4.24.4",
     "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.5",
+    "@types/react-lazy-load-image-component": "^1.5.2",
     "@typescript-eslint/eslint-plugin": "^5.26.0",
     "@typescript-eslint/parser": "^5.26.0",
     "@vitejs/plugin-react": "^1.3.0",

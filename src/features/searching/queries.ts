@@ -1,12 +1,12 @@
 import { apiClient } from '@/lib/apiClient';
-import { MovieFilterList, TVFilterList, FilteredMovieList, FilteredTVList, ItemList, HomeMovieList, MovieStatusList, TVStatusList, HomeTVList } from './types';
+import { MovieFilterList, TVFilterList, FilteredMovieList, FilteredTVList, ItemList, HomeMovieList, HomeTVList, StatusList } from './types';
 
 const keys = {
   getItemListKey: (query?: string) => ['search', 'multi', {query: query}] as const,
   getFilteredMovieKey: (paramList: MovieFilterList) => ['discover','movie', {...paramList}] as const,
   getFilteredTVKey: (paramList: TVFilterList) => ['discover','tv', {...paramList}] as const,
-  getHomeMovieKey: (paramList: MovieStatusList) => paramList.status === 'trending'? ['trending','movie', paramList.period === 'day' ? 'day' : 'week'] : ['movie', paramList.status ] as const,
-  getHomeTVKey: (paramList: TVStatusList) => paramList.status === 'trending'? ['trending','tv', paramList.period === 'day' ? 'day' : 'week'] : ['tv', paramList.status ] as const,
+  getHomeMovieKey: (paramList: StatusList) => paramList.status === 'trending'? ['trending','movie', paramList.period === 'day' ? 'day' : 'week'] : ['movie', paramList.status ] as const,
+  getHomeTVKey: (paramList: StatusList) => paramList.status === 'trending'? ['trending','tv', paramList.period === 'day' ? 'day' : 'week'] : ['tv', paramList.status ] as const,
 }
 
 const getFilteredMovieList = async(paramList: MovieFilterList) => {
@@ -60,7 +60,7 @@ const getItemListQuery = (query?: string) => {
   };
 };
 
-const getHomeMovieList = async (paramList: MovieStatusList) => {
+const getHomeMovieList = async (paramList: StatusList) => {
   if (paramList.status === 'trending'){
     return HomeMovieList.parse((await apiClient.get(`/trending/movie${'/'+paramList.period}`)).data);
   }
@@ -68,7 +68,8 @@ const getHomeMovieList = async (paramList: MovieStatusList) => {
     return HomeMovieList.parse((await apiClient.get(`/movie${'/'+ paramList.status}`)).data);
   }
 };
-const getHomeTVList = async (paramList: TVStatusList) => {
+
+const getHomeTVList = async (paramList: StatusList) => {
   if (paramList.status === 'trending'){
     return HomeTVList.parse((await apiClient.get(`/trending/tv${'/'+paramList.period}`)).data);
   }
@@ -77,10 +78,10 @@ const getHomeTVList = async (paramList: TVStatusList) => {
   }
 };
 
-const getHomeMovieListQuery = (paramList: MovieStatusList) => {
+const getHomeMovieListQuery = (paramList: StatusList) => {
   return {
     queryKey: keys.getHomeMovieKey(paramList),
-    queryFn: getHomeMovieList(paramList),
+    queryFn: ()=>getHomeMovieList(paramList),
     enabled: !!paramList,
     keepPreviousData: true,
     staleTime: Infinity,
@@ -89,10 +90,10 @@ const getHomeMovieListQuery = (paramList: MovieStatusList) => {
     useErrorBoundary: true
   }
 }
-const getHomeTVListQuery = (paramList: TVStatusList) => {
+const getHomeTVListQuery = (paramList: StatusList) => {
   return {
     queryKey: keys.getHomeTVKey(paramList),
-    queryFn: getHomeTVList(paramList),
+    queryFn: ()=>getHomeTVList(paramList),
     enabled: !!paramList,
     keepPreviousData: true,
     staleTime: Infinity,

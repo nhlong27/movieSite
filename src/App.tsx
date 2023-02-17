@@ -8,6 +8,7 @@ export const mediaTypeAtom = atom<string>('movie')
 
 function App() {
   const initialData = useLoaderData() as Awaited<ReturnType<typeof appLoader>>;
+
   mediaTypeConfig.movie= { ...mediaTypeConfig.movie, 'with_genres': [...initialData[0].genres]}
   mediaTypeConfig.tv= { ...mediaTypeConfig.tv, 'with_genres': [...initialData[1].genres]}
 
@@ -18,7 +19,6 @@ function App() {
       <Link to='discover'>Explore</Link>
       <Link to='profile'>Profile</Link>
       {/* Nav ends */}
-
       <Outlet />
 
       {/* Footer */}

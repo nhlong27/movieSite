@@ -6,7 +6,8 @@ interface PersonCardProps {
 }
 const PersonCard: React.FC<PersonCardProps> = ({person}) => {
   return (
-    <div>{person.name}</div>
+    <a href={`/celebrity/${person.id}`}>{person.name}</a>
+
   );
 }
 

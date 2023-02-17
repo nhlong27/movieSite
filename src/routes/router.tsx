@@ -7,21 +7,38 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Provider } from 'jotai';
 import { getMovieGenresQuery, getTVGenresQuery } from '@/queries';
 import Explore from '@/pages/Explore';
-import { queries } from '@/features/searching';
+import { search_queries } from '@/features/searching';
+import { watch_queries } from '@/features/watching';
+import { Params } from 'react-router-dom';
+import Media from '@/pages/Media';
 
 const queryClient = new QueryClient();
 
 export const appLoader = async (queryClient: QueryClient) => {
   return await Promise.all(
-    [getMovieGenresQuery, getTVGenresQuery ].map((query) => {
+    [getMovieGenresQuery, getTVGenresQuery].map((query) => {
       return queryClient.ensureQueryData(query());
     }),
   );
 };
 
-export const exploreLoader = async(queryClient: QueryClient) => {
-  return await queryClient.ensureQueryData(queries.getFilteredTVListQuery({ sort_by: 'popularity.desc'}));
-}
+export const exploreLoader = async (queryClient: QueryClient) => {
+  return await queryClient.ensureQueryData(
+    search_queries.getFilteredTVListQuery({ sort_by: 'popularity.desc' }),
+  );
+};
+
+export const itemLoader = async ({
+  params,
+  queryClient,
+}: {
+  params: Readonly<Params<string>>;
+  queryClient: QueryClient;
+}) => {
+  return await queryClient.ensureQueryData(
+    watch_queries.getItemDetailQuery((params as any).type, params.id),
+  );
+};
 
 export const router = createBrowserRouter([
   {
@@ -34,7 +51,7 @@ export const router = createBrowserRouter([
         </QueryClientProvider>
       </Provider>
     ),
-    loader: ()=>appLoader(queryClient),
+    loader: () => appLoader(queryClient),
     children: [
       {
         path: '/',
@@ -49,6 +66,11 @@ export const router = createBrowserRouter([
         path: '/profile',
         element: <Profile />,
         // loader: () => homeLoader(queryClient),
+      },
+      {
+        path: '/:type/:id',
+        element: <Media />,
+        loader: ({ params }) => itemLoader({ queryClient, params }),
       },
     ],
   },

@@ -1,6 +1,6 @@
 import urls from '@/config/urls'
 
 export const resizeImage = (
-  imageUrl: string,
+  imageUrl?: string | null,
   width: string = "original"
 ): string => `${urls.img}/${width}${imageUrl}`;

@@ -10,7 +10,7 @@ const ToggleStatus: React.FC = () => {
   return (
     <div>
       {mediaTypeConfig[mediaType].statusList.map((status: string, index: number)=> {
-        return <button onClick={()=>setItemStatus(status)} key={index}>{status}</button>
+        return <button onClick={()=>setItemStatus(pre=>({...pre, status:status}))} key={index}>{status}</button>
       })}
     </div>
   )

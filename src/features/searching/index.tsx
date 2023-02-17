@@ -1,8 +1,8 @@
 // import SearchProto from "./components/SearchProto";
-import * as queries from './queries';
-import * as atoms from './atoms';
+import * as search_queries from './queries';
+import * as search_atoms from './atoms';
 import SearchContainer from './components/query/SearchContainer';
 import FilterContainer from './components/filter/FilterContainer';
 import HomeContainer from './components/home/HomeContainer';
 
-export { queries, atoms, SearchContainer, FilterContainer, HomeContainer };
+export { search_queries, search_atoms, SearchContainer, FilterContainer, HomeContainer };

@@ -225,9 +225,26 @@ _ Facility page: show room & bed creation
     with_genres
     include_adult - with_status, with_type
     
-    1.2.1 user shall see similar shows
 2 User shall watch x 
-  2.1 user shall watch shows in Vietnamese subtitle as a default
+    watch - overview, reviews, similar, translations?
+
+    watch, overview, reviews, cast, comments, slides
+    overview: 
+      - title, overview, genres, vote_average, vote_count, runtime, status, tagline, release_date, spoken_languages{name}, (poster_path, backdrop),
+
+      - tagline, name, overview, genres, vote_average, vote_count, episode_run_time, status, type, next_episode_to_air{episode_number, name, season_number, id, air_date}, last_episode_to_air{episode_number, name, , id, air_date}, first_air_date, spoken_languages{name}, networks[{name,logo_path}]
+      number_of_seasons
+    casts:
+      - get[cast{name, profile_path, character}, crew{job, name, profile_path}]
+    reviews:
+      - results[{author_details{username,avatar_path,rating}, content, created_at}]
+    similar:
+      - results[{backdrop_path, genre_ids, name, vote_average, vote_count, first_air_date, overview, popularity, id}]
+    slides: 
+      - get[videos{key}] 
+      - get[season{episodes{air_date, episode_number, name, id, still_path, vote_average}, season_number, name, poster_path}]
+
+
 3 User shall save information
     3.* user shall sign up/ login/ logout, edit personal information
   3.1 user shall see watch history
@@ -236,7 +253,9 @@ _ Facility page: show room & bed creation
 **Demo**
 **Test**
 **Bonus**
+
 1.2.2 user shall search for shows belong to a certain cast
+2.1 user shall watch shows in Vietnamese subtitle as a default
 3.3 user shall bookmark and favorite shows
 3.4 user shall leave comments and see comment history
 3.5 user shall leave reviews and see review history

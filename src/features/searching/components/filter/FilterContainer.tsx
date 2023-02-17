@@ -11,6 +11,7 @@ const FilterContainer = () => {
   return (
     <div>
       <ToggleMediaType />
+
       <FilterSection />
       {mediaType === 'movie' ? <MovieFilterResult /> : <TVFilterResult />}
     </div>

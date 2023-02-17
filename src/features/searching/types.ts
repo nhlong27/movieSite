@@ -17,14 +17,9 @@ interface TVFilterList {
   with_type?: string;
 }
 
-interface MovieStatusList {
-  status?: "trending" | "upcoming" | "now_playing";
-  period?: "day" | "week";
-}
-
-interface TVStatusList {
-  status?: "trending" | "on_the_air" | "airing_today";
-  period?: "day" | "week";
+interface StatusList {
+  status?: string;
+  period?: string;
 }
 
 const ItemList = z.object({
@@ -52,4 +47,4 @@ const HomeTVList = z.object({
   results: z.array(TVSchema).optional()
 })
 
-export {MovieFilterList, TVFilterList, FilteredMovieList, FilteredTVList, ItemList, HomeMovieList, HomeTVList, MovieStatusList, TVStatusList}
+export {MovieFilterList, TVFilterList, FilteredMovieList, FilteredTVList, ItemList, HomeMovieList, HomeTVList, StatusList}
