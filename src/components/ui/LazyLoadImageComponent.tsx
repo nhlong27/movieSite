@@ -9,7 +9,7 @@ import { resizeImage } from '@/utils/resizeImage';
 // }
 
 type LazyLoadImageComponentProps = {
-  path?: string;
+  path?: string | null;
   className?: string;
   size?: string;
 };

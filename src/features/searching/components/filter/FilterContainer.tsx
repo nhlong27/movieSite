@@ -1,21 +1,25 @@
 import React from 'react';
-import MovieFilterResult from './MovieFilterResult';
 import FilterSection from './FilterSection';
-import TVFilterResult from './TVFilterResult';
-import ToggleMediaType from '../home/ToggleMediaType';
-import { useAtom } from 'jotai';
-import { mediaTypeAtom } from '@/App';
+import Wrapper from '@/components/ui/Wrapper';
+import FilterResult from './FilterResult';
+import { useQueryClient } from '@tanstack/react-query';
+import { getFilteredItemListQuery } from '../../queries';
 
 const FilterContainer = () => {
-  const [mediaType] = useAtom(mediaTypeAtom);
+  const queryClient = useQueryClient();
+  const data = queryClient.ensureQueryData({
+    ...getFilteredItemListQuery('tv', 'discover', { sort_by: 'popularity.desc' }),
+  });
   return (
     <div>
-      <ToggleMediaType />
-
       <FilterSection />
-      {mediaType === 'movie' ? <MovieFilterResult /> : <TVFilterResult />}
+      <FilterResult />
     </div>
   );
 };
 
-export default FilterContainer;
+export default () => (
+  <Wrapper>
+    <FilterContainer />
+  </Wrapper>
+);

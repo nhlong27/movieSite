@@ -8,7 +8,7 @@ export const useGetItemExtraQuery = () => {
   const [videos, credits, reviews, similar] = useQueries({
     queries: [
       ...['videos', 'credits', 'reviews', 'similar'].map((query: any) => ({
-        ...getItemDetailQuery((params as any).type, params.id, query),
+        ...getItemDetailQuery((params as any).mediaType, params.id, query),
       })),
     ],
   });

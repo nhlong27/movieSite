@@ -11,7 +11,7 @@ export const useGetItemDetailQuery = () => {
 
   const { data }: { data: MovieDetailType | TVDetailType } = useQuery({
     //below is a hack
-    ...getItemDetailQuery((params as any).type, params.id),
+    ...getItemDetailQuery((params as any).mediaType, params.id),
     initialData: initialData,
   });
 

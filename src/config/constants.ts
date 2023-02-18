@@ -1,6 +1,5 @@
-import { MediaType } from "@/types/types";
 
-export const mediaTypeConfig: {[key:string] : MediaType} = {
+export const mediaTypeConfig: {[key:string] : any} = {
   movie: {
     statusList: ['trending', 'upcoming', 'now_playing'],
     filterList: ['sort_by', 'year', 'with_genres', 'include_adult'],

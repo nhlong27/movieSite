@@ -1,47 +1,133 @@
 import { apiClient } from '@/lib/apiClient';
-import { MovieFilterList, TVFilterList, FilteredMovieList, FilteredTVList, ItemList, HomeMovieList, HomeTVList, StatusList } from './types';
+import {
+  MovieFilterList,
+  TVFilterList,
+  FilteredMovieList,
+  FilteredTVList,
+  ItemList,
+  HomeMovieList,
+  HomeTVList,
+  MediaTypeConfig,
+} from './types';
 
 const keys = {
-  getItemListKey: (query?: string) => ['search', 'multi', {query: query}] as const,
-  getFilteredMovieKey: (paramList: MovieFilterList) => ['discover','movie', {...paramList}] as const,
-  getFilteredTVKey: (paramList: TVFilterList) => ['discover','tv', {...paramList}] as const,
-  getHomeMovieKey: (paramList: StatusList) => paramList.status === 'trending'? ['trending','movie', paramList.period === 'day' ? 'day' : 'week'] : ['movie', paramList.status ] as const,
-  getHomeTVKey: (paramList: StatusList) => paramList.status === 'trending'? ['trending','tv', paramList.period === 'day' ? 'day' : 'week'] : ['tv', paramList.status ] as const,
-}
+  getItemListKey: (query?: string) => ['search', 'multi', { query: query }] as const,
+  getFilteredItemKey: (
+    mediaType: 'tv' | 'movie',
+    queryType: keyof MediaTypeConfig[`movie` | 'tv'],
+    paramList: MovieFilterList | TVFilterList | string,
+    period?: string,
+  ) =>
+    period
+      ? [queryType, mediaType, paramList, period]
+      : ([queryType, mediaType, paramList] as const),
+};
 
-const getFilteredMovieList = async(paramList: MovieFilterList) => {
-  return FilteredMovieList.parse((await apiClient.get('/discover/movie', {params: { ...paramList}})).data);
-}
+const mediaTypeConfig: MediaTypeConfig = {
+  movie: {
+    home: {
+      fetcher: async (type: string, period?: string) =>
+        type === 'trending'
+          ? HomeMovieList.parse((await apiClient.get(`/${type}/movie${'/' + period}`)).data)
+          : HomeMovieList.parse((await apiClient.get(`/movie${'/' + type}`)).data),
+      paramList: {
+        trending: '',
+        coming_soon: 'upcoming',
+        airing: 'now_playing',
+      },
+    },
+    discover: {
+      fetcher: async (paramList: MovieFilterList) =>
+        FilteredMovieList.parse(
+          (await apiClient.get('/discover/movie', { params: { ...paramList } })).data,
+        ),
+      paramList: {
+        sort_by: [
+          'popularity.asc',
+          'popularity.desc',
+          'release_date.desc',
+          'vote_average.desc',
+          'vote_average.asc',
+          'vote_count.desc',
+          'vote_count.asc',
+        ],
+        year: [],
+        with_genres: [],
+      },
+    },
+  },
+  tv: {
+    home: {
+      fetcher: async (type: string, period?: string) =>
+        type === 'trending'
+          ? HomeTVList.parse((await apiClient.get(`/${type}/tv${'/' + period}`)).data)
+          : HomeTVList.parse((await apiClient.get(`/tv${'/' + type}`)).data),
+      paramList: {
+        trending: '',
+        coming_soon: 'on_the_air',
+        airing: 'airing_today',
+      },
+    },
+    discover: {
+      fetcher: async (paramList: TVFilterList) =>
+        FilteredTVList.parse(
+          (await apiClient.get('/discover/tv', { params: { ...paramList } })).data,
+        ),
+      paramList: {
+        sort_by: [
+          'popularity.asc',
+          'popularity.desc',
+          'first_air_date.desc',
+          'vote_average.desc',
+          'vote_average.asc',
+          'vote_count.desc',
+          'vote_count.asc',
+        ],
+        first_air_date_year: [],
+        with_genres: [],
+        with_status: ['Planned', 'In Production', 'Ended', 'Cancelled', 'Pilot'],
+        with_type: [
+          'Documentary',
+          'News',
+          'Miniseries',
+          'Reality',
+          'Scripted',
+          'Talk Show',
+          'Video',
+        ],
+      },
+    },
+  },
+};
 
-const getFilteredTVList = async(paramList: TVFilterList) => {
-  return FilteredTVList.parse((await apiClient.get('/discover/tv', {params: { ...paramList}})).data);
-}
+const getFilteredItemList = async (
+  mediaType: 'tv' | 'movie',
+  queryType: keyof MediaTypeConfig[`movie` | 'tv'],
+  paramList: MovieFilterList | TVFilterList | string,
+  period?: string,
+) => {
+  return queryType === 'discover'
+    ? mediaTypeConfig[`${mediaType}`].discover.fetcher(paramList as MovieFilterList | TVFilterList)
+    : mediaTypeConfig[`${mediaType}`].home.fetcher(paramList as string, period);
+};
 
-const getFilteredMovieListQuery = (paramList: MovieFilterList) => {
+const getFilteredItemListQuery = (
+  mediaType: 'tv' | 'movie',
+  queryType: keyof MediaTypeConfig[`movie` | 'tv'],
+  paramList: MovieFilterList | TVFilterList | string,
+  period?: string,
+) => {
   return {
-    queryKey: keys.getFilteredMovieKey(paramList),
-    queryFn: ()=>getFilteredMovieList(paramList),
+    queryKey: keys.getFilteredItemKey(mediaType, queryType, paramList, period),
+    queryFn: () => getFilteredItemList(mediaType, queryType, paramList, period),
     enabled: !!paramList,
     keepPreviousData: true,
     staleTime: Infinity,
     refetchOnWindowFocus: false,
     suspense: true,
-    useErrorBoundary: true
-  }
-}
-
-const getFilteredTVListQuery = (paramList: TVFilterList) => {
-  return {
-    queryKey: keys.getFilteredTVKey(paramList),
-    queryFn: ()=>getFilteredTVList(paramList),
-    enabled: !!paramList,
-    keepPreviousData: true,
-    staleTime: Infinity,
-    refetchOnWindowFocus: false,
-    suspense: true,
-    useErrorBoundary: true
-  }
-}
+    useErrorBoundary: true,
+  };
+};
 
 const getItemList = async (query?: string) => {
   return ItemList.parse((await apiClient.get('/search/multi', { params: { query: query } })).data);
@@ -56,51 +142,8 @@ const getItemListQuery = (query?: string) => {
     staleTime: Infinity,
     refetchOnWindowFocus: false,
     suspense: true,
-    useErrorBoundary: true
+    useErrorBoundary: true,
   };
 };
 
-const getHomeMovieList = async (paramList: StatusList) => {
-  if (paramList.status === 'trending'){
-    return HomeMovieList.parse((await apiClient.get(`/trending/movie${'/'+paramList.period}`)).data);
-  }
-  else {
-    return HomeMovieList.parse((await apiClient.get(`/movie${'/'+ paramList.status}`)).data);
-  }
-};
-
-const getHomeTVList = async (paramList: StatusList) => {
-  if (paramList.status === 'trending'){
-    return HomeTVList.parse((await apiClient.get(`/trending/tv${'/'+paramList.period}`)).data);
-  }
-  else {
-    return HomeTVList.parse((await apiClient.get(`/tv${'/'+ paramList.status}`)).data);
-  }
-};
-
-const getHomeMovieListQuery = (paramList: StatusList) => {
-  return {
-    queryKey: keys.getHomeMovieKey(paramList),
-    queryFn: ()=>getHomeMovieList(paramList),
-    enabled: !!paramList,
-    keepPreviousData: true,
-    staleTime: Infinity,
-    refetchOnWindowFocus: false,
-    suspense: true,
-    useErrorBoundary: true
-  }
-}
-const getHomeTVListQuery = (paramList: StatusList) => {
-  return {
-    queryKey: keys.getHomeTVKey(paramList),
-    queryFn: ()=>getHomeTVList(paramList),
-    enabled: !!paramList,
-    keepPreviousData: true,
-    staleTime: Infinity,
-    refetchOnWindowFocus: false,
-    suspense: true,
-    useErrorBoundary: true
-  }
-}
-
-export { getItemList, getItemListQuery, getFilteredMovieList, getFilteredMovieListQuery, getFilteredTVList, getFilteredTVListQuery, getHomeMovieListQuery, getHomeTVListQuery};
+export { getItemList, getItemListQuery, getFilteredItemListQuery, mediaTypeConfig };

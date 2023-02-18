@@ -1,5 +1,5 @@
 import React from 'react';
-import { VideoType } from '../types';
+import { VideoType } from '../../types';
 
 const ReactPlayerComponent = ({ video }: { video: VideoType }) => {
   return <div>ReactPlayerComponent</div>;

@@ -3,19 +3,22 @@ import React from 'react';
 import { useGetItemExtraQuery } from '../hooks/useGetItemExtraQuery';
 import BackdropComponent from './BackdropComponent';
 import ItemOverview from './ItemOverview';
-import MediaPlayerComponent from './MediaPlayerComponent';
+import MediaPlayerComponent from './player/MediaPlayerComponent';
 import PosterComponent from './PosterComponent';
-import SimilarListComponent from './SimilarListComponent';
+import SeasonSelectComponent from './SeasonSelectComponent';
+import SimilarListComponent from './sections/SimilarListSection';
 import TrailerListComponent from './TrailerListComponent';
 
 const MediaContainer: React.FC = () => {
   const [isReady, setIsReady] = React.useState(false);
-  const { data } = useGetItemExtraQuery();
+  const { params } = useGetItemExtraQuery();
+
   return (
     <>
       <BackdropComponent />
       <PosterComponent />
       <ItemOverview />
+      {params.type === 'tv' && <SeasonSelectComponent />}
 
       <button onClick={() => setIsReady(true)}>Watch</button>
       {isReady && <MediaPlayerComponent />}

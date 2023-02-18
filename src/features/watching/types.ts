@@ -51,7 +51,7 @@ const TVDetailSchema = z
       }),
     ),
     episode_run_time: z.array(z.number()),
-    first_air_date: z.string(),
+    first_air_date: z.string().nullable(),
     genres: z.array(
       z.object({
         id: z.number(),
@@ -59,9 +59,9 @@ const TVDetailSchema = z
       }),
     ),
     id: z.number(),
-    last_air_date: z.string(),
+    last_air_date: z.string().nullable(),
     last_episode_to_air: z.object({
-      air_date: z.string(),
+      air_date: z.string().nullable(),
       episode_number: z.number(),
       id: z.number(),
       name: z.string(),
@@ -73,18 +73,20 @@ const TVDetailSchema = z
       vote_count: z.number(),
     }),
     name: z.string(),
-    next_episode_to_air: z.object({
-      air_date: z.string(),
-      episode_number: z.number(),
-      id: z.number(),
-      name: z.string(),
-      overview: z.string(),
-      production_code: z.string(),
-      season_number: z.number(),
-      still_path: z.string().nullable(),
-      vote_average: z.number(),
-      vote_count: z.number(),
-    }).nullable(),
+    next_episode_to_air: z
+      .object({
+        air_date: z.string().nullable(),
+        episode_number: z.number(),
+        id: z.number(),
+        name: z.string(),
+        overview: z.string(),
+        production_code: z.string(),
+        season_number: z.number(),
+        still_path: z.string().nullable(),
+        vote_average: z.number(),
+        vote_count: z.number(),
+      })
+      .nullable(),
     networks: z.array(
       z.object({
         name: z.string(),
@@ -107,7 +109,7 @@ const TVDetailSchema = z
     season_number: z.number(),
     seasons: z.array(
       z.object({
-        air_date: z.string(),
+        air_date: z.string().nullable(),
         episode_count: z.number(),
         id: z.number(),
         name: z.string(),
@@ -124,20 +126,20 @@ const TVDetailSchema = z
   })
   .deepPartial();
 
-const PersonDetailSchema = z
-  .object({
-    birthday: z.string().nullable(),
-    known_for_department: z.string(),
-    deathday: z.string().nullable(),
-    id: z.number(),
-    name: z.string(),
-    also_known_as: z.array(z.string()),
-    gender: z.number(),
-    biography: z.string(),
-    popularity: z.number(),
-    profile_path: z.string().nullable(),
-  })
-  .deepPartial();
+// const PersonDetailSchema = z
+//   .object({
+//     birthday: z.string().nullable(),
+//     known_for_department: z.string(),
+//     deathday: z.string().nullable(),
+//     id: z.number(),
+//     name: z.string(),
+//     also_known_as: z.array(z.string()),
+//     gender: z.number(),
+//     biography: z.string(),
+//     popularity: z.number(),
+//     profile_path: z.string().nullable(),
+//   })
+//   .deepPartial();
 
 const VideoSchema = z
   .object({
@@ -150,85 +152,103 @@ const VideoListSchema = z.object({
   results: z.array(VideoSchema),
 });
 
-const SeasonEpisodeSchema = z.object({
-  air_date: z.string(),
-  name: z.string(),
-  episode_number: z.number(),
-  still_path: z.string().nullable(),
-  id: z.number(),
-  overview: z.string(),
-  vote_average: z.number(),
-}).partial()
+const SeasonEpisodeSchema = z
+  .object({
+    air_date: z.string().nullable(),
+    name: z.string(),
+    episode_number: z.number(),
+    still_path: z.string().nullable(),
+    id: z.number(),
+    overview: z.string(),
+    vote_average: z.number(),
+  })
+  .partial();
 
-const SeasonSchema = z.object({
-  air_date: z.string().nullable(),
-  episodes: z.array(SeasonEpisodeSchema),
-  name: z.string().nullable(),
-}).partial()
+const SeasonSchema = z
+  .object({
+    air_date: z.string().nullable(),
+    episodes: z.array(SeasonEpisodeSchema),
+    name: z.string().nullable(),
+  })
+  .partial();
 
-const CastSchema = z.object({
-  name: z.string(),
-  profile_path: z.string().nullable(),
-  character: z.string(),
-}).partial()
+const CastSchema = z
+  .object({
+    name: z.string(),
+    profile_path: z.string().nullable(),
+    character: z.string(),
+  })
+  .partial();
 
-const CrewSchema = z.object({
-  name: z.string(),
-  profile_path: z.string().nullable(),
-  job: z.string(),
-}).partial()
+const CrewSchema = z
+  .object({
+    name: z.string(),
+    profile_path: z.string().nullable(),
+    job: z.string(),
+  })
+  .partial();
 
-const CreditListSchema = z.object({
-  cast: z.array(CastSchema),
-  crew: z.array(CrewSchema)
-}).partial()
+const CreditListSchema = z
+  .object({
+    cast: z.array(CastSchema),
+    crew: z.array(CrewSchema),
+  })
+  .partial();
 
-const AuthorSchema = z.object({
-  author_details: z.object({
-    username: z.string(),
-    avatar_path:z.string().nullable(),
-    rating: z.number().nullable(),
-  }),
-  content: z.string(),
-  created_at: z.string()
-}).partial()
+const AuthorSchema = z
+  .object({
+    author_details: z.object({
+      username: z.string(),
+      avatar_path: z.string().nullable(),
+      rating: z.number().nullable(),
+    }),
+    content: z.string(),
+    created_at: z.string(),
+  })
+  .partial();
 
-const ReviewListSchema = z.object({
-  results: z.array(
-    AuthorSchema
-  )
-}).partial()
+const ReviewListSchema = z
+  .object({
+    results: z.array(AuthorSchema),
+  })
+  .partial();
 
-const SimilarMovieSchema = z.object({
-  backdrop_path: z.string().nullable(),
-  genre_ids: z.array(z.number()),
-  title: z.string(),
-  vote_count: z.number(),
-  vote_average: z.number(),
-  overview: z.string(),
-  release_date: z.string(),
-  poster_path: z.string().nullable()
-}).partial()
+const SimilarMovieSchema = z
+  .object({
+    backdrop_path: z.string().nullable(),
+    genre_ids: z.array(z.number()),
+    title: z.string(),
+    vote_count: z.number(),
+    vote_average: z.number(),
+    overview: z.string(),
+    release_date: z.string(),
+    poster_path: z.string().nullable(),
+  })
+  .partial();
 
-const SimilarTVSchema = z.object({
-  backdrop_path: z.string().nullable(),
-  genre_ids: z.array(z.number()),
-  name: z.string(),
-  vote_count: z.number(),
-  vote_average: z.number(),
-  overview: z.string(),
-  first_air_date: z.string(),
-  poster_path: z.string().nullable()
-}).partial()
+const SimilarTVSchema = z
+  .object({
+    backdrop_path: z.string().nullable(),
+    genre_ids: z.array(z.number()),
+    name: z.string(),
+    vote_count: z.number(),
+    vote_average: z.number(),
+    overview: z.string(),
+    first_air_date: z.string().nullable(),
+    poster_path: z.string().nullable(),
+  })
+  .partial();
 
-const SimilarListSchema = z.object({
-  results: z.array(z.union([SimilarMovieSchema, SimilarTVSchema]))
-}).partial()
+const SimilarListSchema = z
+  .object({
+    results: z.array(z.union([SimilarMovieSchema, SimilarTVSchema])),
+  })
+  .partial();
 
-type SeasonEpisodeType = z.infer<typeof SeasonEpisodeSchema>
+type SeasonEpisodeType = z.infer<typeof SeasonEpisodeSchema>;
 type MovieDetailType = z.infer<typeof MovieDetailSchema>;
 type TVDetailType = z.infer<typeof TVDetailSchema>;
-type PersonDetailType = z.infer<typeof PersonDetailSchema>;
+// type PersonDetailType = z.infer<typeof PersonDetailSchema>;
 type VideoType = z.infer<typeof VideoSchema>;
 type SeasonType = z.infer<typeof SeasonSchema>;
 type CastType = z.infer<typeof CastSchema>;
@@ -236,18 +256,32 @@ type CrewType = z.infer<typeof CrewSchema>;
 type AuthorType = z.infer<typeof AuthorSchema>;
 type SimilarMovieType = z.infer<typeof SimilarMovieSchema>;
 type SimilarTVType = z.infer<typeof SimilarTVSchema>;
-type VideoListType = z.infer<typeof VideoListSchema>
-type CreditListType = z.infer<typeof CreditListSchema>
-type SimilarListType = z.infer<typeof SimilarListSchema>
-type ReviewListType = z.infer<typeof ReviewListSchema>
+type VideoListType = z.infer<typeof VideoListSchema>;
+type CreditListType = z.infer<typeof CreditListSchema>;
+type SimilarListType = z.infer<typeof SimilarListSchema>;
+type ReviewListType = z.infer<typeof ReviewListSchema>;
+type ItemDetailOptionsProps = {
+  movie: {
+    default: (movieId?: string) => Promise<MovieDetailType>;
+    videos: (movieId?: string) => Promise<VideoListType>;
+    credits: (movieId?: string) => Promise<CreditListType>;
+    reviews: (movieId?: string) => Promise<ReviewListType>;
+    similar: (movieId?: string) => Promise<SimilarListType>;
+  };
+  tv: {
+    default: (tvId?: string) => Promise<TVDetailType>;
+    videos: (tvId?: string) => Promise<VideoListType>;
+    credits: (tvId?: string) => Promise<CreditListType>;
+    reviews: (tvId?: string) => Promise<ReviewListType>;
+    similar: (tvId?: string) => Promise<SimilarListType>;
+  };
+};
 
 export {
   MovieDetailSchema,
   MovieDetailType,
   TVDetailSchema,
   TVDetailType,
-  PersonDetailSchema,
-  PersonDetailType,
   VideoType,
   VideoListSchema,
   SeasonEpisodeSchema,
@@ -265,5 +299,6 @@ export {
   SimilarListType,
   VideoListType,
   CreditListType,
-  ReviewListType
+  ReviewListType,
+  ItemDetailOptionsProps
 };

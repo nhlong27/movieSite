@@ -1,18 +1,13 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { useItemListQuery } from '../../hooks/useItemListQuery';
-import { queryAtom } from '../../atoms';
-import { useAtom } from 'jotai';
-import { ErrorBoundary } from 'react-error-boundary';
-import { useDebounce } from 'use-debounce';
 import { MovieType, TVType, PersonType } from '@/types/types';
 import MovieCard from '@/components/movie/MovieCard';
 import TVCard from '@/components/tv/TVCard';
 import PersonCard from '@/components/person/PersonCard';
+import Wrapper from '@/components/ui/Wrapper';
 
 const SearchResult = () => {
-  const [query] = useAtom(queryAtom);
-  const debouncedQuery = useDebounce(query, 500);
-  const { data: itemList } = useItemListQuery(debouncedQuery[0] ?? '');
+  const { data: itemList } = useItemListQuery();
   return itemList ? (
     (itemList.results ?? []).length > 0 ? (
       <div>
@@ -50,9 +45,7 @@ const SearchResult = () => {
 };
 
 export default () => (
-  <ErrorBoundary fallback={<div>Error..</div>}>
-    <Suspense fallback={<div>Loading..</div>}>
-      <SearchResult />
-    </Suspense>
-  </ErrorBoundary>
+  <Wrapper>
+    <SearchResult />
+  </Wrapper>
 );

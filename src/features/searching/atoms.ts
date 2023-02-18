@@ -1,9 +1,7 @@
 import { atom } from 'jotai';
-import { MovieFilterList, StatusList, TVFilterList } from './types';
+import { MovieFilterList, TVFilterList } from './types';
 
-const queryAtom = atom<string | null>(null);
-const movieFilterListAtom = atom<MovieFilterList>({ sort_by: 'popularity.desc', include_adult: false });
-const tvFilterListAtom = atom<TVFilterList>({ sort_by: 'popularity.desc' });
-const itemStatusAtom = atom<StatusList>({status: 'trending', period: 'day'});
+const queryAtom = atom<string | undefined>(undefined);
+const itemFilterListAtom = atom<MovieFilterList | TVFilterList>({ sort_by: 'popularity.desc' });
 
-export { queryAtom, movieFilterListAtom, tvFilterListAtom, itemStatusAtom };
+export { queryAtom, itemFilterListAtom };

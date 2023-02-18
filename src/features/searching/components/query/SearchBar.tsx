@@ -4,7 +4,6 @@ import { queryAtom } from '../../atoms';
 
 const SearchBar = () => {
   const [query, setQuery] = useAtom(queryAtom);
-
   return (
     <div>
       <label htmlFor='search'>Search</label>
@@ -13,7 +12,7 @@ const SearchBar = () => {
         type='text'
         className='ml-4 ring-2 ring-black'
         value={query ?? ''}
-        onBlur={() => setQuery(null)}
+        onBlur={() => setQuery('')}
         onChange={(e) => {
           setQuery(e.currentTarget.value);
         }}

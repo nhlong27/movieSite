@@ -1,36 +1,41 @@
 import React from 'react';
 import { useAtom } from 'jotai';
-import { movieFilterListAtom, tvFilterListAtom } from '../../atoms';
-import GenreListFilter from './GenreListFilter';
+import { itemFilterListAtom } from '../../atoms';
 import { mediaTypeAtom } from '@/App';
-import { mediaTypeConfig } from '@/config/constants';
+import { mediaTypeConfig } from '../../queries';
+
 
 const FilterSection: React.FC = () => {
   const [mediaType] = useAtom(mediaTypeAtom);
-  const [_, setMovieFilterList] = useAtom(movieFilterListAtom);
-  const [__, setTVFilterList] = useAtom(tvFilterListAtom);
+  const [itemFilterList, setItemFilterList] = useAtom(itemFilterListAtom);
+  console.log({itemFilterList})
   return (
     <div>
-      {mediaTypeConfig[mediaType].sort_by.map((option: string, index: number) => {
+      {/* {Object.entries(
+        mediaTypeConfig[`${mediaType}`].discover.paramList,
+      ).map((pair: Array<string | string[] >, index) => {
         return (
-          <button
-            key={index}
-            onClick={() =>
-              mediaType === 'movie'
-                ? setMovieFilterList((pre) => ({
-                    ...pre,
-                    sort_by: option,
-                    include_adult:
-                      option === 'include_adult' ? !pre.include_adult : pre.include_adult,
-                  }))
-                : setTVFilterList((pre) => ({ ...pre, sort_by: option }))
-            }
-          >
-            {option}
-          </button>
+          <div key={index}>
+            {pair[0]}
+            {(pair[1] as string[]).map((subOption: string, index) => {
+              return (
+                <button
+                  key={index}
+                  onClick={() =>
+                    setItemFilterList((pre) => ({
+                      ...pre,
+                      [`${pair[0]}`]: [...(pair[0]?? []), subOption],
+                    }))
+                  }
+                >
+                  {subOption}
+                </button>
+              );
+            })}
+          </div>
         );
-      })}
-      <GenreListFilter />
+      })} */}
+      {/* <GenreListFilter /> */}
     </div>
   );
 };

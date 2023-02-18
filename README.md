@@ -246,9 +246,11 @@ _ Facility page: show room & bed creation
 
 
 3 User shall save information
+  * auth? collections
     3.* user shall sign up/ login/ logout, edit personal information
-  3.1 user shall see watch history
-  3.2 user shall see search history
+  3.1 * add to collection -> Link, manually delete/clear 
+  watch history
+  search history
 
 **Demo**
 **Test**

@@ -1,24 +1,47 @@
-import { Outlet, Link, useLoaderData} from 'react-router-dom';
+import { Outlet, Link, useLoaderData, useParams } from 'react-router-dom';
 import React from 'react';
-import { atom } from 'jotai';
-import { mediaTypeConfig } from './config/constants';
+import { atom, useAtom } from 'jotai';
 import { appLoader } from './routes/router';
+import { search_queries } from './features/searching';
+import ToggleMediaType from './components/ToggleMediaType';
 
-export const mediaTypeAtom = atom<string>('movie')
+export const mediaTypeAtom = atom<'movie' | 'tv'>('movie');
+export const featureAtom = atom<'home' | 'discover'>('home');
 
 function App() {
+  const params = useParams();
   const initialData = useLoaderData() as Awaited<ReturnType<typeof appLoader>>;
+  const [_, setFeature] = useAtom(featureAtom);
 
-  mediaTypeConfig.movie= { ...mediaTypeConfig.movie, 'with_genres': [...initialData[0].genres]}
-  mediaTypeConfig.tv= { ...mediaTypeConfig.tv, 'with_genres': [...initialData[1].genres]}
+  React.useEffect(() => {
+    search_queries.mediaTypeConfig.movie.discover.paramList = {
+      ...search_queries.mediaTypeConfig.movie.discover.paramList,
+      with_genres: [...initialData[0].genres],
+    };
+    search_queries.mediaTypeConfig.tv.discover.paramList = {
+      ...search_queries.mediaTypeConfig.tv.discover.paramList,
+      with_genres: [...initialData[1].genres],
+    };
+  }, []);
 
   return (
     <div className='w-screen h-screen'>
       {/*Header Nav begins */}
-      <Link to='/'>Home</Link>
-      <Link to='discover'>Explore</Link>
-      <Link to='profile'>Profile</Link>
+      <div className='flex gap-4'>
+        <Link onClick={() => setFeature('home')} to='/'>
+          Home
+        </Link>
+        <Link onClick={() => setFeature('discover')} to='/discover'>
+          Discover
+        </Link>
+
+        <Link to='/profile'>profile</Link>
+      </div>
+      <br />
+      {!params.mediaType && <ToggleMediaType />}
+      <br />
       {/* Nav ends */}
+
       <Outlet />
 
       {/* Footer */}

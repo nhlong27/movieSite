@@ -1,9 +1,9 @@
 import Wrapper from '@/components/ui/Wrapper';
 import React from 'react';
-import { useGetItemExtraQuery } from '../hooks/useGetItemExtraQuery';
-import { SimilarMovieType, SimilarTVType } from '../types';
+import { useGetItemExtraQuery } from '../../hooks/useGetItemExtraQuery';
+import { SimilarMovieType, SimilarTVType } from '../../types';
 
-const SimilarListComponent: React.FC = () => {
+const SimilarListSection: React.FC = () => {
   const { data } = useGetItemExtraQuery();
   return (
     <div>
@@ -16,6 +16,6 @@ const SimilarListComponent: React.FC = () => {
 
 export default () => (
   <Wrapper>
-    <SimilarListComponent />
+    <SimilarListSection />
   </Wrapper>
 );
