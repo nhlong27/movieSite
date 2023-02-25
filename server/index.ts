@@ -1,21 +1,21 @@
-import express from 'express';
+import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
 dotenv.config();
-const app = express();
+const app: Express = express();
 
 const port = process.env.PORT;
 
-var corsOptions = {
+const corsOptions = {
   origin: process.env.CLIENT,
   optionsSuccessStatus: 200
 }
 
 app.use((cors(corsOptions)))
 
-app.get('/profile', (req, res) => {
-  res.send('Express + TypeScript Server Working');
+app.get('/profile', (req: Request, res: Response) => {
+  res.send('Express + TypeScript Server Working again');
 });
 
 app.listen(port, () => {
