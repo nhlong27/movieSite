@@ -26,6 +26,7 @@ const keys = {
   ],
 };
 
+// This object serves the purpose: Reducing fetcher, useQuery hook repetitions  
 const itemDetailOptions: ItemDetailOptionsProps = {
   movie: {
     default: async (movieId?: string) =>
@@ -90,8 +91,8 @@ const getSeasonQuery = (season_number?: string, tvId?: string) => {
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
     enabled: !!tvId,
-    // suspense: true,
-    // useErrorBoundary: true
+    suspense: true,
+    useErrorBoundary: true
   };
 };
 

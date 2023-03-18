@@ -18,7 +18,7 @@ const MediaContainer: React.FC = () => {
       <BackdropComponent />
       <PosterComponent />
       <ItemOverview />
-      {params.type === 'tv' && <SeasonSelectComponent />}
+      {params.mediaType === 'tv' && <SeasonSelectComponent />}
 
       <button onClick={() => setIsReady(true)}>Watch</button>
       {isReady && <MediaPlayerComponent />}

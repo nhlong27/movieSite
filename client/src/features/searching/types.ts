@@ -6,7 +6,6 @@ interface MovieFilterList {
   sort_by: string;
   year?: number;
   with_genres?: Array<number | undefined>;
-  include_adult?: boolean;
 }
 
 interface TVFilterList {

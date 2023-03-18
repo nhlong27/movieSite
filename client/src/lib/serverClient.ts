@@ -4,4 +4,5 @@ import urls from '@/config/urls';
 export const serverClient = axios.create({
   baseURL: urls.server,
   params: {},
+  withCredentials: true
 });

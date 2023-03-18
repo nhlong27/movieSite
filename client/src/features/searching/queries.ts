@@ -23,6 +23,7 @@ const keys = {
       : ([queryType, mediaType, paramList] as const),
 };
 
+// This object serves two purposes: 1. Reducing fetcher, useQuery hook repetitions  2. Providing a template 'paramList' for later referencing  
 const mediaTypeConfig: MediaTypeConfig = {
   movie: {
     home: {

@@ -1,4 +1,4 @@
-
+// Don't need this
 export const mediaTypeConfig: {[key:string] : any} = {
   movie: {
     statusList: ['trending', 'upcoming', 'now_playing'],

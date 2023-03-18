@@ -11,11 +11,17 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./*"]
-    }
+    // "baseUrl": ".",
+    // "paths": {
+    //   "@/*": ["./*"]
+    // },
+    "types": [
+      "node"
+    ]
   },
   "include": ["**/*.ts", "*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  }
 }

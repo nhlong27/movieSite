@@ -107,12 +107,22 @@ This section lists all major frameworks/libraries used to bootstrap this project
 * [![Chartjs][Chartjs-badge]][Chartjs-url]
 
 
-### Setup
-Original setup 
+### Client Setup
+Extends from 
 * [vite-react-ts-eslint-prettier](https://github.com/igdev116/vite-react-ts-eslint-prettier)
 
 Configurations
-* README.md, .eslintrc, tsconfig.json, folder structure, TailwindCSS, dotenv, jotai, zustand, axios, zod, react-query, react-router-dom, supabase
+* README.md, .eslintrc, tsconfig.json, TailwindCSS, dotenv, jotai, zustand, axios, zod, react-query, react-router-dom
+
+### Server Setup
+Extends from
+* Express js with MongoDB
+
+Configurations
+* README.md, tsconfig.json, nodemon, concurrently, bcrypt, cookie-parser, cors, dotenv, expres, jsonwebtoken, lodash, moongoose, zod
+
+% https://stackoverflow.com/questions/72600316/ts-node-module-not-found-when-using-absolute-imports-in-typescript
+% https://bobbyhadz.com/blog/javascript-cannot-find-module-lodash (didn't work)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -140,10 +150,9 @@ _Below is how you can install and set up your app. This template doesn't rely on
    ```sh
    npm install
    ```
-4. Replace with your local environment variables: VITE_SUPABASE_URL, VITE_SUPABASE_ANON
+4. Replace with your local environment variables: 
    ```js
-   const VITE_SUPABASE_URL = 'your_supabase_host'; 
-   const VITE_SUPABASE_ANON = 'your_supabase_anon_key'; 
+   const VITE_RANDOM = 'your_random'; 
    
    ```
 
@@ -152,11 +161,6 @@ _Below is how you can install and set up your app. This template doesn't rely on
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-
-### Default Assets
-_Demo User (firstName lastName - email): 
-
-
 ### Guide
 <!-- 
 
@@ -197,100 +201,212 @@ _ Facility page: show room & bed creation
 
 
 <!-- ROADMAP -->
-## Roadmap
-### Versions
+## Development Pipeline
+
+**DESIGN**
+
+usbat: "user should be able to"
+_item_: "movie" || "tv"
+_recommended_: {
+  movie: {
+    trending,
+    upcoming,
+    now-playing
+  },
+  tv: {
+    trending,
+    on-the-air,
+    airing-today
+  }
+}
+_filters_: {
+  movie: {
+    sort_by: {
+      popularity.asc,
+      popularity.desc,
+      release_date.desc,
+      vote_average.desc,
+      vote_average.asc,
+      vote_count.desc,
+      vote_count.asc,
+    },
+    year,
+    with_genres
+  },
+  tv: {
+    sort_by: {
+      popularity.asc,
+      popularity.desc,
+      first_air_date.desc,
+      vote_average.desc,
+      vote_average.asc,
+      vote_count.desc,
+      vote_count.asc,
+    },
+    first_air_date_year,
+    with_genres,
+    with_status: {
+      Planned,
+      In Production,
+      Ended,
+      Cancelled,
+      Pilot
+    },
+    with_type: {
+      Documentary,
+      News,
+      Miniseries,
+      Reality,
+      Scripted,
+      TalkShow',
+      Video,
+    },
+  }
+}
+_overview_: {
+  movie: [
+    title, overview, genres, vote_average, vote_count, runtime, status, tagline, release_date, spoken_languages{name}, (poster_path, backdrop)
+  ],
+  tv: [
+    tagline, name, overview, genres, vote_average, vote_count, episode_run_time, status, type, next_episode_to_air{episode_number, name, season_number, id, air_date}, last_episode_to_air{episode_number, name, , id, air_date}, first_air_date, spoken_languages{name}, networks[{name,logo_path}], number_of_seasons
+  ]
+}
+_casts_: [
+  get[cast{name, profile_path, character}, crew{job, name, profile_path}]
+]
+_reviews_: [
+  results[{author_details{username,avatar_path,rating}, content, created_at}]
+]
+_similar_: [
+  results[{backdrop_path, genre_ids, name, vote_average, vote_count, first_air_date, overview, popularity, id}]
+]
+_additionals_: {
+  movie: [
+    get[videos{key}]
+  ],
+  tv: [
+    get[season{episodes{air_date, episode_number, name, id, still_path, vote_average}, season_number, name, poster_path}]
+  ]
+}
+_item-list_: [
+  _added-item_: {
+    status: {
+      watching,
+      plan-to-watch,
+      dropped,
+      completed
+    },
+    score,
+    isFavorite,
+    hasReview,
+    hasComment
+  }
+]
+
+usbat see _recommended_[_item_] 
+
+usbat search for _item_
+  usbat search by keyword
+  usbat search by _filters_[_item_][...]
+
+usbat see _item_ information 
+    watch, overview, reviews, cast, comments, slides
+    usbat see _overview_[_item_]
+    usbat see _casts_
+    usbat see _reviews_:
+    usbat see _similar_:
+    usbat see _additionals_[_item_]
+
+usbat watch _item_
+
+usbat read and write customized information
+  usbat sign up/ sign in/ sign out
+  usbat read and write personal information
+  usbat read and write _added-item_ in _item-list_
+  usbat read and write their reviews for _item_ 
+  usbat read and write their comments for _item_ 
+
+  Status [default: Watching] - Score - Reviews - Favorite - Comments
+  'Plan to watch', ['Watching','Dropped','Completed'] && score
+  (score || review || favorite) && (status ? 'watching' : status)
 
 <!-- # Design Layer
 
 # Development Layer
-
+# Test Layer?
+# Build Layer
 # Deployment Layer -->
 
-**Prototype**
+
 <!-- ![Original project snapshot](assets/img/readme/project-screenshot.png?raw=true) -->
 
 <!-- ### Todos
 - [x] Refresh buttons  -->
 
-***Logic Pass***
-***Component Pass***
-1 User shall search for x <movies/tv shows>
-  1.1 user shall search by shows'/people's attributes:
-    query: /search/multi
-  1.2 user shall filter by
-    statusList: trending, now_playing, upcoming - trending, airing_now, on_the_air
-    filterList
-    *popularity, *vote_average, vote_count, *release_date - first_air_date
-    year - first_air_date_year
-    with_genres
-    include_adult - with_status, with_type
-    
-2 User shall watch x 
-    watch - overview, reviews, similar, translations?
 
-    watch, overview, reviews, cast, comments, slides
-    overview: 
-      - title, overview, genres, vote_average, vote_count, runtime, status, tagline, release_date, spoken_languages{name}, (poster_path, backdrop),
+## Architecture
 
-      - tagline, name, overview, genres, vote_average, vote_count, episode_run_time, status, type, next_episode_to_air{episode_number, name, season_number, id, air_date}, last_episode_to_air{episode_number, name, , id, air_date}, first_air_date, spoken_languages{name}, networks[{name,logo_path}]
-      number_of_seasons
-    casts:
-      - get[cast{name, profile_path, character}, crew{job, name, profile_path}]
-    reviews:
-      - results[{author_details{username,avatar_path,rating}, content, created_at}]
-    similar:
-      - results[{backdrop_path, genre_ids, name, vote_average, vote_count, first_air_date, overview, popularity, id}]
-    slides: 
-      - get[videos{key}] 
-      - get[season{episodes{air_date, episode_number, name, id, still_path, vote_average}, season_number, name, poster_path}]
+**CLIENT STATE**
+  **Server API Layer**
+  ### API/Request-Response Handling
+    debounce
+    Api_key -> proxy server: nginx route api requests
+    Axios + React Query
+      Infinity query
+        Keep previous data
+      % https://github.com/alan2207/react-query-auth
+    Zustand?
 
-
-3 User shall save information
-  * auth? collections
-    3.* user shall sign up/ login/ logout, edit personal information
-  3.1 * add to collection -> Link, manually delete/clear 
-  watch history
-  search history
-
-**Demo**
-**Test**
-**Bonus**
-
-1.2.2 user shall search for shows belong to a certain cast
-2.1 user shall watch shows in Vietnamese subtitle as a default
-3.3 user shall bookmark and favorite shows
-3.4 user shall leave comments and see comment history
-3.5 user shall leave reviews and see review history
-3.6 user shall search for others' favorites movies/ comments/ reviews
-0.* Dark/Light theme
-
-*Unknown*
-state syncrhonization 
-  debounce
-  react loading skeleton
-  lazyload
-    image
-    <LazyLoadImage
-//               src={resizeImage(movie?.poster_path, 'w154')}
-//               className='w-full h-full object-cover rounded-md'
-//               alt='poster'
-//               effect='blur'
-//             />
+  **UI Layer**
+  ### Routing
+    Code Splitting
+      router + conditionals
+      % https://sambitsahoo.com/blog/vite-code-splitting-that-works.html
+    Transition
+      framer-motion
+    Loaders
+    errorElement
+  ### Error Handling
+    Toast
+    Receive server error handling -> React Query handles try-catch, error bubbling to route if no errorBoundary
+    404 page - errorElement on <Route>
+  ### Suspense Handling
+    Skeleton
+      react-loading-skeleton
+    Lazy loading image
       browser lazyload
-      react component
       blurhash
-    code splitting
-      router
-      conditional
-styling 
+
   swiper
-  framer motion - route transition
   react auto animate - parent & children
-  route change 
-    progress bar
-index.js /features
+  progress bar
+  toggling dark/light theme
 
 
+**SERVER STATE**
+  **Client API Layer**
+  ### API/Request-Response Handling
+    Express
+      res.append
+      Routing
+      % https://stackoverflow.com/questions/7042340/error-cant-set-headers-after-they-are-sent-to-the-client
+  **Business Logic Layer**
+  ### Middlewares
+
+  **DB API Layer**
+  ### ORM
+    Mongoose
+
+**TEST**
+**SECURITY**
+  **Auth**
+  # Tokens + Cookie
+    Httponly cookie + browser CORS, xsrf support (axios withCredentials + corsOptions credentials: true, allow origin: localhost...)  
+    % https://www.reddit.com/r/webdev/comments/rck2mv/where_is_best_place_to_store_the_bearer_token_you/
+    % https://stackoverflow.com/questions/43002444/make-axios-send-cookies-in-its-requests-automatically
+    % https://stackoverflow.com/questions/43772830/access-control-allow-credentials-header-in-the-response-is-which-must-be-t
+
+    
 
 See the [open issues](https://github.com/nhlong27/dengueapp/issues) for a full list of proposed features (and known issues).
 

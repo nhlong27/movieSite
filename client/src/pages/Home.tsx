@@ -1,4 +1,4 @@
-import { HomeContainer } from '@/features/searching';
+import { HomeContainer } from '../features/searching';
 import React from 'react';
 
 const Home = () => {
