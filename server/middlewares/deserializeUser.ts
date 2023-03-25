@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import lo from 'lodash'
 import { reIssueAccessToken } from "../services/jwt.service.js";
-import { findSession } from "../services/session.service.js";
+// import { findSession } from "../services/session.service.js";
 import { findUser } from "../services/user.service.js";
 import { verifyJWT } from "../utils/jwt.utils.js";
 import dotenv from 'dotenv'
@@ -46,21 +46,21 @@ const deserializeUserFromJWT = async (req: Request, res: Response, next: NextFun
 }
 
 
-const deserializeUserFromSession = async (req: Request, res: Response, next: NextFunction) => {
-  const sessionId = req.cookies.sessionId;
-  if (!sessionId) return next();
+// const deserializeUserFromSession = async (req: Request, res: Response, next: NextFunction) => {
+//   const sessionId = req.cookies.sessionId;
+//   if (!sessionId) return next();
   
-  const session = await findSession(sessionId)
-  const user = await findUser(session.user)
+//   const session = await findSession(sessionId)
+//   const user = await findUser(session.user)
 
-  if (user) {
-    res.locals.user = user;
-    return next();
-  }
+//   if (user) {
+//     res.locals.user = user;
+//     return next();
+//   }
 
-  // user null
-  res.clearCookie("sessionId")
-  return res.status(404).send('Invalid session Id or user not found').redirect('/')
-} 
+//   // user null
+//   res.clearCookie("sessionId")
+//   return res.status(404).send('Invalid session Id or user not found').redirect('/')
+// } 
 
-export {deserializeUserFromJWT, deserializeUserFromSession};
+export {deserializeUserFromJWT};

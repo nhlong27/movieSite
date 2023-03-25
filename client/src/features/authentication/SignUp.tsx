@@ -1,6 +1,7 @@
 import { serverClient } from '@/lib/serverClient';
 import { useMutation } from '@tanstack/react-query';
 import React from 'react';
+import Deactivate from './Deactivate';
 
 const SignUp = () => {
   const [name, setName] = React.useState('');
@@ -21,9 +22,9 @@ const SignUp = () => {
       return serverClient.post('/api/v1/user/SignUp', newUser);
     },
     onError: (err) => console.log(err),
-    onSuccess: ()=>{
+    onSuccess: () => {
       console.log('Client Side SignUp');
-    } // Toast?
+    }, // Toast?
   });
   return (
     <div className='ring-2 ring-black p-4 mb-4'>
@@ -49,10 +50,14 @@ const SignUp = () => {
         />
         Email:
         <input type='text' value={email} onChange={(e) => setEmail(e.currentTarget.value)} />
-        <button type='submit' className='bg-cyan-100'>Sign up</button>
-
+        <button type='submit' className='bg-cyan-100'>
+          Sign up
+        </button>
         {userData ? (
-          <pre>{JSON.stringify(userData?.data, null, '\t')}</pre>
+          <>
+            <pre>{JSON.stringify(userData?.data, null, '\t')}</pre>
+            <Deactivate />
+          </>
         ) : userError instanceof Error ? (
           <pre>{JSON.stringify(userError, null, '\t')}</pre>
         ) : (

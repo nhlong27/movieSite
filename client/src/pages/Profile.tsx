@@ -1,23 +1,16 @@
 import { SignIn, SignOut, SignUp } from '@/features/authentication';
+import Avatar from '@/features/authentication/Avatar';
 import { serverClient } from '@/lib/serverClient';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { Link } from 'react-router-dom';
 // import { SearchProto } from '@/features/searching';
 
 const Profile = () => {
-  const { data, error } = useQuery({
-    queryKey: ['server-data'],
-    queryFn: async () => {
-      return (await serverClient.get('/api/v1/user')).data;
-    },
-  });
 
   console.log('refresh!')
 
-  return data ? (
+  return  (
     <>
-      <div>Profile: {data}</div>
       <SignUp />
       <SignIn />
       <SignOut />
@@ -28,14 +21,12 @@ const Profile = () => {
           alert(result);
         }}
       >
-        Test
+        Test 
       </button>
+      <br/>
+      <Avatar />
     </>
-  ) : error instanceof Error ? (
-    <div>Error..</div>
-  ) : (
-    <div>Loading..</div>
-  );
+  ) 
 };
 
 export default Profile;

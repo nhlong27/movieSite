@@ -1,13 +1,15 @@
-import { SessionModel } from "../models/session.model.js";
-const createSession = async (userId, userAgent) => {
-    const session = await SessionModel.create({ user: userId, userAgent });
-    return session.toJSON();
-};
-const findSession = async (query) => {
-    return SessionModel.find(query).lean();
-};
-const updateSession = async (query, update) => {
-    return SessionModel.updateOne(query, update);
-};
-export { createSession, findSession, updateSession };
+// import { FilterQuery, UpdateQuery } from "mongoose";
+// import { SessionDocument, SessionModel } from "../models/session.model.js";
+export {};
+// const createSession = async (userId: string, userAgent: string) => {
+//   const session = await SessionModel.create({user: userId, userAgent})
+//   return session.toJSON();
+// }
+// const findSession = async (query: FilterQuery<SessionDocument>) : Promise<SessionDocument> => {
+//   return SessionModel.find(query).lean();
+// }
+// const updateSession = async (query: FilterQuery<SessionDocument>, update: UpdateQuery<SessionDocument>) => {
+//   return SessionModel.updateOne(query, update);
+// }
+// export {createSession, findSession, updateSession}
 //# sourceMappingURL=session.service.js.map

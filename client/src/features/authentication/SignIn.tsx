@@ -3,6 +3,7 @@ import { serverClient } from '@/lib/serverClient';
 import { useMutation } from '@tanstack/react-query';
 import React from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
+import Deactivate from './Deactivate';
 
 const SignIn = () => {
   const [email, setEmail] = React.useState('');
@@ -10,18 +11,17 @@ const SignIn = () => {
 
   const { mutate, data, error } = useMutation({
     mutationFn: (info: { email: string; password: string }) => {
-      return serverClient.post('/api/v1/user/SignIn', info)
+      return serverClient.post('/api/v1/user/SignIn', info);
     },
     useErrorBoundary: true,
     onError: (e) => {
       console.log('mutation' + e);
     },
-    onSuccess: ()=>{
+    onSuccess: () => {
       console.log('Client Side SignIn');
-    } // Toast?
+    }, // Toast?
   });
 
-  console.log(error)
   return (
     <div className='ring-2 ring-black p-4'>
       <form
@@ -38,17 +38,28 @@ const SignIn = () => {
           value={password}
           onChange={(e) => setPassword(e.currentTarget.value)}
         />
-        <button type='submit' className='bg-cyan-100'>Sign in</button>
+        <button type='submit' className='bg-cyan-100'>
+          Sign in
+        </button>
       </form>
       <ErrorBoundary fallback={<pre>{JSON.stringify(error, null, '\t')}</pre>}>
-        {data ? <pre>{JSON.stringify(data.data, null, '\t')}</pre> : <div>Data here</div>}
+        {data ? (
+          <>
+            <pre>{JSON.stringify(data.data, null, '\t')}</pre>
+            <Deactivate />
+          </>
+        ) : (
+          <div>Data here</div>
+        )}
       </ErrorBoundary>
     </div>
   );
 };
 
-export default ()=>{
-  return <Wrapper>
-    <SignIn />
-  </Wrapper>
+export default () => {
+  return (
+    <Wrapper>
+      <SignIn />
+    </Wrapper>
+  );
 };

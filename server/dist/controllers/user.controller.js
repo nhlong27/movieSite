@@ -1,4 +1,4 @@
-import { createUser, validatePassword } from "../services/user.service.js";
+import { createUser, deactivateUser, validatePassword } from "../services/user.service.js";
 import { UserModel } from "../models/user.model.js";
 import { signJWT } from "../utils/jwt.utils.js";
 const signUpHandler = async (req, res) => {
@@ -70,5 +70,49 @@ const signOutHandler = async (req, res) => {
     res.clearCookie('refreshToken');
     return res.status(200).json({ status: 'success, cookies cleared' });
 };
-export { signUpHandler, signInHandler, signOutHandler };
+const deactivateUserHandler = async (req, res) => {
+    const success = await deactivateUser({ email: res.locals.user.email, password: req.body.password });
+    if (success) {
+        res.clearCookie('accessToken');
+        res.clearCookie('refreshToken');
+        return res.status(200).json({ status: 'success, cookies cleared, user deactivated' });
+    }
+    return res.status(400).json({ status: "Error: failed to delete user" });
+};
+const avatarUploadHandler = async (req, res) => {
+    try {
+        const user = await UserModel.findOne({ email: res.locals.user.email });
+        if (!user)
+            return res.status(400).send("User not found");
+        const base64Data = req.body.base64;
+        // const dataStart = base64Data.indexOf(',') + 1;
+        // const contentTypeStart = base64Data.indexOf(':') + 1;
+        // const contentTypeEnd = base64Data.indexOf(';');
+        // const data = Buffer.from(base64Data.slice(dataStart), 'base64');
+        // const contentType = base64Data.slice(contentTypeStart, contentTypeEnd);
+        // Read the binary data of the image file from disk
+        // const imageData = req.body.imageData;
+        // console.log(req.body)
+        // const base64Data = imageData.toString('base64');
+        // const dataUrl = `data:image/jpeg;base64,${base64Data}`;
+        user.avatar = base64Data;
+        await user.save();
+        res.status(201).json({ msg: "New image uploaded...!" });
+    }
+    catch (error) {
+        res.status(409).json({ message: error.message });
+    }
+};
+const getUserHandler = async (req, res) => {
+    try {
+        const user = await UserModel.findOne({ email: res.locals.user.email });
+        if (!user)
+            return res.status(400).send("User not found");
+        res.status(201).send(user);
+    }
+    catch (error) {
+        res.status(409).json({ message: error.message });
+    }
+};
+export { signUpHandler, signInHandler, signOutHandler, deactivateUserHandler, avatarUploadHandler, getUserHandler };
 //# sourceMappingURL=user.controller.js.map

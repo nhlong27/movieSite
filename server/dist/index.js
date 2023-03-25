@@ -25,6 +25,6 @@ app.use(cookieParser());
 // before deserializer ?
 app.use(deserializeUserFromJWT);
 // app.use(deserializeUserFromSession)
-// ROUTES
+// ROUTES   
 app.use('/api/v1/user', user);
 //# sourceMappingURL=index.js.map

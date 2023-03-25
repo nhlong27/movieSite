@@ -320,7 +320,7 @@ usbat see _item_ information
 usbat watch _item_
 
 usbat read and write customized information
-  usbat sign up/ sign in/ sign out
+  usbat sign up/ sign in/ sign out/ delete account
   usbat read and write personal information
   usbat read and write _added-item_ in _item-list_
   usbat read and write their reviews for _item_ 
@@ -381,6 +381,7 @@ usbat read and write customized information
   react auto animate - parent & children
   progress bar
   toggling dark/light theme
+  button disabled
 
 
 **SERVER STATE**
@@ -391,9 +392,12 @@ usbat read and write customized information
       Routing
       % https://stackoverflow.com/questions/7042340/error-cant-set-headers-after-they-are-sent-to-the-client
   **Business Logic Layer**
-  ### Middlewares
+  ### Middlewares (client has middleware too)
 
   **DB API Layer**
+  ### Data types 
+    MultiMedia
+      % https://www.youtube.com/watch?v=srPXMt1Q0nY
   ### ORM
     Mongoose
 

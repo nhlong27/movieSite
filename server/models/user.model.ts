@@ -6,6 +6,7 @@ interface UserDocument extends mongoose.Document {
   email: string;
   name: string;
   password: string;
+  avatar: string,
   createdAt: Date;
   updatedAt: Date;
   comparePassword (candidatePassword: string): Promise<boolean>
@@ -14,7 +15,8 @@ interface UserDocument extends mongoose.Document {
 const UserMongoSchema = new mongoose.Schema({
   email: {type: String, require: true, unique: true},
   name: {type: String, require: true},
-  password: {type: String, require: true}
+  password: {type: String, require: true},
+  avatar: String,
 }, {
   timestamps: true,
 })
