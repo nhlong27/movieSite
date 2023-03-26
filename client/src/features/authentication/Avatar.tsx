@@ -1,20 +1,20 @@
 import { serverClient } from '@/lib/serverClient';
-import { convertToArrayBuffer, convertToBase64 } from '@/utils/covertToBase64';
+import { convertToBase64 } from '@/utils/covertToBase64';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
 
 const Avatar = () => {
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
-    mutationFn: (file: any) => {
-      return serverClient.post(
-        '/api/v1/user/avatar',
+    mutationFn: (file: {avatar_url: string}) => {
+      return serverClient.patch(
+        '/api/v1/user/',
         file,
-        // {
-        //   headers: {
-        //     'Content-Type': 'multipart/form-data',
-        //   },
-        // }
+        {
+          params: {
+            type:'avatar'
+          }
+        }
       );
     },
     onSuccess: (response) => {
@@ -24,26 +24,14 @@ const Avatar = () => {
     onError: (error) => console.error(error),
   });
 
-  const { data } = useQuery({
-    queryKey: ['userinfo'],
-    queryFn: async () => {
-      return (await serverClient.get('/api/v1/user/')).data;
-    },
-  });
+  const data = queryClient.getQueryData<{avatar:string}>(['userinfo'])
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const file = e?.target?.files?.[0];
 
-    let base64 = await convertToBase64(file);
-    console.log(base64);
-    mutate({base64});
-
-    // const arrayBuffer = await convertToArrayBuffer(file);
-    // console.log(arrayBuffer);
-    // mutate({arrayBuffer});
-
-    // mutate({imageData: file})
+    const base64 = await convertToBase64(file);
+    mutate({avatar_url: base64 as string});
   };
 
   return data ? (
@@ -52,6 +40,7 @@ const Avatar = () => {
         <img
           src={`${data?.avatar}`}
           alt='?'
+          className="h-40 w-28"
         />
       </label>
 

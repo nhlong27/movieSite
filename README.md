@@ -290,16 +290,17 @@ _additionals_: {
 }
 _item-list_: [
   _added-item_: {
-    status: {
+    status/Add to List: {
       watching,
       plan-to-watch,
       dropped,
-      completed
+      completed,
+      none
     },
-    score,
-    isFavorite,
-    hasReview,
-    hasComment
+    score/Select score,
+    isFavorited/Add to Favorites,
+    isReviewed/Reviews,
+    isDiscussed/Discussion
   }
 ]
 
@@ -367,7 +368,7 @@ usbat read and write customized information
     Loaders
     errorElement
   ### Error Handling
-    Toast
+    Toast, reset form
     Receive server error handling -> React Query handles try-catch, error bubbling to route if no errorBoundary
     404 page - errorElement on <Route>
   ### Suspense Handling
@@ -391,13 +392,19 @@ usbat read and write customized information
       res.append
       Routing
       % https://stackoverflow.com/questions/7042340/error-cant-set-headers-after-they-are-sent-to-the-client
+    Error handling
+      "When an error is thrown, the JavaScript runtime will immediately stop executing the current function and start unwinding the call stack to find a catch block that can handle the error. If no catch block is found, the error will be passed up to the global error handler, which will display an error message in the console or in the UI."
+      "Without return, the code after res.send() would still be executed, even though it's unlikely to have any effect on the response to the client. For example, if you have logging statements or other code that modifies variables after the call to res.send(), it would still be executed even though it doesn't affect the response to the client.
+
+      "Using return after res.send() is a good practice because it ensures that any subsequent code is not executed, which can help prevent errors and improve the performance of your code. However, if you're confident that there's no code after res.send() that would have unintended consequences, you can omit the return statement."
   **Business Logic Layer**
   ### Middlewares (client has middleware too)
 
   **DB API Layer**
   ### Data types 
     MultiMedia
-      % https://www.youtube.com/watch?v=srPXMt1Q0nY
+      % Using multer: https://www.youtube.com/watch?v=srPXMt1Q0nY
+      % https://www.mongodb.com/community/forums/t/process-of-storing-images-in-mongodb/15093/5
   ### ORM
     Mongoose
 
@@ -410,8 +417,11 @@ usbat read and write customized information
     % https://stackoverflow.com/questions/43002444/make-axios-send-cookies-in-its-requests-automatically
     % https://stackoverflow.com/questions/43772830/access-control-allow-credentials-header-in-the-response-is-which-must-be-t
 
-    
-
+**OTHERS**
+ .gitignore - remove cache
+% https://stackoverflow.com/questions/38983153/git-ignore-env-files-not-working
+  setting up
+% https://blog.tericcabrel.com/set-up-a-nodejs-project-with-typescript-eslint-and-prettier/
 See the [open issues](https://github.com/nhlong27/dengueapp/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

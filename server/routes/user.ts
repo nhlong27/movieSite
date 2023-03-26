@@ -1,25 +1,22 @@
 import express from 'express'
-import { avatarUploadHandler, deactivateUserHandler, getUserHandler, signInHandler, signOutHandler, signUpHandler } from '../controllers/user.controller.js';
+import { signInHandler, signOutHandler, signUpHandler, userDeactivateHandler, userQueryHandler, userUpdateHandler } from '../controllers/user.controller.js';
 import { requireUser } from '../middlewares/requireUser.js';
 import { validateRequest } from '../middlewares/validateRequest.js';
-import { SignInSchema } from '../schemas/signIn.schema.js';
-import { UserSchema } from '../schemas/user.schema.js';
+import { UserSchema, UserSignInSchema, UserUpdateSchema } from '../schemas/user.schema.js';
 
 import bodyParser from 'body-parser'
 
 const router = express.Router();
 
-router.route('/').get(requireUser, getUserHandler)
+router.route('/').get(requireUser, userQueryHandler)
 
 router.post('/SignUp', validateRequest(UserSchema), signUpHandler)
-router.post('/SignIn', validateRequest(SignInSchema), signInHandler)
-router.get('/test', requireUser, (req, res) => {
-  res.send('Ok')
-})
+router.post('/SignIn', validateRequest(UserSignInSchema), signInHandler)
 router.get('/SignOut', requireUser, signOutHandler)
 
-router.post('/deactivate', requireUser, deactivateUserHandler)
+router.delete('/', requireUser, userDeactivateHandler)
 
-router.post('/avatar', requireUser, avatarUploadHandler)
+router.patch('/', requireUser, validateRequest(UserUpdateSchema), userUpdateHandler) 
+
 // bodyParser.raw({ type: 'image/jpg', limit: '10mb' })
 export default router

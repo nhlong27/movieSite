@@ -2,17 +2,15 @@ import { serverClient } from '@/lib/serverClient';
 import { useMutation } from '@tanstack/react-query';
 import React from 'react';
 import Deactivate from './Deactivate';
+import { z } from 'zod';
+import toast, { Toaster } from 'react-hot-toast';
 
 const SignUp = () => {
   const [name, setName] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [passwordCon, setPasswordCon] = React.useState('');
   const [email, setEmail] = React.useState('');
-  const {
-    mutate,
-    data: userData,
-    error: userError,
-  } = useMutation({
+  const { mutate, data: userData } = useMutation({
     mutationFn: (newUser: {
       name: string;
       password: string;
@@ -21,16 +19,22 @@ const SignUp = () => {
     }) => {
       return serverClient.post('/api/v1/user/SignUp', newUser);
     },
-    onError: (err) => console.log(err),
-    onSuccess: () => {
-      console.log('Client Side SignUp');
-    }, // Toast?
+    onError: (error: any) => {
+      console.log(error);
+      error.response.data.errors.forEach((err: any) => {
+        toast(error.message + '. ' + err.message);
+      });
+    },
+    onSuccess: (response) => {
+      console.log('Signing up success. New user created!');
+    },
   });
   return (
     <div className='ring-2 ring-black p-4 mb-4'>
+      <Toaster />
       <form
-        onSubmit={(event) => {
-          event.preventDefault();
+        onSubmit={(e) => {
+          e.preventDefault();
           mutate({ name, password, passwordConfirmation: passwordCon, email });
         }}
       >
@@ -58,8 +62,6 @@ const SignUp = () => {
             <pre>{JSON.stringify(userData?.data, null, '\t')}</pre>
             <Deactivate />
           </>
-        ) : userError instanceof Error ? (
-          <pre>{JSON.stringify(userError, null, '\t')}</pre>
         ) : (
           <div>Data here</div>
         )}

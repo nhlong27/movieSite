@@ -4,12 +4,15 @@ const validateRequest = (schema) => {
             schema.parse({
                 body: req.body,
                 query: req.query,
-                params: req.params
+                params: req.params,
             });
             next();
         }
         catch (e) {
-            return res.status(400).send(e.errors);
+            return res.status(400).json({
+                message: 'Incorrect form inputs',
+                errors: e.errors,
+            });
         }
     };
 };

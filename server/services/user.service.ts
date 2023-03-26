@@ -12,8 +12,13 @@ const createUser = async (input: DocumentDefinition<Omit<UserDocument, "createdA
   }
 }
 
-const validatePassword = async ({email, password}:{email: string; password: string}) => {
-  const user = await UserModel.findOne({email});
+const validatePassword = async ({_id, email, password}:{_id?: string, email?: string; password: string}) => {
+  let user;
+  if (_id) {
+    user = await UserModel.findOne({_id});
+  } else {
+    user = await UserModel.findOne({email});
+  }
   if (!user) return false;
   const isValid = await user.comparePassword(password);
   if (!isValid) return false;
@@ -24,14 +29,11 @@ const findUser = async (query: FilterQuery<UserDocument>): Promise<UserDocument>
   return UserModel.findOne(query).lean()
 }
 
-const deactivateUser = async ({ email: email, password}:{ email: string; password: string}) => {
-  try {
-    const user = await validatePassword({email, password});
-    await UserModel.deleteOne({email});
+const deactivateUser = async ({ _id, password}:{_id: string; password: string}) => {
+    const user = await validatePassword({_id, password});
+    if (!user) return false;
+    await UserModel.deleteOne({_id});
     return true;
-  }
-  catch(e: any){
-    throw new Error(e)
-  }
 }
+
 export {createUser, validatePassword, findUser, deactivateUser};

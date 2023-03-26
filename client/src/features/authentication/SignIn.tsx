@@ -1,29 +1,30 @@
 import Wrapper from '@/components/ui/Wrapper';
 import { serverClient } from '@/lib/serverClient';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
 import Deactivate from './Deactivate';
+import toast, { Toaster } from 'react-hot-toast';
 
 const SignIn = () => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const queryClient = useQueryClient()
 
-  const { mutate, data, error } = useMutation({
+  const { mutate, data } = useMutation({
     mutationFn: (info: { email: string; password: string }) => {
       return serverClient.post('/api/v1/user/SignIn', info);
     },
-    useErrorBoundary: true,
-    onError: (e) => {
-      console.log('mutation' + e);
-    },
-    onSuccess: () => {
-      console.log('Client Side SignIn');
-    }, // Toast?
+      onError: (error: any) => {console.log(error)
+      toast(error.message +'. '+ error.response.data)},
+      onSuccess: (response) => {
+        console.log(response);
+        queryClient.invalidateQueries({ queryKey: ['userinfo'] });
+      }, 
   });
 
   return (
     <div className='ring-2 ring-black p-4'>
+      <Toaster />
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -42,24 +43,15 @@ const SignIn = () => {
           Sign in
         </button>
       </form>
-      <ErrorBoundary fallback={<pre>{JSON.stringify(error, null, '\t')}</pre>}>
-        {data ? (
-          <>
-            <pre>{JSON.stringify(data.data, null, '\t')}</pre>
-            <Deactivate />
-          </>
-        ) : (
-          <div>Data here</div>
-        )}
-      </ErrorBoundary>
+    {data && <Deactivate />}
     </div>
   );
 };
 
 export default () => {
   return (
-    <Wrapper>
+    // <Wrapper>
       <SignIn />
-    </Wrapper>
+    // </Wrapper>
   );
 };

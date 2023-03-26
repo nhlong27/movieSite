@@ -2,6 +2,8 @@ import { serverClient } from '@/lib/serverClient';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Deactivate from './Deactivate';
+
 
 const SignOut = () => {
   const [isSignOut, setIsSignOut] = React.useState(false);
@@ -12,8 +14,8 @@ const SignOut = () => {
       return (await serverClient.get('/api/v1/user/SignOut')).data;
     },
     enabled: !!isSignOut,
-    onSuccess: () => {
-      console.log('Client Side SignOut');
+    onSuccess: (response) => {
+      console.log(response)
       navigate(0);
     },
     onError: (error: any) => {
@@ -22,6 +24,7 @@ const SignOut = () => {
   });
 
   return (
+    <>
     <button className='mt-4 bg-cyan-100'
       onClick={() => {
         setIsSignOut(true);
@@ -29,6 +32,7 @@ const SignOut = () => {
     >
       Sign out
     </button>
+    </>
   );
 };
 
