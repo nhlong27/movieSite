@@ -30,9 +30,7 @@ const getShowHandler = async (req, res) => {
     try {
         const user = res.locals.user._id;
         const id = req.params.id;
-        console.log({ user, id });
         const show = await findShow({ user: user, id: id });
-        console.log({ show });
         if (!show)
             return res.status(404).send('Show not found.');
         return res.send(show);

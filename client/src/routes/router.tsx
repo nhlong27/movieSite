@@ -10,6 +10,7 @@ import Explore from '@/pages/Explore';
 import { watch_queries } from '@/features/watching';
 import { Params } from 'react-router-dom';
 import Media from '@/pages/Media';
+import Auth from '@/pages/Auth';
 
 const queryClient = new QueryClient();
 
@@ -62,6 +63,10 @@ export const router = createBrowserRouter([
       {
         path: '/profile',
         element: <Profile />,
+      },
+      {
+        path: '/auth',
+        element: <Auth />,
       },
     ],
   },
