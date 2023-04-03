@@ -10,8 +10,8 @@ const SearchResult = () => {
   const { data: itemList } = useItemListQuery();
   return itemList ? (
     (itemList.results ?? []).length > 0 ? (
-      <div>
-        <div>
+      <div data-testid='result'>
+        <div aria-label='movie'>
           Movie:{' '}
           {itemList?.results
             ?.filter((item) => item.media_type === 'movie')
@@ -19,7 +19,7 @@ const SearchResult = () => {
               return <MovieCard key={index} movie={item as MovieType} />;
             })}
         </div>
-        <div>
+        <div aria-label='tv'>
           TV:{' '}
           {itemList?.results
             ?.filter((item) => item.media_type === 'tv')
@@ -27,14 +27,14 @@ const SearchResult = () => {
               return <TVCard key={index} tv={item as TVType} />;
             })}
         </div>
-        <div>
+        {/* <div>
           People:{' '}
           {itemList?.results
             ?.filter((item) => item.media_type === 'person')
             .map((item, index: number) => {
               return <PersonCard key={index} person={item as PersonType} />;
             })}
-        </div>
+        </div> */}
       </div>
     ) : (
       <div>Item not available</div>

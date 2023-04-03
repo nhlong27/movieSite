@@ -8,6 +8,7 @@ const SearchBar = () => {
     <div>
       <label htmlFor='search'>Search</label>
       <input
+        data-testid='search'
         id='search'
         type='text'
         className='ml-4 ring-2 ring-black'

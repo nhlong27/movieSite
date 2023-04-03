@@ -290,17 +290,25 @@ _additionals_: {
 }
 _item-list_: [
   _added-item_: {
-    status/Add to List: {
+    status/"Add to List": {
       watching,
       plan-to-watch,
       dropped,
       completed,
-      none
+      none/"Add status"
     },
-    score/Select score,
-    isFavorited/Add to Favorites,
-    isReviewed/Reviews,
-    isDiscussed/Discussion
+    score/"Select score",
+    isFavorited/"Add to Favorites",
+    <!-- isReviewed/Reviews,
+    isDiscussed/Discussion -->
+    user,
+    title,
+    name,
+    poster_path,
+    season_number,
+    id,
+    createdAt,
+    updatedAt
   }
 ]
 
@@ -356,7 +364,7 @@ usbat read and write customized information
       Infinity query
         Keep previous data
       % https://github.com/alan2207/react-query-auth
-    Zustand?
+    Zustand - user, show form optimistic update + rollback/cancel mutations
 
   **UI Layer**
   ### Routing

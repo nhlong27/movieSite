@@ -12,7 +12,7 @@ const TrendingSection = () => {
     <div>
       <button onClick={() => setPeriod('day')}>Day</button>
       <button onClick={() => setPeriod('week')}>Week</button>
-      <div className='flex gap-4'>
+      <div data-testid='trending-section' className='flex gap-4'>
         {data?.results?.map((item, index) => {
           return (
             <div key={index}>

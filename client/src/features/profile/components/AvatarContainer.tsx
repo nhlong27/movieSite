@@ -3,12 +3,12 @@ import React from 'react';
 import { useUpdateUserMutation } from '../hooks/useUpdateUserMutation';
 import toast, { Toaster } from 'react-hot-toast';
 import { UserUpdateResponse } from '../types';
-import { useUserQuery } from '../hooks/useUserQuery';
-import {useForm} from 'react-hook-form'
+import { useGetUserQuery } from '../hooks/useGetUserQuery';
+import { useForm } from 'react-hook-form';
 
 const AvatarContainer = () => {
   const updateUserMutation = useUpdateUserMutation();
-  const { data: profileAvatar }  = useUserQuery();
+  const { data: profileAvatar } = useGetUserQuery();
 
   const { register, handleSubmit } = useForm();
 
@@ -37,12 +37,12 @@ const AvatarContainer = () => {
 
   return (
     <div>
-      {profileAvatar ? <img src={`${profileAvatar?.avatar}`} alt='?' className='h-40 w-28' /> : null}
+      {profileAvatar ? (
+        <img src={`${profileAvatar?.avatar}`} alt='?' className='h-40 w-28' />
+      ) : null}
       <Toaster />
       <form onSubmit={handleSubmit(onSubmit)}>
-      <input
-        {...register('image')}
-        type="file" />
+        <input {...register('image')} type='file' />
         <button type='submit'>Upload</button>
       </form>
       {/* <FormComponent

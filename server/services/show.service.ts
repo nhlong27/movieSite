@@ -14,6 +14,14 @@ const findShow = async (
   return ShowModel.findOne(query, {}, options);
 };
 
+const findShowOrShows = async (
+  query: FilterQuery<ShowDocument>,
+  options: QueryOptions = { lean: true },
+) => {
+  return ShowModel.find(query, {}, options);
+};
+
+
 const updateShow = async (
   query: FilterQuery<ShowDocument>,
   update: UpdateQuery<ShowDocument>,
@@ -26,4 +34,4 @@ const deleteShow = async (query: FilterQuery<ShowDocument>) => {
   return ShowModel.deleteOne(query);
 };
 
-export {createShow, updateShow, findShow, deleteShow}
+export {createShow, updateShow, findShowOrShows, deleteShow, findShow}

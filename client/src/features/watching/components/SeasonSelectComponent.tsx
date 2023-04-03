@@ -2,9 +2,12 @@ import Wrapper from '@/components/ui/Wrapper';
 import React from 'react';
 import { useGetItemDetailQuery } from '../hooks/useGetItemDetailQuery';
 import { useGetSeasonListQuery } from '../hooks/useGetSeasonQuery';
-import {TVDetailType } from '../types';
+import { TVDetailType } from '../types';
+import MediaPlayerComponent from './player/MediaPlayerComponent';
 
 const SeasonSelectComponent = () => {
+  const [isReady, setIsReady] = React.useState(false);
+
   const { data } = useGetItemDetailQuery();
   const { data: seasonList } = useGetSeasonListQuery(
     (data as TVDetailType)?.number_of_seasons,
@@ -12,16 +15,18 @@ const SeasonSelectComponent = () => {
   );
   return (
     <div className=''>
-      {seasonList.map((season, index) => {
+      {seasonList.map((season, seasonIndex) => {
         return (
-          <div key={index} className=''>
+          <div key={seasonIndex} className=''>
             Season Name: {season?.name} <br />
             <div className='flex flex-col ml-4'>
-              {season?.episodes?.map((episode, index) => {
+              {season?.episodes?.map((episode, episodeIndex) => {
                 return (
-                  <div className='' key={index}>
-                    {episode.name}
-                  </div>
+                  <MediaPlayerComponent
+                    seasonIndex={seasonIndex.toString()}
+                    key={episodeIndex}
+                    episodeIndex={episodeIndex.toString()}
+                  />
                 );
               })}
             </div>

@@ -1,8 +1,6 @@
 import React from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { SignUpForm, SignUpFormType, SignUpResponse } from '../types';
+import { SignUpForm, SignUpResponse } from '../types';
 import { useSignUpMutation } from '../hooks/useSignUpMutation';
 import FormComponent from '@/components/FormComponent';
 

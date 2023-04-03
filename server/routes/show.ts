@@ -1,5 +1,5 @@
 import express from 'express'
-import { deleteShowHandler, getShowHandler, updateShowHandler } from '../controllers/show.controller.js';
+import { deleteShowHandler, getMultipleShowsHandler, getShowHandler, updateShowHandler } from '../controllers/show.controller.js';
 import { requireUser } from '../middlewares/requireUser.js';
 import { validateRequest } from '../middlewares/validateRequest.js';
 import { ShowDeleteSchema, ShowGetSchema, ShowSchema } from '../schemas/show.schema.js';
@@ -8,6 +8,8 @@ import { ShowDeleteSchema, ShowGetSchema, ShowSchema } from '../schemas/show.sch
 const router = express.Router();
 
 router.route('/:id').get(requireUser, validateRequest(ShowGetSchema), getShowHandler)
+
+router.route('/').get(requireUser, getMultipleShowsHandler)
 
 router.put('/:id', requireUser, validateRequest(ShowSchema), updateShowHandler)
 

@@ -1,4 +1,4 @@
-import { createShow, deleteShow, findShow, updateShow } from '../services/show.service.js';
+import { createShow, deleteShow, findShow, findShowOrShows, updateShow } from '../services/show.service.js';
 // const createShowHandler = async (req: Request<{}, {}, ShowType['body']>, res: Response) => {
 //   try {
 //     const user = res.locals.user._id;
@@ -32,8 +32,20 @@ const getShowHandler = async (req, res) => {
         const id = req.params.id;
         const show = await findShow({ user: user, id: id });
         if (!show)
-            return res.status(404).send('Show not found.');
+            return res.status(404).send(`Show with id ${id} not found.`);
         return res.send(show);
+    }
+    catch (e) {
+        res.status(400).send(e.message);
+    }
+};
+const getMultipleShowsHandler = async (req, res) => {
+    try {
+        const user = res.locals.user._id;
+        const shows = await findShowOrShows({ user: user });
+        if (!shows)
+            return res.status(404).send('No show found.');
+        return res.send(shows);
     }
     catch (e) {
         res.status(400).send(e.message);
@@ -52,5 +64,5 @@ const deleteShowHandler = async (req, res) => {
         res.status(400).send(e.message);
     }
 };
-export { updateShowHandler, deleteShowHandler, getShowHandler };
+export { updateShowHandler, deleteShowHandler, getShowHandler, getMultipleShowsHandler };
 //# sourceMappingURL=show.controller.js.map

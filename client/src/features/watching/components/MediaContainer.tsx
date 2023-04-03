@@ -8,20 +8,19 @@ import PosterComponent from './PosterComponent';
 import SeasonSelectComponent from './SeasonSelectComponent';
 import SimilarListComponent from './sections/SimilarListSection';
 import TrailerListComponent from './TrailerListComponent';
+import OptionsContainer from './OptionsContainer';
 
 const MediaContainer: React.FC = () => {
-  const [isReady, setIsReady] = React.useState(false);
-  const { params } = useGetItemExtraQuery();
-
   return (
     <>
       <BackdropComponent />
       <PosterComponent />
-      <ItemOverview />
-      {params.mediaType === 'tv' && <SeasonSelectComponent />}
 
-      <button onClick={() => setIsReady(true)}>Watch</button>
-      {isReady && <MediaPlayerComponent />}
+      <OptionsContainer />
+      
+
+      <ItemOverview />
+      
       <TrailerListComponent />
       <SimilarListComponent />
     </>

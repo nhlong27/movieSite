@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { ShowDeleteType, ShowGetType, ShowType, ShowUpdateType } from '../schemas/show.schema.js';
-import { createShow, deleteShow, findShow, updateShow } from '../services/show.service.js';
+import { createShow, deleteShow, findShow, findShowOrShows, updateShow } from '../services/show.service.js';
 
 // const createShowHandler = async (req: Request<{}, {}, ShowType['body']>, res: Response) => {
 //   try {
@@ -20,8 +20,8 @@ const updateShowHandler = async (req: Request<ShowUpdateType['params']>, res: Re
     const update = req.body;
     let show = await findShow({ user, id });
     if (!show) {
-      show = await createShow({...update, user: user, id: id})
-      return res.send(show)
+      show = await createShow({ ...update, user: user, id: id });
+      return res.send(show);
     }
     const updatedShow = await updateShow({ user, id }, update, { new: true });
     return res.send(updatedShow);
@@ -34,9 +34,20 @@ const getShowHandler = async (req: Request<ShowGetType['params']>, res: Response
   try {
     const user = res.locals.user._id;
     const id = req.params.id;
-    const show = await findShow({ user:user, id:id });
-    if (!show) return res.status(404).send('Show not found.');
+    const show = await findShow({ user: user, id: id });
+    if (!show) return res.status(404).send(`Show with id ${id} not found.`);
     return res.send(show);
+  } catch (e: any) {
+    res.status(400).send(e.message);
+  }
+};
+
+const getMultipleShowsHandler = async (req: Request, res: Response) => {
+  try {
+    const user = res.locals.user._id;
+    const shows = await findShowOrShows({ user: user });
+    if (!shows) return res.status(404).send('No show found.');
+    return res.send(shows);
   } catch (e: any) {
     res.status(400).send(e.message);
   }
@@ -54,4 +65,4 @@ const deleteShowHandler = async (req: Request<ShowDeleteType['params']>, res: Re
   }
 };
 
-export { updateShowHandler, deleteShowHandler, getShowHandler };
+export { updateShowHandler, deleteShowHandler, getShowHandler, getMultipleShowsHandler };

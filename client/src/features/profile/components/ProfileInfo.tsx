@@ -3,12 +3,12 @@ import { UserInfoUpdateForm, UserUpdateResponse } from '../types';
 import toast, { Toaster } from 'react-hot-toast';
 import { useUpdateUserMutation } from '../hooks/useUpdateUserMutation';
 import FormComponent from '@/components/FormComponent';
-import { useUserQuery } from '../hooks/useUserQuery';
+import { useGetUserQuery } from '../hooks/useGetUserQuery';
 
 const ProfileInfo = () => {
   const updateUserMutation = useUpdateUserMutation();
 
-  const { data: profileInfo } = useUserQuery();
+  const { data: profileInfo } = useGetUserQuery();
 
   return profileInfo ? (
     <div>
@@ -41,7 +41,7 @@ const ProfileInfo = () => {
         ]}
       />
     </div>
-  ) : null
+  ) : null;
 };
 
 export default ProfileInfo;
