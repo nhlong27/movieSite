@@ -1,33 +1,26 @@
 import { mediaTypeAtom } from '@/App';
-import MovieCard from '@/components/movie/MovieCard';
-import TVCard from '@/components/tv/TVCard';
 import Wrapper from '@/components/ui/Wrapper';
 import { MovieType, TVType } from '@/types/types';
 import { useAtom } from 'jotai';
 import React from 'react';
 import { useFilteredItemListQuery } from '../../hooks/useFilteredItemListQuery';
 import { mediaTypeConfig } from '../../queries';
+import SwiperContainer from './SwiperContainer';
+import HeroSection from './HeroSection';
 
 const ComingSoonSection = () => {
+  const [heroIndex, setHeroIndex] = React.useState<MovieType | TVType | null>(null);
+
   const [mediaType] = useAtom(mediaTypeAtom);
   const { data } = useFilteredItemListQuery(
     mediaTypeConfig[`${mediaType}`].home.paramList.coming_soon,
   );
+
   return (
-    <div>
-      <div className='flex gap-4'>
-        {data?.results?.map((item, index) => {
-          return (
-            <div key={index}>
-              {mediaType === 'movie' ? (
-                <MovieCard movie={item as MovieType} />
-              ) : (
-                <TVCard tv={item as TVType} />
-              )}
-            </div>
-          );
-        })}
-      </div>
+    <div className='relative lg:aspect-[16/10] md:aspect-[9/6] w-full lg:h-[70vh] md:h-[50vh] h-[30vh]'>
+      Coming soon
+      <HeroSection  heroIndex={heroIndex} mediaType = {mediaType}/>
+      <SwiperContainer sliderName={'slider2'} heroIndex={heroIndex}  setHeroIndex={setHeroIndex} data={data} mediaType={mediaType} />
     </div>
   );
 };

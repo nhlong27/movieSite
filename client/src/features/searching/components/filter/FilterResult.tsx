@@ -14,7 +14,7 @@ const FilterResult = () => {
   const { data, mediaType } = useFilteredItemListQuery(itemFilterList);
 
   return (
-    <div>
+    <div className=''>
       <pre>filters: {JSON.stringify(itemFilterList, null, '\t')}</pre>
       <div>
         {(data as FilteredMovieListType | FilteredTVListType)?.results?.map(

@@ -366,7 +366,7 @@ usbat read and write customized information
       % https://github.com/alan2207/react-query-auth
     Zustand - user, show form optimistic update + rollback/cancel mutations
 
-  **UI Layer**
+  **UI/View Layer**
   ### Routing
     Code Splitting
       router + conditionals
@@ -386,11 +386,22 @@ usbat read and write customized information
       browser lazyload
       blurhash
 
-  swiper
+Construct step
+  Responsive
+  Home
+    Movie Component
+    Swiper
+  Discover
+    Filter section
+
+  Profile
+
+Functionality Step
+  button disabled
+Paint Step
   react auto animate - parent & children
   progress bar
   toggling dark/light theme
-  button disabled
 
 
 **SERVER STATE**
@@ -405,10 +416,10 @@ usbat read and write customized information
       "Without return, the code after res.send() would still be executed, even though it's unlikely to have any effect on the response to the client. For example, if you have logging statements or other code that modifies variables after the call to res.send(), it would still be executed even though it doesn't affect the response to the client.
 
       "Using return after res.send() is a good practice because it ensures that any subsequent code is not executed, which can help prevent errors and improve the performance of your code. However, if you're confident that there's no code after res.send() that would have unintended consequences, you can omit the return statement."
-  **Business Logic Layer**
+  **Domain**
   ### Middlewares (client has middleware too)
 
-  **DB API Layer**
+  **Persistence**
   ### Data types 
     MultiMedia
       % Using multer: https://www.youtube.com/watch?v=srPXMt1Q0nY

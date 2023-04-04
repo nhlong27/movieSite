@@ -1992,6 +1992,11 @@
     "shebang-command" "^2.0.0"
     "which" "^2.0.1"
 
+"css-mediaquery@^0.1.2":
+  "integrity" "sha512-COtn4EROW5dBGlE/4PiKnh6rZpAPxDeFLaEEwt4i10jpDMFt2EhQGS79QmmrO+iKCHv0PU/HrOWEhijFd1x99Q=="
+  "resolved" "https://registry.npmjs.org/css-mediaquery/-/css-mediaquery-0.1.2.tgz"
+  "version" "0.1.2"
+
 "css.escape@^1.5.1":
   "integrity" "sha512-YUifsXXuknHlUsmlgyY0PKzgPOr7/FjCePfHNt0jxm83wHZi44VDMQ7/fGNkjY3/jV1MC+1CmZbaHzugyeRtpg=="
   "resolved" "https://registry.npmjs.org/css.escape/-/css.escape-1.5.1.tgz"
@@ -3013,6 +3018,11 @@
     "agent-base" "6"
     "debug" "4"
 
+"hyphenate-style-name@^1.0.0":
+  "integrity" "sha512-ygGZLjmXfPHj+ZWh6LwbC37l43MhfztxetbFCoYTM2VjkIUpeHgSNn7QIyVFj7YQ1Wl9Cbw5sholVJPzWvC2MQ=="
+  "resolved" "https://registry.npmjs.org/hyphenate-style-name/-/hyphenate-style-name-1.0.4.tgz"
+  "version" "1.0.4"
+
 "iconv-lite@^0.4.24":
   "integrity" "sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA=="
   "resolved" "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.4.24.tgz"
@@ -3598,6 +3608,13 @@
   "resolved" "https://registry.npmjs.org/lz-string/-/lz-string-1.5.0.tgz"
   "version" "1.5.0"
 
+"matchmediaquery@^0.3.0":
+  "integrity" "sha512-Hlk20WQHRIm9EE9luN1kjRjYXAQToHOIAHPJn9buxBwuhfTHoKUcX+lXBbxc85DVQfXYbEQ4HcwQdd128E3qHQ=="
+  "resolved" "https://registry.npmjs.org/matchmediaquery/-/matchmediaquery-0.3.1.tgz"
+  "version" "0.3.1"
+  dependencies:
+    "css-mediaquery" "^0.1.2"
+
 "memoize-one@^5.1.1":
   "integrity" "sha512-zYiwtZUcYyXKo/np96AGZAckk+FWWsUdJ3cHGGmld7+AhvcWmQyGCYUh1hc4Q/pkOhb65dQR/pqCyK0cOaHz4Q=="
   "resolved" "https://registry.npmjs.org/memoize-one/-/memoize-one-5.2.1.tgz"
@@ -4104,7 +4121,7 @@
     "ansi-styles" "^5.0.0"
     "react-is" "^18.0.0"
 
-"prop-types@^15.6.0", "prop-types@^15.6.2", "prop-types@^15.7.2", "prop-types@^15.8.1":
+"prop-types@^15.6.0", "prop-types@^15.6.1", "prop-types@^15.6.2", "prop-types@^15.7.2", "prop-types@^15.8.1":
   "integrity" "sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg=="
   "resolved" "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   "version" "15.8.1"
@@ -4262,6 +4279,16 @@
   "integrity" "sha512-XP8A9BT0CpRBD+NYLLeIhld/RqG9+gktUjW1FkE+Vm7OCinbG1SshcK5tb9ls4kzvjZr9mOQc7HYgBngEyPAXg=="
   "resolved" "https://registry.npmjs.org/react-refresh/-/react-refresh-0.13.0.tgz"
   "version" "0.13.0"
+
+"react-responsive@^9.0.2":
+  "integrity" "sha512-+4CCab7z8G8glgJoRjAwocsgsv6VA2w7JPxFWHRc7kvz8mec1/K5LutNC2MG28Mn8mu6+bu04XZxHv5gyfT7xQ=="
+  "resolved" "https://registry.npmjs.org/react-responsive/-/react-responsive-9.0.2.tgz"
+  "version" "9.0.2"
+  dependencies:
+    "hyphenate-style-name" "^1.0.0"
+    "matchmediaquery" "^0.3.0"
+    "prop-types" "^15.6.1"
+    "shallow-equal" "^1.2.1"
 
 "react-router-dom@^6.8.1":
   "integrity" "sha512-67EXNfkQgf34P7+PSb6VlBuaacGhkKn3kpE51+P6zYSG2kiRoumXEL6e27zTa9+PGF2MNXbgIUHTVlleLbIcHQ=="
@@ -4503,6 +4530,11 @@
   "integrity" "sha512-RVnVQxTXuerk653XfuliOxBP81Sf0+qfQE73LIYKcyMYHG94AuH0kgrQpRDuTZnSmjpysHmzxJXKNfa6PjFhyQ=="
   "resolved" "https://registry.npmjs.org/set-cookie-parser/-/set-cookie-parser-2.6.0.tgz"
   "version" "2.6.0"
+
+"shallow-equal@^1.2.1":
+  "integrity" "sha512-S4vJDjHHMBaiZuT9NPb616CSmLf618jawtv3sufLl6ivK8WocjAo58cXwbRV1cgqxH0Qbv+iUt6m05eqEa2IRA=="
+  "resolved" "https://registry.npmjs.org/shallow-equal/-/shallow-equal-1.2.1.tgz"
+  "version" "1.2.1"
 
 "shebang-command@^2.0.0":
   "integrity" "sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA=="

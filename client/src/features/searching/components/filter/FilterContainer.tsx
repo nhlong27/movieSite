@@ -12,6 +12,7 @@ const FilterContainer = () => {
   });
   return (
     <div>
+      Filter section:
       <FilterSection />
       <FilterResult />
     </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { Effect, LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { resizeImage } from '@/utils/resizeImage';
 
@@ -12,20 +12,22 @@ type LazyLoadImageComponentProps = {
   path?: string | null;
   className?: string;
   size?: string;
+  effect?: Effect;
 };
 
 const LazyLoadImageComponent: React.FC<LazyLoadImageComponentProps> = ({
   path,
   className,
   size,
+  effect
 }) => {
   return (
-    <LazyLoadImage
-      src={resizeImage(path, size ?? 'w154')}
-      className={className ?? 'w-full h-full object-cover rounded-md'}
-      alt='poster'
-      effect='blur'
-    />
+      <LazyLoadImage
+        src={resizeImage(path, size ?? 'w154')}
+        className={className ?? 'object-cover  rounded-md'}
+        alt='poster'
+        effect={effect ?? 'blur'}
+      />
   );
 };
 

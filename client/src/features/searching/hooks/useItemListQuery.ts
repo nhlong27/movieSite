@@ -6,7 +6,7 @@ import { getItemListQuery } from '../queries';
 
 export const useItemListQuery = () => {
   const [query] = useAtom(queryAtom);
-  const debouncedQuery = useDebounce(query, 500);
-  const { data } = useQuery(getItemListQuery(debouncedQuery[0] ?? ''));
-  return { data };
+    const debouncedQuery = useDebounce(query, 1000);
+    const { data } = useQuery(getItemListQuery(debouncedQuery[0] ?? ''));
+    return { data };
 };
