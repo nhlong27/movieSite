@@ -1,16 +1,16 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from '@/App';
-import Home from '@/pages/Home';
-import Profile from '@/pages/Profile';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Provider } from 'jotai';
 import { getMovieGenresQuery, getTVGenresQuery } from '@/queries';
-import Explore from '@/pages/Explore';
 import { watch_queries } from '@/features/watching';
 import { Params } from 'react-router-dom';
-import Media from '@/pages/Media';
-import Auth from '@/pages/Auth';
+import HomePage from '@/pages/HomePage';
+import ExplorePage from '@/pages/ExplorePage';
+import MediaPage from '@/pages/MediaPage';
+import ProfilePage from '@/pages/ProfilePage';
+import AuthPage from '@/pages/AuthPage';
 
 const queryClient = new QueryClient();
 
@@ -49,24 +49,24 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home />,
+        element: <HomePage />,
       },
       {
         path: '/discover/',
-        element: <Explore />,
+        element: <ExplorePage />,
       },
       {
         path: '/:mediaType/:id',
-        element: <Media />,
+        element: <MediaPage />,
         loader: ({ params }) => itemLoader({ queryClient, params }),
       },
       {
         path: '/profile',
-        element: <Profile />,
+        element: <ProfilePage />,
       },
       {
         path: '/auth',
-        element: <Auth />,
+        element: <AuthPage />,
       },
     ],
   },

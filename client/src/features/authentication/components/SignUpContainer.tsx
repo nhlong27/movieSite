@@ -2,7 +2,7 @@ import React from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { SignUpForm, SignUpResponse } from '../types';
 import { useSignUpMutation } from '../hooks/useSignUpMutation';
-import FormComponent from '@/components/FormComponent';
+import FormComponent from '@/components/generic/FormComponent';
 
 const SignUpContainer = () => {
   // const {

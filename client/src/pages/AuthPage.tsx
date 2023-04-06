@@ -2,7 +2,7 @@ import {  SignInContainer, SignUpContainer } from '@/features/authentication';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Auth = () => {
+const AuthPage = () => {
   const navigate = useNavigate();
   return (
     <div>
@@ -13,4 +13,4 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+export default AuthPage;

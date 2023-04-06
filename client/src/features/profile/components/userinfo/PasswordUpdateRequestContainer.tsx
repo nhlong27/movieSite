@@ -1,8 +1,8 @@
-import FormComponent from '@/components/FormComponent';
+import FormComponent from '@/components/generic/FormComponent';
 import React from 'react';
 import { toast, Toaster } from 'react-hot-toast';
-import { useUpdateUserMutation } from '../hooks/useUpdateUserMutation';
-import { UserPasswordUpdateForm, UserUpdateResponse } from '../types';
+import { useUpdateUserMutation } from '../../hooks/useUpdateUserMutation';
+import { UserPasswordUpdateForm, UserUpdateResponse } from '../../types';
 
 const PasswordUpdateRequestContainer = () => {
   const updatePasswordMutation = useUpdateUserMutation();

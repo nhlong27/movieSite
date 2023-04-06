@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
-import FormComponent from '@/components/FormComponent';
-import { UserDeactivateForm } from '../types';
-import { useDeactivateUserMutation } from '../hooks/useDeactivateUserMutation';
+import FormComponent from '@/components/generic/FormComponent';
+import { useDeactivateUserMutation } from '../../hooks/useDeactivateUserMutation';
+import { UserDeactivateForm } from '../../types';
 
 const DeactivateRequestContainer = () => {
   const deactivateUserMutation = useDeactivateUserMutation();

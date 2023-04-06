@@ -1,4 +1,4 @@
-import { featureAtom, mediaTypeAtom } from '@/App';
+import { currentURLPathAtom, mediaTypeAtom } from '@/App';
 import { useQuery } from '@tanstack/react-query';
 import { useAtom } from 'jotai';
 import { getFilteredItemListQuery } from '../queries';
@@ -9,10 +9,9 @@ export const useFilteredItemListQuery = (
   period?: string,
 ) => {
   const [mediaType] = useAtom(mediaTypeAtom);
-  const [feature] = useAtom(featureAtom);
+  const [currentURLPath] = useAtom(currentURLPathAtom);
   const { data } = useQuery({
-    ...getFilteredItemListQuery(mediaType, feature, paramList, period),
+    ...getFilteredItemListQuery(mediaType, currentURLPath, paramList, period),
   });
-  
   return { data, mediaType };
 };

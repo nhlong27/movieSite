@@ -1,14 +1,14 @@
 import React from 'react';
-import SelectComponent from '@/components/SelectComponent';
+import SelectComponent from '@/components/generic/SelectComponent';
 import { useGetShowQuery, useUpdateShowMutation } from '@/features/profile';
 import { useGetItemDetailQuery } from '../hooks/useGetItemDetailQuery';
 import { MovieDetailType, TVDetailType } from '../types';
-import ButtonComponent from '@/components/ButtonComponent';
+import ButtonComponent from '@/components/generic/ButtonComponent';
 import { useGetUserQuery } from '@/features/profile/hooks/useGetUserQuery';
 import ReactPlayerComponent from './player/ReactPlayerComponent';
 import SeasonSelectComponent from './SeasonSelectComponent';
 
-const OptionsContainer = ({watch} : {watch?: boolean}) => {
+const OptionsContainer = ({ watch }: { watch?: boolean }) => {
   const [isFavorited, setIsFavorited] = React.useState(false);
   const [isWatching, setIsWatching] = React.useState(false);
 

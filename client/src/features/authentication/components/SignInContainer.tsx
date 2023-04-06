@@ -2,7 +2,7 @@ import React from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { SignInForm, SignInResponse } from '../types';
 import { useSignInMutation } from '../hooks/useSignInMutation';
-import FormComponent from '@/components/FormComponent';
+import FormComponent from '@/components/generic/FormComponent';
 
 const SignInContainer = () => {
   const signInMutation = useSignInMutation();

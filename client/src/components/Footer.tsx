@@ -2,14 +2,14 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className='w-full mt-auto h-[18vh] lg:h-[20vh] flex justify-center items-center'>
-      <div className='w-11/12 max-w-[1536px] min-w-[500px] h-full flex flex-col justify-center items-center'>
-        <div className='flex flex-col justify-center items-center gap-4 h-full w-5/6 md:h-3/4 md:w-3/4 lg:h-1/2 lg:w-1/2'>
-          <div className='grid w-1/2 grid-flow-col gap-4'>
-            <a className=''>About us</a>
-            <a className=''>Contact</a>
-            <a className=''>Jobs</a>
-            <a className=''>Press kit</a>
+    <footer className='w-full min-h-[10rem] grid place-items-center'>
+      <div className='h-full w-full md:w-11/12 max-w-[1920px] min-w-[300px] grid place-items-center'>
+        <div className='flex flex-col justify-center items-center gap-6 min-h-[20rem] md:h-3/4 w-5/6'>
+          <div className='flex flex-col md:flex-row w-1/2 gap-2'>
+            <a className='text-center grow'>About us</a>
+            <a className='text-center grow'>Contact</a>
+            <a className='text-center grow'>Jobs</a>
+            <a className='text-center grow'>Press kit</a>
           </div>
           <div>
             <div className='grid grid-flow-col gap-4'>
@@ -48,8 +48,8 @@ const Footer = () => {
               </a>
             </div>
           </div>
-          <div>
-            <p>Copyright © 2023 - All right reserved by ACME Industries Ltd</p>
+          <div className='w-5/6'>
+            <p className='text-center'>Copyright © 2023 - All right reserved by ACME Industries Ltd</p>
           </div>
         </div>
       </div>

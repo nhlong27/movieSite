@@ -1,26 +1,33 @@
 import { mediaTypeAtom } from '@/App';
-import Wrapper from '@/components/ui/Wrapper';
-import { MovieType, TVType } from '@/types/types';
+import Wrapper from '@/components/handling/Wrapper';
 import { useAtom } from 'jotai';
 import React from 'react';
 import { useFilteredItemListQuery } from '../../hooks/useFilteredItemListQuery';
 import { mediaTypeConfig } from '../../queries';
 import SwiperContainer from './SwiperContainer';
-import HeroSection from './HeroSection';
+import SectionBackdrop from './SectionBackdrop';
+import { useMediaQueries } from '@/hooks/useMediaQueries';
 
 const ComingSoonSection = () => {
-  const [heroIndex, setHeroIndex] = React.useState<MovieType | TVType | null>(null);
-
   const [mediaType] = useAtom(mediaTypeAtom);
   const { data } = useFilteredItemListQuery(
     mediaTypeConfig[`${mediaType}`].home.paramList.coming_soon,
   );
+  const { isXs } = useMediaQueries();
 
   return (
-    <div className='relative lg:aspect-[16/10] md:aspect-[9/6] w-full lg:h-[70vh] md:h-[50vh] h-[30vh]'>
-      Coming soon
-      <HeroSection  heroIndex={heroIndex} mediaType = {mediaType}/>
-      <SwiperContainer sliderName={'slider2'} heroIndex={heroIndex}  setHeroIndex={setHeroIndex} data={data} mediaType={mediaType} />
+    <div className='relative 4k:aspect-[18/9] xl:aspect-[15/5] md:aspect-[9/6] w-full flex justify-center items-center'>
+      <div className='w-11/12 flex flex-col'>
+        <div className='z-10 grow xl:aspect-[22/14] lg:aspect-[12/9] md:aspect-square w-full'>Coming Soon
+        </div>
+        <SwiperContainer
+          sliderName={'slider2'}
+          data={data}
+          section='comingSoon'
+          mediaType={mediaType}
+        />
+      </div>
+      {isXs ? <SectionBackdrop section='comingSoon' mediaType={mediaType} /> : null}
     </div>
   );
 };

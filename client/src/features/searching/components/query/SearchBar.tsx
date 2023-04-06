@@ -1,23 +1,23 @@
-import React, { LegacyRef, createRef, useRef } from 'react';
+import React from 'react';
 import { useAtom } from 'jotai';
 import { queryAtom } from '../../atoms';
 import { AiOutlineSearch } from 'react-icons/ai';
-import { featureAtom, isFilterAtom } from '@/App';
-import ButtonComponent from '@/components/ButtonComponent';
+import { currentURLPathAtom, hasQueryFiltersAtom } from '@/App';
+import ButtonComponent from '@/components/generic/ButtonComponent';
 import { useMediaQueries } from '@/hooks/useMediaQueries';
 
 const SearchBar = () => {
   const [query, setQuery] = useAtom(queryAtom);
-  const [isFilter, setIsFilter] = useAtom(isFilterAtom);
+  const [hasQueryFilters, setHasQueryFilters] = useAtom(hasQueryFiltersAtom);
 
-  const [feature] = useAtom(featureAtom);
+  const [currentURLPath] = useAtom(currentURLPathAtom);
   const inputRef = React.useRef<HTMLInputElement>(null);
   const { isMd } = useMediaQueries();
   return (
     <ButtonComponent
       onClick={() => {
         inputRef.current?.select();
-        setIsFilter(false);
+        setHasQueryFilters(false);
       }}
       className='flex align-baseline h-[2.5rem] w-11/12 md:w-3/4'
     >
@@ -28,8 +28,10 @@ const SearchBar = () => {
               ref={inputRef}
               type='text'
               className={`${
-                feature === 'discover' && !isFilter ? 'mr-0' : '-mr-[40rem]'
-              } transition-all w-full h-full duration-300 ring-2 ring-black`}
+                currentURLPath === 'discover' && !hasQueryFilters
+                  ? 'mr-0 opacity-100'
+                  : '-mr-[200%] opacity-0'
+              } transition-all w-full h-full duration-300 ring-2 bg-blue-200 ring-black`}
               value={query ?? ''}
               onBlur={() => setQuery('')}
               // onClick={()=>setQuery('')}
@@ -53,8 +55,10 @@ const SearchBar = () => {
               ref={inputRef}
               type='text'
               className={`${
-                feature === 'discover' && !isFilter ? 'ml-0' : '-ml-[40rem]'
-              } transition-all w-full h-full duration-300 ring-2 ring-black`}
+                currentURLPath === 'discover' && !hasQueryFilters
+                  ? 'ml-0 visible'
+                  : '-ml-[200%] invisible'
+              } transition-all w-full h-full duration-500 ring-2 bg-blue-200 ring-black`}
               value={query ?? ''}
               onBlur={() => setQuery('')}
               // onClick={()=>setQuery('')}

@@ -1,20 +1,19 @@
 import { Outlet, useLoaderData } from 'react-router-dom';
 import React from 'react';
-import { atom, useAtom } from 'jotai';
+import { atom } from 'jotai';
 import { appLoader } from './routes/router';
 import { search_queries } from './features/searching';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import DropDownMenu from './components/DropDownMenu';
+import DropDownMenu from './components/generic/DropDownMenu';
 
 export const mediaTypeAtom = atom<'movie' | 'tv'>('movie');
-export const featureAtom = atom<'home' | 'discover'>('home');
-export const isDropdownAtom = atom<boolean>(false);
-export const isFilterAtom = atom<boolean>(false);
+export const currentURLPathAtom = atom<'home' | 'discover'>('home');
+export const shouldDropdownDisplayAtom = atom<boolean>(false);
+export const hasQueryFiltersAtom = atom<boolean>(false);
 
 function App() {
   const initialData = useLoaderData() as Awaited<ReturnType<typeof appLoader>>;
-
 
   React.useEffect(() => {
     search_queries.mediaTypeConfig.movie.discover.paramList = {
@@ -28,9 +27,13 @@ function App() {
   }, []);
 
   return (
-    <div className='min-h-screen w-screen flex flex-col items-center gap-4 z-0'>
+    // dvw or svw doesn't really work like dvh/svh 
+    <div className='min-h-dynamic-screen w-screen flex flex-col md:gap-4 z-0 bg-black'>
       <Header />
-      <Outlet />
+      <div className='relative w-full flex justify-center items-center grow'>
+      <DropDownMenu />
+        <Outlet />
+      </div>
       <Footer />
     </div>
   );

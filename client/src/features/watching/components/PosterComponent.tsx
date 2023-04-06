@@ -1,5 +1,5 @@
-import LazyLoadImageComponent from '@/components/ui/LazyLoadImageComponent';
-import Wrapper from '@/components/ui/Wrapper';
+import LazyLoadImageComponent from '@/components/handling/LazyLoadImageComponent';
+import Wrapper from '@/components/handling/Wrapper';
 import React from 'react';
 import { useGetItemDetailQuery } from '../hooks/useGetItemDetailQuery';
 

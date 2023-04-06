@@ -1,4 +1,4 @@
-import Wrapper from '@/components/ui/Wrapper';
+import Wrapper from '@/components/handling/Wrapper';
 import React from 'react';
 import { useGetItemDetailQuery } from '../hooks/useGetItemDetailQuery';
 import { useGetSeasonListQuery } from '../hooks/useGetSeasonQuery';

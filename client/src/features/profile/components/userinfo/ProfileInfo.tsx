@@ -1,9 +1,9 @@
 import React from 'react';
-import { UserInfoUpdateForm, UserUpdateResponse } from '../types';
 import toast, { Toaster } from 'react-hot-toast';
-import { useUpdateUserMutation } from '../hooks/useUpdateUserMutation';
-import FormComponent from '@/components/FormComponent';
-import { useGetUserQuery } from '../hooks/useGetUserQuery';
+import FormComponent from '@/components/generic/FormComponent';
+import { useGetUserQuery } from '../../hooks/useGetUserQuery';
+import { useUpdateUserMutation } from '../../hooks/useUpdateUserMutation';
+import { UserInfoUpdateForm, UserUpdateResponse } from '../../types';
 
 const ProfileInfo = () => {
   const updateUserMutation = useUpdateUserMutation();

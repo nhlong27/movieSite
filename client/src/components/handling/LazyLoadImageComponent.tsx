@@ -23,7 +23,7 @@ const LazyLoadImageComponent: React.FC<LazyLoadImageComponentProps> = ({
 }) => {
   return (
       <LazyLoadImage
-        src={resizeImage(path, size ?? 'w154')}
+        src={resizeImage(path, size)}
         className={className ?? 'object-cover  rounded-md'}
         alt='poster'
         effect={effect ?? 'blur'}

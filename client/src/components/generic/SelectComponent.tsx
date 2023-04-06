@@ -6,9 +6,9 @@ interface SelectComponentProps {
   options: { value: string | number; label: string }[];
   name: string;
   className: string;
-  placeholder: string;
+  placeholder?: string;
   handleOnChange: Function;
-  extras: { [key: string]: boolean };
+  extras: { [key: string]: any };
 }
 
 const SelectComponent: React.FC<SelectComponentProps> = (props) => {
@@ -37,8 +37,9 @@ const SelectComponent: React.FC<SelectComponentProps> = (props) => {
             }}
             options={options}
             className={className}
-            placeholder={placeholder}
+            placeholder={placeholder ?? 'None'}
             {...extras}
+          
           />
         )}
       />

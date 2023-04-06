@@ -1,21 +1,31 @@
 import { convertToBase64 } from '@/utils/covertToBase64';
-import React from 'react';
-import { useUpdateUserMutation } from '../hooks/useUpdateUserMutation';
+import React, { ChangeEvent, useRef } from 'react';
+import { useUpdateUserMutation } from '../../hooks/useUpdateUserMutation';
 import toast, { Toaster } from 'react-hot-toast';
-import { UserUpdateResponse } from '../types';
-import { useGetUserQuery } from '../hooks/useGetUserQuery';
-import { useForm } from 'react-hook-form';
+import { UserUpdateResponse } from '../../types';
+import AvatarComponent from '@/components/generic/AvatarComponent';
 
 const AvatarContainer = () => {
   const updateUserMutation = useUpdateUserMutation();
-  const { data: profileAvatar } = useGetUserQuery();
 
-  const { register, handleSubmit } = useForm();
 
-  const onSubmit = async (data: any) => {
-    const file = data.image[0];
+  const [file, setFile] = React.useState<File>();
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const handleUploadClick = () => {
+    inputRef.current?.click();
+  };
+
+  const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) {
+      return;
+    }
+
+    setFile(e.target.files[0]);
+
+    // 🚩 do the file upload here normally...
     const base64 = await convertToBase64(file);
-    return updateUserMutation.mutate(
+    updateUserMutation.mutate(
       { payload: { avatar_url: base64 as string }, type: 'avatar' },
       {
         onError: (e: any) => {
@@ -36,15 +46,20 @@ const AvatarContainer = () => {
   };
 
   return (
-    <div>
-      {profileAvatar ? (
-        <img src={`${profileAvatar?.avatar}`} alt='?' className='h-40 w-28' />
-      ) : null}
+    <div className='w-full flex flex-col justify-center items-center'>
+      <AvatarComponent />
       <Toaster />
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input {...register('image')} type='file' />
-        <button type='submit'>Upload</button>
-      </form>
+
+      <div>
+        <div>Upload a file:</div>
+
+        {/* 👇 Our custom button to select and upload a file */}
+        <button onClick={handleUploadClick}>{file ? `${file.name}` : 'Click to select'}</button>
+
+        {/* 👇 Notice the `display: hidden` on the input */}
+        <input type='file' ref={inputRef} onChange={handleFileChange} style={{ display: 'none' }} />
+      </div>
+
       {/* <FormComponent
         schema={UserAvatarUpdateForm}
         submitFn={(formInputs: any) =>{

@@ -1,10 +1,13 @@
-import DeactivateRequestContainer from './components/DeactivateRequestContainer';
-import AvatarContainer from './components/AvatarContainer';
-import PasswordUpdateRequestContainer from './components/PasswordUpdateRequestContainer';
-import ProfileInfo from './components/ProfileInfo';
+import AvatarContainer from './components/userinfo/AvatarContainer';
 import { useUpdateShowMutation } from './hooks/useUpdateShowMutation';
 import { useGetShowQuery } from './hooks/useGetShowQuery';
+import UserInfoSection from './components/userinfo/UserInfoSection';
+import UserListSection from './components/list/UserListSection';
 
-
-export {useUpdateShowMutation}
-export { DeactivateRequestContainer, AvatarContainer, PasswordUpdateRequestContainer, ProfileInfo, useGetShowQuery };
+export { useUpdateShowMutation };
+export {
+  AvatarContainer,
+  useGetShowQuery,
+  UserInfoSection,
+  UserListSection
+};

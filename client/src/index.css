@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@layer base {
+  .body{
+    @apply m-0 p-0 box-border;
+  }
+}
 /* :root{
   --items-per-screen: 4;
   --slider-index: 0
@@ -16,6 +22,14 @@
     --items-per-screen: 7;
   }
   .slider3 {
+    --slider-index: 0;
+    --items-per-screen: 7;
+  }
+  .slider4 {
+    --slider-index: 0;
+    --items-per-screen: 7;
+  }
+  .slider5 {
     --slider-index: 0;
     --items-per-screen: 7;
   }

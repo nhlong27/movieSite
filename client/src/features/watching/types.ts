@@ -20,6 +20,11 @@ const MovieDetailSchema = z
         logo_path: z.string().nullable(),
       }),
     ),
+    production_countries: z.array(
+      z.object({
+        name: z.string(),
+      }),
+    ),
     spoken_languages: z.array(
       z.object({
         name: z.string(),
@@ -30,6 +35,11 @@ const MovieDetailSchema = z
     title: z.string(),
     vote_average: z.number(),
     vote_count: z.number(),
+    release_date: z.string(),
+    runtime: z.number().nullable(),
+    budget: z.number(),
+    revenue: z.number(),
+    original_language: z.string()
   })
   .deepPartial();
 
@@ -104,6 +114,11 @@ const TVDetailSchema = z
         name: z.string(),
         id: z.number(),
         logo_path: z.string().nullable(),
+      }),
+    ),
+    production_countries: z.array(
+      z.object({
+        name: z.string(),
       }),
     ),
     season_number: z.number(),

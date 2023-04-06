@@ -1,32 +1,35 @@
 import React from 'react';
-import { useAtom } from 'jotai';
-import { itemFilterListAtom } from '../../atoms';
 import { MovieType, TVType } from '@/types/types';
-import MovieCard from '@/components/movie/MovieCard';
-import Wrapper from '@/components/ui/Wrapper';
-import { useFilteredItemListQuery } from '../../hooks/useFilteredItemListQuery';
-import TVCard from '@/components/tv/TVCard';
-import { FilteredMovieListType, FilteredTVListType } from '../../types';
+import Wrapper from '@/components/handling/Wrapper';
+import { useFilteredByStore } from '../../hooks/useFilteredByStore';
+import SimpleShowCard from '@/components/specific/SimpleShowCard';
 
 const FilterResult = () => {
-  const [itemFilterList] = useAtom(itemFilterListAtom);
-
-  const { data, mediaType } = useFilteredItemListQuery(itemFilterList);
-
+  const { data, mediaType } = useFilteredByStore();
   return (
-    <div className=''>
-      <pre>filters: {JSON.stringify(itemFilterList, null, '\t')}</pre>
-      <div>
-        {(data as FilteredMovieListType | FilteredTVListType)?.results?.map(
-          (item: MovieType | TVType, index) => {
-            return mediaType === 'movie' ? (
-              <MovieCard key={index} movie={item as MovieType} />
-            ) : (
-              <TVCard key={index} tv={item as TVType} />
-            );
-          },
-        )}
-      </div>
+    <div className='flex flex-wrap gap-4'>
+      {(data?.results as any)
+        .filter((item: MovieType | TVType) => item.poster_path)
+        .map((item: MovieType | TVType, index: number) => (
+          <SimpleShowCard
+            options={{
+              buttonComponent: {
+                className: `max-w-[20rem] w-[10rem] flex justify-center items-center flex-col 
+              transition-all
+              ease-in-out
+              aspect-[9/16]
+                duration-500
+                `,
+              },
+              lazyImageComponent: {
+                size: 'original',
+              },
+            }}
+            item={item}
+            mediaType={mediaType}
+            key={index}
+          />
+        ))}
     </div>
   );
 };

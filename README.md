@@ -312,6 +312,39 @@ _item-list_: [
   }
 ]
 
+###
+Info:
+    Item details: 
+        imagery: poster_path, backdrop_path, trailers*
+        overview: 
+           movie: title, tagline, overview, status, vote_average, release_date, runtime, budget, revenue, original_language, genres [{name}], production_companies [{name}],
+           production_countries [{name}],
+           ( vote_count, popularity)
+
+           tv: name, tagline, overview, status, type, vote_average, first_air_date, episode_run_time [number], number_of_seasons, number_of_episodes,
+           genres [{name}],
+           original_language,
+           created_by [{name, profile_path}],
+            production_companies [{name}],
+           production_countries [{name}], 
+           networks [{name, logo_path}],
+
+           last_episode_to_air {air_date, episode_number, name, overview, season_number, still_path} -> (season_number -> getSeason)
+
+           next_episode_to_air {air_date, episode_number, name, overview, season_number, still_path},
+           
+           seasons [{season_number, episode_count, poster_path, name, overview, air_date, id}]
+           (vote_count, popularity)
+
+        user-related: user score, status, isFavorited
+    Lists: similar: (you may also like)
+Actions:
+    Watch: - Choose different servers
+    Add to Favorite
+    Add Score
+    Add Status
+###
+
 usbat see _recommended_[_item_] 
 
 usbat search for _item_
