@@ -4,18 +4,90 @@ import ReactPlayer from 'react-player';
 import urls from '@/config/urls';
 import { useGetItemDetailQuery } from '../../hooks/useGetItemDetailQuery';
 
-const ReactPlayerComponent = ({ tvSource, video }: { tvSource?: string; video?: VideoType }) => {
-  const { params } = useGetItemDetailQuery();
-  if (video) return <ReactPlayer url={`${urls.yt}${video.key}`} />  
-  return (
+interface ReactPlayerComponentProps {
+  episodeNumber?: string;
+  seasonNumber?: string;
+  trailerSource?: VideoType;
+  className?: string;
+  serverSource?: string;
+}
+
+const serverSources = ({
+  mediaId,
+  mediaType,
+  seasonNumber,
+  episodeNumber,
+}: {
+  mediaId: string;
+  mediaType: string;
+  seasonNumber?: string;
+  episodeNumber?: string;
+}) => ({
+  '2embed.to': `${urls.embed}/${mediaType}?id=${mediaId}&s=${seasonNumber}&e=${episodeNumber}`,
+  '2embed.org': `${urls.embed2}/${mediaType}?tmdb=${mediaId}&s=${seasonNumber}&e=${episodeNumber}`,
+  'vidsrc.me': `${urls.embed3}/${mediaId}/${seasonNumber}-${episodeNumber}`,
+});
+
+const ReactPlayerComponent: React.FC<ReactPlayerComponentProps> = (props) => {
+  const { params, data } = useGetItemDetailQuery();
+  const { episodeNumber, seasonNumber, serverSource, trailerSource, className } = props;
+  if (trailerSource)
+    return (
+      <div className={className}>
+        <ReactPlayer
+        // light={<img src={`${urls.yt}${trailerSource.key}`} alt='Thumbnail' />}
+        config={{
+          youtube: {
+            embedOptions: { color: 'white' }
+          },
+        }}
+      
+          controls={true}
+          width={'100%'}
+          height={'100%'}
+          url={`${urls.yt}${trailerSource.key}`}
+        />
+      </div>
+    );
+  if (seasonNumber || episodeNumber)
+    return (
       <iframe
-      // className="absolute w-full h-full top-0 left-0"
-      src={params.mediaType==='movie' ? `${urls.embed}/${params.mediaType}?id=${params.id}` : `${urls.embed}/${params.mediaType}?id=${params.id}${tvSource as string}`}
-      title="Film Video Player"
-      frameBorder="0"
+        className={className}
+        width={500}
+        height={500}
+        src={
+          (
+            serverSources({
+              mediaId: params.id!,
+              mediaType: 'tv',
+              seasonNumber: seasonNumber,
+              episodeNumber: episodeNumber,
+            }) as any
+          )[`${serverSource}`]
+        }
+        title={`TV Media Video Player - server : ${serverSource}`}
+        frameBorder='0'
+        // allowFullScreen
+      />
+    );
+  return (
+    <iframe
+      className={className}
+      width={500}
+      height={500}
+      src={
+        (
+          serverSources({
+            mediaId: params.id!,
+            mediaType: 'movie',
+          }) as any
+        )[`${serverSource}`]
+      }
+      title={`Movie Media Video Player - server : ${serverSource}`}
+      frameBorder='0'
       // allowFullScreen
     />
-    )
+  );
 };
 
 export default ReactPlayerComponent;

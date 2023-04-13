@@ -38,7 +38,7 @@ const MediaPlayerComponent = ({
       >
         Watch
       </button>
-      <ReactPlayerComponent tvSource={`&s=${seasonIndex}&e=${episodeIndex}`} />
+      {/* <ReactPlayerComponent tvSource={`&s=${seasonIndex}&e=${episodeIndex}`} /> */}
     </div>
   );
 };

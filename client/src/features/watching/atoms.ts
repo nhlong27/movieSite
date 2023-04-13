@@ -1,6 +1,5 @@
 import { atom } from 'jotai';
-import { MovieDetailType, TVDetailType } from './types';
 
-const itemDetailAtom = atom<TVDetailType | MovieDetailType | null>(null);
+const seasonAndEpisodeAtom = atom<{ season?: number; episode?: number } | null>(null);
 
-export { itemDetailAtom };
+export { seasonAndEpisodeAtom };

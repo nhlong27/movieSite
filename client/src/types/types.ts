@@ -38,12 +38,10 @@ const PersonSchema = z.object({
   adult: z.boolean().optional(),
   id: z.number().optional(),
   media_type: z.literal('person').optional(),
-  known_for: z.array(
-    z.union([MovieSchema, TVSchema])
-  ).optional(),
+  known_for: z.array(z.union([MovieSchema, TVSchema])).optional(),
   name: z.string().optional(),
-  popularity: z.number().optional()
-})
+  popularity: z.number().optional(),
+});
 
 const GenreSchema = z.object({
   id: z.number().optional(),
@@ -59,4 +57,13 @@ type TVType = z.infer<typeof TVSchema>;
 type GenreType = z.infer<typeof GenreSchema>;
 type PersonType = z.infer<typeof PersonSchema>;
 
-export { MovieSchema, TVSchema, MovieType, TVType, GenreListSchema, GenreType, PersonSchema, PersonType };
+export {
+  MovieSchema,
+  TVSchema,
+  MovieType,
+  TVType,
+  GenreListSchema,
+  GenreType,
+  PersonSchema,
+  PersonType,
+};

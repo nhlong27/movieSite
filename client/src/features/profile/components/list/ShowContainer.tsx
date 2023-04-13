@@ -1,12 +1,11 @@
 import ButtonComponent from '@/components/generic/ButtonComponent';
-import LazyLoadImageComponent from '@/components/handling/LazyLoadImageComponent';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDeleteShowMutation } from '../../hooks/useDeleteShowMutation';
 import { ShowQueryResponseType } from '../../types';
 import SelectComponent from '@/components/generic/SelectComponent';
 import { useUpdateShowMutation } from '../../hooks/useUpdateShowMutation';
-import SimpleShowCard from '@/components/specific/SimpleShowCard';
+import MediaCard from '@/components/specific/MediaCard';
 
 const ShowContainer = (props: ShowQueryResponseType) => {
   const [isFavorited, setIsFavorited] = React.useState(false);
@@ -27,13 +26,13 @@ const ShowContainer = (props: ShowQueryResponseType) => {
   return (
     <div className='flex md:w-[48%] w-full'>
       <Link to={`/${props.title ? 'movie' : 'tv'}/${props.id}`}>
-        <SimpleShowCard
+        <MediaCard
           options={{
             lazyImageComponent: {
               size: 'original',
             },
           }}
-          item={props}
+          media={props}
           mediaType={props.title ? 'movie' : 'tv'}
         />
       </Link>

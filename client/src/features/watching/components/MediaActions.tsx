@@ -5,19 +5,21 @@ import { useGetItemDetailQuery } from '../hooks/useGetItemDetailQuery';
 import { MovieDetailType, TVDetailType } from '../types';
 import ButtonComponent from '@/components/generic/ButtonComponent';
 import { useGetUserQuery } from '@/features/profile/hooks/useGetUserQuery';
-import ReactPlayerComponent from './player/ReactPlayerComponent';
-import SeasonSelectComponent from './SeasonSelectComponent';
 
-const OptionsContainer = ({ watch }: { watch?: boolean }) => {
+interface MediaActionsProps {
+  options?: { [key: string]: any };
+}
+
+const MediaActions: React.FC<MediaActionsProps> = (props) => {
+  const { options } = props;
   const [isFavorited, setIsFavorited] = React.useState(false);
-  const [isWatching, setIsWatching] = React.useState(false);
 
   const updateShowMutation = useUpdateShowMutation();
   const { data: tmdbDetail, params } = useGetItemDetailQuery();
   const { data: serverDetail } = useGetShowQuery(params.id!);
   const { data: userData } = useGetUserQuery();
 
-  const handleUpdateShow = (type: string, val: any) => {
+  const handleMediaUpdate = (type: string, val: any) => {
     return updateShowMutation.mutate({
       id: params.id!,
       payload: {
@@ -30,8 +32,22 @@ const OptionsContainer = ({ watch }: { watch?: boolean }) => {
   };
 
   return (
-    <div className='flex gap-4'>
-      Status
+    <div className={`${options?.wrapper?.className} flex gap-4`}>
+      <ButtonComponent
+        role='trueFalse'
+        // className={`${
+        //   (serverDetail as any)?.isFavorited
+        //     ? 'text-pink-300 font-bold hover:bg-gray-200'
+        //     : 'text-blue-300 font-normal hover:bg-gray-200'
+        // }`}
+        onClick={() => {
+          handleMediaUpdate('status', { value: 'Watching' });
+
+          options?.ref.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }}
+      >
+        Watch
+      </ButtonComponent>
       <SelectComponent
         options={[
           { value: 'Plan to Watch', label: 'Plan to Watch' },
@@ -42,9 +58,8 @@ const OptionsContainer = ({ watch }: { watch?: boolean }) => {
         className='ring-2 ring-blue-300'
         placeholder={(serverDetail as any)?.status ?? 'Add status'}
         extras={{ isSearchable: false, isClearable: true, isDisabled: !!!userData }}
-        handleOnChange={(val: any) => handleUpdateShow('status', val)}
+        handleOnChange={(val: any) => handleMediaUpdate('status', val)}
       />
-      Score
       <SelectComponent
         options={[
           { value: 1, label: '1' },
@@ -60,9 +75,9 @@ const OptionsContainer = ({ watch }: { watch?: boolean }) => {
         ]}
         name={'score'}
         className='ring-2 ring-blue-300'
-        placeholder={(serverDetail as any)?.score ?? 'Select score'}
+        placeholder={(serverDetail as any)?.score ?? 'Add score'}
         extras={{ isSearchable: false, isClearable: true, isDisabled: !!!userData }}
-        handleOnChange={(val: any) => handleUpdateShow('score', val)}
+        handleOnChange={(val: any) => handleMediaUpdate('score', val)}
       />
       <ButtonComponent
         role='trueFalse'
@@ -72,36 +87,14 @@ const OptionsContainer = ({ watch }: { watch?: boolean }) => {
             : 'text-blue-300 font-normal hover:bg-gray-200'
         }`}
         onClick={() => {
-          handleUpdateShow('isFavorited', { value: !isFavorited });
+          handleMediaUpdate('isFavorited', { value: !isFavorited });
           setIsFavorited((prev) => !prev);
         }}
       >
         Favorite
       </ButtonComponent>
-      {!watch && isWatching ? (
-        params.mediaType === 'movie' ? (
-          <ReactPlayerComponent />
-        ) : (
-          <SeasonSelectComponent />
-        )
-      ) : (
-        <ButtonComponent
-          role='trueFalse'
-          // className={`${
-          //   (serverDetail as any)?.isFavorited
-          //     ? 'text-pink-300 font-bold hover:bg-gray-200'
-          //     : 'text-blue-300 font-normal hover:bg-gray-200'
-          // }`}
-          onClick={() => {
-            handleUpdateShow('status', { value: 'Watching' });
-            setIsWatching((prev) => !prev);
-          }}
-        >
-          Watch
-        </ButtonComponent>
-      )}
     </div>
   );
 };
 
-export default OptionsContainer;
+export default MediaActions;

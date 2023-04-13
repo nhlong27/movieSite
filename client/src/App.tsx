@@ -1,4 +1,4 @@
-import { Outlet, useLoaderData } from 'react-router-dom';
+import { Outlet, useLoaderData, useLocation } from 'react-router-dom';
 import React from 'react';
 import { atom } from 'jotai';
 import { appLoader } from './routes/router';
@@ -15,6 +15,8 @@ export const hasQueryFiltersAtom = atom<boolean>(false);
 function App() {
   const initialData = useLoaderData() as Awaited<ReturnType<typeof appLoader>>;
 
+  const { pathname } = useLocation();
+
   React.useEffect(() => {
     search_queries.mediaTypeConfig.movie.discover.paramList = {
       ...search_queries.mediaTypeConfig.movie.discover.paramList,
@@ -26,12 +28,18 @@ function App() {
     };
   }, []);
 
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
-    // dvw or svw doesn't really work like dvh/svh 
-    <div className='min-h-dynamic-screen w-screen flex flex-col md:gap-4 z-0 bg-black'>
-      <Header />
+    // dvw or svw doesn't really work like dvh/svh
+    <div className='min-h-dynamic-screen w-screen flex flex-col md:gap-4 z-0'>
+      <div className='sticky top-0 w-full z-20 flex flex-col items-center'>
+        <Header />
+        <DropDownMenu />
+      </div>
       <div className='relative w-full flex justify-center items-center grow'>
-      <DropDownMenu />
         <Outlet />
       </div>
       <Footer />

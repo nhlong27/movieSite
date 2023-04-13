@@ -11,9 +11,9 @@ const TrendingSection = () => {
   const { data, mediaType } = useFilteredItemListQuery('trending', period);
   const { isXs } = useMediaQueries();
   return (
-    <div className='relative 4k:aspect-[18/9] xl:aspect-[15/5] md:aspect-[9/6] w-full flex justify-center items-center'>
+    <div className='relative 4k:aspect-[18/9] xl:aspect-[15/5] xs:aspect-[9/6] w-full flex justify-center items-center'>
       <div className='w-11/12 flex flex-col'>
-        <div className='z-10 grow xl:aspect-[22/14] lg:aspect-[12/9] md:aspect-square w-full'>
+        <div className='z-10 grow xl:aspect-[22/14] lg:aspect-[12/9] xs:aspect-square w-full'>
           Trending
           <div>
             <button onClick={() => setPeriod('day')}>today</button>

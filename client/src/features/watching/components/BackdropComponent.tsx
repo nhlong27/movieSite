@@ -9,11 +9,11 @@ const BackdropComponent = () => {
     <div className='absolute aspect-[18/9] top-0 w-full flex items-top overflow-hidden'>
       <LazyLoadImageComponent
         path={data?.backdrop_path ?? data?.poster_path}
-        className='w-full lg:object-cover md:object-scale-down object-cover lg:object-left lg:h-[100%] aspect-[18/9] mix-blend-overlay'
+        className='w-full lg:object-left object-cover lg:h-[100%] aspect-[18/9] mix-blend-overlay'
         size='original'
         effect='blur'
       />
-      <div className='absolute  lg:bg-gradient-radial-top-right ring-2 ring-black from-transparent via-black to-black w-full aspect-[18/9]' />
+      <div className='absolute  md:bg-gradient-radial-top-right ring-2 ring-black from-transparent via-black to-black w-full aspect-[18/9]' />
     </div>
   );
 };

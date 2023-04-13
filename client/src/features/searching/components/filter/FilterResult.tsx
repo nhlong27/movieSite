@@ -2,7 +2,7 @@ import React from 'react';
 import { MovieType, TVType } from '@/types/types';
 import Wrapper from '@/components/handling/Wrapper';
 import { useFilteredByStore } from '../../hooks/useFilteredByStore';
-import SimpleShowCard from '@/components/specific/SimpleShowCard';
+import MediaCard from '@/components/specific/MediaCard';
 
 const FilterResult = () => {
   const { data, mediaType } = useFilteredByStore();
@@ -11,7 +11,7 @@ const FilterResult = () => {
       {(data?.results as any)
         .filter((item: MovieType | TVType) => item.poster_path)
         .map((item: MovieType | TVType, index: number) => (
-          <SimpleShowCard
+          <MediaCard
             options={{
               buttonComponent: {
                 className: `max-w-[20rem] w-[10rem] flex justify-center items-center flex-col 
@@ -25,7 +25,7 @@ const FilterResult = () => {
                 size: 'original',
               },
             }}
-            item={item}
+            media={item}
             mediaType={mediaType}
             key={index}
           />

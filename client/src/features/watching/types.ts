@@ -60,6 +60,7 @@ const TVDetailSchema = z
         name: z.string(),
       }),
     ),
+    original_language: z.string(),
     episode_run_time: z.array(z.number()),
     first_air_date: z.string().nullable(),
     genres: z.array(
@@ -230,6 +231,7 @@ const ReviewListSchema = z
 
 const SimilarMovieSchema = z
   .object({
+    id: z.number(),
     backdrop_path: z.string().nullable(),
     genre_ids: z.array(z.number()),
     title: z.string(),
@@ -243,6 +245,7 @@ const SimilarMovieSchema = z
 
 const SimilarTVSchema = z
   .object({
+    id: z.number(),
     backdrop_path: z.string().nullable(),
     genre_ids: z.array(z.number()),
     name: z.string(),

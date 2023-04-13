@@ -317,8 +317,8 @@ Info:
     Item details: 
         imagery: poster_path, backdrop_path, trailers*
         overview: 
-           movie: title, tagline, overview, status, vote_average, release_date, runtime, budget, revenue, original_language, genres [{name}], production_companies [{name}],
-           production_countries [{name}],
+           movie: *title*, *tagline*, *overview*, status, *vote_average*, *release_date*, *runtime*, *budget*, *revenue*, original_language, *genres [{name}]*, *production_companies [{name}]*,
+           *production_countries [{name}]*,
            ( vote_count, popularity)
 
            tv: name, tagline, overview, status, type, vote_average, first_air_date, episode_run_time [number], number_of_seasons, number_of_episodes,
@@ -435,7 +435,6 @@ Paint Step
   react auto animate - parent & children
   progress bar
   toggling dark/light theme
-
 
 **SERVER STATE**
   **Client API Layer**

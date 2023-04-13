@@ -2,7 +2,7 @@ import React from 'react';
 import { useItemListQuery } from '../../hooks/useItemListQuery';
 import { MovieType, TVType } from '@/types/types';
 import Wrapper from '@/components/handling/Wrapper';
-import SimpleShowCard from '@/components/specific/SimpleShowCard';
+import MediaCard from '@/components/specific/MediaCard';
 
 const SearchResult = () => {
   const { data: itemList } = useItemListQuery();
@@ -12,12 +12,12 @@ const SearchResult = () => {
         Movie:
         <div aria-label='movie' className='flex flex-wrap gap-4 w-full'>
           {itemList?.results
-            ?.filter((item) => item.media_type === 'movie' && item.poster_path)
-            .map((item, index: number) => {
+            ?.filter((media) => media.media_type === 'movie' && media.poster_path)
+            .map((media, index: number) => {
               return (
-                <SimpleShowCard
+                <MediaCard
                   key={index}
-                  item={item as MovieType}
+                  media={media as MovieType}
                   mediaType='movie'
                   options={{
                     buttonComponent: {
@@ -39,12 +39,12 @@ const SearchResult = () => {
         TV:
         <div aria-label='tv' className='flex flex-wrap gap-4 w-full'>
           {itemList?.results
-            ?.filter((item) => item.media_type === 'tv' && item.poster_path)
-            .map((item, index: number) => {
+            ?.filter((media) => media.media_type === 'tv' && media.poster_path)
+            .map((media, index: number) => {
               return (
-                <SimpleShowCard
+                <MediaCard
                   key={index}
-                  item={item as TVType}
+                  media={media as TVType}
                   mediaType='tv'
                   options={{
                     buttonComponent: {

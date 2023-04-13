@@ -1,17 +1,23 @@
 import { useGetUserQuery } from '@/features/profile/hooks/useGetUserQuery';
 import React from 'react';
+import LazyLoadImageComponent from '../handling/LazyLoadImageComponent';
+import { Effect } from 'react-lazy-load-image-component';
 interface AvatarComponentProps {
-  source?: string;
-  alt?: string;
+  path?: string;
+  size?: string;
+  effect?: Effect;
   className?: string;
 }
 const AvatarComponent: React.FC<AvatarComponentProps> = (props) => {
   const { data } = useGetUserQuery();
-  const { source, alt, className } = props;
+  const { path, className, size, effect } = props;
   return (
-    <div className={className}>
-      <img src={source?? data?.avatar} alt={alt} className={`${className ?? 'h-40 w-28'}`} />
-    </div>
+    <LazyLoadImageComponent
+      path={path ?? data?.avatar}
+      className={className}
+      size={size ?? 'w154'}
+      effect={effect ?? 'blur'}
+    />
   );
 };
 

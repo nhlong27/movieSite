@@ -1,4 +1,4 @@
-import { currentURLPathAtom, mediaTypeAtom,  shouldDropdownDisplayAtom } from '@/App';
+import { currentURLPathAtom, mediaTypeAtom, shouldDropdownDisplayAtom } from '@/App';
 import { useAtom } from 'jotai';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -10,11 +10,11 @@ const DropDownMenu = () => {
   const [shouldDropdownDisplay] = useAtom(shouldDropdownDisplayAtom);
 
   return (
-    <div className='z-20 overflow-hidden top-0 absolute w-11/12 min-w-[300px]'>
+    <div className='overflow-hidden w-11/12 min-w-[300px]'>
       <div
         className={` ${
           shouldDropdownDisplay ? 'h-10' : 'h-0'
-        } transition-all duration-300 relative md:hidden w-full text-black`}
+        } transition-all relative top-0 duration-300 md:hidden w-full text-black`}
       >
         <ul className='grid grid-cols-4 h-full w-full list-none'>
           <li>

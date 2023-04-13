@@ -1,9 +1,9 @@
 import ButtonComponent from '@/components/generic/ButtonComponent';
-import SimpleShowCard from '@/components/specific/SimpleShowCard';
 import { MovieType, TVType } from '@/types/types';
 import React from 'react';
 import { useSectionBackdropItems } from '../../stores';
 import { useMediaQueries } from '@/hooks/useMediaQueries';
+import MediaCard from '@/components/specific/MediaCard';
 
 interface SwiperContainerProps {
   section?: string;
@@ -42,8 +42,8 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
       <div
         className={`w-full h-full z-0 absolute inset-0 flex slider ${sliderName} transition-transform duration-500 gap-2`}
       >
-        <SimpleShowCard
-          item={data?.results[slideIndex]}
+        <MediaCard
+          media={data?.results[slideIndex]}
           options={{
             wrapperComponent: {
               className: `w-full flex justify-center items-center flex-col shadow-2xl`,
@@ -72,9 +72,11 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
     </div>
   ) : (
     <div
-      className={`${className?? 'absolute bottom-0 left-0 right-0'}  z-10 w-full overflow-x-hidden overflow-y-visible md:h-[20rem] xl:h-[28rem] 4k:h-[32rem]`}
+      className={`${
+        className ?? 'absolute bottom-0 left-0 right-0'
+      }  z-10 w-full overflow-x-hidden overflow-y-visible xs:h-[20rem] xl:h-[28rem] 4k:h-[32rem]`}
     >
-      <div className='absolute bottom-0 left-0 right-0 z-10 w-full md:h-5/6 4k:h-[90%]'>
+      <div className='absolute bottom-0 left-0 right-0 z-10 w-full xs:h-5/6 4k:h-[90%]'>
         <ButtonComponent
           className='w-20 h-full bottom-0 left-0 z-10 cursor-pointer bg-opacity-50 bg-gray-300 absolute text-[5rem] rounded-xl flex justify-center items-center'
           onClick={() => {
@@ -87,26 +89,25 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
           <p className='mb-2'>&#8249;</p>
         </ButtonComponent>
         <div
-          className={`w-full gap-6 absolute bottom-0 flex slider ${sliderName} ml-20 -translate-x-[(calc(var(--slider-index)*(100%/var(--items-per-screen)*(var(--items-per-screen)-1))))] h-full transition-transform duration-500`}
+          className={`w-full gap-x-custom-x-max-normal absolute bottom-0 flex slider ${sliderName} ml-20 -translate-x-[(calc(var(--slider-index)*(100%/var(--items-per-screen)*(var(--items-per-screen)-1))))] h-full transition-transform duration-500`}
         >
-          {data?.results?.map((item: MovieType | TVType, index: number) => {
+          {data?.results?.map((media: MovieType | TVType, index: number) => {
             return (
-              <SimpleShowCard
+              <MediaCard
                 role={role ?? 'button'}
                 key={index}
                 handleClick={() => {
-                  section && sectionBackdropItems.setSectionBackdropItem(section, item);
+                  section && sectionBackdropItems.setSectionBackdropItem(section, media);
                 }}
-                item={item}
+                media={media}
                 options={{
                   wrapperComponent: {
                     className: `max-w-[calc(100%/var(--items-per-screen))] flex justify-center items-center flex-col flex-[0_0_calc(100%_/_var(--items-per-screen))] 
                     transition-all
                     ease-in-out
-                    
                     duration-500
                   ${
-                    sectionBackdropItems.getSectionBackdropItem(section ?? '')?.id === item.id
+                    sectionBackdropItems.getSectionBackdropItem(section ?? '')?.id === media.id
                       ? 'opacity-100 shadow-[2rem] -mt-[2rem] 4k:-mt-[2rem] mx-2'
                       : 'shadow-lg                opacity-90 h-full'
                   }

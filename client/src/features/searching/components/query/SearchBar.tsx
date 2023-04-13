@@ -16,7 +16,7 @@ const SearchBar = () => {
   return (
     <ButtonComponent
       onClick={() => {
-        inputRef.current?.select();
+        inputRef.current?.focus();
         setHasQueryFilters(false);
       }}
       className='flex align-baseline h-[2.5rem] w-11/12 md:w-3/4'
@@ -47,7 +47,7 @@ const SearchBar = () => {
         </>
       ) : (
         <>
-          <div className='rounded'>
+          <div className='rounded' >
             <AiOutlineSearch className='h-[2.5rem] w-[2.5rem]' />
           </div>
           <div className='overflow-hidden w-full h-full '>

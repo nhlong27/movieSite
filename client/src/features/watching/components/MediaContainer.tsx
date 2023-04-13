@@ -1,27 +1,21 @@
 import Wrapper from '@/components/handling/Wrapper';
 import React from 'react';
-import MovieMedia from './MovieMedia';
-import TVMedia from './TVMedia';
+import MovieMedia from './movie/MovieMedia';
+import TVMedia from './tv/TVMedia';
 import { useGetItemDetailQuery } from '../hooks/useGetItemDetailQuery';
 import BackdropComponent from './BackdropComponent';
+import { useMediaQueries } from '@/hooks/useMediaQueries';
 
 const MediaContainer: React.FC = () => {
   const { params } = useGetItemDetailQuery();
-
-  return (
+  const { isMd } = useMediaQueries();
+  return isMd ? (
     <>
       <BackdropComponent />
       {params.mediaType === 'movie' ? <MovieMedia /> : <TVMedia />}
-      {/* <BackdropComponent />
-      <PosterComponent />
-
-      <OptionsContainer />
-
-      <ItemOverview />
-
-      <TrailerListComponent />
-      <SimilarListComponent /> */}
     </>
+  ) : (
+    <>{params.mediaType === 'movie' ? <MovieMedia /> : <TVMedia />}</>
   );
 };
 
