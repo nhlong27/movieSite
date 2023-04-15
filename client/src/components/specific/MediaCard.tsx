@@ -28,7 +28,7 @@ function MediaCard<T extends object>(props: MediaCardProps<T>) {
           <h1 className='truncate'>{(media as any).title}</h1>
           <div className='flex justify-between'>
             <p>{(media as any).release_date ? parseInt((media as any).release_date) : 'TV'}</p>
-            <p>{(media as any).vote_average.toFixed(1)}</p>
+            <p>{(media as any)?.vote_average?.toFixed(1)}</p>
           </div>
         </div>
       ) : (
@@ -36,7 +36,7 @@ function MediaCard<T extends object>(props: MediaCardProps<T>) {
           <h1 className='truncate'>{(media as any).name}</h1>
           <div className='flex justify-between'>
             <p>{(media as any).first_air_date ? parseInt((media as any).first_air_date) : 'TV'}</p>
-            <p>{(media as any).vote_average.toFixed(1)}</p>
+            <p>{(media as any)?.vote_average?.toFixed(1)}</p>
           </div>
         </div>
       )}
@@ -45,22 +45,22 @@ function MediaCard<T extends object>(props: MediaCardProps<T>) {
     <Link
       to={`/${mediaType}/${(media as any).id}`}
       onClick={handleClick}
-      className={options?.wrapperComponent?.className}
+      className={options?.wrapperComponent?.className }
     >
       <LazyLoadImageComponent
         className='object-cover
                   rounded-md 
-                  h-full
+                  w-full
                   aspect-[10/14]'
         path={options?.lazyImageComponent?.path ?? (media as any).poster_path}
         size={options?.lazyImageComponent?.size}
       />
       {mediaType === 'movie' ? (
-        <div className={`${options?.overviewComponent?.className} flex flex-col w-full`}>
+        <div className={`${options?.overviewComponent?.className} flex flex-col w-full `}>
           <h1 className='truncate'>{(media as any).title}</h1>
           <div className='flex justify-between w-full'>
             <p>{(media as any).release_date ? parseInt((media as any).release_date) : 'Movie'}</p>
-            <p>{(media as any).vote_average.toFixed(1)}</p>
+            <p>{(media as any)?.vote_average?.toFixed(1)}</p>
           </div>
         </div>
       ) : (
@@ -68,7 +68,7 @@ function MediaCard<T extends object>(props: MediaCardProps<T>) {
           <h1 className='truncate'>{(media as any).name}</h1>
           <div className='flex justify-between w-full'>
             <div>{(media as any).first_air_date ? parseInt((media as any).first_air_date) : 'TV'}</div>
-            <div>{(media as any).vote_average.toFixed(1)}</div>
+            <div>{(media as any)?.vote_average?.toFixed(1)}</div>
           </div>
         </div>
       )}

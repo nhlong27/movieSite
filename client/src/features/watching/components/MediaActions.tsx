@@ -8,10 +8,12 @@ import { useGetUserQuery } from '@/features/profile/hooks/useGetUserQuery';
 
 interface MediaActionsProps {
   options?: { [key: string]: any };
+  role?: string;
+  children?: string | JSX.Element | JSX.Element[];
 }
 
 const MediaActions: React.FC<MediaActionsProps> = (props) => {
-  const { options } = props;
+  const { options, role, children } = props;
   const [isFavorited, setIsFavorited] = React.useState(false);
 
   const updateShowMutation = useUpdateShowMutation();
@@ -31,6 +33,82 @@ const MediaActions: React.FC<MediaActionsProps> = (props) => {
     });
   };
 
+  if (role === 'isFavorited')
+    return (
+      <div className={`${options?.wrapper?.className}`}>
+        <ButtonComponent
+          role='trueFalse'
+          className={`${
+            (serverDetail as any)?.isFavorited
+              ? 'text-pink-300 font-bold hover:bg-gray-200'
+              : 'text-blue-300 font-normal hover:bg-gray-200'
+          }`}
+          onClick={() => {
+            handleMediaUpdate('isFavorited', { value: !isFavorited });
+            setIsFavorited((prev) => !prev);
+          }}
+        >
+          Favorite
+        </ButtonComponent>
+      </div>
+    );
+
+  if (role === 'play')
+    return (
+      <ButtonComponent
+        role='trueFalse'
+        className='w-full'
+        onMouseDownCapture={() => {
+          handleMediaUpdate('status', { value: 'Watching' });
+
+          options?.playFnc(true);
+        }}
+      >
+        {children ?? 'Play'}
+      </ButtonComponent>
+    );
+
+  if (role === 'status')
+    return (
+      <div className={`${options?.wrapper?.className}`}>
+        <SelectComponent
+          options={[
+            { value: 'Plan to Watch', label: 'Plan to Watch' },
+            { value: 'Completed', label: 'Completed' },
+            { value: 'Dropped', label: 'Dropped' },
+          ]}
+          name={'status'}
+          className='ring-2 ring-blue-300'
+          placeholder={(serverDetail as any)?.status ?? 'Add status'}
+          extras={{ isSearchable: false, isClearable: true, isDisabled: !!!userData }}
+          handleOnChange={(val: any) => handleMediaUpdate('status', val)}
+        />
+      </div>
+    );
+  if (role === 'score')
+    return (
+      <div className={`${options?.wrapper?.className}`}>
+        <SelectComponent
+          options={[
+            { value: 1, label: '1' },
+            { value: 2, label: '2' },
+            { value: 3, label: '3' },
+            { value: 4, label: '4' },
+            { value: 5, label: '5' },
+            { value: 6, label: '6' },
+            { value: 7, label: '7' },
+            { value: 8, label: '8' },
+            { value: 9, label: '9' },
+            { value: 10, label: '10' },
+          ]}
+          name={'score'}
+          className='ring-2 ring-blue-300'
+          placeholder={(serverDetail as any)?.score ?? 'Add score'}
+          extras={{ isSearchable: false, isClearable: true, isDisabled: !!!userData }}
+          handleOnChange={(val: any) => handleMediaUpdate('score', val)}
+        />
+      </div>
+    );
   return (
     <div className={`${options?.wrapper?.className} flex gap-4`}>
       <ButtonComponent
@@ -44,9 +122,10 @@ const MediaActions: React.FC<MediaActionsProps> = (props) => {
           handleMediaUpdate('status', { value: 'Watching' });
 
           options?.ref.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          options?.playFnc(true);
         }}
       >
-        Watch
+        {children ?? 'Play'}
       </ButtonComponent>
       <SelectComponent
         options={[

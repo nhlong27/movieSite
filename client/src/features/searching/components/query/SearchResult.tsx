@@ -3,14 +3,19 @@ import { useItemListQuery } from '../../hooks/useItemListQuery';
 import { MovieType, TVType } from '@/types/types';
 import Wrapper from '@/components/handling/Wrapper';
 import MediaCard from '@/components/specific/MediaCard';
+import { useAtom } from 'jotai';
+import { hasQueryFiltersAtom } from '@/App';
 
 const SearchResult = () => {
+  const [hasQueryFilters] = useAtom(hasQueryFiltersAtom);
+
   const { data: itemList } = useItemListQuery();
   return itemList ? (
     (itemList.results ?? []).length > 0 ? (
-      <div data-testid='result' className='flex flex-col w-full'>
+      <div data-testid='result' className={`${hasQueryFilters ? 'max-h-0' : 'max-h-screen'} transition-all duration-500 overflow-hidden flex flex-col w-full`}>
         Movie:
-        <div aria-label='movie' className='flex flex-wrap gap-4 w-full'>
+        <div className='flex justify-center items-start w-full'>
+          <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-y-4 2xl:gap-4 place-items-center w-full'>
           {itemList?.results
             ?.filter((media) => media.media_type === 'movie' && media.poster_path)
             .map((media, index: number) => {
@@ -20,24 +25,21 @@ const SearchResult = () => {
                   media={media as MovieType}
                   mediaType='movie'
                   options={{
-                    buttonComponent: {
-                      className: `max-w-[20rem] w-[10rem] flex justify-center items-center flex-col 
-                    transition-all
-                    ease-in-out
-                    aspect-[9/16]
-                      duration-500
-                      `,
+                    wrapperComponent: {
+                      className: 'w-[200px] overflow-hidden flex justify-center items-center flex-col',
                     },
                     lazyImageComponent: {
-                      size: 'original',
+                      size: 'w200',
                     },
                   }}
                 />
               );
             })}
+          </div>
         </div>
         TV:
-        <div aria-label='tv' className='flex flex-wrap gap-4 w-full'>
+        <div className='flex justify-center items-start w-full'>
+          <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-y-4 2xl:gap-4 place-items-center w-full'>
           {itemList?.results
             ?.filter((media) => media.media_type === 'tv' && media.poster_path)
             .map((media, index: number) => {
@@ -47,24 +49,17 @@ const SearchResult = () => {
                   media={media as TVType}
                   mediaType='tv'
                   options={{
-                    buttonComponent: {
-                      className: `max-w-[20rem] w-[10rem] flex justify-center items-center flex-col 
-                    transition-all
-                    ease-in-out
-                    aspect-[9/16]
-                      duration-500
-                      `,
+                    wrapperComponent: {
+                      className: 'w-[200px] overflow-hidden flex justify-center items-center flex-col',
                     },
                     lazyImageComponent: {
-                      size: 'original',
+                      size: 'w200',
                     },
                   }}
-                  // <div>{(item as MovieType | TVType).vote_average}</div>
-                  // <div>{(item as TVType).first_air_date}</div>
-                  // <div className='truncate w-full'>{(item as TVType).name}</div>
                 />
               );
             })}
+          </div>
         </div>
       </div>
     ) : (

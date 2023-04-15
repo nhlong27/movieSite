@@ -15,6 +15,7 @@ const MovieMedia = () => {
   const { data } = useGetItemDetailQuery();
   const { data: extraData } = useGetItemExtraQuery();
   const reactPlayerRef = useRef<HTMLInputElement>(null);
+  const [isMediaWindowDisplay, setIsMediaWindowDisplay] = React.useState(false)
 
   const [serverSource, setServerSource] = React.useState('2embed.to');
 
@@ -32,6 +33,7 @@ const MovieMedia = () => {
                   className: 'flex gap-2',
                 },
                 ref: reactPlayerRef,
+                playFnc: setIsMediaWindowDisplay,
               }}
             />
           </div>
@@ -53,7 +55,20 @@ const MovieMedia = () => {
           <MovieMediaDetail role='md' />
         </div>
       </div>
-      <div ref={reactPlayerRef} className='relative w-full px-6 py-2'>
+      {isMediaWindowDisplay ? null : (
+        <MediaActions
+          role='play'
+          options={{
+            playFnc: setIsMediaWindowDisplay,
+          }}
+        />
+      )}
+      <div
+        ref={reactPlayerRef}
+        className={`${
+          isMediaWindowDisplay ? 'visible opacity-100 max-h-[40rem]' : 'invisible opacity-0 max-h-0'
+        } transition-all duration-500 relative w-full px-6 py-2`}
+      >
         <p>
           If you get any error message when trying to stream, please Refresh the page or switch to
           another streaming server.
@@ -91,7 +106,7 @@ const MovieMedia = () => {
       >
         <h1>You may also like</h1>
         <div className='flex justify-center items-start w-full'>
-          <div className='grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-7 place-items-center w-full'>
+          <div className='grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-7 place-items-center w-full gap-y-4 2xl:gap-4'>
           {extraData.similar?.results?.map((media, index) => {
             return (
               <MediaCard
@@ -135,6 +150,7 @@ const MovieMedia = () => {
                 className: 'flex flex-col gap-2',
               },
               ref: reactPlayerRef,
+              playFnc: setIsMediaWindowDisplay,
             }}
           />
         </div>
@@ -151,7 +167,20 @@ const MovieMedia = () => {
           <Trailers />
         </div>
       </div>
-      <div ref={reactPlayerRef} className='relative w-full'>
+      {isMediaWindowDisplay ? null : (
+        <MediaActions
+          role='play'
+          options={{
+            playFnc: setIsMediaWindowDisplay,
+          }}
+        />
+      )}
+      <div
+        ref={reactPlayerRef}
+        className={`${
+          isMediaWindowDisplay ? 'visible opacity-100 max-h-[40rem]' : 'invisible opacity-0 max-h-0'
+        } transition-all duration-500 relative w-full px-6 py-2`}
+      >
         <p>
           If you get any error message when trying to stream, please Refresh the page or switch to
           another streaming server.

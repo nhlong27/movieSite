@@ -40,7 +40,7 @@ type SectionBackdropItem = {
   setSectionBackdropItem: (section: string, newItem: MovieType | TVType) => void;
 };
 
-const useSectionBackdropItems = create<SectionBackdropItem>((set, get) => ({
+const useSectionBackdropItemsStore = create<SectionBackdropItem>((set, get) => ({
   trendingSectionBackdropItem: undefined,
   comingSoonSectionBackdropItem: undefined,
   airingSectionBackdropItem: undefined,
@@ -123,4 +123,4 @@ const useTVFiltersStore = create<TVFiltersStore>((set) => ({
     })),
 }));
 
-export { useMovieFiltersStore, useTVFiltersStore, useSectionBackdropItems };
+export { useMovieFiltersStore, useTVFiltersStore, useSectionBackdropItemsStore };

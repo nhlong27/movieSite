@@ -35,13 +35,12 @@ const ReactPlayerComponent: React.FC<ReactPlayerComponentProps> = (props) => {
     return (
       <div className={className}>
         <ReactPlayer
-        // light={<img src={`${urls.yt}${trailerSource.key}`} alt='Thumbnail' />}
-        config={{
-          youtube: {
-            embedOptions: { color: 'white' }
-          },
-        }}
-      
+          // light={<img src={`${urls.yt}${trailerSource.key}`} alt='Thumbnail' />}
+          config={{
+            youtube: {
+              embedOptions: { color: 'white' },
+            },
+          }}
           controls={true}
           width={'100%'}
           height={'100%'}
@@ -52,6 +51,7 @@ const ReactPlayerComponent: React.FC<ReactPlayerComponentProps> = (props) => {
   if (seasonNumber || episodeNumber)
     return (
       <iframe
+        allowFullScreen={true}
         className={className}
         width={500}
         height={500}
@@ -72,6 +72,7 @@ const ReactPlayerComponent: React.FC<ReactPlayerComponentProps> = (props) => {
     );
   return (
     <iframe
+      allowFullScreen={true}
       className={className}
       width={500}
       height={500}

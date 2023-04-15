@@ -18,7 +18,7 @@ const TVMedia = () => {
   const { data } = useGetItemDetailQuery();
   const { data: extraData } = useGetItemExtraQuery();
   const [seasonAndEpisode] = useAtom(seasonAndEpisodeAtom);
-
+  const [isMediaWindowDisplay, setIsMediaWindowDisplay] = React.useState(false);
   const seasonsAndEpisodesRef = useRef<HTMLInputElement>(null);
   const reactPlayerRef = useRef<HTMLInputElement>(null);
 
@@ -38,6 +38,7 @@ const TVMedia = () => {
                   className: 'flex gap-2',
                 },
                 ref: seasonsAndEpisodesRef,
+                playFnc: setIsMediaWindowDisplay,
               }}
             />
           </div>
@@ -59,7 +60,20 @@ const TVMedia = () => {
           <TVMediaDetail role='md' />
         </div>
       </div>
-      <div ref={reactPlayerRef} className='relative w-full px-6 py-2'>
+      {isMediaWindowDisplay ? null : (
+        <MediaActions
+          role='play'
+          options={{
+            playFnc: setIsMediaWindowDisplay,
+          }}
+        />
+      )}
+      <div
+        ref={reactPlayerRef}
+        className={`${
+          isMediaWindowDisplay ? 'visible opacity-100 max-h-[40rem]' : 'invisible opacity-0 max-h-0'
+        } transition-all duration-500 relative w-full px-6 py-2`}
+      >
         <p>
           If you get any error message when trying to stream, please Refresh the page or switch to
           another streaming server.
@@ -112,7 +126,7 @@ const TVMedia = () => {
       >
         <h1>You may also like</h1>
         <div className='flex justify-center items-start w-full'>
-          <div className='grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-7 place-items-center w-full'>
+          <div className='grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-7 gap-y-4 2xl:gap-4 place-items-center w-full'>
             {extraData.similar?.results?.map((media, index) => {
               return (
                 <MediaCard
@@ -156,6 +170,7 @@ const TVMedia = () => {
                 className: 'flex flex-col gap-2',
               },
               ref: seasonsAndEpisodesRef,
+              playFnc: setIsMediaWindowDisplay,
             }}
           />
         </div>
@@ -172,8 +187,20 @@ const TVMedia = () => {
           <Trailers />
         </div>
       </div>
-
-      <div ref={reactPlayerRef} className='relative w-full'>
+      {isMediaWindowDisplay ? null : (
+        <MediaActions
+          role='play'
+          options={{
+            playFnc: setIsMediaWindowDisplay,
+          }}
+        />
+      )}
+      <div
+        ref={reactPlayerRef}
+        className={`${
+          isMediaWindowDisplay ? 'visible opacity-100 max-h-[40rem]' : 'invisible opacity-0 max-h-0'
+        } transition-all duration-500 relative w-full px-6 py-2`}
+      >
         <p>
           If you get any error message when trying to stream, please Refresh the page or switch to
           another streaming server.

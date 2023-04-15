@@ -10,17 +10,20 @@ const FilterSection: React.FC = () => {
   const [hasQueryFilters, setHasQueryFilters] = useAtom(hasQueryFiltersAtom);
   return (
     <div className='order-first srhink p-2  col-start-1 md:col-start-4 md:h-full'>
-      <div className='md:sticky md:top-[10vh] md:min-h-1/2 w-full'>
-        <button onClick={() => setHasQueryFilters(true)}>More options</button>
-        {hasQueryFilters ? (
-          <>
-            <div>
-              <ButtonComponent onClick={() => setMediaType('movie')}>Movies</ButtonComponent>
-              <ButtonComponent onClick={() => setMediaType('tv')}>TV Shows</ButtonComponent>
-            </div>
-            {mediaType === 'movie' ? <MovieFilterSection /> : <TVFilterSection />}
-          </>
-        ) : null}
+      <div className='md:sticky md:top-[6vh]  md:min-h-1/2 w-full flex flex-col'>
+        <button onClick={() => setHasQueryFilters(prev=>!prev)}>More options</button>
+
+        <div
+          className={`${
+            hasQueryFilters ? 'max-h-[30rem]' : 'max-h-0'
+          } overflow-hidden transition-all duration-300 w-full`}
+        >
+          <div>
+            <ButtonComponent onClick={() => setMediaType('movie')}>Movies</ButtonComponent>
+            <ButtonComponent onClick={() => setMediaType('tv')}>TV Shows</ButtonComponent>
+          </div>
+          {mediaType === 'movie' ? <MovieFilterSection /> : <TVFilterSection />}
+        </div>
       </div>
     </div>
   );

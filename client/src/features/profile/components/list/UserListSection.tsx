@@ -1,38 +1,42 @@
 import React from 'react';
-import ListOptionsContainer from './ListOptionsContainer';
 import { useGetMultipleShowsQuery } from '../../hooks/useGetMultipleShowsQuery';
-import ListContainer from './ListContainer';
+import MediaList from './MediaList';
 import { MultipleShowsQueryResponseType } from '../../types';
+import ListFilters from './ListFilters';
 
-const listOptions: { [key: string]: any } = {
+const listFilters: { [key: string]: any } = {
   Watching: (list: MultipleShowsQueryResponseType, status: string) => (
-    <ListContainer status={status} items={list} />
+    <MediaList status={status} mediaList={list} />
   ),
   'Plan to Watch': (list: MultipleShowsQueryResponseType, status: string) => (
-    <ListContainer status={status} items={list} />
+    <MediaList status={status} mediaList={list} />
   ),
   Completed: (list: MultipleShowsQueryResponseType, status: string) => (
-    <ListContainer status={status} items={list} />
+    <MediaList status={status} mediaList={list} />
   ),
   Dropped: (list: MultipleShowsQueryResponseType, status: string) => (
-    <ListContainer status={status} items={list} />
+    <MediaList status={status} mediaList={list} />
   ),
   isFavorited: (list: MultipleShowsQueryResponseType, status: string) => (
-    <ListContainer status={status} items={list} />
+    <MediaList status={status} mediaList={list} />
   ),
-  All : (list: MultipleShowsQueryResponseType, status: string) => (
-    <ListContainer status={status} items={list} />
+  All: (list: MultipleShowsQueryResponseType, status: string) => (
+    <MediaList status={status} mediaList={list} />
   ),
 };
 
 const UserListSection = () => {
-  const [listOption, setListOption] = React.useState('Watching');
-  const { data: items } = useGetMultipleShowsQuery();
+  const [listFilter, setListFilter] = React.useState('Watching');
+  const { data: mediaList } = useGetMultipleShowsQuery();
 
   return (
-    <div className='md:row-start-1 md:col-start-1 md:col-span-3 w-full flex flex-col'>
-      <ListOptionsContainer setListOption={setListOption} />
-      {listOptions[`${listOption}`](items, listOption)}
+    <div className='md:row-start-1 md:col-start-1 md:col-span-3 w-full flex flex-col items-center'>
+      <ListFilters setListFilter={setListFilter} />
+      <div className='grid place-items-center'>
+        <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 place-items-center w-full gap-y-4 2xl:gap-4'>
+          {listFilters[`${listFilter}`](mediaList, listFilter)}
+        </div>
+      </div>
     </div>
   );
 };

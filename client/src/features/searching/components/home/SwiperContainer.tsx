@@ -1,7 +1,7 @@
 import ButtonComponent from '@/components/generic/ButtonComponent';
 import { MovieType, TVType } from '@/types/types';
 import React from 'react';
-import { useSectionBackdropItems } from '../../stores';
+import { useSectionBackdropItemsStore } from '../../stores';
 import { useMediaQueries } from '@/hooks/useMediaQueries';
 import MediaCard from '@/components/specific/MediaCard';
 
@@ -12,12 +12,13 @@ interface SwiperContainerProps {
   sliderName: string;
   className?: string;
   role?: string;
+  options?: {[key: string] : any}
 }
 const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
-  const { data, mediaType, section, sliderName, className, role } = props;
+  const { data, mediaType, section, sliderName, className, role, options } = props;
 
   const [slideIndex, setSlideIndex] = React.useState(0);
-  const sectionBackdropItems = useSectionBackdropItems();
+  const sectionBackdropItems = useSectionBackdropItemsStore();
 
   const handleClick = () => {
     const slider = document.querySelector(`.${sliderName}`) as HTMLElement;
@@ -28,9 +29,9 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
 
   const { isXs, is4k, isXl } = useMediaQueries();
   return !isXs ? (
-    <div className={`${className} relative z-10 w-full h-80 overflow-hidden`}>
+    <div className={`${className} relative z-20 w-full h-80 overflow-hidden`}>
       <ButtonComponent
-        className='w-16 absolute h-full z-10 cursor-pointer bg-opacity-50 bg-gray-300 text-[5rem] rounded-xl flex justify-center items-center'
+        className='w-16 absolute h-full z-30  cursor-pointer bg-opacity-50 bg-gray-300 text-[5rem] rounded-xl flex justify-center items-center'
         onClick={() => {
           if (slideIndex > 0) {
             setSlideIndex((prev) => prev - 1);
@@ -40,7 +41,7 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
         <p className='mb-2'>&#8249;</p>
       </ButtonComponent>
       <div
-        className={`w-full h-full z-0 absolute inset-0 flex slider ${sliderName} transition-transform duration-500 gap-2`}
+        className={`w-full h-full absolute inset-0 flex slider ${sliderName} transition-transform duration-500 gap-2`}
       >
         <MediaCard
           media={data?.results[slideIndex]}
@@ -59,7 +60,7 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
         />
       </div>
       <ButtonComponent
-        className='w-16 h-full absolute bottom-0 right-0 flex justify-center items-center cursor-pointer z-10 bg-opacity-50 bg-gray-300 text-[5rem] rounded-xl '
+        className='w-16 h-full absolute bottom-0 right-0 flex justify-center items-center cursor-pointer z-30 bg-opacity-50 bg-gray-300 text-[5rem] rounded-xl '
         onClick={() => {
           const { itemNum } = handleClick();
           if (slideIndex < data.results.length / itemNum) {
@@ -74,11 +75,11 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
     <div
       className={`${
         className ?? 'absolute bottom-0 left-0 right-0'
-      }  z-10 w-full overflow-x-hidden overflow-y-visible xs:h-[20rem] xl:h-[28rem] 4k:h-[32rem]`}
+      }  z-20 w-full overflow-x-hidden overflow-y-visible xs:h-[20rem] xl:h-[28rem] 4k:h-[32rem]`}
     >
-      <div className='absolute bottom-0 left-0 right-0 z-10 w-full xs:h-5/6 4k:h-[90%]'>
+      <div className='absolute bottom-0 left-0 right-0 w-full xs:h-5/6 4k:h-[90%]'>
         <ButtonComponent
-          className='w-20 h-full bottom-0 left-0 z-10 cursor-pointer bg-opacity-50 bg-gray-300 absolute text-[5rem] rounded-xl flex justify-center items-center'
+          className='w-20 h-full bottom-0 left-0 cursor-pointer z-30 bg-opacity-50 bg-gray-300 absolute text-[5rem] rounded-xl flex justify-center items-center'
           onClick={() => {
             const { slider, sliderIndex } = handleClick();
             if (sliderIndex > 0) {
@@ -109,7 +110,7 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
                   ${
                     sectionBackdropItems.getSectionBackdropItem(section ?? '')?.id === media.id
                       ? 'opacity-100 shadow-[2rem] -mt-[2rem] 4k:-mt-[2rem] mx-2'
-                      : 'shadow-lg                opacity-90 h-full'
+                      : 'shadow-lg                opacity-100 h-full'
                   }
                     `,
                   },
@@ -127,7 +128,7 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
           })}
         </div>
         <ButtonComponent
-          className='w-20 h-full absolute bottom-0 right-0 flex justify-center items-center cursor-pointer z-10 bg-opacity-50 bg-gray-300 text-[5rem] rounded-xl '
+          className='w-20 z-30 h-full absolute bottom-0 right-0 flex justify-center items-center cursor-pointer  bg-opacity-50 bg-gray-300 text-[5rem] rounded-xl '
           onClick={() => {
             const { slider, sliderIndex, itemNum } = handleClick();
             if (sliderIndex < data.results.length / itemNum) {

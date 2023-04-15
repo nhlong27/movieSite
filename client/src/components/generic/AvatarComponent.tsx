@@ -11,14 +11,16 @@ interface AvatarComponentProps {
 const AvatarComponent: React.FC<AvatarComponentProps> = (props) => {
   const { data } = useGetUserQuery();
   const { path, className, size, effect } = props;
-  return (
-    <LazyLoadImageComponent
+  return data? (
+    <div>
+      <LazyLoadImageComponent
       path={path ?? data?.avatar}
       className={className}
       size={size ?? 'w154'}
       effect={effect ?? 'blur'}
-    />
-  );
+      />
+    </div>
+  ) : <div>Loading..</div>
 };
 
 export default AvatarComponent;

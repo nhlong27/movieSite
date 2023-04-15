@@ -7,29 +7,26 @@ import MediaCard from '@/components/specific/MediaCard';
 const FilterResult = () => {
   const { data, mediaType } = useFilteredByStore();
   return (
-    <div className='flex flex-wrap gap-4'>
-      {(data?.results as any)
-        .filter((item: MovieType | TVType) => item.poster_path)
-        .map((item: MovieType | TVType, index: number) => (
-          <MediaCard
-            options={{
-              buttonComponent: {
-                className: `max-w-[20rem] w-[10rem] flex justify-center items-center flex-col 
-              transition-all
-              ease-in-out
-              aspect-[9/16]
-                duration-500
-                `,
-              },
-              lazyImageComponent: {
-                size: 'original',
-              },
-            }}
-            media={item}
-            mediaType={mediaType}
-            key={index}
-          />
-        ))}
+    <div className='grid place-items-center'>
+      <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 place-items-center w-full gap-y-4 2xl:gap-4'>
+        {(data?.results as any)
+          .filter((item: MovieType | TVType) => item.poster_path)
+          .map((item: MovieType | TVType, index: number) => (
+            <MediaCard
+              options={{
+                wrapperComponent: {
+                  className: 'w-[200px] overflow-hidden flex justify-center items-center flex-col',
+                },
+                lazyImageComponent: {
+                  size: 'w200',
+                },
+              }}
+              media={item}
+              mediaType={mediaType}
+              key={index}
+            />
+          ))}
+      </div>
     </div>
   );
 };
