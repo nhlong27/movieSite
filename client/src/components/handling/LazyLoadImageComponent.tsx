@@ -3,31 +3,27 @@ import { Effect, LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { resizeImage } from '@/utils/resizeImage';
 
-// const DefaultLazyLoadImageComponentProps = {
-//   size: 'original',
-//   className: 'w-full h-full object-cover rounded-md'
-// }
-
 type LazyLoadImageComponentProps = {
   path?: string | null;
-  className?: string;
-  size?: string;
+  styles?: Record<string, string|undefined>;
   effect?: Effect;
 };
 
 const LazyLoadImageComponent: React.FC<LazyLoadImageComponentProps> = ({
   path,
-  className,
-  size,
+  styles,
   effect
 }) => {
   return (
+    <div className={styles?.image}>
       <LazyLoadImage
-        src={resizeImage(path, size)}
-        className={className ?? 'object-cover  rounded-md'}
-        alt='poster'
+        src={resizeImage(path, styles?.size)}
+        height={styles?.height}
+        width={styles?.width}
+        alt='image'
         effect={effect ?? 'blur'}
       />
+    </div>
   );
 };
 

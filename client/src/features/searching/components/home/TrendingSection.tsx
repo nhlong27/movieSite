@@ -25,7 +25,7 @@ const TrendingSection = () => {
   }, [data]);
 
   const { isXs } = useMediaQueries();
-  return (
+  return data ? (
     <div className='relative 4k:aspect-[18/9] xl:aspect-[15/5] xs:aspect-[9/6] w-full flex justify-center items-center z-0'>
       <div className='w-11/12 flex flex-col z-10'>
         <div className='xl:aspect-[22/14] lg:aspect-[12/9] z-20 xs:aspect-square w-full'>
@@ -33,10 +33,7 @@ const TrendingSection = () => {
           <div className='w-full flex gap-2'>
             <ButtonComponent onClick={() => setPeriod('day')}>today</ButtonComponent>
             <ButtonComponent onClick={() => setPeriod('week')}>this week</ButtonComponent>
-            <Link
-              to={`/${mediaType}/${sectionBackdropItem?.id}`}
-              className='ml-auto text-white'
-            >
+            <Link to={`/${mediaType}/${sectionBackdropItem?.id}`} className='ml-auto text-white'>
               Watch
             </Link>
           </div>
@@ -44,12 +41,14 @@ const TrendingSection = () => {
         <SwiperContainer
           sliderName={'slider1'}
           data={data}
-          section='trending'
+          sectionName='trending'
           mediaType={mediaType}
         />
       </div>
       {isXs ? <SectionBackdrop section='trending' mediaType={mediaType} /> : null}
     </div>
+  ) : (
+    <div>loading..</div>
   );
 };
 

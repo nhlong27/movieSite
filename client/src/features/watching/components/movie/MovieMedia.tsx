@@ -6,16 +6,16 @@ import MediaActions from '../MediaActions';
 import Trailers from '../Trailers';
 import MovieMediaDetail from './MovieMediaDetail';
 import { useGetItemExtraQuery } from '../../hooks/useGetItemExtraQuery';
-import MediaCard from '@/components/specific/MediaCard';
 import ReactPlayerComponent from '../player/ReactPlayerComponent';
 import ButtonComponent from '@/components/generic/ButtonComponent';
+import LinkMediaCard from '@/components/specific/LinkMediaCard';
 
 const MovieMedia = () => {
   const { isMd } = useMediaQueries();
   const { data } = useGetItemDetailQuery();
   const { data: extraData } = useGetItemExtraQuery();
   const reactPlayerRef = useRef<HTMLInputElement>(null);
-  const [isMediaWindowDisplay, setIsMediaWindowDisplay] = React.useState(false)
+  const [isMediaWindowDisplay, setIsMediaWindowDisplay] = React.useState(false);
 
   const [serverSource, setServerSource] = React.useState('2embed.to');
 
@@ -107,24 +107,9 @@ const MovieMedia = () => {
         <h1>You may also like</h1>
         <div className='flex justify-center items-start w-full'>
           <div className='grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-7 place-items-center w-full gap-y-4 2xl:gap-4'>
-          {extraData.similar?.results?.map((media, index) => {
-            return (
-              <MediaCard
-                key={index}
-                media={media}
-                mediaType='movie'
-                options={{
-                  overviewComponent: {
-                    className: `w-[200px] overflow-hidden flex justify-center items-center flex-col
-                  `,
-                  },
-                  lazyImageComponent: {
-                    size: 'w200',
-                  },
-                }}
-              />
-            );
-          })}
+            {extraData.similar?.results?.map((media, index) => {
+              return <LinkMediaCard key={index} media={media} role='linkMovieCard' />;
+            })}
           </div>
         </div>
       </div>
@@ -219,22 +204,7 @@ const MovieMedia = () => {
         <h1>You may also like</h1>
         <div className='flex flex-col justify-start items-center gap-4 w-full'>
           {extraData.similar?.results?.map((media, index) => {
-            return (
-              <MediaCard
-                key={index}
-                media={media}
-                mediaType='movie'
-                options={{
-                  overviewComponent: {
-                    className: `w-[200px] flex justify-center items-center flex-col overflow-hidden
-                  `,
-                  },
-                  lazyImageComponent: {
-                    size: 'w200',
-                  },
-                }}
-              />
-            );
+            return <LinkMediaCard key={index} media={media} role='linkMovieCard' />;
           })}
         </div>
       </div>

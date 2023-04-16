@@ -6,12 +6,12 @@ import MediaActions from '../MediaActions';
 import Trailers from '../Trailers';
 import TVMediaDetail from './TVMediaDetail';
 import { useGetItemExtraQuery } from '../../hooks/useGetItemExtraQuery';
-import MediaCard from '@/components/specific/MediaCard';
 import ReactPlayerComponent from '../player/ReactPlayerComponent';
 import ButtonComponent from '@/components/generic/ButtonComponent';
 import SeasonsAndEpisodes from './SeasonsAndEpisodes';
 import { useAtom } from 'jotai';
 import { seasonAndEpisodeAtom } from '../../atoms';
+import LinkMediaCard from '@/components/specific/LinkMediaCard';
 
 const TVMedia = () => {
   const { isMd } = useMediaQueries();
@@ -128,22 +128,7 @@ const TVMedia = () => {
         <div className='flex justify-center items-start w-full'>
           <div className='grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-7 gap-y-4 2xl:gap-4 place-items-center w-full'>
             {extraData.similar?.results?.map((media, index) => {
-              return (
-                <MediaCard
-                  key={index}
-                  media={media}
-                  mediaType='tv'
-                  options={{
-                    overviewComponent: {
-                      className: `w-[200px] overflow-hidden flex justify-center items-center flex-col
-                `,
-                    },
-                    lazyImageComponent: {
-                      size: 'w200',
-                    },
-                  }}
-                />
-              );
+              return <LinkMediaCard key={index} media={media} role='linkTVCard' />;
             })}
           </div>
         </div>
@@ -253,22 +238,7 @@ const TVMedia = () => {
         <h1>You may also like</h1>
         <div className='flex flex-col justify-start items-center gap-4 w-full'>
           {extraData.similar?.results?.map((media, index) => {
-            return (
-              <MediaCard
-                key={index}
-                media={media}
-                mediaType='tv'
-                options={{
-                  buttonComponent: {
-                    className: `w-[200px] flex justify-center items-center flex-col overflow-hidden
-                  `,
-                  },
-                  lazyImageComponent: {
-                    size: 'original',
-                  },
-                }}
-              />
-            );
+            return <LinkMediaCard key={index} media={media} role='linkTVCard' />;
           })}
         </div>
       </div>

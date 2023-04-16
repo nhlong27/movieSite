@@ -29,28 +29,26 @@ const ComingSoonSection = () => {
   }, [data]);
   const { isXs } = useMediaQueries();
 
-  return (
+  return data ? (
     <div className='relative 4k:aspect-[18/9] xl:aspect-[15/5] xs:aspect-[9/6] w-full flex justify-center items-center z-0'>
       <div className='w-11/12 flex flex-col z-10'>
         <div className='grow xl:aspect-[22/14] lg:aspect-[12/9] xs:aspect-square w-full'>
           Coming Soon
-
-          <Link
-              to={`/${mediaType}/${sectionBackdropItem?.id}`}
-              className='ml-auto text-white'
-            >
-              Watch
-            </Link>
+          <Link to={`/${mediaType}/${sectionBackdropItem?.id}`} className='ml-auto text-white'>
+            Watch
+          </Link>
         </div>
         <SwiperContainer
           sliderName={'slider2'}
           data={data}
-          section='comingSoon'
+          sectionName='comingSoon'
           mediaType={mediaType}
         />
       </div>
       {isXs ? <SectionBackdrop section='comingSoon' mediaType={mediaType} /> : null}
     </div>
+  ) : (
+    <div>loading ..</div>
   );
 };
 

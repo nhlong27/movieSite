@@ -5,7 +5,7 @@ import { useDeleteShowMutation } from '../../hooks/useDeleteShowMutation';
 import { ShowQueryResponseType } from '../../types';
 import SelectComponent from '@/components/generic/SelectComponent';
 import { useUpdateShowMutation } from '../../hooks/useUpdateShowMutation';
-import MediaCard from '@/components/specific/MediaCard';
+import MediaCard from '@/components/specific/LinkMediaCard';
 import LazyLoadImageComponent from '@/components/handling/LazyLoadImageComponent';
 
 interface ProfileMediaCardProps {
