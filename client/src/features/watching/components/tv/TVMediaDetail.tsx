@@ -1,5 +1,5 @@
 import ErrorComponent from '@/components/handling/ErrorComponent';
-import SuspenseComponent from '@/components/handling/SuspenseComponent';
+import SuspenseComponent from '@/components/handling/SkeletonComponent';
 import React, { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useGetItemDetailQuery } from '../../hooks/useGetItemDetailQuery';
@@ -44,40 +44,36 @@ const TVMediaDetail: React.FC<TVMediaDetailProps> = (props) => {
           <p>
             Production: {data?.production_companies?.map((company) => company.name)?.join(', ')}
           </p>
-          
         </div>
-        
       </div>
       <div className='flex flex-col'>
-            <p>Networks </p>
-            <ul className='flex flex-wrap gap-4'>
-              {(data as TVDetailType)?.networks?.map((network, index) => (
-                <li key={index} className='grid place-items-center'>
-                  <LazyLoadImageComponent
-                    path={network.logo_path ?? undefined}
-                    className='h-[3rem] w-[3rem] object-contain'
-                    size='original'
-                    effect='blur'
-                  />
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className='flex flex-col'>
-            <p>Created by</p>
-            <ul className='flex flex-wrap gap-4'>
-              {(data as TVDetailType)?.created_by?.map((creator, index) => (
-                <li key={index} className='flex flex-col justify-center items-center'>
-                  <AvatarComponent
-                    path={creator.profile_path ?? undefined}
-                    className='rounded-full object-cover h-[3rem] w-[3rem]'
-                    size='original'
-                  />
-                  <p>{creator.name}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
+        <p>Networks </p>
+        <ul className='flex flex-wrap gap-4'>
+          {(data as TVDetailType)?.networks?.map((network, index) => (
+            <li key={index} className='grid place-items-center'>
+              <LazyLoadImageComponent
+                path={network.logo_path ?? undefined}
+                styles={{ image: 'h-[3rem] w-[3rem] object-contain', size: 'original' }}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className='flex flex-col'>
+        <p>Created by</p>
+        <ul className='flex flex-wrap gap-4'>
+          {(data as TVDetailType)?.created_by?.map((creator, index) => (
+            <li key={index} className='flex flex-col justify-center items-center'>
+              <AvatarComponent
+                path={creator.profile_path ?? undefined}
+                className='rounded-full object-cover h-[3rem] w-[3rem]'
+                size='original'
+              />
+              <p>{creator.name}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   ) : (
     <div>
@@ -123,9 +119,7 @@ const TVMediaDetail: React.FC<TVMediaDetailProps> = (props) => {
               <li key={index} className='grid place-items-center'>
                 <LazyLoadImageComponent
                   path={network.logo_path ?? undefined}
-                  className='h-[3rem] w-[3rem] object-contain'
-                  size='original'
-                  effect='blur'
+                  styles={{ image: 'h-[3rem] w-[3rem] object-contain', size: 'original' }}
                 />
               </li>
             ))}

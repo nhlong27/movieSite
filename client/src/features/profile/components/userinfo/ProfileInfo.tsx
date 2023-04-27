@@ -4,13 +4,14 @@ import FormComponent from '@/components/generic/FormComponent';
 import { useGetUserQuery } from '../../hooks/useGetUserQuery';
 import { useUpdateUserMutation } from '../../hooks/useUpdateUserMutation';
 import { UserInfoUpdateForm, UserUpdateResponse } from '../../types';
+import Wrapper from '@/components/handling/Wrapper';
 
 const ProfileInfo = () => {
   const updateUserMutation = useUpdateUserMutation();
 
   const { data: profileInfo } = useGetUserQuery();
 
-  return profileInfo ? (
+  return (
     <div>
       <Toaster />
       <FormComponent
@@ -41,7 +42,11 @@ const ProfileInfo = () => {
         ]}
       />
     </div>
-  ) : null;
+  );
 };
 
-export default ProfileInfo;
+export default () => (
+  <Wrapper>
+    <ProfileInfo />
+  </Wrapper>
+);

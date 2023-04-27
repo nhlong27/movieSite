@@ -4,6 +4,7 @@ const ShowSchema = new mongoose.Schema({
     title: String,
     name: String,
     poster_path: String,
+    media_type: String,
     season_number: Number,
     id: { type: String, required: true },
     status: String,

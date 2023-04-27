@@ -12,9 +12,10 @@ const SectionBackdrop = ({ mediaType, section }: { mediaType?: string; section?:
     <div className=' absolute aspect-[18/9] top-0 w-full flex z-0 items-top overflow-hidden'>
       <LazyLoadImageComponent
         path={sectionBackdropItem?.backdrop_path ?? sectionBackdropItem?.poster_path}
-        className='ml-[25%] object-left sm:object-scale-down lg:h-full aspect-[18/9] mix-blend-overlay'
-        size='original'
-        effect='blur'
+        styles={{
+          size:'original',
+          image: 'ml-[25%] object-left sm:object-scale-down lg:h-full aspect-[18/9] mix-blend-overlay'
+        }}
       />
       <div className='ml-[25%] absolute  xs:bg-gradient-radial-top-right ring-2 ring-black from-transparent via-black to-black h-full aspect-[18/9]' />
 
@@ -26,7 +27,7 @@ const SectionBackdrop = ({ mediaType, section }: { mediaType?: string; section?:
           {new Date(
             mediaType === 'movie'
               ? (sectionBackdropItem as MovieType)?.release_date!
-              : (sectionBackdropItem as TVType).first_air_date!,
+              : (sectionBackdropItem as TVType)?.first_air_date!,
           ).getFullYear()}
         </div>
         <div>
@@ -58,7 +59,7 @@ const SectionBackdrop = ({ mediaType, section }: { mediaType?: string; section?:
           <ButtonComponent>Play</ButtonComponent>
           <ButtonComponent>Watch Later</ButtonComponent>
         </div>
-        <div className='grow w-full overflow-scroll'>{sectionBackdropItem?.overview} Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae doloribus, hic maxime, facilis aut quos numquam saepe distinctio harum doloremque vitae alias inventore, vero amet veniam soluta vel placeat? Tempore perspiciatis nisi quis tempora quam nemo incidunt quas aspernatur reiciendis obcaecati cumque, non animi quo sunt voluptatum ab corrupti repellendus, itaque molestias ipsum maxime? Quae, autem inventore? Eligendi, veniam rem. Facilis aperiam qui veniam nulla suscipit quibusdam voluptates ea, blanditiis nobis expedita voluptatibus eum quisquam cumque beatae! Eveniet atque voluptatibus culpa sed? Minima atque numquam nam minus quibusdam eos accusantium quod, nesciunt eveniet aliquam quas explicabo facilis dolor dolore totam.</div>
+        <div className='grow w-full overflow-scroll'>{sectionBackdropItem?.overview}</div>
       </div>
     </div>
   );

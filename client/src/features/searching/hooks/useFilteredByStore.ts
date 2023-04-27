@@ -28,11 +28,18 @@ const useFilteredByStore = () => {
     with_type: tvFiltersStore.with_type ?? undefined,
     with_original_language: 'en',
   };
-  const { data } = useFilteredItemListQuery({
-    ...(mediaType === 'movie' ? (movieFilters as MovieFilterList) : (tvFilters as TVFilterList)),
-  });
 
-  return { data, mediaType };
+  const { data, hasNextPage, fetchNextPage } = useFilteredItemListQuery(
+    {
+      ...(mediaType === 'movie' ? (movieFilters as MovieFilterList) : (tvFilters as TVFilterList)),
+    },
+    // undefined,
+    // { suspense: false, useErrorBoundary: false },
+  );
+
+  console.log(fetchNextPage)
+
+  return { data, hasNextPage, fetchNextPage, mediaType };
 };
 
 export { useFilteredByStore };

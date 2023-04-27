@@ -8,7 +8,7 @@ const ProfilePage = () => {
     <div className='md:grid md:grid-cols-4 flex flex-col gap-2 min-h-screen'>
       <UserListSection />
       <UserInfoSection />
-      <AuthPage />
+      {/* <AuthPage /> */}
     </div>
     </div>
   );

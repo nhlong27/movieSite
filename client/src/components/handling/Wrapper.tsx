@@ -1,13 +1,29 @@
-import { ErrorBoundary } from 'react-error-boundary';
+import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
 import ErrorComponent from './ErrorComponent';
-import { Suspense } from 'react';
-import SuspenseComponent from './SuspenseComponent';
+import { ComponentType, Suspense } from 'react';
+import SkeletonComponent from './SkeletonComponent';
+import { QueryErrorResetBoundary } from '@tanstack/react-query';
 
-const Wrapper = ({ children }: { children: JSX.Element }) => {
+const Wrapper = ({
+  children,
+  errorComponent,
+  suspenseComponent,
+}: {
+  children: JSX.Element;
+  errorComponent?: ComponentType<FallbackProps>;
+  suspenseComponent?: JSX.Element;
+}) => {
   return (
-    <ErrorBoundary FallbackComponent={ErrorComponent}>
-      <Suspense fallback={<SuspenseComponent />}>{children}</Suspense>
+    // <QueryErrorResetBoundary>
+    //   {({ reset }) => (
+    <ErrorBoundary
+      // onReset={reset}
+      FallbackComponent={errorComponent ?? ErrorComponent}
+    >
+      <Suspense fallback={suspenseComponent ?? <SkeletonComponent />}>{children}</Suspense>
     </ErrorBoundary>
+    //   )}
+    // </QueryErrorResetBoundary>
   );
 };
 

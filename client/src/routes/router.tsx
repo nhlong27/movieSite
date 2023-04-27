@@ -10,7 +10,9 @@ import HomePage from '@/pages/HomePage';
 import ExplorePage from '@/pages/ExplorePage';
 import MediaPage from '@/pages/MediaPage';
 import ProfilePage from '@/pages/ProfilePage';
-import AuthPage from '@/pages/AuthPage';
+import ErrorPage from '@/pages/ErrorPage';
+import ProtectedRoute from '@/components/ProtectedRoute';
+import { SkeletonTheme } from 'react-loading-skeleton';
 
 const queryClient = new QueryClient();
 
@@ -38,12 +40,14 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: (
-      <Provider>
-        <QueryClientProvider client={queryClient}>
-          <App />
-          <ReactQueryDevtools />
-        </QueryClientProvider>
-      </Provider>
+      <SkeletonTheme baseColor='#313131' highlightColor='#525252'>
+        <Provider>
+          <QueryClientProvider client={queryClient}>
+            <App />
+            <ReactQueryDevtools />
+          </QueryClientProvider>
+        </Provider>
+      </SkeletonTheme>
     ),
     loader: () => appLoader(queryClient),
     children: [
@@ -62,12 +66,16 @@ export const router = createBrowserRouter([
       },
       {
         path: '/profile',
-        element: <ProfilePage />,
-      },
-      {
-        path: '/auth',
-        element: <AuthPage />,
+        element: (
+          <ProtectedRoute>
+            <ProfilePage />
+          </ProtectedRoute>
+        ),
       },
     ],
+  },
+  {
+    path: '*',
+    element: <ErrorPage />,
   },
 ]);

@@ -9,7 +9,7 @@ import { FilteredMovieListType, FilteredTVListType } from '../../types';
 
 interface SwiperContainerProps {
   sectionName?: 'trending' | 'comingSoon' | 'airing' | 'popular' | 'top_rated';
-  data: FilteredMovieListType | FilteredTVListType;
+  data: FilteredMovieListType | FilteredTVListType | Record<string, any>;
   mediaType: any;
   sliderName: string;
   styles?: Record<string, string>;
@@ -27,10 +27,9 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
     return { slider, sliderIndex, itemNum };
   };
 
-  const { isXs, is4k, isXl, isMd } = useMediaQueries();
+  const { isXs, is4k, isXl } = useMediaQueries();
   return isXs ? (
     <div
-    // lg:h-[22rem] xl:h-[24rem] 4k:h-[32rem]
       className={`z-20 w-full xs:h-[20rem] lg:h-[24rem]  ${
         styles?.swiper ?? 'absolute bottom-0 left-0 right-0'
       }`}
@@ -55,7 +54,7 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
               <React.Fragment key={index}>
                 {sectionName === 'popular' || sectionName === 'top_rated' ? (
                   <LinkMediaCard
-                    role={mediaType === 'movie' ? 'linkMovieCard' : 'linkTVCard'}
+                    role={(media.media_type?? mediaType) === 'movie' ? 'linkMovieCard' : 'linkTVCard'}
                     media={media}
                     styles={{
                       link: `max-w-[calc(100%/var(--items-per-screen))] flex justify-center items-center flex-col flex-[0_0_calc(100%_/_var(--items-per-screen))] 

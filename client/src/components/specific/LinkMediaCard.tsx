@@ -17,7 +17,7 @@ const LinkMediaCard: React.FC<LinkMediaCardProps> = (props) => {
     <Link
       to={`/movie/${media.id}`}
       className={
-        styles?.link ?? 'w-[200px] overflow-hidden flex justify-center items-center flex-col'
+        styles?.link ?? 'min-h-[320px] w-[200px] overflow-hidden flex justify-center items-center flex-col'
       }
     >
       <LazyLoadImageComponent
@@ -25,14 +25,14 @@ const LinkMediaCard: React.FC<LinkMediaCardProps> = (props) => {
           height: styles?.height,
           width: styles?.width,
           size: styles?.size ?? 'w200',
-          image: styles?.image,
+          image: 'h-[300px] overflow-hidden bg-gradient-to-tr from-white to-black',
         }}
         path={media.poster_path ?? media.backdrop_path}
       />
       <div className={styles?.detail ?? 'mt-auto flex flex-col w-full'}>
         <h1 className='truncate'>{(media as MovieType | SimilarMovieType).title}</h1>
         <div className='flex justify-between'>
-          <p>{parseInt((media as MovieType | SimilarMovieType).release_date ?? '404')}</p>
+          <p>{(media as MovieType | SimilarMovieType).release_date ? parseInt((media as MovieType | SimilarMovieType).release_date ?? '404') : 'Movie'}</p>
           <p>{media?.vote_average?.toFixed(1)}</p>
         </div>
       </div>
@@ -41,7 +41,7 @@ const LinkMediaCard: React.FC<LinkMediaCardProps> = (props) => {
     <Link
       to={`/tv/${media.id}`}
       className={
-        styles?.link ?? 'w-[200px] overflow-hidden flex justify-center items-center flex-col'
+        styles?.link ?? 'min-h-[320px] w-[200px] overflow-hidden flex justify-center items-center flex-col'
       }
     >
       <LazyLoadImageComponent
@@ -49,7 +49,7 @@ const LinkMediaCard: React.FC<LinkMediaCardProps> = (props) => {
           height: styles?.height,
           width: styles?.width,
           size: styles?.size ?? 'w200',
-          image: styles?.image,
+          image: 'h-[300px] overflow-hidden bg-gradient-to-tr from-white to-black',
         }}
         path={media.poster_path ?? media.backdrop_path}
       />

@@ -10,6 +10,7 @@ import {
   MediaTypeConfig,
 } from './types';
 
+
 const keys = {
   getItemListKey: (query?: string) => ['search', 'multi', { query: query }] as const,
   getFilteredItemKey: (
@@ -23,7 +24,7 @@ const keys = {
       : ([queryType, mediaType, paramList] as const),
 };
 
-// This object serves two purposes: 1. Reducing fetcher, useQuery hook repetitions  2. Providing a template 'paramList' for later referencing  
+// This object serves two purposes: 1. Reducing fetcher, useQuery hook repetitions  2. Providing a template 'paramList' for later referencing
 const mediaTypeConfig: MediaTypeConfig = {
   movie: {
     home: {
@@ -38,9 +39,9 @@ const mediaTypeConfig: MediaTypeConfig = {
       },
     },
     discover: {
-      fetcher: async (paramList: MovieFilterList) =>
+      fetcher: async (paramList: MovieFilterList, page: number) =>
         FilteredMovieList.parse(
-          (await apiClient.get('/discover/movie', { params: { ...paramList } })).data,
+          (await apiClient.get('/discover/movie', { params: { ...paramList, page } })).data,
         ),
       paramList: {
         sort_by: [
@@ -70,9 +71,9 @@ const mediaTypeConfig: MediaTypeConfig = {
       },
     },
     discover: {
-      fetcher: async (paramList: TVFilterList) =>
+      fetcher: async (paramList: TVFilterList, page: number) =>
         FilteredTVList.parse(
-          (await apiClient.get('/discover/tv', { params: { ...paramList } })).data,
+          (await apiClient.get('/discover/tv', { params: { ...paramList, page } })).data,
         ),
       paramList: {
         sort_by: [
@@ -106,9 +107,13 @@ const getFilteredItemList = async (
   queryType: keyof MediaTypeConfig[`movie` | 'tv'],
   paramList: MovieFilterList | TVFilterList | string,
   period?: string,
+  page: number = 1,
 ) => {
   return queryType === 'discover'
-    ? mediaTypeConfig[`${mediaType}`].discover.fetcher(paramList as MovieFilterList | TVFilterList)
+    ? mediaTypeConfig[`${mediaType}`].discover.fetcher(
+        paramList as MovieFilterList | TVFilterList,
+        page,
+      )
     : mediaTypeConfig[`${mediaType}`].home.fetcher(paramList as string, period);
 };
 
@@ -120,11 +125,15 @@ const getFilteredItemListQuery = (
 ) => {
   return {
     queryKey: keys.getFilteredItemKey(mediaType, queryType, paramList, period),
-    queryFn: () => getFilteredItemList(mediaType, queryType, paramList, period),
+    queryFn: ({pageParam = 1}) => getFilteredItemList(mediaType, queryType, paramList, period, pageParam),
+    getNextPageParam: (lastPage: any) => {
+      console.log(lastPage)
+      return lastPage.page + 1 <= lastPage.total_pages ? lastPage.page + 1 : undefined;
+    },
     enabled: !!paramList,
     keepPreviousData: true,
     staleTime: Infinity,
-    refetchOnWindowFocus: false,
+    refetchOnWindowFocus: true,
     suspense: true,
     useErrorBoundary: true,
   };

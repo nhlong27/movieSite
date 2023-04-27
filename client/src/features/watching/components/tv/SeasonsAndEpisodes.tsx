@@ -1,4 +1,4 @@
-import Wrapper from '@/components/handling/Wrapper';
+
 import React from 'react';
 import { useGetItemDetailQuery } from '../../hooks/useGetItemDetailQuery';
 import { useGetSeasonListQuery } from '../../hooks/useGetSeasonQuery';
@@ -41,7 +41,9 @@ const SeasonsAndEpisodes: React.FC<SeasonsAndEpisodesProps> = (props) => {
               onClick={() =>
                 setSeasonAndEpisode((prev) => ({ ...(prev ?? {}), season: seasonIndex + 1 }))
               }
-              className={`${seasonAndEpisode?.season === seasonIndex+1 && 'bg-gray-300'} transition-all overflow-hidden duration-300 flex`}
+              className={`${
+                seasonAndEpisode?.season === seasonIndex + 1 && 'bg-gray-300'
+              } transition-all overflow-hidden duration-300 flex`}
               key={seasonIndex}
             >
               <p>{seasonIndex + 1}</p>
@@ -50,9 +52,7 @@ const SeasonsAndEpisodes: React.FC<SeasonsAndEpisodesProps> = (props) => {
           );
         })}
       </div>
-      <div
-        className={`flex justify-start flex-wrap gap-2`}
-      >
+      <div className={`flex justify-start flex-wrap gap-2`}>
         {seasonList[`${seasonAndEpisode?.season! - 1}` as any]?.episodes?.map(
           (episode, episodeIndex) => {
             return (
@@ -61,15 +61,15 @@ const SeasonsAndEpisodes: React.FC<SeasonsAndEpisodesProps> = (props) => {
                   setSeasonAndEpisode((prev) => ({ ...(prev ?? {}), episode: episodeIndex + 1 }));
                   options?.ref.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }}
-                className={`${seasonAndEpisode?.episode === episodeIndex+1 && 'bg-gray-300'} max-h-[10rem] overflow-hidden transition-all duration-300 flex w-[200px] flex-col`}
+                className={`${
+                  seasonAndEpisode?.episode === episodeIndex + 1 && 'bg-gray-300'
+                } max-h-[10rem] overflow-hidden transition-all duration-300 flex w-[200px] flex-col`}
                 key={episodeIndex}
               >
                 <div className='grid place-items-center'>
                   <LazyLoadImageComponent
                     path={episode?.still_path}
-                    className='w-full object-contain'
-                    size='w200'
-                    effect='blur'
+                    styles={{ image: 'w-full object-contain', size: 'w200' }}
                   />
                 </div>
                 <div className='flex justify-between'>
@@ -114,9 +114,7 @@ const SeasonsAndEpisodes: React.FC<SeasonsAndEpisodesProps> = (props) => {
           Open/Close
         </ButtonComponent>
       </div>
-      <div
-        className={`flex flex-col justify-start items-center`}
-      >
+      <div className={`flex flex-col justify-start items-center`}>
         {seasonList[`${seasonAndEpisode?.season! - 1}` as any]?.episodes?.map(
           (episode, episodeIndex) => {
             return (
@@ -133,9 +131,7 @@ const SeasonsAndEpisodes: React.FC<SeasonsAndEpisodesProps> = (props) => {
                 <div className='grid place-items-center w-full'>
                   <LazyLoadImageComponent
                     path={episode?.still_path}
-                    className='w-full object-contain'
-                    size='w300'
-                    effect='blur'
+                    styles={{ image: 'w-full object-contain', size: 'w300' }}
                   />
                 </div>
                 <div className='flex justify-between'>

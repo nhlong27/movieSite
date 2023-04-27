@@ -2,6 +2,8 @@ import React from 'react';
 import { Effect, LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { resizeImage } from '@/utils/resizeImage';
+// import {BsFillFileImageFill} from 'react-icons/bs'
+
 
 type LazyLoadImageComponentProps = {
   path?: string | null;

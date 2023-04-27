@@ -4264,6 +4264,11 @@
     "lodash.debounce" "^4.0.8"
     "lodash.throttle" "^4.1.1"
 
+"react-loading-skeleton@^3.2.1":
+  "integrity" "sha512-e1KwEOuBa1REXWoseELIJXlsqWTCHL5IQnqhVhI33WmnuTK7LK1DXl4mmcOLsWVcwqXeOATU9VFJEjz2ytZSng=="
+  "resolved" "https://registry.npmjs.org/react-loading-skeleton/-/react-loading-skeleton-3.2.1.tgz"
+  "version" "3.2.1"
+
 "react-player@^2.11.2":
   "integrity" "sha512-V5bf3g6lIpOjfKPUw18Og+qfizmlv6PQfJojlFiGpkfn/e21w5U4nSXE8vSIrFkfllgCrLM35nNGR1/jYQ8KIw=="
   "resolved" "https://registry.npmjs.org/react-player/-/react-player-2.11.2.tgz"

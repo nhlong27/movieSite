@@ -6,6 +6,7 @@ import { search_queries } from './features/searching';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import DropDownMenu from './components/generic/DropDownMenu';
+import { Toaster } from 'react-hot-toast';
 
 export const mediaTypeAtom = atom<'movie' | 'tv'>('movie');
 export const currentURLPathAtom = atom<'home' | 'discover'>('home');
@@ -33,8 +34,8 @@ function App() {
   }, [pathname]);
 
   return (
-    // dvw or svw doesn't really work like dvh/svh
     <div className='min-h-dynamic-screen w-screen flex flex-col md:gap-4 z-0'>
+      <Toaster />
       <div className='sticky top-0 w-full z-20 flex flex-col items-center'>
         <Header />
         <DropDownMenu />

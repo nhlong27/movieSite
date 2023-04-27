@@ -8,8 +8,8 @@ import SwiperContainer from './SwiperContainer';
 import SectionBackdrop from './SectionBackdrop';
 import { useMediaQueries } from '@/hooks/useMediaQueries';
 import { useSectionBackdropItemsStore } from '../../stores';
-import ButtonComponent from '@/components/generic/ButtonComponent';
 import { Link } from 'react-router-dom';
+import HomeSectionSkeleton from '../skeletons/HomeSectionSkeleton';
 
 const ComingSoonSection = () => {
   const [mediaType] = useAtom(mediaTypeAtom);
@@ -20,16 +20,16 @@ const ComingSoonSection = () => {
   const sectionBackdropItem = sectionBackdropItemStore.getSectionBackdropItem('comingSoon');
 
   React.useEffect(() => {
-    if (data?.results) {
+    if (data?.pages[0].results) {
       sectionBackdropItemStore.setSectionBackdropItem(
         'comingSoon',
-        data.results.sort((a, b) => 0.5 - Math.random())[0],
+        data.pages[0].results.sort((a, b) => 0.5 - Math.random())[0],
       );
     }
   }, [data]);
   const { isXs } = useMediaQueries();
 
-  return data ? (
+  return (
     <div className='relative 4k:aspect-[18/9] xl:aspect-[15/5] xs:aspect-[9/6] w-full flex justify-center items-center z-0'>
       <div className='w-11/12 flex flex-col z-10'>
         <div className='grow xl:aspect-[22/14] lg:aspect-[12/9] xs:aspect-square w-full'>
@@ -40,20 +40,18 @@ const ComingSoonSection = () => {
         </div>
         <SwiperContainer
           sliderName={'slider2'}
-          data={data}
+          data={data!.pages[0]}
           sectionName='comingSoon'
           mediaType={mediaType}
         />
       </div>
       {isXs ? <SectionBackdrop section='comingSoon' mediaType={mediaType} /> : null}
     </div>
-  ) : (
-    <div>loading ..</div>
   );
 };
 
 export default () => (
-  <Wrapper>
+  <Wrapper suspenseComponent={<HomeSectionSkeleton />}>
     <ComingSoonSection />
   </Wrapper>
 );

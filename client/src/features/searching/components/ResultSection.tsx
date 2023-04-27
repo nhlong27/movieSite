@@ -6,7 +6,7 @@ import FilterResult from './filter/FilterResult';
 import ButtonComponent from '@/components/generic/ButtonComponent';
 
 const ResultSection = () => {
-  const [hasQueryFilters, setHasQueryFilters] = useAtom(hasQueryFiltersAtom);
+  const [_, setHasQueryFilters] = useAtom(hasQueryFiltersAtom);
 
   return (
     <div className='md:row-start-1 md:col-start-1 md:col-span-3 w-full flex flex-col'>

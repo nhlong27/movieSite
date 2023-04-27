@@ -23,21 +23,26 @@ const ItemList = z.object({
 const FilteredMovieList = z.object({
   page: z.number().optional(),
   results: z.array(MovieSchema).optional(),
+  total_pages: z.number().optional()
 });
 
 const FilteredTVList = z.object({
   page: z.number().optional(),
   results: z.array(TVSchema).optional(),
+  total_pages: z.number().optional()
 });
 
 const HomeMovieList = z.object({
   page: z.number().optional(),
   results: z.array(MovieSchema).optional(),
+  total_pages: z.number().optional()
+
 });
 
 const HomeTVList = z.object({
   page: z.number().optional(),
   results: z.array(TVSchema).optional(),
+  total_pages: z.number().optional()
 });
 
 type FilteredMovieListType = z.infer<typeof FilteredMovieList>;
@@ -53,7 +58,7 @@ type MediaTypeConfig = {
       };
     };
     discover: {
-      fetcher: (paramList: MovieFilterList) => Promise<FilteredMovieListType>;
+      fetcher: (paramList: MovieFilterList, page: number) => Promise<FilteredMovieListType>;
       paramList: {
         sort_by: Array<string>;
         year: Array<string>;
@@ -69,7 +74,7 @@ type MediaTypeConfig = {
       };
     };
     discover: {
-      fetcher: (paramList: TVFilterList) => Promise<FilteredTVListType>;
+      fetcher: (paramList: TVFilterList, page: number) => Promise<FilteredTVListType>;
       paramList: {
         sort_by: Array<string>;
         first_air_date_year: Array<string>;

@@ -1,5 +1,5 @@
 import ErrorComponent from '@/components/handling/ErrorComponent';
-import SuspenseComponent from '@/components/handling/SuspenseComponent';
+import SuspenseComponent from '@/components/handling/SkeletonComponent';
 import React, { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useGetItemDetailQuery } from '../../hooks/useGetItemDetailQuery';

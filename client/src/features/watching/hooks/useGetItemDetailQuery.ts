@@ -6,8 +6,6 @@ import { MovieDetailType, TVDetailType } from '../types';
 
 export const useGetItemDetailQuery = () => {
   const params = useParams();
-  // const [_, setSeasonAndEpisode] = useAtom(seasonAndEpisodeAtom);
-
   const initialData = useLoaderData() as Awaited<ReturnType<typeof itemLoader>>;
 
   const { data }: { data: MovieDetailType | TVDetailType } = useQuery({

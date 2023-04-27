@@ -33,14 +33,16 @@ const TVMedia = () => {
           <div className='text-white w-2/3 text-[3rem]'>name</div>
           <div className='text-white w-2/3 grow '>
             <MediaActions
-              options={{
-                wrapper: {
-                  className: 'flex gap-2',
-                },
-                ref: seasonsAndEpisodesRef,
-                playFnc: setIsMediaWindowDisplay,
-              }}
+              actionType='play'
+              refs={{ playRef: seasonsAndEpisodesRef }}
+              handlingFunctions={{ playFunction: setIsMediaWindowDisplay }}
             />
+
+            <MediaActions actionType='status' />
+
+            <MediaActions actionType='score' />
+
+            <MediaActions actionType='isFavorited' />
           </div>
         </div>
         <div className='pt-4 px-4 pb-6 bg-gradient-to-l from-black to-transparent row-start-1 row-end-3 col-start-3 z-10 text-white flex flex-col justify-start items-end'>
@@ -51,9 +53,7 @@ const TVMedia = () => {
         <div className='col-start-1 col-span-1'>
           <LazyLoadImageComponent
             path={data?.poster_path}
-            className='-z-10 w-full object-cover aspect-[12/16]'
-            size='original'
-            effect='blur'
+            styles={{ image: '-z-10 w-full object-cover aspect-[12/16]', size: 'original' }}
           />
         </div>
         <div className='col-start-2 col-span-3 p-2'>
@@ -62,8 +62,8 @@ const TVMedia = () => {
       </div>
       {isMediaWindowDisplay ? null : (
         <MediaActions
-          role='play'
-          options={{
+          actionType='play'
+          handlingFunctions={{
             playFnc: setIsMediaWindowDisplay,
           }}
         />
@@ -127,9 +127,11 @@ const TVMedia = () => {
         <h1>You may also like</h1>
         <div className='flex justify-center items-start w-full'>
           <div className='grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-7 gap-y-4 2xl:gap-4 place-items-center w-full'>
-            {extraData.similar?.results?.map((media, index) => {
-              return <LinkMediaCard key={index} media={media} role='linkTVCard' />;
-            })}
+            {extraData.similar?.results
+              ?.filter((media) => media.poster_path)
+              .map((media, index) => {
+                return <LinkMediaCard key={index} media={media} role='linkTVCard' />;
+              })}
           </div>
         </div>
       </div>
@@ -140,9 +142,7 @@ const TVMedia = () => {
         <div className='-z-10 grid place-items-center w-full'>
           <LazyLoadImageComponent
             path={data?.poster_path}
-            className='-z-10 w-full object-cover'
-            size='original'
-            effect='blur'
+            styles={{ image: '-z-10 w-full object-cover', size: 'original' }}
           />
         </div>
         <div
@@ -150,14 +150,16 @@ const TVMedia = () => {
         px-custom-x-max-medium '
         >
           <MediaActions
-            options={{
-              wrapper: {
-                className: 'flex flex-col gap-2',
-              },
-              ref: seasonsAndEpisodesRef,
-              playFnc: setIsMediaWindowDisplay,
-            }}
+            actionType='play'
+            refs={{playRef: seasonsAndEpisodesRef}}
+            handlingFunctions={{ playFunction: setIsMediaWindowDisplay }}
           />
+
+          <MediaActions actionType='status' />
+
+          <MediaActions actionType='score' />
+
+          <MediaActions actionType='isFavorited' />
         </div>
         <div
           className='sm:w-4/5 w-[90%] py-4 
@@ -174,8 +176,8 @@ const TVMedia = () => {
       </div>
       {isMediaWindowDisplay ? null : (
         <MediaActions
-          role='play'
-          options={{
+          actionType='play'
+          handlingFunctions={{
             playFnc: setIsMediaWindowDisplay,
           }}
         />
@@ -237,9 +239,11 @@ const TVMedia = () => {
       >
         <h1>You may also like</h1>
         <div className='flex flex-col justify-start items-center gap-4 w-full'>
-          {extraData.similar?.results?.map((media, index) => {
-            return <LinkMediaCard key={index} media={media} role='linkTVCard' />;
-          })}
+          {extraData.similar?.results
+            ?.filter((media) => media.poster_path)
+            .map((media, index) => {
+              return <LinkMediaCard key={index} media={media} role='linkTVCard' />;
+            })}
         </div>
       </div>
     </div>
