@@ -29,16 +29,16 @@ const MovieFilterSection: React.FC<MovieFilterSectionProps> = (props) => {
       </div>
       <div className='flex gap-2 flex-wrap'>
         Genres
-        {mediaTypeConfig.movie.discover.paramList.with_genres?.map(
-          (genreObject: GenreType, index: number) => (
+      {[...mediaTypeConfig.movie.discover.paramList.with_genres?? []].map(
+          (genreObject) => (
             <ButtonComponent
               className={`ring-2 ring-black ${
-                movieFiltersStore.with_genres?.includes(genreObject.id!) ? 'text-red-200' : ''
+                movieFiltersStore.with_genres?.has(genreObject[0]!) ? 'text-red-200' : ''
               }`}
-              onClick={() => movieFiltersStore.addGenres(genreObject.id!)}
-              key={index}
+              onClick={() => movieFiltersStore.addGenres(genreObject[0]!)}
+              key={genreObject[0]}
             >
-              {genreObject.name}
+              {genreObject[1]}
             </ButtonComponent>
           ),
         )}

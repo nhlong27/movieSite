@@ -13,7 +13,6 @@ import {
   FilteredMovieListType,
   FilteredTVListType,
 } from './types';
-import { MovieType, TVType } from '@/types/types';
 
 const keys = {
   getItemListKey: (query?: string) => ['search', 'multi', { query: query }] as const,
@@ -58,7 +57,7 @@ const mediaTypeConfig: MediaTypeConfig = {
           'vote_count.asc',
         ],
         year: [],
-        with_genres: [],
+        with_genres: undefined,
       },
     },
   },
@@ -90,7 +89,7 @@ const mediaTypeConfig: MediaTypeConfig = {
           'vote_count.asc',
         ],
         first_air_date_year: [],
-        with_genres: [],
+        with_genres: undefined,
         with_status: ['Planned', 'In Production', 'Ended', 'Cancelled', 'Pilot'],
         with_type: [
           'Documentary',

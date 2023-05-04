@@ -51,13 +51,14 @@ const SectionBackdrop = ({ mediaType, section }: { mediaType?: string; section?:
           </div>
         </div>
         <div className='flex justify-between'>
-          {sectionBackdropItem?.genre_ids?.map((genreId, index) => {
-            const a = mediaTypeConfig[
-              `${mediaType}` as keyof typeof mediaTypeConfig
-            ].discover.paramList.with_genres.filter(
-              (genre: { id?: number; name?: string }) => genre.id === genreId,
+          {sectionBackdropItem?.genre_ids?.map((genreId) => {
+            return (
+              <span key={genreId}>
+                {mediaTypeConfig[
+                  `${mediaType}` as keyof typeof mediaTypeConfig
+                ].discover.paramList.with_genres?.get(genreId)}
+              </span>
             );
-            return <span key={index}>{a[0]?.name}</span>;
           })}
         </div>
         <div>

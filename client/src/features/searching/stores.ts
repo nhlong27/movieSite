@@ -3,7 +3,7 @@ import { create } from 'zustand';
 
 type MovieFiltersStore = {
   sort_by?: string;
-  with_genres?: number[] | undefined;
+  with_genres: Set<number>;
   year?: number;
   addSortBy: (sortByValue: string) => void;
   addGenres: (newGenre: number) => void;
@@ -12,7 +12,7 @@ type MovieFiltersStore = {
 
 type TVFiltersStore = {
   sort_by?: string;
-  with_genres?: number[] | undefined;
+  with_genres: Set<number>;
   first_air_date_year?: number;
   with_status?: string;
   with_type?: string;
@@ -65,7 +65,7 @@ const useSectionBackdropItemsStore = create<SectionBackdropItem>((set, get) => (
 
 const useMovieFiltersStore = create<MovieFiltersStore>((set) => ({
   sort_by: undefined,
-  with_genres: undefined,
+  with_genres: new Set(),
   year: undefined,
   addSortBy: (sortByValue: string) =>
     set(() => ({
@@ -73,13 +73,13 @@ const useMovieFiltersStore = create<MovieFiltersStore>((set) => ({
     })),
   addGenres: (newGenre: number) =>
     set((state) => {
-      if (state.with_genres?.includes(newGenre)) {
-        return {
-          with_genres: [...state.with_genres.filter((element: number) => element !== newGenre)],
-        };
+      if (state.with_genres.has(newGenre)) {
+        state.with_genres.delete(newGenre);
+      } else {
+        state.with_genres.add(newGenre);
       }
       return {
-        with_genres: [...(state.with_genres ?? []), newGenre],
+        with_genres: state.with_genres,
       };
     }),
   addReleasedYear: (year: number) =>
@@ -90,7 +90,7 @@ const useMovieFiltersStore = create<MovieFiltersStore>((set) => ({
 
 const useTVFiltersStore = create<TVFiltersStore>((set) => ({
   sort_by: undefined,
-  with_genres: undefined,
+  with_genres: new Set(),
   first_air_date_year: undefined,
   with_status: undefined,
   with_type: undefined,
@@ -100,13 +100,13 @@ const useTVFiltersStore = create<TVFiltersStore>((set) => ({
     })),
   addGenres: (newGenre: number) =>
     set((state) => {
-      if (state.with_genres?.includes(newGenre)) {
-        return {
-          with_genres: [...state.with_genres.filter((element) => element !== newGenre)],
-        };
+      if (state.with_genres.has(newGenre)) {
+        state.with_genres.delete(newGenre);
+      } else {
+        state.with_genres.add(newGenre);
       }
       return {
-        with_genres: [...(state.with_genres ?? []), newGenre],
+        with_genres: state.with_genres,
       };
     }),
   addReleasedYear: (year: number) =>

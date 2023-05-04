@@ -21,11 +21,11 @@ function App() {
   React.useEffect(() => {
     search_queries.mediaTypeConfig.movie.discover.paramList = {
       ...search_queries.mediaTypeConfig.movie.discover.paramList,
-      with_genres: [...initialData[0].genres],
+      with_genres: new Map(initialData[0].genres.map(({ id, name }) => [id, name])),
     };
     search_queries.mediaTypeConfig.tv.discover.paramList = {
       ...search_queries.mediaTypeConfig.tv.discover.paramList,
-      with_genres: [...initialData[1].genres],
+      with_genres: new Map(initialData[1].genres.map(({ id, name }) => [id, name])),
     };
   }, []);
 

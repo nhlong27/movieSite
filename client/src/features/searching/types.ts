@@ -23,28 +23,28 @@ const ItemList = z.object({
 const FilteredMovieList = z.object({
   page: z.number().optional(),
   results: z.array(MovieSchema).optional(),
-  total_pages: z.number().optional()
+  total_pages: z.number().optional(),
 });
 
 const FilteredTVList = z.object({
   page: z.number().optional(),
   results: z.array(TVSchema).optional(),
-  total_pages: z.number().optional()
+  total_pages: z.number().optional(),
 });
 
 const HomeMovieList = z.object({
   page: z.number().optional(),
   results: z.array(MovieSchema).optional(),
-  total_pages: z.number().optional()
+  total_pages: z.number().optional(),
 });
 
 const HomeTVList = z.object({
   page: z.number().optional(),
   results: z.array(TVSchema).optional(),
-  total_pages: z.number().optional()
+  total_pages: z.number().optional(),
 });
 
-type ItemListType = z.infer<typeof ItemList>
+type ItemListType = z.infer<typeof ItemList>;
 type FilteredMovieListType = z.infer<typeof FilteredMovieList>;
 type FilteredTVListType = z.infer<typeof FilteredTVList>;
 type HomeMovieListType = z.infer<typeof HomeMovieList>;
@@ -53,32 +53,28 @@ type MediaTypeConfig = {
   movie: {
     home: {
       fetcher: (type: string, period?: string) => Promise<HomeMovieListType>;
-      paramList: {
-        [key: string]: string;
-      };
+      paramList: Record<string, string>;
     };
     discover: {
       fetcher: (paramList: MovieFilterList, page: number) => Promise<FilteredMovieListType>;
       paramList: {
         sort_by: Array<string>;
         year: Array<string>;
-        with_genres: Array<GenreType>;
+        with_genres?: Map<number | undefined, string | undefined>;
       };
     };
   };
   tv: {
     home: {
       fetcher: (type: string, period?: string) => Promise<HomeTVListType>;
-      paramList: {
-        [key: string]: string;
-      };
+      paramList: Record<string, string>;
     };
     discover: {
       fetcher: (paramList: TVFilterList, page: number) => Promise<FilteredTVListType>;
       paramList: {
         sort_by: Array<string>;
         first_air_date_year: Array<string>;
-        with_genres: Array<GenreType>;
+        with_genres?: Map<number | undefined, string | undefined>;
         with_status: Array<string>;
         with_type: Array<string>;
       };
@@ -99,5 +95,5 @@ export {
   FilteredTVListType,
   HomeMovieListType,
   HomeTVListType,
-  MediaTypeConfig
+  MediaTypeConfig,
 };

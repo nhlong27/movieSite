@@ -19,14 +19,13 @@ const FilterResult = () => {
     >
       <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 place-items-center w-full gap-4 2xl:gap-4 min-h-screen'>
         {data!.pages.map((page: any) => {
-          return page?.results
-            ?.map((media: MovieType | TVType, index: number) => (
-              <LinkMediaCard
-                key={index}
-                media={media}
-                role={(media as MovieType)?.title ? 'linkMovieCard' : 'linkTVCard'}
-              />
-            ));
+          return page?.results?.map((media: MovieType | TVType, index: number) => (
+            <LinkMediaCard
+              key={index}
+              media={media}
+              role={(media as MovieType)?.title ? 'linkMovieCard' : 'linkTVCard'}
+            />
+          ));
         })}
       </div>
     </InfiniteScroll>

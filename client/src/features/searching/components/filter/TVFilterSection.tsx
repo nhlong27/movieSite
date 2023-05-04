@@ -29,19 +29,17 @@ const TVFilterSection: React.FC<TVFilterSectionProps> = (props) => {
       </div>
       <div className='flex gap-2 flex-wrap'>
         Genres
-        {mediaTypeConfig.tv.discover.paramList.with_genres?.map(
-          (genreObject: GenreType, index: number) => (
-            <ButtonComponent
-              className={`ring-2 ring-black ${
-                tvFiltersStore.with_genres?.includes(genreObject.id!) ? 'text-red-200' : ''
-              }`}
-              onClick={() => tvFiltersStore.addGenres(genreObject.id!)}
-              key={index}
-            >
-              {genreObject.name}
-            </ButtonComponent>
-          ),
-        )}
+        {[...(mediaTypeConfig.tv.discover.paramList.with_genres ?? [])].map((genreObject) => (
+          <ButtonComponent
+            className={`ring-2 ring-black ${
+              tvFiltersStore.with_genres?.has(genreObject[0]!) ? 'text-red-200' : ''
+            }`}
+            onClick={() => tvFiltersStore.addGenres(genreObject[0]!)}
+            key={genreObject[0]}
+          >
+            {genreObject[1]}
+          </ButtonComponent>
+        ))}
       </div>
       <div>
         From year
