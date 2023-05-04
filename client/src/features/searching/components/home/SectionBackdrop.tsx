@@ -13,15 +13,18 @@ const SectionBackdrop = ({ mediaType, section }: { mediaType?: string; section?:
       <LazyLoadImageComponent
         path={sectionBackdropItem?.backdrop_path ?? sectionBackdropItem?.poster_path}
         styles={{
-          size:'original',
-          image: 'ml-[25%] object-left sm:object-scale-down lg:h-full aspect-[18/9] mix-blend-overlay'
+          size: 'original',
+          image:
+            'ml-[25%] object-left sm:object-scale-down lg:h-full aspect-[18/9] mix-blend-overlay',
         }}
       />
       <div className='ml-[25%] absolute  xs:bg-gradient-radial-top-right ring-2 ring-black from-transparent via-black to-black h-full aspect-[18/9]' />
 
       <div className='h-5/6 via-black bg-gradient-to-r from-black to-transparent absolute bottom-0 w-2/5 text-white ml-8 xs:pl-0 md:pl-4 lg:pl-16 flex flex-col z-20'>
         <div>
-          {mediaType === 'movie' ?(sectionBackdropItem as MovieType)?.title : (sectionBackdropItem as TVType)?.name}
+          {mediaType === 'movie'
+            ? (sectionBackdropItem as MovieType)?.title
+            : (sectionBackdropItem as TVType)?.name}
         </div>
         <div className=''>
           {new Date(
@@ -51,7 +54,9 @@ const SectionBackdrop = ({ mediaType, section }: { mediaType?: string; section?:
           {sectionBackdropItem?.genre_ids?.map((genreId, index) => {
             const a = mediaTypeConfig[
               `${mediaType}` as keyof typeof mediaTypeConfig
-            ].discover.paramList.with_genres.filter((set: any) => set.id === genreId);
+            ].discover.paramList.with_genres.filter(
+              (genre: { id?: number; name?: string }) => genre.id === genreId,
+            );
             return <span key={index}>{a[0]?.name}</span>;
           })}
         </div>

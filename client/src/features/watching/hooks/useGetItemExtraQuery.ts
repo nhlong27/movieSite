@@ -17,7 +17,10 @@ export const useGetItemExtraQuery = () => {
     videos: videos.data as VideoListType,
     credits: credits.data as CreditListType,
     reviews: reviews.data as ReviewListType,
-    similar: similar.data as SimilarListType,
+    similar: {
+      ...(similar.data as SimilarListType),
+      results: (similar.data as SimilarListType)?.results?.filter((media) => media.poster_path),
+    },
   };
   return { data, params };
 };

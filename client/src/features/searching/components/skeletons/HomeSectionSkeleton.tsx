@@ -6,9 +6,6 @@ import { useMediaQueries } from '@/hooks/useMediaQueries';
 const HomeSectionSkeleton = (props: Record<string, any>) => {
   const { isXs, isLg, is4k } = useMediaQueries();
 
-  // const slider = document.querySelector(`.${props.sliderName}`) as HTMLElement;
-  // const itemNum = Number(getComputedStyle(slider).getPropertyValue('--items-per-screen'));
-
   return (
     <div className='relative 4k:aspect-[18/9] xl:aspect-[15/5] xs:aspect-[9/6] w-full flex justify-center items-center z-0'>
       <div className='absolute top-0 h-full w-11/12 z-10'>

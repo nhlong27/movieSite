@@ -88,8 +88,6 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
                         : ''
                         }
                       `,
-                      // height: '200px',
-                      // width: '200px',
                       image: 'overflow-hidden',
                       size: is4k ? 'original' : isXl ? 'w500' : 'w400',
                       detail: 'flex flex-col justify-end w-full mt-auto',

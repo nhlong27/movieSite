@@ -8,8 +8,12 @@ import {
   HomeMovieList,
   HomeTVList,
   MediaTypeConfig,
+  HomeMovieListType,
+  HomeTVListType,
+  FilteredMovieListType,
+  FilteredTVListType,
 } from './types';
-
+import { MovieType, TVType } from '@/types/types';
 
 const keys = {
   getItemListKey: (query?: string) => ['search', 'multi', { query: query }] as const,
@@ -109,12 +113,16 @@ const getFilteredItemList = async (
   period?: string,
   page: number = 1,
 ) => {
-  return queryType === 'discover'
+  let response = await (queryType === 'discover'
     ? mediaTypeConfig[`${mediaType}`].discover.fetcher(
         paramList as MovieFilterList | TVFilterList,
         page,
       )
-    : mediaTypeConfig[`${mediaType}`].home.fetcher(paramList as string, period);
+    : mediaTypeConfig[`${mediaType}`].home.fetcher(paramList as string, period));
+  return {
+    ...response,
+    results: (response?.results as any)?.filter((media: any) => media.poster_path),
+  };
 };
 
 const getFilteredItemListQuery = (
@@ -125,10 +133,12 @@ const getFilteredItemListQuery = (
 ) => {
   return {
     queryKey: keys.getFilteredItemKey(mediaType, queryType, paramList, period),
-    queryFn: ({pageParam = 1}) => getFilteredItemList(mediaType, queryType, paramList, period, pageParam),
-    getNextPageParam: (lastPage: any) => {
-      console.log(lastPage)
-      return lastPage.page + 1 <= lastPage.total_pages ? lastPage.page + 1 : undefined;
+    queryFn: ({ pageParam = 1 }) =>
+      getFilteredItemList(mediaType, queryType, paramList, period, pageParam),
+    getNextPageParam: (
+      lastPage: HomeMovieListType | HomeTVListType | FilteredMovieListType | FilteredTVListType,
+    ) => {
+      return lastPage.page! + 1 <= lastPage.total_pages! ? lastPage.page! + 1 : undefined;
     },
     enabled: !!paramList,
     keepPreviousData: true,

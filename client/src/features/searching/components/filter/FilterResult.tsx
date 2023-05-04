@@ -20,8 +20,7 @@ const FilterResult = () => {
       <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 place-items-center w-full gap-4 2xl:gap-4 min-h-screen'>
         {data!.pages.map((page: any) => {
           return page?.results
-            ?.filter((media: MovieType | TVType) => media.poster_path)
-            .map((media: MovieType | TVType, index: number) => (
+            ?.map((media: MovieType | TVType, index: number) => (
               <LinkMediaCard
                 key={index}
                 media={media}

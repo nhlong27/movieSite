@@ -5,12 +5,15 @@ import { useAtom } from 'jotai';
 import { hasQueryFiltersAtom } from '@/App';
 import LinkMediaCard from '@/components/specific/LinkMediaCard';
 import Skeleton from 'react-loading-skeleton';
+import { ItemListType } from '../../types';
+import { MovieType, TVType } from '@/types/types';
 
 const SearchResult = () => {
   const [hasQueryFilters] = useAtom(hasQueryFiltersAtom);
 
-  const { data: itemList } = useItemListQuery();
-  return (itemList?.results ?? []).length > 0 ? (
+  const { data: itemList } = useItemListQuery((data: ItemListType)=>data?.results?.filter((media)=>(media as MovieType | TVType).poster_path));
+
+  return (itemList ?? []).length > 0 ? (
     <div
       data-testid='result'
       className={`${
@@ -20,8 +23,8 @@ const SearchResult = () => {
       Movie:
       <div className='flex justify-center items-start w-full'>
         <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-y-4 2xl:gap-4 place-items-center w-full'>
-          {itemList?.results
-            ?.filter((media) => media.media_type === 'movie' && media.poster_path)
+          {itemList
+            ?.filter((media) => media.media_type === 'movie')
             .map((media, index: number) => {
               return <LinkMediaCard key={index} media={media} role='linkMovieCard' />;
             })}
@@ -30,8 +33,8 @@ const SearchResult = () => {
       TV:
       <div className='flex justify-center items-start w-full'>
         <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-y-4 2xl:gap-4 place-items-center w-full'>
-          {itemList?.results
-            ?.filter((media) => media.media_type === 'tv' && media.poster_path)
+          {itemList
+            ?.filter((media) => media.media_type === 'tv')
             .map((media, index: number) => {
               return <LinkMediaCard key={index} media={media} role='linkTVCard' />;
             })}

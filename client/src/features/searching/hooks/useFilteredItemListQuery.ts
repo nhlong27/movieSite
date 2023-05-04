@@ -15,6 +15,5 @@ export const useFilteredItemListQuery = (
     ...getFilteredItemListQuery(mediaType, currentURLPath, paramList, period),
     ...(extra ?? {}),
   });
-
   return { data, hasNextPage, fetchNextPage, mediaType };
 };

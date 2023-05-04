@@ -9,7 +9,6 @@ export const useGetItemDetailQuery = () => {
   const initialData = useLoaderData() as Awaited<ReturnType<typeof itemLoader>>;
 
   const { data }: { data: MovieDetailType | TVDetailType } = useQuery({
-    //below is a hack
     ...getItemDetailQuery((params as any).mediaType, params.id),
     initialData: initialData,
   });

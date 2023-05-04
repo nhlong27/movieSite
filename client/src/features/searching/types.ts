@@ -36,7 +36,6 @@ const HomeMovieList = z.object({
   page: z.number().optional(),
   results: z.array(MovieSchema).optional(),
   total_pages: z.number().optional()
-
 });
 
 const HomeTVList = z.object({
@@ -45,6 +44,7 @@ const HomeTVList = z.object({
   total_pages: z.number().optional()
 });
 
+type ItemListType = z.infer<typeof ItemList>
 type FilteredMovieListType = z.infer<typeof FilteredMovieList>;
 type FilteredTVListType = z.infer<typeof FilteredTVList>;
 type HomeMovieListType = z.infer<typeof HomeMovieList>;
@@ -87,6 +87,7 @@ type MediaTypeConfig = {
 };
 
 export {
+  ItemListType,
   MovieFilterList,
   TVFilterList,
   FilteredMovieList,

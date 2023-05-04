@@ -128,8 +128,7 @@ const TVMedia = () => {
         <div className='flex justify-center items-start w-full'>
           <div className='grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-7 gap-y-4 2xl:gap-4 place-items-center w-full'>
             {extraData.similar?.results
-              ?.filter((media) => media.poster_path)
-              .map((media, index) => {
+              ?.map((media, index) => {
                 return <LinkMediaCard key={index} media={media} role='linkTVCard' />;
               })}
           </div>
@@ -240,8 +239,7 @@ const TVMedia = () => {
         <h1>You may also like</h1>
         <div className='flex flex-col justify-start items-center gap-4 w-full'>
           {extraData.similar?.results
-            ?.filter((media) => media.poster_path)
-            .map((media, index) => {
+            ?.map((media, index) => {
               return <LinkMediaCard key={index} media={media} role='linkTVCard' />;
             })}
         </div>
