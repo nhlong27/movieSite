@@ -22,7 +22,6 @@ const UserInfoSection = () => {
           shouldUserInfoDisplay ? 'max-h-[50rem] opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        {/* <AvatarContainer /> */}
         {isMd ? <h1>User info</h1> : null}
         <AvatarContainer />
         <ProfileInfo />

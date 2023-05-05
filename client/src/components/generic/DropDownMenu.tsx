@@ -6,6 +6,7 @@ import AvatarComponent from './AvatarComponent';
 import Wrapper from '../handling/Wrapper';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import defaultAvatar_1 from '/assets/defaultAvatar_1.png';
+import Skeleton from 'react-loading-skeleton';
 
 const DropDownMenu = () => {
   const [_, setCurrentURLPath] = useAtom(currentURLPathAtom);
@@ -46,27 +47,36 @@ const DropDownMenu = () => {
           </li>
           <li>
             <Wrapper
+              suspenseComponent={
+                <div className='w-full h-full grid place-items-center'>
+                  <div className='rounded-full overflow-hidden grid place-items-center w-1/4 aspect-square'>
+                    <Skeleton className='h-full w-full' />
+                  </div>
+                </div>
+              }
               errorComponent={() => {
                 return (
                   <div className='h-[3rem] group flex justify-center items-center'>
-                    <div className='w-[2rem] max-h-[2rem] max-w-[5rem] group-hover:max-w-0 transition-all duration-300 overflow-hidden opacity-100 group-hover:opacity-0'>
+                    <div className='rounded-full grid place-items-center w-1/4 aspect-square group-hover:max-w-0 transition-all duration-300 overflow-hidden opacity-100 group-hover:opacity-0'>
                       <LazyLoadImage src={defaultAvatar_1} alt='default_avatar' effect='blur' />
                     </div>
                     <Link
-                      className=' max-w-0 overflow-hidden group-hover:max-w-[10rem] opacity-0 group-hover:opacity-100 transition-all duration-300 grid place-items-center'
+                      className=' max-w-0 overflow-hidden group-hover:max-w-[10rem] max-h-0 group-hover:max-h-[2rem] opacity-0 group-hover:opacity-100 transition-all duration-300 grid place-items-center'
                       to='/profile'
                     >
-                      Sign Up / Sign In
+                      Sign In/Up
                     </Link>
                   </div>
                 );
               }}
             >
-              <Link
-                className='w-full h-full flex justify-center items-center overflow-hidden'
-                to='/profile'
-              >
-                <AvatarComponent styles={{ image: 'w-[2rem] max-h-[2rem]' }} />
+              <Link className='w-full h-full grid place-items-center' to='/profile'>
+                <AvatarComponent
+                  styles={{
+                    image:
+                      'rounded-full overflow-hidden grid place-items-center w-1/4 aspect-square',
+                  }}
+                />
               </Link>
             </Wrapper>
           </li>

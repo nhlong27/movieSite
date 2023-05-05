@@ -2,12 +2,10 @@ import React from 'react';
 import SelectComponent from '../../../../components/generic/SelectComponent';
 
 import { useMovieFiltersStore } from '../../stores';
-import { GenreType } from '@/types/types';
 import ButtonComponent from '@/components/generic/ButtonComponent';
 import { mediaTypeConfig } from '../../queries';
 
-interface MovieFilterSectionProps {}
-const MovieFilterSection: React.FC<MovieFilterSectionProps> = (props) => {
+const MovieFilterSection = () => {
   const movieFiltersStore = useMovieFiltersStore();
   return (
     <div>

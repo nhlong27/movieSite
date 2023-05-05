@@ -12,7 +12,7 @@ export const useGetItemExtraQuery = () => {
       })),
     ],
   });
-  // const data = [...queries.map((query) => query.data)];
+
   const data = {
     videos: videos.data as VideoListType,
     credits: credits.data as CreditListType,

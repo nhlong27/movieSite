@@ -33,6 +33,15 @@
     --slider-index: 0;
     --items-per-screen: 7;
   }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* For IE, Edge and Firefox */
+  .scrollbar-hide {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+  }
 }
 @media (max-width: 2000px) {
   .slider {

@@ -12,7 +12,7 @@ const ResultSection = () => {
     <div className='md:row-start-1 md:col-start-1 md:col-span-3 w-full flex flex-col'>
       <ButtonComponent onClick={()=>setHasQueryFilters(prev=>!prev)}>
         Search Results
-        </ButtonComponent>
+      </ButtonComponent>
       <SearchResult />
       Filter Resutls:
       <FilterResult />

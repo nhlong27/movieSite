@@ -7,6 +7,7 @@ import { TVDetailType } from '../../types';
 import LazyLoadImageComponent from '@/components/handling/LazyLoadImageComponent';
 import AvatarComponent from '@/components/generic/AvatarComponent';
 import ButtonComponent from '@/components/generic/ButtonComponent';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 interface TVMediaDetailProps {
   role?: string;
@@ -53,7 +54,7 @@ const TVMediaDetail: React.FC<TVMediaDetailProps> = (props) => {
             <li key={index} className='grid place-items-center'>
               <LazyLoadImageComponent
                 path={network.logo_path ?? undefined}
-                styles={{ image: 'h-[3rem] w-[3rem] object-contain', size: 'original' }}
+                styles={{ image: 'object-contain aspect-1/2 w-[5rem] overflow-hidden', size: 'original' }}
               />
             </li>
           ))}
@@ -64,11 +65,10 @@ const TVMediaDetail: React.FC<TVMediaDetailProps> = (props) => {
         <ul className='flex flex-wrap gap-4'>
           {(data as TVDetailType)?.created_by?.map((creator, index) => (
             <li key={index} className='flex flex-col justify-center items-center'>
-              <AvatarComponent
-                path={creator.profile_path ?? undefined}
-                className='rounded-full object-cover h-[3rem] w-[3rem]'
-                size='original'
-              />
+              <LazyLoadImageComponent
+                  path={creator.profile_path ?? undefined}
+                  styles={{ image: 'rounded-full object-contain h-[5rem] w-[5rem] overflow-hidden', size: 'w200' }}
+                />
               <p>{creator.name}</p>
             </li>
           ))}
@@ -119,7 +119,7 @@ const TVMediaDetail: React.FC<TVMediaDetailProps> = (props) => {
               <li key={index} className='grid place-items-center'>
                 <LazyLoadImageComponent
                   path={network.logo_path ?? undefined}
-                  styles={{ image: 'h-[3rem] w-[3rem] object-contain', size: 'original' }}
+                  styles={{ image: ' object-contain aspect-1/2 w-[5rem] overflow-hidden', size: 'w200' }}
                 />
               </li>
             ))}
@@ -130,10 +130,9 @@ const TVMediaDetail: React.FC<TVMediaDetailProps> = (props) => {
           <ul className='flex flex-wrap gap-4'>
             {(data as TVDetailType)?.created_by?.map((creator, index) => (
               <li key={index} className='flex flex-col justify-center items-center'>
-                <AvatarComponent
+                <LazyLoadImageComponent
                   path={creator.profile_path ?? undefined}
-                  className='rounded-full object-cover h-[3rem] w-[3rem]'
-                  size='original'
+                  styles={{ image: 'rounded-full object-contain h-[5rem] w-[5rem] overflow-hidden', size: 'w200' }}
                 />
                 <p>{creator.name}</p>
               </li>

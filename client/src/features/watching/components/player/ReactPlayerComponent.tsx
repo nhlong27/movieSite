@@ -8,6 +8,7 @@ interface ReactPlayerComponentProps {
   episodeNumber?: string;
   seasonNumber?: string;
   trailerSource?: VideoType;
+  trailerType?: string;
   className?: string;
   serverSource?: string;
 }
@@ -30,22 +31,26 @@ const serverSources = ({
 
 const ReactPlayerComponent: React.FC<ReactPlayerComponentProps> = (props) => {
   const { params, data } = useGetItemDetailQuery();
-  const { episodeNumber, seasonNumber, serverSource, trailerSource, className } = props;
+  const { episodeNumber, seasonNumber, serverSource, trailerSource, trailerType = 'video', className } =
+    props;
   if (trailerSource)
     return (
       <div className={className}>
-        <ReactPlayer
-          // light={<img src={`${urls.yt}${trailerSource.key}`} alt='Thumbnail' />}
-          config={{
-            youtube: {
-              embedOptions: { color: 'white' },
-            },
-          }}
-          controls={true}
-          width={'100%'}
-          height={'100%'}
-          url={`${urls.yt}${trailerSource.key}`}
-        />
+        {trailerType === 'video' ? (
+          <ReactPlayer
+            config={{
+              youtube: {
+                embedOptions: { color: 'white' },
+              },
+            }}
+            controls={true}
+            width={'100%'}
+            height={'100%'}
+            url={`${urls.yt}${trailerSource.key}`}
+          />
+        ) : (
+          <img src={`${urls.yt_img(trailerSource.key)}`} alt='' />
+        )}
       </div>
     );
   if (seasonNumber || episodeNumber)

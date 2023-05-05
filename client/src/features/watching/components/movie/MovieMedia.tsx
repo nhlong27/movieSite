@@ -10,7 +10,6 @@ import ReactPlayerComponent from '../player/ReactPlayerComponent';
 import ButtonComponent from '@/components/generic/ButtonComponent';
 import LinkMediaCard from '@/components/specific/LinkMediaCard';
 
-
 const MovieMedia = () => {
   const { isMd } = useMediaQueries();
   const { data } = useGetItemDetailQuery();
@@ -19,6 +18,11 @@ const MovieMedia = () => {
   const [isMediaWindowDisplay, setIsMediaWindowDisplay] = React.useState(false);
 
   const [serverSource, setServerSource] = React.useState('2embed.to');
+
+  const [selectedTrailer, setSelectedTrailer] = React.useState<null | {
+    name?: string | undefined;
+    key?: string | undefined;
+  }>(null);
 
   return isMd ? (
     <div className='w-11/12 min-h-screen flex flex-col justify-start items-center z-0'>
@@ -30,7 +34,7 @@ const MovieMedia = () => {
           <div className='text-white w-2/3 grow '>
             <MediaActions
               actionType='play'
-              refs={{playRef: reactPlayerRef}}
+              refs={{ playRef: reactPlayerRef }}
               handlingFunctions={{ playFunction: setIsMediaWindowDisplay }}
             />
             <MediaActions actionType='status' />
@@ -39,7 +43,7 @@ const MovieMedia = () => {
           </div>
         </div>
         <div className='pt-4 px-4 pb-6 bg-gradient-to-l from-black to-transparent row-start-1 row-end-3 col-start-3 z-10 text-white flex flex-col justify-start items-end'>
-          <Trailers />
+          <Trailers setSelectedTrailer={setSelectedTrailer} />
         </div>
       </div>
       <div className='relative min-h-[15vh] w-full px-6 py-2 grid grid-cols-4 gap-4'>
@@ -50,7 +54,19 @@ const MovieMedia = () => {
           />
         </div>
         <div className='col-start-2 col-span-3 p-2'>
-          <MovieMediaDetail role='md' />
+          {selectedTrailer ? (
+            <>
+              <ReactPlayerComponent className='h-[30rem]' trailerSource={selectedTrailer} />
+              <ButtonComponent
+                onClick={() => setSelectedTrailer(null)}
+                className='absolute right-0 top-1/2 bg-white px-8 py-4 rounded-md z-30'
+              >
+                Close
+              </ButtonComponent>
+            </>
+          ) : (
+            <MovieMediaDetail role='md' />
+          )}
         </div>
       </div>
       {isMediaWindowDisplay ? null : (
@@ -73,12 +89,12 @@ const MovieMedia = () => {
         </p>
         <ReactPlayerComponent serverSource={serverSource} className='w-full aspect-square' />
       </div>
-      <div className='w-full md:w-3/4 xl:w-1/2 '>
+      <div ref={reactPlayerRef} className='w-full md:w-3/4 xl:w-1/2 '>
         <div className='w-full flex flex-col justify-center items-center gap-x-custom-x-max-medium'>
           <p>If current server doesn't work please try other servers below.</p>
           <div className='flex xs:flex-row flex-col gap-2 justify-between'>
             <ButtonComponent
-              className='uppercase grid place-items-center px-4 py-2 ring-2 ring-black rounded-lg hover:bg-gray-100'
+              className='focus:bg-gray-100 uppercase grid place-items-center px-4 py-2 ring-2 ring-black rounded-lg hover:bg-gray-100'
               onClick={() => setServerSource('2embed.to')}
             >
               2embed.to
@@ -106,8 +122,8 @@ const MovieMedia = () => {
         <div className='flex justify-center items-start w-full'>
           <div className='grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-7 place-items-center w-full gap-y-4 2xl:gap-4'>
             {extraData.similar?.results?.map((media, index) => {
-                return <LinkMediaCard key={index} media={media} role='linkMovieCard' />;
-              })}
+              return <LinkMediaCard key={index} media={media} role='linkMovieCard' />;
+            })}
           </div>
         </div>
       </div>
@@ -127,7 +143,7 @@ const MovieMedia = () => {
         >
           <MediaActions
             actionType='play'
-            refs={{playRef: reactPlayerRef}}
+            refs={{ playRef: reactPlayerRef }}
             handlingFunctions={{ playFunction: setIsMediaWindowDisplay }}
           />
 
@@ -145,7 +161,7 @@ const MovieMedia = () => {
         </div>
         <div
           className='sm:w-4/5 w-[90%] relative py-4
-    px-custom-x-max-medium flex flex-col'
+    px-custom-x-max-medium flex flex-col h-full'
         >
           <Trailers />
         </div>
@@ -159,7 +175,6 @@ const MovieMedia = () => {
         />
       )}
       <div
-        ref={reactPlayerRef}
         className={`${
           isMediaWindowDisplay ? 'visible opacity-100 max-h-[40rem]' : 'invisible opacity-0 max-h-0'
         } transition-all duration-500 relative w-full px-6 py-2`}
@@ -170,7 +185,7 @@ const MovieMedia = () => {
         </p>
         <ReactPlayerComponent serverSource={serverSource} className='w-full aspect-square' />
       </div>
-      <div className='w-full md:w-3/4 xl:w-1/2 '>
+      <div ref={reactPlayerRef} className='w-full md:w-3/4 xl:w-1/2 '>
         <div className='w-full flex flex-col justify-center items-center gap-x-custom-x-max-medium'>
           <p>If current server doesn't work please try other servers below.</p>
           <div className='flex xs:flex-row flex-col gap-2 justify-between'>
@@ -201,10 +216,9 @@ const MovieMedia = () => {
       >
         <h1>You may also like</h1>
         <div className='flex flex-col justify-start items-center gap-4 w-full'>
-          {extraData.similar?.results
-            ?.map((media, index) => {
-              return <LinkMediaCard key={index} media={media} role='linkMovieCard' />;
-            })}
+          {extraData.similar?.results?.map((media, index) => {
+            return <LinkMediaCard key={index} media={media} role='linkMovieCard' />;
+          })}
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@ import { useSignUpMutation } from '../hooks/useSignUpMutation';
 import FormComponent from '@/components/generic/FormComponent';
 import ButtonComponent from '@/components/generic/ButtonComponent';
 import { useQueryClient } from '@tanstack/react-query';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SignUpContainer = ({
   setShouldSignInDisplay,
@@ -14,6 +14,7 @@ const SignUpContainer = ({
 }) => {
   const signUpMutation = useSignUpMutation();
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   return (
     <div className='w-full h-full p-4 flex flex-col justify-start items-center'>
@@ -39,8 +40,9 @@ const SignUpContainer = ({
               try {
                 SignUpResponse.parse(response.data);
                 console.log('Sign up success!');
-                await queryClient.refetchQueries({ queryKey: ['profile'] });
-                await queryClient.refetchQueries({ queryKey: ['shows'] });
+                await queryClient.invalidateQueries({ queryKey: ['profile'] });
+                await queryClient.invalidateQueries({ queryKey: ['shows'] });
+                navigate(0)
               } catch (e: any) {
                 console.log(e);
                 toast('Server error. Please retry.');

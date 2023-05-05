@@ -1,6 +1,5 @@
 import { UserInfoSection, UserListSection } from '@/features/profile';
 import React from 'react';
-import AuthPage from './AuthPage';
 
 const ProfilePage = () => {
   return (

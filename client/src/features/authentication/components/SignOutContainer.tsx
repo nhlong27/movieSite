@@ -18,7 +18,6 @@ const SignOutContainer = () => {
             queryClient.invalidateQueries({ queryKey: ['shows'] });
             queryClient.invalidateQueries({ queryKey: ['profile'] });
             navigate(0)
-            // setTimeout(()=>navigate('/'), 1000);
           })
           .catch((e) => {
             console.log(e.message);

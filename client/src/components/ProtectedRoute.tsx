@@ -12,31 +12,6 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   return data ? children : null;
 };
 
-// const ProtectedRoute = ({
-//   redirectPath = '/',
-//   route,
-//   children,
-// }: {
-//   redirectPath?: string;
-//   route?: string;
-//   children: JSX.Element;
-// }) => {
-//   const { data } = useGetUserQuery();
-//   const navigate = useNavigate();
-//   if (route === 'profile') {
-//     if (!data) {
-//       // return <Navigate to={redirectPath} replace />;
-//       setTimeout(() => navigate(redirectPath), 1000);
-//     }
-//   } else if (route === 'auth') {
-//     if (data) {
-//       // return <Navigate to={redirectPath} replace />;
-//       setTimeout(() => navigate(redirectPath), 1000);
-//     }
-//   }
-//   return children;
-// };
-
 export default (props: ProtectedRouteProps) => (
   <Wrapper errorComponent={AuthPage}>
     <ProtectedRoute {...props} />

@@ -5,6 +5,7 @@ import { useGetUserQuery } from '../../hooks/useGetUserQuery';
 import { useUpdateUserMutation } from '../../hooks/useUpdateUserMutation';
 import { UserInfoUpdateForm, UserUpdateResponse } from '../../types';
 import Wrapper from '@/components/handling/Wrapper';
+import Skeleton from 'react-loading-skeleton';
 
 const ProfileInfo = () => {
   const updateUserMutation = useUpdateUserMutation();
@@ -46,7 +47,13 @@ const ProfileInfo = () => {
 };
 
 export default () => (
-  <Wrapper>
+  <Wrapper
+    suspenseComponent={
+      <div className='w-full h-[20rem]'>
+        <Skeleton />
+      </div>
+    }
+  >
     <ProfileInfo />
   </Wrapper>
 );

@@ -1,12 +1,11 @@
 import React from 'react';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { SignInForm, SignInResponse } from '../types';
 import { useSignInMutation } from '../hooks/useSignInMutation';
 import FormComponent from '@/components/generic/FormComponent';
 import { useQueryClient } from '@tanstack/react-query';
 import ButtonComponent from '@/components/generic/ButtonComponent';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAtom } from 'jotai';
 
 const SignInContainer = ({
   setShouldSignInDisplay,
@@ -44,7 +43,6 @@ const SignInContainer = ({
                 queryClient.invalidateQueries({ queryKey: ['profile'] });
                 queryClient.invalidateQueries({ queryKey: ['shows'] });
                 navigate(0)
-                // setTimeout(()=>navigate('/'), 1000);
               } catch (e: any) {
                 console.log(e);
                 toast('Server error. Please retry.');

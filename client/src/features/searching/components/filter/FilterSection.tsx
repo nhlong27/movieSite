@@ -15,7 +15,7 @@ const FilterSection: React.FC = () => {
 
         <div
           className={`${
-            hasQueryFilters ? 'max-h-[30rem]' : 'max-h-0'
+            hasQueryFilters ? 'min-h-[1rem] max-h-screen' : 'max-h-0'
           } overflow-hidden transition-all duration-300 w-full`}
         >
           <div>

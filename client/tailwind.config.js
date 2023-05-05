@@ -31,7 +31,7 @@ module.exports = {
         'custom-y-min-normal': 'min(2rem, 2.5vh)',
         'custom-y-max-large': 'max(3rem, 2.5vh)',
         'custom-y-max-medium': 'max(2rem, 2.5vh)',
-        'custom-y-max-normal': 'max(1rem, 2.5vh)'
+        'custom-y-max-normal': 'max(1rem, 2.5vh)',
       },
       margin: {
         'custom-x-min-large': 'min(3rem, 2.5vw)',
@@ -47,7 +47,7 @@ module.exports = {
         'custom-y-min-normal': 'min(2rem, 2.5vh)',
         'custom-y-max-large': 'max(3rem, 2.5vh)',
         'custom-y-max-medium': 'max(2rem, 2.5vh)',
-        'custom-y-max-normal': 'max(1rem, 2.5vh)'
+        'custom-y-max-normal': 'max(1rem, 2.5vh)',
       },
       padding: {
         'custom-x-min-large': 'min(3rem, 2.5vw)',
@@ -61,11 +61,11 @@ module.exports = {
         'custom-y-min-normal': 'min(2rem, 5vh)',
         'custom-y-max-large': 'max(3rem, 5vh)',
         'custom-y-max-medium': 'max(2rem, 5vh)',
-        'custom-y-max-normal': 'max(1rem, 5vh)'
+        'custom-y-max-normal': 'max(1rem, 5vh)',
       },
       screens: {
         '4k': '2560px',
-        'xs': '500px'
+        xs: '500px',
       },
     },
   },

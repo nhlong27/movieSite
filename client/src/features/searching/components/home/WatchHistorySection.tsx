@@ -15,7 +15,9 @@ const WatchHistorySection = () => {
           styles={{ swiper: 'relative' }}
           sliderName={'slider4'}
           sectionName='popular'
-          data={{ results: historyList?.filter((media) => media.status === 'Watching') }}
+          data={{ results: historyList?.sort((a, b) => {
+            return Date.parse(b.updatedAt) - Date.parse(a.updatedAt);
+          }).filter((media) => media.status === 'Watching') }}
           mediaType={'tv'}
         />
       </div>
