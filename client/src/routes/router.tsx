@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
+import React, { Suspense } from 'react';
 import App from '@/App';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -7,14 +8,16 @@ import { getMovieGenresQuery, getTVGenresQuery } from '@/queries';
 import { watch_queries } from '@/features/watching';
 import { Params } from 'react-router-dom';
 import HomePage from '@/pages/HomePage';
-import ExplorePage from '@/pages/ExplorePage';
-import MediaPage from '@/pages/MediaPage';
-import ProfilePage from '@/pages/ProfilePage';
-import ErrorPage from '@/pages/ErrorPage';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import { SkeletonTheme } from 'react-loading-skeleton';
+import LoadingPage from '@/pages/LoadingPage';
 
 const queryClient = new QueryClient();
+
+const ExplorePage = React.lazy(() => import('@/pages/ExplorePage'));
+const MediaPage = React.lazy(() => import('@/pages/MediaPage'));
+const ProfilePage = React.lazy(() => import('@/pages/ProfilePage'));
+const ErrorPage = React.lazy(() => import('@/pages/ErrorPage'));
 
 export const appLoader = async (queryClient: QueryClient) => {
   return await Promise.all(
@@ -57,25 +60,39 @@ export const router = createBrowserRouter([
       },
       {
         path: '/discover/',
-        element: <ExplorePage />,
+        element: (
+          <Suspense fallback={<LoadingPage />}>
+            <ExplorePage />
+          </Suspense>
+        ),
       },
       {
         path: '/:mediaType/:id',
-        element: <MediaPage />,
+        element: (
+          <ProtectedRoute>
+            <MediaPage />
+          </ProtectedRoute>
+        ),
         loader: ({ params }) => itemLoader({ queryClient, params }),
       },
       {
         path: '/profile',
         element: (
-          <ProtectedRoute>
-            <ProfilePage />
-          </ProtectedRoute>
+          <Suspense fallback={<LoadingPage />}>
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          </Suspense>
         ),
       },
     ],
   },
   {
     path: '*',
-    element: <ErrorPage />,
+    element: (
+      <ProtectedRoute>
+        <ErrorPage />
+      </ProtectedRoute>
+    ),
   },
 ]);
