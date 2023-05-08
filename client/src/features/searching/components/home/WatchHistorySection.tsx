@@ -15,14 +15,30 @@ const WatchHistorySection = () => {
           styles={{ swiper: 'relative' }}
           sliderName={'slider4'}
           sectionName='popular'
-          data={{ results: historyList?.sort((a, b) => {
-            return Date.parse(b.updatedAt) - Date.parse(a.updatedAt);
-          }).filter((media) => media.status === 'Watching') }}
+          data={{
+            results: historyList
+              ?.sort((a, b) => {
+                return Date.parse(b.updatedAt) - Date.parse(a.updatedAt);
+              })
+              .filter((media) => media.status === 'Watching'),
+          }}
           mediaType={'tv'}
         />
       </div>
     </div>
-  ) : <div className='relative w-full flex justify-center items-center'>No movies or TV shows in watch history</div>
+  ) : (
+    <div className='relative w-full flex justify-center items-center gap-8'>
+      <h1>No movies or TV shows in watch history</h1>
+      <Link
+        to='/discover'
+        onClick={() => {
+          console.log('navigating to exploring page..');
+        }}
+      >
+        Find something to watch
+      </Link>
+    </div>
+  );
 };
 
 export default () => (

@@ -41,6 +41,7 @@ const ProfileInfo = () => {
           { extras: { type: 'text' }, name: 'name', default: profileInfo?.name },
           { extras: { type: 'text' }, name: 'email', default: profileInfo?.email },
         ]}
+        submitBn={'Update'}
       />
     </div>
   );
@@ -50,7 +51,7 @@ export default () => (
   <Wrapper
     suspenseComponent={
       <div className='w-full h-[20rem]'>
-        <Skeleton />
+        <Skeleton className='h-full w-full' />
       </div>
     }
   >

@@ -1,4 +1,4 @@
-import Wrapper from '@/components/handling/Wrapper';
+
 import React from 'react';
 import { useGetItemExtraQuery } from '../../hooks/useGetItemExtraQuery';
 import { SimilarMovieType, SimilarTVType } from '../../types';
@@ -14,8 +14,4 @@ const SimilarListSection: React.FC = () => {
   );
 };
 
-export default () => (
-  <Wrapper>
-    <SimilarListSection />
-  </Wrapper>
-);
+export default SimilarListSection

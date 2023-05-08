@@ -120,66 +120,6 @@ const MediaActions: React.FC<MediaActionsProps> = (props) => {
       />
     );
   return <></>;
-  // return (
-  //   <>
-  //     <ButtonComponent
-  //       role='trueFalse'
-  //       onClick={() => {
-  //         handleMediaUpdate('status', { value: 'Watching' });
-
-  //         ref?.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  //         handlingFunctions?.playFunction(true);
-  //       }}
-  //     >
-  //       {children ?? 'Play'}
-  //     </ButtonComponent>
-  //     <SelectComponent
-  //       options={[
-  //         { value: 'Plan to Watch', label: 'Plan to Watch' },
-  //         { value: 'Completed', label: 'Completed' },
-  //         { value: 'Dropped', label: 'Dropped' },
-  //       ]}
-  //       name={'status'}
-  //       className='ring-2 ring-blue-300'
-  //       placeholder={serverMedia?.status ?? 'Add status'}
-  //       extras={{ isSearchable: false, isClearable: true, isDisabled: !!!userData }}
-  //       handleOnChange={(val: any) => handleMediaUpdate('status', val)}
-  //     />
-  //     <SelectComponent
-  //       options={[
-  //         { value: 1, label: '1' },
-  //         { value: 2, label: '2' },
-  //         { value: 3, label: '3' },
-  //         { value: 4, label: '4' },
-  //         { value: 5, label: '5' },
-  //         { value: 6, label: '6' },
-  //         { value: 7, label: '7' },
-  //         { value: 8, label: '8' },
-  //         { value: 9, label: '9' },
-  //         { value: 10, label: '10' },
-  //       ]}
-  //       name={'score'}
-  //       className='ring-2 ring-blue-300'
-  //       placeholder={serverMedia?.score?.toString() ?? 'Add score'}
-  //       extras={{ isSearchable: false, isClearable: true, isDisabled: !!!userData }}
-  //       handleOnChange={(val: any) => handleMediaUpdate('score', val)}
-  //     />
-  //     <ButtonComponent
-  //       role='trueFalse'
-  //       className={`${
-  //         serverMedia?.isFavorited
-  //           ? 'text-pink-300 font-bold hover:bg-gray-200'
-  //           : 'text-blue-300 font-normal hover:bg-gray-200'
-  //       }`}
-  //       onClick={() => {
-  //         handleMediaUpdate('isFavorited', { value: !isFavorited });
-  //         setIsFavorited((prev) => !prev);
-  //       }}
-  //     >
-  //       Favorite
-  //     </ButtonComponent>
-  //   </>
-  // );
 };
 
 function DefaultPlayComponent({

@@ -91,15 +91,15 @@ const AvatarContainer = () => {
       <Toaster />
 
       <div>
-        <div>Upload a file:</div>
+        <div>Change your avatar</div>
 
         <button onClick={handleUploadClick}>
           <HiOutlineUpload size={25} className='text-primary' />
-          {file ? `${file.name}` : 'Click to select'}
+          {/* {file ? `${file.name}` :''} */}
         </button>
 
-        <input type='file' ref={inputRef} onChange={handleFileChange} style={{ display: 'none' }} />
-        <ButtonComponent onClick={setToDefault}>Set Default</ButtonComponent>
+        <input type='file' accept='.jpg,.jpeg,.png' ref={inputRef} onChange={handleFileChange} style={{ display: 'none' }} />
+        <ButtonComponent onClick={setToDefault}>Set back to default</ButtonComponent>
       </div>
     </div>
   );

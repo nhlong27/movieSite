@@ -9,6 +9,7 @@ import { useGetItemExtraQuery } from '../../hooks/useGetItemExtraQuery';
 import ReactPlayerComponent from '../player/ReactPlayerComponent';
 import ButtonComponent from '@/components/generic/ButtonComponent';
 import LinkMediaCard from '@/components/specific/LinkMediaCard';
+import Wrapper from '@/components/handling/Wrapper';
 
 const MovieMedia = () => {
   const { isMd } = useMediaQueries();
@@ -225,4 +226,8 @@ const MovieMedia = () => {
   );
 };
 
-export default MovieMedia;
+export default () => (
+  <Wrapper>
+    <MovieMedia />
+  </Wrapper>
+);;

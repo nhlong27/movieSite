@@ -1,4 +1,3 @@
-import Wrapper from '@/components/handling/Wrapper';
 import React from 'react';
 import MovieMedia from './movie/MovieMedia';
 import TVMedia from './tv/TVMedia';
@@ -19,8 +18,4 @@ const MediaContainer: React.FC = () => {
   );
 };
 
-export default () => (
-  <Wrapper>
-    <MediaContainer />
-  </Wrapper>
-);
+export default MediaContainer

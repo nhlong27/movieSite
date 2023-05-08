@@ -6,6 +6,8 @@ import ListFilters from './ListFilters';
 import ButtonComponent from '@/components/generic/ButtonComponent';
 import Wrapper from '@/components/handling/Wrapper';
 import Skeleton from 'react-loading-skeleton';
+import { Link, useNavigate } from 'react-router-dom';
+import { useQueryClient, useQueryErrorResetBoundary } from '@tanstack/react-query';
 
 const listFilters: Record<string, any> = {
   Watching: (list: MultipleShowsQueryResponseType, status: string) => (
@@ -34,6 +36,23 @@ const UserListSection = () => {
   const [listFilter, setListFilter] = React.useState('Watching');
   const { data: mediaList } = useGetMultipleShowsQuery(queryTitle);
 
+  if (mediaList && mediaList?.length === 0) {
+    return (
+      <div className='md:row-start-1 md:col-start-1 md:col-span-3 w-full flex flex-col justify-start items-center min-h-screen'>
+        <div className={'grid place-items-center h-[10rem] w-full'}>
+          <h1>No media in database.</h1>
+          <Link
+            to='/discover'
+            onClick={() => {
+              console.log('navigating to exploring page..');
+            }}
+          >
+            Find something to watch
+          </Link>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className='md:row-start-1 md:col-start-1 md:col-span-3 w-full flex flex-col items-center min-h-screen'>
       <ListFilters setListFilter={setListFilter} />
@@ -79,15 +98,31 @@ const UserListSection = () => {
         )}
       </div>
     </div>
-  )
+  );
 };
 
 export default () => (
   <Wrapper
+    errorComponent={() => {
+      return (
+        <div className='md:row-start-1 md:col-start-1 md:col-span-3 w-full flex flex-col justify-start items-center min-h-screen'>
+          <div className={'grid place-items-center h-[10rem] w-full'}>
+            <h1>{'Failed to load resources'}</h1>
+            <ButtonComponent
+              onClick={() => {
+                console.log('reloading the page..');
+                window.location.reload();
+              }}
+            >
+              Reload
+            </ButtonComponent>
+          </div>
+        </div>
+      );
+    }}
     suspenseComponent={
       <div className='md:row-start-1 md:col-start-1 md:col-span-3 w-full flex flex-col items-center min-h-screen'>
-        <div className='w-full h-[2rem]'>
-        </div>
+        <div className='w-full h-[2rem]'></div>
         <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 place-content-start place-items-center w-full gap-y-4 2xl:gap-4 grow'>
           {Array(20)
             .fill('')

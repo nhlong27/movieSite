@@ -1,13 +1,9 @@
-import ErrorComponent from '@/components/handling/ErrorComponent';
-import SuspenseComponent from '@/components/handling/SkeletonComponent';
-import React, { Suspense } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
+import React from 'react';
 import { useGetItemDetailQuery } from '../../hooks/useGetItemDetailQuery';
 import { TVDetailType } from '../../types';
 import LazyLoadImageComponent from '@/components/handling/LazyLoadImageComponent';
-import AvatarComponent from '@/components/generic/AvatarComponent';
+
 import ButtonComponent from '@/components/generic/ButtonComponent';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 interface TVMediaDetailProps {
   role?: string;
@@ -54,7 +50,10 @@ const TVMediaDetail: React.FC<TVMediaDetailProps> = (props) => {
             <li key={index} className='grid place-items-center'>
               <LazyLoadImageComponent
                 path={network.logo_path ?? undefined}
-                styles={{ image: 'object-contain aspect-1/2 w-[5rem] overflow-hidden', size: 'original' }}
+                styles={{
+                  image: 'object-contain aspect-1/2 w-[5rem] overflow-hidden',
+                  size: 'original',
+                }}
               />
             </li>
           ))}
@@ -66,9 +65,12 @@ const TVMediaDetail: React.FC<TVMediaDetailProps> = (props) => {
           {(data as TVDetailType)?.created_by?.map((creator, index) => (
             <li key={index} className='flex flex-col justify-center items-center'>
               <LazyLoadImageComponent
-                  path={creator.profile_path ?? undefined}
-                  styles={{ image: 'rounded-full object-contain h-[5rem] w-[5rem] overflow-hidden', size: 'w200' }}
-                />
+                path={creator.profile_path ?? undefined}
+                styles={{
+                  image: 'rounded-full object-contain h-[5rem] w-[5rem] overflow-hidden',
+                  size: 'w200',
+                }}
+              />
               <p>{creator.name}</p>
             </li>
           ))}
@@ -119,7 +121,10 @@ const TVMediaDetail: React.FC<TVMediaDetailProps> = (props) => {
               <li key={index} className='grid place-items-center'>
                 <LazyLoadImageComponent
                   path={network.logo_path ?? undefined}
-                  styles={{ image: ' object-contain aspect-1/2 w-[5rem] overflow-hidden', size: 'w200' }}
+                  styles={{
+                    image: ' object-contain aspect-1/2 w-[5rem] overflow-hidden',
+                    size: 'w200',
+                  }}
                 />
               </li>
             ))}
@@ -132,7 +137,10 @@ const TVMediaDetail: React.FC<TVMediaDetailProps> = (props) => {
               <li key={index} className='flex flex-col justify-center items-center'>
                 <LazyLoadImageComponent
                   path={creator.profile_path ?? undefined}
-                  styles={{ image: 'rounded-full object-contain h-[5rem] w-[5rem] overflow-hidden', size: 'w200' }}
+                  styles={{
+                    image: 'rounded-full object-contain h-[5rem] w-[5rem] overflow-hidden',
+                    size: 'w200',
+                  }}
                 />
                 <p>{creator.name}</p>
               </li>

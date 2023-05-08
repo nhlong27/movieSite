@@ -12,6 +12,7 @@ import SeasonsAndEpisodes from './SeasonsAndEpisodes';
 import { useAtom } from 'jotai';
 import { seasonAndEpisodeAtom } from '../../atoms';
 import LinkMediaCard from '@/components/specific/LinkMediaCard';
+import Wrapper from '@/components/handling/Wrapper';
 
 const TVMedia = () => {
   const { isMd } = useMediaQueries();
@@ -248,4 +249,8 @@ const TVMedia = () => {
   );
 };
 
-export default TVMedia;
+export default () => (
+  <Wrapper>
+    <TVMedia />
+  </Wrapper>
+);

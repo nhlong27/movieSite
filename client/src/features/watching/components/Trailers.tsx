@@ -1,4 +1,4 @@
-import Wrapper from '@/components/handling/Wrapper';
+
 import React from 'react';
 import { useGetItemExtraQuery } from '../hooks/useGetItemExtraQuery';
 import { VideoType } from '../types';

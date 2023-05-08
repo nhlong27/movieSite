@@ -1,7 +1,8 @@
-import Wrapper from '@/components/handling/Wrapper';
+
 import React from 'react';
 import { useGetItemDetailQuery } from '../hooks/useGetItemDetailQuery';
 import LazyLoadImageComponent from '@/components/handling/LazyLoadImageComponent';
+import Wrapper from '@/components/handling/Wrapper';
 
 const BackdropComponent = () => {
   const { data } = useGetItemDetailQuery();

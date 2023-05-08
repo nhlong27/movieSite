@@ -35,7 +35,31 @@ function App() {
 
   return (
     <div className='min-h-dynamic-screen w-screen flex flex-col md:gap-4 z-0'>
-      <Toaster />
+      <Toaster
+        position='top-center'
+        reverseOrder={false}
+        gutter={8}
+        containerClassName=''
+        containerStyle={{}}
+        toastOptions={{
+          // Define default options
+          className: 'tracking-wider',
+          duration: 5000,
+          style: {
+            background: '#363636',
+            color: '#fff',
+          },
+
+          // Default options for specific types
+          // success: {
+          //   duration: 3000,
+          //   theme: {
+          //     primary: 'green',
+          //     secondary: 'black',
+          //   },
+          // },
+        }}
+      />
       <div className='sticky top-0 w-full z-20 flex flex-col items-center'>
         <Header />
         <DropDownMenu />

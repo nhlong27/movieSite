@@ -38,7 +38,7 @@ const FormComponent: React.FC<FormComponentProps> = (props) => {
             <React.Fragment key={index}>
               <input className={props.styles?.input} {...option.extras} {...register(`${option.name}` as never)} />
               {(errors as any)[`${option.name}`]?.message && (
-                <>{(errors as any)[`${option.name}`]?.message}</>
+                <div>{(errors as any)[`${option.name}`]?.message}</div>
               )}
             </React.Fragment>
           );

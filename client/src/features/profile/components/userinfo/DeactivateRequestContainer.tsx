@@ -24,7 +24,7 @@ const DeactivateRequestContainer = () => {
             onSuccess: (response) => {
               try {
                 console.log(response.data);
-                console.log('Update info success!');
+                console.log('Deactivated user.');
                 navigate(0);
               } catch (e: any) {
                 console.log(e);

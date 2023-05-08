@@ -9,4 +9,4 @@ const MediaPage = () => {
   );
 };
 
-export default MediaPage;
+export default MediaPage

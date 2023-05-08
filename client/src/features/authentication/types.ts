@@ -10,14 +10,16 @@ const SignUpResponse = z.object({
 
 const SignUpForm = z
   .object({
-    name: z.string({ required_error: 'Name is required' }),
+    name: z.string().min(1, { message: 'Username is required' }),
     password: z
-      .string({ required_error: 'Password is required' })
-      .min(6, 'Password is too short - should be 6 characters minimum'),
-    passwordConfirmation: z.string({
-      required_error: 'Confirmation password is required',
-    }),
-    email: z.string({ required_error: 'Email is required' }).email('Not a valid email'),
+      .string()
+      .min(1, { message: 'Password is required' })
+      .min(6, { message: 'Password is too short - should be 6 characters minimum' }),
+    passwordConfirmation: z.string().min(1, { message: 'This field has to be filled' }),
+    email: z
+      .string()
+      .min(1, { message: 'This field has to be filled' })
+      .email('This is not a valid email'),
   })
   .refine((data) => data.password === data.passwordConfirmation, {
     message: 'Passwords do not match',
@@ -25,13 +27,12 @@ const SignUpForm = z
   });
 
 const SignInForm = z.object({
-  email: z.string({
-    required_error: 'Email is required',
-  }),
-  password: z.string({
-    required_error: 'Password is required',
-  }),
-})
+  email: z
+    .string()
+    .min(1, { message: 'This field has to be filled.' })
+    .email('This is not a valid email.'),
+  password: z.string().min(1, { message: 'This field has to be filled.' }),
+});
 
 const SignInResponse = z.object({
   _id: z.string({ required_error: 'Id is not in response' }),
@@ -46,7 +47,16 @@ type SignUpResponseType = z.infer<typeof SignUpResponse>;
 
 type SignInResponseType = z.infer<typeof SignInResponse>;
 
-type SignUpFormType = z.infer<typeof SignUpForm>
-type SignInFormType = z.infer<typeof SignInForm>
+type SignUpFormType = z.infer<typeof SignUpForm>;
+type SignInFormType = z.infer<typeof SignInForm>;
 
-export { SignUpForm, SignInForm, SignUpResponse, SignUpResponseType, SignInResponse, SignInResponseType, SignUpFormType, SignInFormType};
+export {
+  SignUpForm,
+  SignInForm,
+  SignUpResponse,
+  SignUpResponseType,
+  SignInResponse,
+  SignInResponseType,
+  SignUpFormType,
+  SignInFormType,
+};

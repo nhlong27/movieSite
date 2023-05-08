@@ -39,10 +39,10 @@ const PasswordUpdateRequestContainer = () => {
           )
         }
         options={[
-          { extras: { type: 'password' }, name: 'confirmPassword' },
           { extras: { type: 'password' }, name: 'newPassword' },
+          { extras: { type: 'password' }, name: 'confirmPassword' },
         ]}
-        submitBn={'Update'}
+        submitBn={'Change password'}
       />
     </div>
   );

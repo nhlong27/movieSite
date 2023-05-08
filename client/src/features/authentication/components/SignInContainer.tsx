@@ -14,7 +14,7 @@ const SignInContainer = ({
 }) => {
   const signInMutation = useSignInMutation();
   const queryClient = useQueryClient();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <div className='w-full h-full p-4 flex flex-col justify-start items-center'>
@@ -42,7 +42,7 @@ const SignInContainer = ({
                 console.log('Sign in success!');
                 queryClient.invalidateQueries({ queryKey: ['profile'] });
                 queryClient.invalidateQueries({ queryKey: ['shows'] });
-                navigate(0)
+                navigate(0);
               } catch (e: any) {
                 console.log(e);
                 toast('Server error. Please retry.');

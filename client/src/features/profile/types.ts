@@ -19,45 +19,46 @@ const UserQueryResponse = z.object({
 });
 
 const UserInfoUpdateForm = z.object({
-  name: z.string().optional(),
-  email: z.string().email('Not a valid email').optional(),
+  name: z.string().min(1, { message: 'Username is required' }),
+  email: z
+    .string()
+    .min(1, { message: 'This field has to be filled.' })
+    .email('This is not a valid email.'),
 });
 
 const UserAvatarUpdateForm = z.object({
-  avatar_url: z.string({ required_error: 'Avatar file is required' }),
+  avatar_url: z.string().min(1, { message: 'File path is required' }),
 });
 
 const UserPasswordUpdateForm = z
   .object({
     newPassword: z
-      .string({ required_error: 'Password is required' })
+      .string().min(1, { message: 'New password is required' })
       .min(6, 'Password is too short - should be 6 characters minimum'),
-    confirmPassword: z.string({
-      required_error: 'Confirmation password is required',
-    }),
+    confirmPassword: z.string().min(1, {message: 'Type your old password to confirm'}),
   })
   .refine((data) => data.newPassword !== data.confirmPassword, {
-    message: 'Choose a different password',
-    path: ['passwordCreation'],
+    message: 'Password is the same as your old one. Choose a different password',
+    path: ['confirmPassword'],
   });
 
 const UserDeactivateForm = z.object({
-  password: z.string({ required_error: 'Confirmation password is required' }),
+  password: z.string().min(1, { message: 'Type your password to confirm' }),
 });
 
 const ShowQueryResponse = z.object({
-  user: z.string({required_error:"User Id not found."}),
+  user: z.string({ required_error: 'User Id not found.' }),
   title: z.string().optional(),
   name: z.string().optional(),
   poster_path: z.string().nullable().optional(),
   media_type: z.string().optional(),
   season_number: z.number().optional(),
-  id: z.string({required_error: "Show Id not found"}),
+  id: z.string({ required_error: 'Show Id not found' }),
   status: z.string().optional(),
   isFavorited: z.boolean().optional(),
   score: z.number().optional(),
-  createdAt: z.string({required_error:"Create time not found."}),
-  updatedAt: z.string({required_error:"Update time not found."})
+  createdAt: z.string({ required_error: 'Create time not found.' }),
+  updatedAt: z.string({ required_error: 'Update time not found.' }),
 });
 const ShowUpdateForm = z.object({
   title: z.string().optional(),
