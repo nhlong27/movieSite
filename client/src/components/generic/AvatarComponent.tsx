@@ -10,7 +10,7 @@ const AvatarComponent: React.FC<AvatarComponentProps> = (props) => {
   const { data } = useGetUserQuery();
   const { styles } = props;
   return (
-      <div className={styles?.image}>
+      <div className={`${styles?.image} shadow-inner`}>
         <LazyLoadImage
           src={data && data?.avatar !== '' ? data?.avatar : defaultAvatar_1}
           height={styles?.height}

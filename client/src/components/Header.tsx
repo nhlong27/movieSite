@@ -3,7 +3,7 @@ import NavBar from './NavBar';
 
 const Header = () => {
   return (
-    <header className='flex-col flex justify-center items-center w-full h-[3rem] lg:h-[5rem]'>
+    <header className='flex-col flex justify-center items-center w-full h-[4rem] md:h-[5rem] shadow-lg bg-stone-200'>
       <NavBar />
     </header>
   );

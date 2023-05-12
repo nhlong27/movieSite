@@ -35,8 +35,6 @@ const useFilteredByStore = () => {
     },
   );
 
-  console.log(fetchNextPage);
-
   return { data, hasNextPage, fetchNextPage, mediaType };
 };
 

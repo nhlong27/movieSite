@@ -151,7 +151,6 @@ const userUpdateHandler = async (
       user.name = (req.body as InfoType['body']).name ?? user.name;
       user.email = (req.body as InfoType['body']).email ?? user.email;
     }
-    // console.log(user);
     await user.save();
     return res.status(201).send(user);
   } catch (e: any) {

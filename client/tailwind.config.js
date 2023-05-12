@@ -67,6 +67,9 @@ module.exports = {
         '4k': '2560px',
         xs: '500px',
       },
+      fontFamily:{
+        'poppins': ['Poppins', 'sans-serif']
+      }
     },
   },
   plugins: [],

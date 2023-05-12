@@ -9,7 +9,7 @@ import DropDownMenu from './components/generic/DropDownMenu';
 import { Toaster } from 'react-hot-toast';
 
 export const mediaTypeAtom = atom<'movie' | 'tv'>('movie');
-export const currentURLPathAtom = atom<'home' | 'discover'>('home');
+export const currentURLPathAtom = atom<'home' | 'discover' | 'profile'>('home');
 export const shouldDropdownDisplayAtom = atom<boolean>(false);
 export const hasQueryFiltersAtom = atom<boolean>(false);
 export const loadingBarProgress = atom<number>(0);
@@ -39,12 +39,12 @@ function App() {
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
-  console.log(progress);
   return (
-    <div className='min-h-dynamic-screen w-screen flex flex-col md:gap-4 z-0'>
+    <div className='bg-stone-100 min-h-dynamic-screen w-screen flex flex-col md:gap-4 z-0'>
         <LoadingBar
           // className={` transition-all duration-1000 ease-in`}
-          color='#f11946'
+          height={4}
+          color='#292524'
           progress={progress}
           onLoaderFinished={() => {
             setProgress(0);
@@ -76,7 +76,7 @@ function App() {
           // },
         }}
       />
-      <div className='sticky top-0 w-full z-20 flex flex-col items-center'>
+      <div className='sticky top-0 w-full z-30 flex flex-col items-center'>
         <Header />
         <DropDownMenu />
       </div>

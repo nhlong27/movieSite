@@ -81,8 +81,8 @@ const AvatarContainer = () => {
       >
         <AvatarComponent
           styles={{
-            image: 'rounded-full object-cover overflow-hidden',
-            height: '150px',
+            image: 'rounded-full object-cover overflow-hidden ',
+            height: '140px',
             width: '150px',
           }}
         />
