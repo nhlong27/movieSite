@@ -1,6 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { currentURLPathAtom, mediaTypeAtom, shouldDropdownDisplayAtom } from '@/App';
+import {
+  currentURLPathAtom,
+  loadingBarProgress,
+  mediaTypeAtom,
+  shouldDropdownDisplayAtom,
+} from '@/App';
 import { useAtom } from 'jotai';
 import SearchBar from '@/features/searching/components/query/SearchBar';
 import { GiHamburgerMenu } from 'react-icons/gi';
@@ -16,6 +21,8 @@ const NavBar = () => {
   const [_, setCurrentURLPath] = useAtom(currentURLPathAtom);
   const [__, setMediaType] = useAtom(mediaTypeAtom);
   const [___, setShouldDropdownDisplay] = useAtom(shouldDropdownDisplayAtom);
+  const [____, setProgress] = useAtom(loadingBarProgress);
+
   const { isMd } = useMediaQueries();
 
   return isMd ? (
@@ -24,6 +31,7 @@ const NavBar = () => {
         className='flex justify-start items-center'
         to='/'
         onClick={() => {
+          setProgress(100);
           setCurrentURLPath('home');
           setMediaType('movie');
         }}
@@ -35,6 +43,7 @@ const NavBar = () => {
           className='flex justify-center items-center'
           to='/'
           onClick={() => {
+            setProgress(100);
             setCurrentURLPath('home');
             setMediaType('movie');
           }}
@@ -45,6 +54,7 @@ const NavBar = () => {
           className='flex justify-center items-center'
           to='/'
           onClick={() => {
+            setProgress(100);
             setCurrentURLPath('home');
             setMediaType('tv');
           }}
@@ -55,7 +65,7 @@ const NavBar = () => {
           suspenseComponent={
             <div className='w-full h-full grid place-items-center'>
               <div className='rounded-full overflow-hidden grid place-items-center xs:w-1/4 lg:w-1/5 aspect-square'>
-              <Skeleton className='h-full w-full' />
+                <Skeleton className='h-full w-full' />
               </div>
             </div>
           }
@@ -67,13 +77,22 @@ const NavBar = () => {
               <Link
                 className='max-h-0 max-w-0 overflow-hidden group-hover:max-w-[10rem] group-hover:max-h-[2rem] opacity-0 group-hover:opacity-100 transition-all duration-300 grid place-items-center'
                 to='/profile'
+                onClick={() => {
+                  setProgress(100);
+                }}
               >
                 Sign Up / Sign In
               </Link>
             </div>
           )}
         >
-          <Link className='w-full h-full grid place-items-center' to='/profile'>
+          <Link
+            className='w-full h-full grid place-items-center'
+            onClick={() => {
+              setProgress(100);
+            }}
+            to='/profile'
+          >
             <AvatarComponent
               styles={{
                 image:
@@ -87,6 +106,7 @@ const NavBar = () => {
         className='flex justify-end items-center'
         onClick={() => {
           setCurrentURLPath('discover');
+          setProgress(100);
         }}
         to='/discover'
       >

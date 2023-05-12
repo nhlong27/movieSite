@@ -6,9 +6,32 @@ import { currentURLPathAtom, hasQueryFiltersAtom } from '@/App';
 import ButtonComponent from '@/components/generic/ButtonComponent';
 import { useMediaQueries } from '@/hooks/useMediaQueries';
 
+export const handleQueryInput = (input: string) => {
+  if (input !== '') {
+    let queryHistorySet = new Set(
+      JSON.parse(localStorage.getItem('queries') ?? JSON.stringify([])),
+    );
+    if (queryHistorySet.has(input)) {
+      queryHistorySet.delete(input);
+    }
+    queryHistorySet.add(input);
+
+    let queryHistory = [...queryHistorySet];
+
+    if (queryHistory.length > 5) {
+      queryHistory?.shift();
+    }
+
+    localStorage.setItem('queries', JSON.stringify(queryHistory));
+  }
+};
 const SearchBar = () => {
   const [query, setQuery] = useAtom(queryAtom);
   const [hasQueryFilters, setHasQueryFilters] = useAtom(hasQueryFiltersAtom);
+
+  const [inputValue, setInputValue] = React.useState('');
+
+  
 
   const [currentURLPath] = useAtom(currentURLPathAtom);
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -32,13 +55,18 @@ const SearchBar = () => {
                   ? 'mr-0 opacity-100'
                   : '-mr-[200%] opacity-0'
               } transition-all w-full h-full duration-300 ring-2 bg-blue-200 ring-black`}
-              value={query ?? ''}
-              onBlur={() => setQuery('')}
-              // onClick={()=>setQuery('')}
+              value={inputValue ?? ''}
+              // onBlur={() => setQuery('')}
               onChange={(e) => {
-                setQuery(() => e.currentTarget.value);
+                setInputValue(() => e.target.value);
               }}
-              placeholder={query ?? 'Search a movie or tv show'}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  handleQueryInput(inputValue);
+                  setQuery(() => inputValue);
+                }
+              }}
+              placeholder={inputValue ?? 'Search a movie or tv show'}
             />
           </div>
           <div className='rounded'>
@@ -47,7 +75,7 @@ const SearchBar = () => {
         </>
       ) : (
         <>
-          <div className='rounded' >
+          <div className='rounded'>
             <AiOutlineSearch className='h-[2.5rem] w-[2.5rem]' />
           </div>
           <div className='overflow-hidden w-full h-full '>
@@ -59,13 +87,19 @@ const SearchBar = () => {
                   ? 'ml-0 visible'
                   : '-ml-[200%] invisible'
               } transition-all w-full h-full duration-500 ring-2 bg-blue-200 ring-black`}
-              value={query ?? ''}
-              onBlur={() => setQuery('')}
-              // onClick={()=>setQuery('')}
+              value={inputValue ?? ''}
+              // onBlur={() => setQuery('')}
               onChange={(e) => {
-                setQuery(() => e.currentTarget.value);
+                setInputValue(() => e.target.value);
               }}
-              placeholder={query ?? 'Search a movie or tv show'}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  handleQueryInput(inputValue);
+                  setQuery(() => inputValue);
+
+                }
+              }}
+              placeholder={inputValue ?? 'Search a movie or tv show'}
             />
           </div>
         </>

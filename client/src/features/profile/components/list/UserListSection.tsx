@@ -6,8 +6,8 @@ import ListFilters from './ListFilters';
 import ButtonComponent from '@/components/generic/ButtonComponent';
 import Wrapper from '@/components/handling/Wrapper';
 import Skeleton from 'react-loading-skeleton';
-import { Link, useNavigate } from 'react-router-dom';
-import { useQueryClient, useQueryErrorResetBoundary } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
+import {useAutoAnimate} from '@formkit/auto-animate/react'
 
 const listFilters: Record<string, any> = {
   Watching: (list: MultipleShowsQueryResponseType, status: string) => (
@@ -35,6 +35,7 @@ const UserListSection = () => {
   const [shouldQueryDisplay, setShouldQueryDisplay] = React.useState(false);
   const [listFilter, setListFilter] = React.useState('Watching');
   const { data: mediaList } = useGetMultipleShowsQuery(queryTitle);
+  const [animationParentRef] = useAutoAnimate();
 
   if (mediaList && mediaList?.length === 0) {
     return (
@@ -89,7 +90,7 @@ const UserListSection = () => {
         </ButtonComponent>
       </div>
 
-      <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 place-content-start place-items-center w-full gap-y-4 2xl:gap-4 grow'>
+      <div ref={animationParentRef} className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 place-content-start place-items-center w-full gap-y-4 2xl:gap-4 grow'>
         {listFilters[`${listFilter}`](
           mediaList!.sort((a, b) => {
             return Date.parse(b.updatedAt) - Date.parse(a.updatedAt);
@@ -123,7 +124,7 @@ export default () => (
     suspenseComponent={
       <div className='md:row-start-1 md:col-start-1 md:col-span-3 w-full flex flex-col items-center min-h-screen'>
         <div className='w-full h-[2rem]'></div>
-        <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 place-content-start place-items-center w-full gap-y-4 2xl:gap-4 grow'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 place-content-start place-items-center w-full gap-y-4 2xl:gap-4 grow'>
           {Array(20)
             .fill('')
             .map((media, index) => (

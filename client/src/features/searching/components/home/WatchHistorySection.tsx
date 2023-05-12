@@ -3,27 +3,37 @@ import SwiperContainer from './SwiperContainer';
 import Wrapper from '@/components/handling/Wrapper';
 import { useGetMultipleShowsQuery } from '@/features/profile';
 import { Link } from 'react-router-dom';
-
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 const WatchHistorySection = () => {
   const { data: historyList } = useGetMultipleShowsQuery();
+  const [shouldWatchHistoryDisplay, setShouldWatchHistoryDisplay] = React.useState(true);
+
+  const [animationParentRef] = useAutoAnimate();
 
   return historyList?.length && historyList.length > 0 ? (
     <div className='relative w-full flex justify-center items-center'>
-      <div className='w-full flex flex-col relative'>
-        <div className='z-10 grow w-full'>Continue Watching</div>
-        <SwiperContainer
-          styles={{ swiper: 'relative' }}
-          sliderName={'slider4'}
-          sectionName='popular'
-          data={{
-            results: historyList
-              ?.sort((a, b) => {
-                return Date.parse(b.updatedAt) - Date.parse(a.updatedAt);
-              })
-              .filter((media) => media.status === 'Watching'),
-          }}
-          mediaType={'tv'}
-        />
+      <div className='w-full flex flex-col relative' ref={animationParentRef}>
+        <strong className='z-10 grow w-full flex gap-4'>
+          Continue Watching
+          <button onClick={() => setShouldWatchHistoryDisplay((prev) => !prev)}>
+            {shouldWatchHistoryDisplay ? 'Hide' : 'Show'}
+          </button>
+        </strong>
+        {shouldWatchHistoryDisplay && (
+          <SwiperContainer
+            styles={{ swiper: 'relative' }}
+            sliderName={'slider4'}
+            sectionName='popular'
+            data={{
+              results: historyList
+                ?.sort((a, b) => {
+                  return Date.parse(b.updatedAt) - Date.parse(a.updatedAt);
+                })
+                .filter((media) => media.status === 'Watching'),
+            }}
+            mediaType={'tv'}
+          />
+        )}
       </div>
     </div>
   ) : (

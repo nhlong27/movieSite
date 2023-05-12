@@ -17,7 +17,7 @@ const FilterResult = () => {
       endMessage={<></>}
       style={{ width: '100%', display: 'grid', placeItems: 'center' }}
     >
-      <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 place-items-center w-full gap-4 2xl:gap-4 min-h-screen  place-content-start'>
+      <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 2xl:grid-cols-6 place-items-center w-full gap-4 2xl:gap-4 min-h-screen  place-content-start'>
         {data!.pages.map((page: any) => {
           return page?.results?.map((media: MovieType | TVType, index: number) => (
             <LinkMediaCard
@@ -34,7 +34,7 @@ const FilterResult = () => {
 
 const SuspenseState = () => {
   return (
-    <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 place-items-center w-full gap-4 2xl:gap-4 min-h-screen'>
+    <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 2xl:grid-cols-6 place-items-center w-full gap-4 2xl:gap-4 min-h-screen'>
       {Array(20)
         .fill(0)
         .map((item, index) => (

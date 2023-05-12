@@ -9,6 +9,7 @@ import ButtonComponent from '@/components/generic/ButtonComponent';
 import { Link } from 'react-router-dom';
 import HomeSectionSkeleton from '../skeletons/HomeSectionSkeleton';
 
+
 const TrendingSection = () => {
   const [period, setPeriod] = React.useState('day');
 
@@ -25,6 +26,8 @@ const TrendingSection = () => {
       );
     }
   }, [data]);
+
+
 
   const { isXs } = useMediaQueries();
   return (

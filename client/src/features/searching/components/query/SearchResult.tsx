@@ -7,7 +7,6 @@ import LinkMediaCard from '@/components/specific/LinkMediaCard';
 import Skeleton from 'react-loading-skeleton';
 import { ItemListType } from '../../types';
 import { MovieType, TVType } from '@/types/types';
-
 const SearchResult = () => {
   const [hasQueryFilters] = useAtom(hasQueryFiltersAtom);
 
@@ -23,7 +22,7 @@ const SearchResult = () => {
     >
       Movie:
       <div className='flex justify-center items-start w-full'>
-        <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-y-4 2xl:gap-4 place-items-center w-full place-content-start'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-y-4 2xl:gap-4 place-items-center w-full place-content-start'>
           {itemList
             ?.filter((media) => media.media_type === 'movie')
             .map((media, index: number) => {
@@ -33,7 +32,7 @@ const SearchResult = () => {
       </div>
       TV:
       <div className='flex justify-center items-start w-full  place-content-start'>
-        <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-y-4 2xl:gap-4 place-items-center w-full'>
+        <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1  2xl:grid-cols-6 gap-y-4 2xl:gap-4 place-items-center w-full'>
           {itemList
             ?.filter((media) => media.media_type === 'tv')
             .map((media, index: number) => {
@@ -43,12 +42,12 @@ const SearchResult = () => {
       </div>
     </div>
   ) : (
-    <div>Item not found</div>
+    <div>No Movie or TV Show exists with that name</div>
   );
 };
 const SuspenseState = () => {
   return (
-    <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 place-items-center w-full gap-4 2xl:gap-4 min-h-screen'>
+    <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 2xl:grid-cols-6 place-items-center w-full gap-4 2xl:gap-4 min-h-screen'>
       {Array(20)
         .fill(0)
         .map((item, index) => (

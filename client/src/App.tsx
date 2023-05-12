@@ -1,6 +1,6 @@
 import { Outlet, useLoaderData, useLocation } from 'react-router-dom';
-import React from 'react';
-import { atom } from 'jotai';
+import React, { useRef } from 'react';
+import { atom, useAtom } from 'jotai';
 import { appLoader } from './routes/router';
 import { search_queries } from './features/searching';
 import Header from './components/Header';
@@ -12,11 +12,18 @@ export const mediaTypeAtom = atom<'movie' | 'tv'>('movie');
 export const currentURLPathAtom = atom<'home' | 'discover'>('home');
 export const shouldDropdownDisplayAtom = atom<boolean>(false);
 export const hasQueryFiltersAtom = atom<boolean>(false);
+export const loadingBarProgress = atom<number>(0);
+
+import { useAutoAnimate } from '@formkit/auto-animate/react';
+import LoadingBar from 'react-top-loading-bar';
 
 function App() {
   const initialData = useLoaderData() as Awaited<ReturnType<typeof appLoader>>;
 
   const { pathname } = useLocation();
+  const [animationParentRef] = useAutoAnimate();
+
+  const [progress, setProgress] = useAtom(loadingBarProgress);
 
   React.useEffect(() => {
     search_queries.mediaTypeConfig.movie.discover.paramList = {
@@ -32,9 +39,18 @@ function App() {
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
-
+  console.log(progress);
   return (
     <div className='min-h-dynamic-screen w-screen flex flex-col md:gap-4 z-0'>
+        <LoadingBar
+          // className={` transition-all duration-1000 ease-in`}
+          color='#f11946'
+          progress={progress}
+          onLoaderFinished={() => {
+            setProgress(0);
+          }}
+          loaderSpeed={1000}
+        />
       <Toaster
         position='top-center'
         reverseOrder={false}
@@ -64,7 +80,10 @@ function App() {
         <Header />
         <DropDownMenu />
       </div>
-      <div className='relative w-full flex justify-center items-center grow'>
+      <div
+        className='relative w-full flex justify-center items-center grow'
+        ref={animationParentRef}
+      >
         <Outlet />
       </div>
       <Footer />

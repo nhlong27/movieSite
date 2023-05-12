@@ -5,9 +5,10 @@ import { queryAtom } from '../atoms';
 import { getItemListQuery } from '../queries';
 import { ItemListType } from '../types';
 
-export const useItemListQuery = (select: (data: ItemListType)=> ItemListType['results']) => {
+export const useItemListQuery = (select: (data: ItemListType) => ItemListType['results']) => {
   const [query] = useAtom(queryAtom);
-    const debouncedQuery = useDebounce(query, 1000);
-    const { data } = useQuery({...getItemListQuery(debouncedQuery[0] ?? ''), select: select});
-    return { data };
+  const debouncedQuery = useDebounce(query, 1000);
+
+  const { data } = useQuery({ ...getItemListQuery(debouncedQuery[0] ?? ''), select: select });
+  return { data };
 };
