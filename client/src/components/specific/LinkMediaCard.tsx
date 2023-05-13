@@ -3,11 +3,12 @@ import LazyLoadImageComponent from '../handling/LazyLoadImageComponent';
 import { Link } from 'react-router-dom';
 import { MovieType, TVType } from '@/types/types';
 import { SimilarMovieType, SimilarTVType } from '@/features/watching/types';
+import poster from '/assets/placeholders/poster.png';
 
 interface LinkMediaCardProps {
   media: MovieType | TVType | SimilarTVType | SimilarMovieType;
   styles?: Record<string, string>;
-  role?: 'linkMovieCard' | 'linkTVCard';
+  role?: 'linkMovieCard' | 'linkTVCard' | 'linkMultipleCard';
 }
 
 const LinkMediaCard: React.FC<LinkMediaCardProps> = (props) => {
@@ -17,7 +18,8 @@ const LinkMediaCard: React.FC<LinkMediaCardProps> = (props) => {
     <Link
       to={`/movie/${media.id}`}
       className={
-        styles?.link ?? 'min-h-[320px] w-[200px] overflow-hidden flex justify-center items-center flex-col'
+        styles?.link ??
+        'min-h-[320px] w-[200px] overflow-hidden flex justify-center items-center flex-col'
       }
     >
       <LazyLoadImageComponent
@@ -25,23 +27,62 @@ const LinkMediaCard: React.FC<LinkMediaCardProps> = (props) => {
           height: styles?.height,
           width: styles?.width,
           size: styles?.size ?? 'w200',
-          image: 'h-[300px] overflow-hidden bg-gradient-to-tr from-white to-black',
+          image:
+            styles?.image ?? 'h-[300px] overflow-hidden bg-gradient-to-tr from-white to-black ',
         }}
-        path={media.poster_path ?? media.backdrop_path}
+        path={media.poster_path ?? media.backdrop_path ?? poster}
       />
       <div className={styles?.detail ?? 'mt-auto flex flex-col w-full'}>
-        <h1 className='truncate'>{(media as MovieType | SimilarMovieType).title}</h1>
-        <div className='flex justify-between'>
-          <p>{(media as MovieType | SimilarMovieType).release_date ? parseInt((media as MovieType | SimilarMovieType).release_date ?? '404') : 'Movie'}</p>
-          <p>{media?.vote_average?.toFixed(1)}</p>
+        <h1 className='truncate font-poppins font-bold text-lg text-stone-600 tracking-wide'>
+          {(media as MovieType | SimilarMovieType).title}
+        </h1>
+        <div className='flex justify-between font-poppins text-stone-500 font-extrabold text-xs'>
+          <p className='tracking-[0.3rem]'>
+            {(media as MovieType | SimilarMovieType).release_date
+              ? parseInt((media as MovieType | SimilarMovieType).release_date ?? '404')
+              : 'Movie'}
+          </p>
+          <div className='rounded-full bg-stone-400 shadow-sm w-[2.2rem] h-[2.2rem] absolute right-8 top-4 grid place-items-center text-stone-50 tracking-[0.1rem]'>
+            {media?.vote_average?.toFixed(1)}
+          </div>
+        </div>
+      </div>
+    </Link>
+  ) : role === 'linkTVCard' ? (
+    <Link
+      to={`/tv/${media.id}`}
+      className={
+        styles?.link ??
+        'min-h-[320px] w-[200px] overflow-hidden flex justify-center items-center flex-col'
+      }
+    >
+      <LazyLoadImageComponent
+        styles={{
+          height: styles?.height,
+          width: styles?.width,
+          size: styles?.size ?? 'w200',
+          image: styles?.image ?? 'h-[300px] overflow-hidden bg-gradient-to-tr from-white to-black',
+        }}
+        path={media.poster_path ?? media.backdrop_path ?? poster}
+      />
+      <div className={styles?.detail ?? 'mt-auto flex flex-col w-full'}>
+        <h1 className='truncate font-poppins font-bold text-lg text-stone-600 tracking-wide'>{(media as TVType | SimilarTVType).name}</h1>
+        <div className='flex justify-between font-poppins text-stone-500 font-extrabold text-xs'>
+          <p className='tracking-[0.3rem]'>
+            {(media as TVType | SimilarTVType).first_air_date
+              ? parseInt((media as TVType | SimilarTVType).first_air_date ?? '404')
+              : 'TV'}
+          </p>
+          <p className='rounded-full bg-stone-400 shadow-sm w-[2.2rem] h-[2.2rem] absolute right-8 top-4 grid place-items-center text-stone-50 tracking-[0.1rem]'>{media.vote_average?.toFixed(1)}</p>
         </div>
       </div>
     </Link>
   ) : (
     <Link
-      to={`/tv/${media.id}`}
+      to={(media as any).media_type === 'movie' ? `/movie/${media.id}` : `/tv/${media.id}`}
       className={
-        styles?.link ?? 'min-h-[320px] w-[200px] overflow-hidden flex justify-center items-center flex-col'
+        styles?.link ??
+        'min-h-[320px] w-[200px] overflow-hidden flex justify-center items-center flex-col'
       }
     >
       <LazyLoadImageComponent
@@ -49,19 +90,23 @@ const LinkMediaCard: React.FC<LinkMediaCardProps> = (props) => {
           height: styles?.height,
           width: styles?.width,
           size: styles?.size ?? 'w200',
-          image: 'h-[300px] overflow-hidden bg-gradient-to-tr from-white to-black',
+          image: styles?.image ?? 'h-[300px] overflow-hidden bg-gradient-to-tr from-white to-black',
         }}
-        path={media.poster_path ?? media.backdrop_path}
+        path={media.poster_path ?? media.backdrop_path ?? poster}
       />
       <div className={styles?.detail ?? 'mt-auto flex flex-col w-full'}>
-        <h1 className='truncate'>{(media as TVType | SimilarTVType).name}</h1>
-        <div className='flex justify-between'>
+        {(media as any) === 'movie' ? (
+          <h1 className='truncate'>{(media as any).title}</h1>
+        ) : (
+          <h1 className='truncate'>{(media as any).name}</h1>
+        )}
+        <div className='flex justify-between font-poppins text-base text-stone-500'>
           <p>
-            {(media as TVType | SimilarTVType).first_air_date
-              ? parseInt((media as TVType | SimilarTVType).first_air_date ?? '404')
-              : 'TV'}
+            Last updated:{' '}
+            <span className='text-stone-600 font-bold'>
+              {new Date(Date.parse((media as any).updatedAt)).toLocaleString('sv')}
+            </span>
           </p>
-          <p>{media.vote_average?.toFixed(1)}</p>
         </div>
       </div>
     </Link>

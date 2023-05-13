@@ -18,7 +18,7 @@ import Skeleton from 'react-loading-skeleton';
 import logo from '/assets/logos/logo.png';
 import logo_md from '/assets/logos/logo-md.png';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
-import default_avatar from '/assets/avatars/default.png'
+import human from '/assets/avatars/human.png'
 
 const NavBar = () => {
   const [currentPath, setCurrentURLPath] = useAtom(currentURLPathAtom);
@@ -91,7 +91,7 @@ const NavBar = () => {
           errorComponent={() => (
             <div className='h-[3rem] group flex justify-center items-center w-full overflow-hidden'>
               <div className='rounded-full grid place-items-center xs:w-1/3 xl:w-1/4 aspect-square group-hover:max-w-0 transition-all duration-300 overflow-hidden opacity-100 group-hover:opacity-0'>
-                <LazyLoadImage src={default_avatar}
+                <LazyLoadImage src={human}
                 alt='default_avatar' effect='blur' />
               </div>
               <Link

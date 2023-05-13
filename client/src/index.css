@@ -35,6 +35,10 @@
     --slider-index: 0;
     --items-per-screen: 7;
   }
+  .slider6 {
+    --slider-index: 0;
+    --items-per-screen: 7;
+  }
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }

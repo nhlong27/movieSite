@@ -53,7 +53,7 @@ const SearchBar = () => {
             type='text'
             className={`${
               currentURLPath === 'discover' && !hasQueryFilters ? 'w-full pl-4' : 'w-0 opacity-0'
-            } transition-all h-full duration-300 shadow-inner  bg-stone-300`}
+            } transition-all h-full duration-300 shadow-inner  bg-stone-300 rounded-l-full`}
             value={inputValue ?? ''}
             onChange={(e) => {
               setInputValue(() => e.target.value);
@@ -82,7 +82,7 @@ const SearchBar = () => {
             <input
               ref={inputRef}
               type='text'
-              className={`h-full shadow-inner bg-stone-300`}
+              className={`h-full w-full shadow-inner bg-stone-300 rounded-r-full`}
               value={inputValue ?? ''}
               onChange={(e) => {
                 setInputValue(() => e.target.value);

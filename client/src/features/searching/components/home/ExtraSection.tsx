@@ -10,9 +10,10 @@ const ExtraSection = () => {
 
   return popular && top_rated ? (
     <>
-      <div className='relative w-full flex justify-center items-center'>
-        <div className='w-full flex flex-col relative'>
-          <div className='z-10 grow w-full'>Popular</div>
+      <div className='relative w-full flex justify-center items-center bg-stone-200 py-4 rounded-lg shadow-lg'>
+        <div className='w-full flex flex-col relative font-poppins text-2xl font-black tracking-[0.3rem] text-stone-500 items-center'>
+          <div className='z-10 w-11/12 py-2 border-b-2 border-stone-300 mb-4 uppercase'>
+          Popular</div>
           <SwiperContainer
             styles={{ swiper: 'relative' }}
             sliderName={'slider4'}
@@ -22,9 +23,9 @@ const ExtraSection = () => {
           />
         </div>
       </div>
-      <div className='relative w-full flex justify-center items-center'>
-        <div className='w-full flex flex-col'>
-          <div className='z-10 grow w-full'>Top Rated</div>
+      <div className='relative w-full flex justify-center items-center bg-stone-200 py-4 rounded-lg shadow-lg '>
+        <div className='w-full flex flex-col font-poppins text-2xl font-black tracking-[0.3rem] text-stone-500 items-center'>
+          <div className='z-10 grow w-11/12 py-2 border-b-2 border-stone-300 mb-4 uppercase'>Top Rated</div>
           <SwiperContainer
             styles={{ swiper: 'relative' }}
             sliderName={'slider5'}
@@ -36,7 +37,7 @@ const ExtraSection = () => {
       </div>
     </>
   ) : (
-    <div>loading..</div>
+    <SuspenseState />
   );
 };
 

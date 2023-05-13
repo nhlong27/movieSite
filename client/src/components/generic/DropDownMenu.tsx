@@ -11,7 +11,7 @@ import AvatarComponent from './AvatarComponent';
 import Wrapper from '../handling/Wrapper';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Skeleton from 'react-loading-skeleton';
-import default_avatar from '/assets/avatars/default.png';
+import human from '/assets/avatars/human.png';
 
 const DropDownMenu = () => {
   const [currentPath, setCurrentURLPath] = useAtom(currentURLPathAtom);
@@ -74,7 +74,7 @@ const DropDownMenu = () => {
                 return (
                   <div className='h-[3rem] group flex justify-center items-center'>
                     <div className='rounded-full grid place-items-center w-1/4 aspect-square group-hover:max-w-0 transition-all duration-300 overflow-hidden opacity-100 group-hover:opacity-0'>
-                      <LazyLoadImage src={default_avatar} alt='default_avatar' effect='blur' />
+                      <LazyLoadImage src={human} alt='default_avatar' effect='blur' />
                     </div>
                     <Link
                       className=' max-w-0 overflow-hidden group-hover:max-w-[10rem] max-h-0 group-hover:max-h-[2rem] opacity-0 group-hover:opacity-100 transition-all duration-300 grid place-items-center'

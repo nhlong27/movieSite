@@ -4,6 +4,8 @@ import { useSectionBackdropItemsStore } from '../../stores';
 import { MovieType, TVType } from '@/types/types';
 import { mediaTypeConfig } from '../../queries';
 import ButtonComponent from '@/components/generic/ButtonComponent';
+import backdrop from '/assets/placeholders/backdrop.png';
+
 
 const SectionBackdrop = ({ mediaType, section }: { mediaType?: string; section?: string }) => {
   const sectionBackdropItemStore = useSectionBackdropItemsStore();
@@ -11,33 +13,31 @@ const SectionBackdrop = ({ mediaType, section }: { mediaType?: string; section?:
   return (
     <div className=' absolute aspect-[18/9] top-0 w-full flex z-0 items-top overflow-hidden'>
       <LazyLoadImageComponent
-        path={sectionBackdropItem?.backdrop_path ?? sectionBackdropItem?.poster_path}
+        path={sectionBackdropItem?.backdrop_path ?? backdrop}
         styles={{
           size: 'original',
           image:
-            'ml-[25%] object-left sm:object-scale-down lg:h-full aspect-[18/9] mix-blend-overlay',
+            'ml-[25%] object-left sm:object-scale-down lg:h-full aspect-[18/9] mix-blend-overlay  lg:rounded-l-full overflow-hidden',
         }}
       />
-      <div className='ml-[25%] absolute  xs:bg-gradient-radial-top-right ring-2 ring-black from-transparent via-black to-black h-full aspect-[18/9]' />
+      <div className='ml-[25%] absolute  xs:bg-gradient-radial-top-right  ring-2 ring-stone-800 from-transparent via-stone-800 to-stone-900 h-full aspect-[18/9] lg:rounded-l-full' />
 
-      <div className='h-5/6 via-black bg-gradient-to-r from-black to-transparent absolute bottom-0 w-2/5 text-white ml-8 xs:pl-0 md:pl-4 lg:pl-16 flex flex-col z-20'>
-        <div>
+      <div className='border-t-2 border-stone-500 ring-2 ring-stone-200 h-5/6 via-stone-300 bg-gradient-to-t from-stone-200 shadow-xl lg:rounded-3xl to-stone-400 absolute bottom-0 w-2/5  ml-8 xs:pl-0 md:pl-4 lg:pl-16 flex flex-col z-20 lg:py-8 lg:pr-8 font-poppins'>
+        <div className='text-3xl font-black text-stone-800 -tracking-wider py-2'>
           {mediaType === 'movie'
             ? (sectionBackdropItem as MovieType)?.title
             : (sectionBackdropItem as TVType)?.name}
         </div>
-        <div className=''>
+        <div className='text-lg tracking-[0.2rem] font-bold text-stone-200 flex items-center'>
           {new Date(
             mediaType === 'movie'
               ? (sectionBackdropItem as MovieType)?.release_date!
               : (sectionBackdropItem as TVType)?.first_air_date!,
           ).getFullYear()}
-        </div>
-        <div>
-          <div className='flex items-center'>
+          <div className='ml-auto flex items-center rounded-lg bg-stone-600 px-4 py-2'>
             <svg
               aria-hidden='true'
-              className='w-5 h-5 text-yellow-400'
+              className='w-8 h-8 text-amber-400'
               fill='currentColor'
               viewBox='0 0 20 20'
               xmlns='http://www.w3.org/2000/svg'
@@ -45,15 +45,17 @@ const SectionBackdrop = ({ mediaType, section }: { mediaType?: string; section?:
               <title>Rating star</title>
               <path d='M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z'></path>
             </svg>
-            <p className='ml-2 text-sm font-bold text-gray-900 dark:text-white'>
-              {sectionBackdropItem?.vote_average}
+            <p className='ml-2 text-[1.3rem] text-lime-300 font-bold'>
+              {(sectionBackdropItem?.vote_average ?? 0).toFixed(1)}
             </p>
           </div>
+          
         </div>
-        <div className='flex justify-between'>
+        <div></div>
+        <div className='flex justify-start gap-4 flex-wrap text-lg py-2'>
           {sectionBackdropItem?.genre_ids?.map((genreId) => {
             return (
-              <span key={genreId}>
+              <span className='rounded-lg ring-2 ring-stone-500 px-2 bg-stone-300 text-stone-700' key={genreId}>
                 {mediaTypeConfig[
                   `${mediaType}` as keyof typeof mediaTypeConfig
                 ].discover.paramList.with_genres?.get(genreId)}
@@ -61,11 +63,10 @@ const SectionBackdrop = ({ mediaType, section }: { mediaType?: string; section?:
             );
           })}
         </div>
-        <div>
-          <ButtonComponent>Play</ButtonComponent>
-          <ButtonComponent>Watch Later</ButtonComponent>
+        
+        <div className='grow w-full overflow-scroll scrollbar-hide text-lg text-stone-500 font-bold py-2 border-t-4 border-stone-400 mt-2'>
+          {sectionBackdropItem?.overview}
         </div>
-        <div className='grow w-full overflow-scroll'>{sectionBackdropItem?.overview}</div>
       </div>
     </div>
   );

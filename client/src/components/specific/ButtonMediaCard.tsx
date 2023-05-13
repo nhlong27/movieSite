@@ -16,29 +16,29 @@ const ButtonMediaCard: React.FC<ButtonMediaCardProps> = (props) => {
   const { media, styles, handleButtonClick, role } = props;
 
   return (
-    <ButtonComponent onClick={handleButtonClick} className={styles?.button}>
+    <ButtonComponent onClick={handleButtonClick} className={`${styles?.button} font-poppins text-stone-100`}>
       <LazyLoadImageComponent
         styles={{height: styles?.height, width:styles?.width, size: styles?.size, image:styles?.image}}
         path={media.poster_path ?? media.backdrop_path}
       />
       {role === 'buttonMovieCard' ? (
-        <div className={styles?.detail ?? 'flex flex-col w-full mt-auto'}>
-          <h1 className='truncate'>{(media as MovieType | SimilarMovieType).title}</h1>
-          <div className='flex justify-between'>
+        <div className={styles?.detail ?? 'flex flex-col w-11/12 mt-auto py-2'}>
+          <h1 className='truncate flex text-xl tracking-wide ml-0'>{(media as MovieType | SimilarMovieType).title}</h1>
+          <div className='flex text-sm text-stone-400 tracking-[0.2rem]'>
             <p>{parseInt((media as MovieType | SimilarMovieType).release_date ?? '404')}</p>
-            <p>{media?.vote_average?.toFixed(1)}</p>
+            <p className='font-bold ml-auto text-lime-300'>{media?.vote_average?.toFixed(1)}</p>
           </div>
         </div>
       ) : (
-        <div className={styles?.detail ?? 'flex flex-col w-full mt-auto'}>
-          <h1 className='truncate'>{(media as TVType | SimilarTVType).name}</h1>
-          <div className='flex justify-between'>
+        <div className={styles?.detail ?? 'flex flex-col w-11/12 mt-auto py-2'}>
+          <h1 className='truncate flex text-xl tracking-wide ml-0'>{(media as TVType | SimilarTVType).name}</h1>
+          <div className=' flex text-sm text-stone-400 tracking-[0.2rem]'>
             <p>
               {(media as TVType | SimilarTVType).first_air_date
                 ? parseInt((media as TVType | SimilarTVType).first_air_date ?? '404')
                 : 'TV'}
             </p>
-            <p>{media.vote_average?.toFixed(1)}</p>
+            <p className='font-bold ml-auto text-lime-300'>{media.vote_average?.toFixed(1)}</p>
           </div>
         </div>
       )}

@@ -95,7 +95,6 @@ const AvatarContainer = () => {
 
         <button onClick={handleUploadClick}>
           <HiOutlineUpload size={25} className='text-primary' />
-          {/* {file ? `${file.name}` :''} */}
         </button>
 
         <input type='file' accept='.jpg,.jpeg,.png' ref={inputRef} onChange={handleFileChange} style={{ display: 'none' }} />

@@ -40,7 +40,7 @@ function App() {
     window.scrollTo(0, 0);
   }, [pathname]);
   return (
-    <div className='bg-stone-100 min-h-dynamic-screen w-screen flex flex-col md:gap-4 z-0'>
+    <div className='bg-stone-300 min-h-dynamic-screen w-screen flex flex-col md:gap-4 z-0'>
         <LoadingBar
           // className={` transition-all duration-1000 ease-in`}
           height={4}

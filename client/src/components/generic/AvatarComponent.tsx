@@ -1,7 +1,7 @@
 import { useGetUserQuery } from '@/features/profile';
 import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import defaultAvatar_1 from '/assets/defaultAvatar_1.png';
+import human from '/assets/avatars/human.png'
 
 interface AvatarComponentProps {
   styles?: Record<string, any>;
@@ -12,7 +12,7 @@ const AvatarComponent: React.FC<AvatarComponentProps> = (props) => {
   return (
       <div className={`${styles?.image} shadow-inner`}>
         <LazyLoadImage
-          src={data && data?.avatar !== '' ? data?.avatar : defaultAvatar_1}
+          src={data && data?.avatar && data?.avatar !== '' ? data?.avatar : human}
           height={styles?.height}
           width={styles?.width}
           alt={styles?.alt ?? 'image'}
