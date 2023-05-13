@@ -39,7 +39,7 @@ const UserListSection = () => {
 
   if (mediaList && mediaList?.length === 0) {
     return (
-      <div className='md:row-start-1 md:col-start-1 md:col-span-3 w-full flex flex-col justify-start items-center min-h-screen'>
+      <div className='md:row-start-1 md:col-start-1 md:col-span-3 w-full flex flex-col justify-start items-center min-h-screen bg-stone-200 rounded-xl py-8 px-4'>
         <div className={'grid place-items-center h-[10rem] w-full'}>
           <h1>No media in database.</h1>
           <Link
@@ -55,7 +55,7 @@ const UserListSection = () => {
     );
   }
   return (
-    <div className='md:row-start-1 md:col-start-1 md:col-span-3 w-full flex flex-col items-center min-h-screen'>
+    <div className='md:row-start-1 md:col-start-1 md:col-span-3 w-full flex flex-col items-center min-h-screen bg-stone-200 rounded-xl py-8 px-4'>
       <ListFilters setListFilter={setListFilter} />
       <div className='flex justify-start w-full'>
         <ButtonComponent className='' onClick={() => setShouldQueryDisplay(true)}>

@@ -26,7 +26,7 @@ const ButtonMediaCard: React.FC<ButtonMediaCardProps> = (props) => {
           <h1 className='truncate flex text-xl tracking-wide ml-0'>{(media as MovieType | SimilarMovieType).title}</h1>
           <div className='flex text-sm text-stone-400 tracking-[0.2rem]'>
             <p>{parseInt((media as MovieType | SimilarMovieType).release_date ?? '404')}</p>
-            <p className='font-bold ml-auto text-lime-300'>{media?.vote_average?.toFixed(1)}</p>
+            <p className='ml-auto px-2 bg-amber-100 rounded-lg shadow-md text-xl grid place-items-center text-yellow-600 font-black  tracking-[0.1rem]'>{media?.vote_average?.toFixed(1)}</p>
           </div>
         </div>
       ) : (
@@ -38,7 +38,7 @@ const ButtonMediaCard: React.FC<ButtonMediaCardProps> = (props) => {
                 ? parseInt((media as TVType | SimilarTVType).first_air_date ?? '404')
                 : 'TV'}
             </p>
-            <p className='font-bold ml-auto text-lime-300'>{media.vote_average?.toFixed(1)}</p>
+            <p className='ml-auto px-2 bg-amber-100 rounded-lg shadow-md text-xl grid place-items-center text-yellow-600 font-black  tracking-[0.1rem]'>{media.vote_average?.toFixed(1)}</p>
           </div>
         </div>
       )}

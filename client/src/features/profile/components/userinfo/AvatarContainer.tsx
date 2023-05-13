@@ -71,7 +71,8 @@ const AvatarContainer = () => {
   };
 
   return (
-    <div className='w-full flex flex-col justify-center items-center'>
+    <div className='w-full flex flex-col justify-center items-center mt-4 font-poppins'>
+      <h1 className='w-11/12 text-stone-500 tracking-wide text-xl font-normal flex py-2'>Avatar</h1>
       <Wrapper
         suspenseComponent={
           <div className='rounded-full object-cover overflow-hidden'>
@@ -79,27 +80,37 @@ const AvatarContainer = () => {
           </div>
         }
       >
-        <AvatarComponent
-          styles={{
-            image: 'rounded-full object-cover overflow-hidden ',
-            height: '140px',
-            width: '150px',
-          }}
-        />
+        <div className='w-11/12 py-2 ring-2 ring-stone-400 grid place-items-center rounded-xl'>
+          <AvatarComponent
+            styles={{
+              image: 'rounded-full object-cover overflow-hidden',
+              height: '140px',
+              width: '150px',
+            }}
+          />
+          <div className='flex items-center gap-4 justify-center divide-stone-400 divide-x-2 pt-4'>
+            <ButtonComponent
+              className='flex gap-2 items-center hover:border-b-2 hover:border-stone-400'
+              onClick={handleUploadClick}
+            >
+              <HiOutlineUpload className='text-stone-700 text-lg' /> Upload new
+            </ButtonComponent>
+            <input
+              type='file'
+              accept='.jpg,.jpeg,.png'
+              ref={inputRef}
+              onChange={handleFileChange}
+              style={{ display: 'none' }}
+            />
+            <ButtonComponent
+              className='hover:border-b-2 hover:border-stone-400 px-4'
+              onClick={setToDefault}
+            >
+              Set default
+            </ButtonComponent>
+          </div>
+        </div>
       </Wrapper>
-
-      <Toaster />
-
-      <div>
-        <div>Change your avatar</div>
-
-        <button onClick={handleUploadClick}>
-          <HiOutlineUpload size={25} className='text-primary' />
-        </button>
-
-        <input type='file' accept='.jpg,.jpeg,.png' ref={inputRef} onChange={handleFileChange} style={{ display: 'none' }} />
-        <ButtonComponent onClick={setToDefault}>Set back to default</ButtonComponent>
-      </div>
     </div>
   );
 };

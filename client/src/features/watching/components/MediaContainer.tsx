@@ -4,6 +4,7 @@ import TVMedia from './tv/TVMedia';
 import { useGetItemDetailQuery } from '../hooks/useGetItemDetailQuery';
 import BackdropComponent from './BackdropComponent';
 import { useMediaQueries } from '@/hooks/useMediaQueries';
+import Wrapper from '@/components/handling/Wrapper';
 
 const MediaContainer: React.FC = () => {
   const { params } = useGetItemDetailQuery();
@@ -18,4 +19,8 @@ const MediaContainer: React.FC = () => {
   );
 };
 
-export default MediaContainer
+export default () => (
+  <Wrapper>
+    <MediaContainer />
+  </Wrapper>
+);

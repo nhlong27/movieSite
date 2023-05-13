@@ -32,7 +32,7 @@ const LinkMediaCard: React.FC<LinkMediaCardProps> = (props) => {
         }}
         path={media.poster_path ?? media.backdrop_path ?? poster}
       />
-      <div className={styles?.detail ?? 'mt-auto flex flex-col w-full'}>
+      <div className={styles?.detail ?? 'mt-auto flex flex-col w-full '}>
         <h1 className='truncate font-poppins font-bold text-lg text-stone-600 tracking-wide'>
           {(media as MovieType | SimilarMovieType).title}
         </h1>
@@ -42,7 +42,7 @@ const LinkMediaCard: React.FC<LinkMediaCardProps> = (props) => {
               ? parseInt((media as MovieType | SimilarMovieType).release_date ?? '404')
               : 'Movie'}
           </p>
-          <div className='rounded-full bg-stone-400 shadow-sm w-[2.2rem] h-[2.2rem] absolute right-8 top-4 grid place-items-center text-stone-50 tracking-[0.1rem]'>
+          <div className='px-2 bg-amber-100 rounded-lg shadow-md text-xl grid place-items-center text-yellow-600 font-black  tracking-[0.1rem]'>
             {media?.vote_average?.toFixed(1)}
           </div>
         </div>
@@ -73,7 +73,7 @@ const LinkMediaCard: React.FC<LinkMediaCardProps> = (props) => {
               ? parseInt((media as TVType | SimilarTVType).first_air_date ?? '404')
               : 'TV'}
           </p>
-          <p className='rounded-full bg-stone-400 shadow-sm w-[2.2rem] h-[2.2rem] absolute right-8 top-4 grid place-items-center text-stone-50 tracking-[0.1rem]'>{media.vote_average?.toFixed(1)}</p>
+          <p className='px-2 bg-amber-100 rounded-lg shadow-md text-xl grid place-items-center text-yellow-600 font-black  tracking-[0.1rem]'>{media.vote_average?.toFixed(1)}</p>
         </div>
       </div>
     </Link>

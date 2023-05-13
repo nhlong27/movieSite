@@ -41,6 +41,7 @@ const SearchBar = () => {
       onClick={() => {
         inputRef.current?.focus();
         setHasQueryFilters(false);
+        window.scrollTo(0, 0);
       }}
       className='flex w-full justify-end align-baseline md:h-[2.5rem] lg:min-h-[3rem] h-[2.4rem] min-w-[2.4rem] lg:min-w-[3rem]'
     >

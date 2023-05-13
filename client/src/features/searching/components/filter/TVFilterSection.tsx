@@ -3,15 +3,14 @@ import SelectComponent from '../../../../components/generic/SelectComponent';
 import { useTVFiltersStore } from '../../stores';
 import { mediaTypeConfig } from '../../queries';
 import ButtonComponent from '@/components/generic/ButtonComponent';
-import { GenreType } from '@/types/types';
 
 interface TVFilterSectionProps {}
 const TVFilterSection: React.FC<TVFilterSectionProps> = (props) => {
   const tvFiltersStore = useTVFiltersStore();
 
   return (
-    <div>
-      <div>
+    <div className='w-full min-h-screen flex flex-col justify-start items-center'>
+      <div className='w-11/12 text-xl text-stone-400 font-black py-2 mt-4 border-t-4 border-stone-400'>
         Sort by
         <SelectComponent
           options={[
@@ -21,18 +20,20 @@ const TVFilterSection: React.FC<TVFilterSectionProps> = (props) => {
             { value: 'vote_count.desc', label: 'Most votes' },
           ]}
           name={'sort_by'}
-          className='ring-2 ring-blue-300'
+          className='bg-stone-50 rounded-sm text-amber-900 my-2'
           placeholder='Select'
           extras={{ isSearchable: false, isClearable: true }}
           handleOnChange={(val: any) => tvFiltersStore.addSortBy(val.value)}
         />
       </div>
-      <div className='flex gap-2 flex-wrap'>
-        Genres
+      <div className='w-11/12 flex gap-4 flex-wrap font-poppins text-lg font-bold'>
+        <h1 className='w-full text-xl text-stone-400 font-black  py-2 mt-4 border-t-4 border-stone-400'>
+          Genres
+        </h1>
         {[...(mediaTypeConfig.tv.discover.paramList.with_genres ?? [])].map((genreObject) => (
           <ButtonComponent
-            className={`ring-2 ring-black ${
-              tvFiltersStore.with_genres?.has(genreObject[0]!) ? 'text-red-200' : ''
+            className={`rounded-xl ring-2 ring-stone-500 px-4 py-2 bg-stone-300 text-stone-600 ${
+              tvFiltersStore.with_genres?.has(genreObject[0]!) ? 'bg-amber-200' : ''
             }`}
             onClick={() => tvFiltersStore.addGenres(genreObject[0]!)}
             key={genreObject[0]}
@@ -41,8 +42,8 @@ const TVFilterSection: React.FC<TVFilterSectionProps> = (props) => {
           </ButtonComponent>
         ))}
       </div>
-      <div>
-        From year
+      <div className='w-11/12 flex gap-4 font-poppins text-lg font-bold py-2 items-center mt-16 border-t-4 justify-between border-stone-400'>
+        <h1 className='text-xl text-stone-400 font-black '>From year</h1>
         <SelectComponent
           options={[
             ...Array.from(
@@ -51,14 +52,16 @@ const TVFilterSection: React.FC<TVFilterSectionProps> = (props) => {
             ),
           ].map((year) => ({ value: year.toString(), label: year.toString() }))}
           name={'first_air_date_year'}
-          className='ring-2 ring-blue-300'
+          className='bg-stone-50 rounded-sm text-amber-900 my-2'
           placeholder={`${new Date().getFullYear().toString()}`}
           extras={{ isSearchable: true, isClearable: false }}
           handleOnChange={(val: any) => tvFiltersStore.addReleasedYear(parseInt(val?.value))}
         />
       </div>
-      <div>
+      <div className='w-11/12 flex gap-4 font-poppins text-lg font-bold py-2 justify-between items-center mt-4 border-t-4 border-stone-400'>
+      <h1 className='text-xl text-stone-400 font-black '>
         With status
+        </h1>
         <SelectComponent
           options={[
             { value: '0', label: 'Returning Series' },
@@ -69,14 +72,16 @@ const TVFilterSection: React.FC<TVFilterSectionProps> = (props) => {
             { value: '5', label: 'Pilot' },
           ]}
           name={'with_status'}
-          className='ring-2 ring-blue-300'
-          placeholder={`Select status`}
+          className='bg-stone-50 rounded-sm text-amber-900 my-2 min-w-[10rem]'
+          placeholder={`Select`}
           extras={{ isSearchable: false, isClearable: true }}
           handleOnChange={(val: any) => tvFiltersStore.addStatus(val?.value)}
         />
       </div>
-      <div>
+      <div className='w-11/12 flex gap-4 font-poppins text-lg font-bold py-2 items-center mt-4 border-t-4 justify-between border-stone-400'>
+      <h1 className='text-xl text-stone-400 font-black '>
         With type
+        </h1>
         <SelectComponent
           options={[
             { value: '0', label: 'Documentary' },
@@ -88,8 +93,8 @@ const TVFilterSection: React.FC<TVFilterSectionProps> = (props) => {
             { value: '6', label: 'Video' },
           ]}
           name={'with_type'}
-          className='ring-2 ring-blue-300'
-          placeholder={`Select type`}
+          className='bg-stone-50 rounded-sm text-amber-900 my-2 min-w-[10rem]'
+          placeholder={`Select`}
           extras={{ isSearchable: false, isClearable: true }}
           handleOnChange={(val: any) => tvFiltersStore.addType(val?.value)}
         />

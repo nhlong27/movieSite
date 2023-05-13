@@ -17,13 +17,17 @@ const FilterResult = () => {
       endMessage={<></>}
       style={{ width: '100%', display: 'grid', placeItems: 'center' }}
     >
-      <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 2xl:grid-cols-6 place-items-center w-full gap-4 2xl:gap-4 min-h-screen  place-content-start'>
+      <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 2xl:grid-cols-6 place-items-center w-full gap-4 2xl:gap-4 min-h-screen  place-content-start bg-stone-200 rounded-b-xl shadow-xl py-4'>
         {data!.pages.map((page: any) => {
           return page?.results?.map((media: MovieType | TVType, index: number) => (
             <LinkMediaCard
               key={index}
               media={media}
               role={(media as MovieType)?.title ? 'linkMovieCard' : 'linkTVCard'}
+              styles={{
+                link: 'min-h-[320px] w-[200px] overflow-hidden flex justify-center items-center flex-col relative shadow-lg rounded-xl',
+                detail: 'mt-auto min-h-[4rem] flex flex-col w-11/12',
+              }}
             />
           ));
         })}
@@ -34,11 +38,11 @@ const FilterResult = () => {
 
 const SuspenseState = () => {
   return (
-    <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 2xl:grid-cols-6 place-items-center w-full gap-4 2xl:gap-4 min-h-screen'>
+    <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 2xl:grid-cols-6 place-items-center w-full gap-4 2xl:gap-4 min-h-screen  place-content-start bg-stone-200 rounded-b-xl shadow-xl py-4'>
       {Array(20)
         .fill(0)
         .map((item, index) => (
-          <div key={index} className='w-[200px] overflow-hidden h-[320px]'>
+          <div key={index} className='min-h-[320px] w-[200px] overflow-hidden flex justify-center items-center flex-col relative shadow-lg rounded-xl'>
             <Skeleton className='h-full w-full' />
           </div>
         ))}

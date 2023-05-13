@@ -40,7 +40,7 @@ function App() {
     window.scrollTo(0, 0);
   }, [pathname]);
   return (
-    <div className='bg-stone-300 min-h-dynamic-screen w-screen flex flex-col md:gap-4 z-0'>
+    <div className='bg-stone-400 min-h-dynamic-screen w-screen flex flex-col md:gap-4 z-0'>
         <LoadingBar
           // className={` transition-all duration-1000 ease-in`}
           height={4}
@@ -59,11 +59,11 @@ function App() {
         containerStyle={{}}
         toastOptions={{
           // Define default options
-          className: 'tracking-wider',
+          className: 'tracking-wider border-4 border-red-700 ring-2 ring-red-700 font-poppins font-bold shadow-xl',
           duration: 5000,
           style: {
-            background: '#363636',
-            color: '#fff',
+            background: '#e7e5e4',
+            color: '#991b1b',
           },
 
           // Default options for specific types

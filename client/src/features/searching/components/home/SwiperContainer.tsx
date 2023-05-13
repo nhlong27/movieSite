@@ -37,7 +37,7 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
   const { isXs, is4k, isXl } = useMediaQueries();
   return isXs ? (
     <div
-      className={`z-20 w-full xs:h-[20rem] lg:h-[24rem]  ${
+      className={`z-20 w-full xs:h-[20rem] lg:h-[24rem] overflow-hidden  ${
         styles?.swiper ?? 'absolute bottom-0 left-0 right-0'
       }`}
     >
@@ -98,7 +98,7 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
                         sectionName
                           ? sectionBackdropItems.getSectionBackdropItem(sectionName)?.id ===
                             media.id
-                            ? '-mt-[4rem] 4k:-mt-[6rem] mx-2'
+                            ? 'opacity-50 ring-8 ring-stone-900'
                             : ''
                           : ''
                       }

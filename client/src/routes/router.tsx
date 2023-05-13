@@ -43,7 +43,7 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: (
-      <SkeletonTheme baseColor='#313131' highlightColor='#525252'>
+      <SkeletonTheme baseColor='#1c1917' highlightColor='#737373'>
         <Provider>
           <QueryClientProvider client={queryClient}>
             <App />
@@ -69,9 +69,9 @@ export const router = createBrowserRouter([
       {
         path: '/:mediaType/:id',
         element: (
-          <ProtectedRoute>
-            <MediaPage />
-          </ProtectedRoute>
+          // <ProtectedRoute>
+          <MediaPage />
+          // </ProtectedRoute>
         ),
         loader: ({ params }) => itemLoader({ queryClient, params }),
       },
@@ -89,10 +89,6 @@ export const router = createBrowserRouter([
   },
   {
     path: '*',
-    element: (
-      <ProtectedRoute>
-        <ErrorPage />
-      </ProtectedRoute>
-    ),
+    element: <ErrorPage />,
   },
 ]);

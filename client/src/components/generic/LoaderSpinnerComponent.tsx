@@ -6,12 +6,12 @@ const LoaderSpinnerComponent = ({ styles }: { styles?: Record<string, string> })
     <Oval
       height={styles?.height}
       width={styles?.width}
-      color={styles?.color ?? '#4fa94d'}
+      color={styles?.color ?? '#eab308'}
       wrapperStyle={{}}
       wrapperClass=''
       visible={true}
       ariaLabel='oval-loading'
-      secondaryColor={styles?.colorSecondary ?? '#4fa94d'}
+      secondaryColor={styles?.colorSecondary ?? '#eab308'}
       strokeWidth={2}
       strokeWidthSecondary={2}
     />

@@ -3,7 +3,6 @@ import React from 'react';
 import { useSectionBackdropItemsStore } from '../../stores';
 import { MovieType, TVType } from '@/types/types';
 import { mediaTypeConfig } from '../../queries';
-import ButtonComponent from '@/components/generic/ButtonComponent';
 import backdrop from '/assets/placeholders/backdrop.png';
 
 

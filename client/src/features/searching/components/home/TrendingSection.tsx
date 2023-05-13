@@ -29,7 +29,7 @@ const TrendingSection = () => {
 
   const { isXs } = useMediaQueries();
   return (
-    <div className='relative 4k:aspect-[18/9] xl:aspect-[15/5] xs:aspect-[9/6] w-full flex justify-center items-center z-0 bg-gradient-to-t from-stone-300 to-stone-200 py-4 rounded-lg shadow-lg'>
+    <div className='relative 4k:aspect-[18/9] xl:aspect-[15/5] xs:aspect-[9/6] w-full flex justify-center items-center z-0 bg-stone-200 py-4 rounded-lg shadow-lg '>
       <div className='w-11/12 flex flex-col z-10'>
         <div className='xl:aspect-[22/14] lg:aspect-[12/9] z-20 xs:aspect-square w-full font-poppins text-2xl font-black tracking-[0.3rem] text-stone-500 uppercase'>
           <div className='flex py-2 border-b-2 border-stone-300'>

@@ -26,7 +26,7 @@ const WatchHistorySection = () => {
             {shouldWatchHistoryDisplay ? (
               <div className='flex gap-2 items-center'>
                 Hide{' '}
-                <div className='w-[1rem] h-[1rem] grid place-items-center rounded-full ring-2 ring-stone-500'>
+                <div className='ring-2 ring-stone-600 rounded-sm'>
                   <IoMdClose className='text-base' />
                 </div>
               </div>
@@ -78,9 +78,9 @@ export default () => (
   <Wrapper
     errorComponent={() => (
       <div className='h-[5rem] w-full group flex justify-center items-center bg-stone-300 shadow-inner border-2 border-stone-400 font-poppins text-normal font-bold text-stone-800 px-8 '>
-        <div className='xs:min-w-[20rem] min-w-[15rem] group-hover:max-w-0 transition-all duration-300 overflow-hidden opacity-100 group-hover:opacity-0 flex justify-start items-start gap-2'>
-          <AiOutlineQuestionCircle className='text-4xl' />
-          <span>Create an account to access watch history</span>
+        <div className='xs:min-w-[20rem] min-w-[15rem] group-hover:max-w-0 transition-all duration-300 overflow-hidden opacity-100 group-hover:opacity-0 flex justify-start items-start gap-2 md:items-center '>
+          <AiOutlineQuestionCircle className='text-4xl md:text-2xl' />
+          <span className='md:text-xl'>Create an account to access watch history</span>
         </div>
         <Link
           className='ml-8 group-hover:ml-0 overflow-hidden group-hover:max-w-[10rem] opacity-0 group-hover:opacity-100 transition-all duration-300 grid place-items-center px-4 py-2 rounded-lg bg-stone-600 text-stone-50 shadow-lg'
