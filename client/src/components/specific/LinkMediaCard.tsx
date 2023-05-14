@@ -96,11 +96,11 @@ const LinkMediaCard: React.FC<LinkMediaCardProps> = (props) => {
       />
       <div className={styles?.detail ?? 'mt-auto flex flex-col w-full'}>
         {(media as any) === 'movie' ? (
-          <h1 className='truncate'>{(media as any).title}</h1>
+          <h1 className='truncate font-poppins font-bold text-lg text-stone-600 tracking-wide'>{(media as any).title}</h1>
         ) : (
-          <h1 className='truncate'>{(media as any).name}</h1>
+          <h1 className='truncate font-poppins font-bold text-lg text-stone-600 tracking-wide'>{(media as any).name}</h1>
         )}
-        <div className='flex justify-between font-poppins text-base text-stone-500'>
+        <div className='flex justify-between font-poppins text-stone-500 font-extrabold text-xs'>
           <p>
             Last updated:{' '}
             <span className='text-stone-600 font-bold'>

@@ -72,7 +72,7 @@ const AvatarContainer = () => {
 
   return (
     <div className='w-full flex flex-col justify-center items-center mt-4 font-poppins'>
-      <h1 className='w-11/12 text-stone-500 tracking-wide text-xl font-normal flex py-2'>Avatar</h1>
+      <h1 className='w-11/12 text-stone-500 tracking-wide text-xl flex py-2 font-bold'>Avatar</h1>
       <Wrapper
         suspenseComponent={
           <div className='rounded-full object-cover overflow-hidden'>

@@ -6,6 +6,8 @@ import { ShowQueryResponseType } from '../../types';
 import SelectComponent from '@/components/generic/SelectComponent';
 import { useUpdateShowMutation } from '../../hooks/useUpdateShowMutation';
 import LazyLoadImageComponent from '@/components/handling/LazyLoadImageComponent';
+import { poster } from '@/config/images';
+import { AiOutlineHeart, BsTrash } from '@/config/icons';
 
 interface ProfileMediaCardProps {
   media: ShowQueryResponseType;
@@ -30,21 +32,30 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
   };
 
   return (
-    <div className='w-[200px]'>
+    <div className='w-[200px] rounded-xl shadow-xl shadow-stone-600 flex flex-col justify-center items-center bg-stone-200'>
       <Link
         to={`/${media.title ? 'movie' : 'tv'}/${media.id}`}
-        className='w-full overflow-hidden flex justify-center items-center flex-col'
+        className='w-[200px] overflow-hidden flex items-center flex-col rounded-t-xl'
       >
         <LazyLoadImageComponent
-          styles={{ image: 'object-cover rounded-md w-full aspect-[10/14]', size: 'w200' }}
-          path={media?.poster_path}
+          styles={{ image: 'object-cover bg-gradient-to-tr from-white to-black', size: 'original' }}
+          path={media?.poster_path ?? poster}
         />
-        <div className={`flex flex-col w-full `}>
-          <h1 className='truncate'>{media.title ? media.title : media.name}</h1>
-          <p>{new Date(Date.parse(media.updatedAt)).toLocaleString('sv')}</p>
+        <div className={`w-11/12 flex flex-col bg-stone-100 my-4 `}>
+          <h1 className='truncate font-poppins font-black text-xl text-stone-600 tracking-wide'>
+            {media.title ? media.title : media.name}
+          </h1>
+          <div className='flex justify-between font-poppins text-stone-500 font-extrabold text-base'>
+            <p>
+              Last updated:{' '}
+              <span className='text-stone-600 font-bold'>
+                {new Date(Date.parse((media as any).updatedAt)).toLocaleString('sv')}
+              </span>
+            </p>
+          </div>
         </div>
       </Link>
-      <div className='flex flex-col'>
+      <div className='w-11/12 text-base text-stone-400 font-black py-2 border-t-2 border-stone-400'>
         <SelectComponent
           options={[
             { value: 'Watching', label: 'Watching' },
@@ -53,7 +64,7 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
             { value: 'Dropped', label: 'Dropped' },
           ]}
           name={'status'}
-          className='ring-2 ring-blue-300'
+          className='bg-stone-50 rounded-sm text-amber-900 my-2'
           placeholder={media.status ?? 'Add status'}
           extras={{ isSearchable: false, isClearable: true }}
           handleOnChange={(val: any) => handleUpdateShow('status', val)}
@@ -72,33 +83,39 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
             { value: 10, label: '10' },
           ]}
           name={'score'}
-          className='ring-2 ring-blue-300'
+          className='bg-stone-50 rounded-sm text-amber-900 my-2'
           placeholder={media.score?.toString() ?? 'Select score'}
           extras={{ isSearchable: false, isClearable: true }}
           handleOnChange={(val: any) => handleUpdateShow('score', val)}
         />
-        <ButtonComponent
-          role='trueFalse'
-          className={`${
-            media.isFavorited
-              ? 'text-pink-300 font-bold hover:bg-gray-200'
-              : 'text-blue-300 font-normal hover:bg-gray-200'
-          }`}
-          onClick={() => {
-            handleUpdateShow('isFavorited', { value: !isFavorited });
-            setIsFavorited((prev) => !prev);
-          }}
-        >
-          Favorite
-        </ButtonComponent>
-        <ButtonComponent
-          role='delete'
-          onClick={() => {
-            deleteShowMutation.mutate(media.id);
-          }}
-        >
-          Delete
-        </ButtonComponent>
+        <div className='py-2 w-full flex justify-between items-center'>
+          <ButtonComponent
+            role='trueFalse'
+            className={`font-bold flex gap-2 items-center rounded-lg py-[4px] bg-stone-300 ring-2 ring-yellow-600 px-2 text-sm
+            hover:bg-yellow-500
+            hover:ring-stone-900 hover:text-stone-900 ${
+              media.isFavorited
+                ? 'text-pink-500 font-black hover:bg-pink-600'
+                : 'text-yellow-600 hover:bg-yellow-700'
+            }`}
+            onClick={() => {
+              handleUpdateShow('isFavorited', { value: !isFavorited });
+              setIsFavorited((prev) => !prev);
+            }}
+          >
+            <AiOutlineHeart className='text-xl' />
+            Favorite
+          </ButtonComponent>
+          <ButtonComponent
+            className='ml-auto flex py-[4px] px-2  rounded-lg bg-stone-300 ring-2 ring-red-400 text-red-500 hover:bg-red-400 hover:ring-stone-900 hover:text-stone-900'
+            role='delete'
+            onClick={() => {
+              deleteShowMutation.mutate(media.id);
+            }}
+          >
+            <BsTrash className='text-lg' />
+          </ButtonComponent>
+        </div>
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import FormComponent from '@/components/generic/FormComponent';
 import { useDeactivateUserMutation } from '../../hooks/useDeactivateUserMutation';
 import { UserDeactivateForm } from '../../types';
+import { AiOutlinePoweroff } from 'react-icons/ai';
 
 const DeactivateRequestContainer = () => {
   const deactivateUserMutation = useDeactivateUserMutation();
@@ -11,9 +12,17 @@ const DeactivateRequestContainer = () => {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className='w-11/12 py-2'>
       <Toaster />
       <FormComponent
+        styles={{
+          form: 'bg-stone-200 gap-2 flex flex-col',
+          input: 'bg-stone-300 rounded-sm pl-2 text-stone-400',
+          button:
+            'ml-auto px-2 py-2  rounded-lg mt-4 bg-stone-300 ring-2 ring-red-500 text-red-600 text-base font-bold hover:bg-red-600 hover:text-stone-100',
+          inputName:
+            'font-bold text-stone-500 text-lg flex items-center justify-between gap-4 pr-2',
+        }}
         schema={UserDeactivateForm}
         submitFn={(formInputs: any) =>
           deactivateUserMutation.mutate(formInputs.password, {
@@ -34,7 +43,11 @@ const DeactivateRequestContainer = () => {
           })
         }
         options={[{ extras: { type: 'password' }, name: 'password' }]}
-        submitBn={'Deactivate'}
+        submitBn={
+          <span className='flex items-center gap-2'>
+            <AiOutlinePoweroff className='text-lg' /> Deactivate
+          </span>
+        }
       />
     </div>
   );

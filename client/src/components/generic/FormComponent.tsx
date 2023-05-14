@@ -4,12 +4,15 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { AnyZodObject } from 'zod';
 import ButtonComponent from './ButtonComponent';
 
+import { AiFillEdit } from 'react-icons/ai';
+import { HiOutlineExclamationCircle } from 'react-icons/hi';
+
 interface FormComponentProps {
   schema: AnyZodObject;
   // submitFn: (...args: any[]) => any;
   submitFn: Function;
   options: Array<{ extras?: { [key: string]: string }; name: string; default?: string }>;
-  submitBn?: string;
+  submitBn?: any;
   styles?: Record<string, string>;
 }
 
@@ -18,6 +21,7 @@ const FormComponent: React.FC<FormComponentProps> = (props) => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: zodResolver(props.schema),
     defaultValues: {
@@ -36,14 +40,32 @@ const FormComponent: React.FC<FormComponentProps> = (props) => {
         {props.options.map((option, index) => {
           return (
             <React.Fragment key={index}>
-              <input className={props.styles?.input} {...option.extras} {...register(`${option.name}` as never)} />
+              <div className={`capitalize ${props.styles?.inputName}`}>
+                {option.name}
+                <AiFillEdit />
+              </div>
+              <input
+                className={props.styles?.input}
+                {...option.extras}
+                {...register(`${option.name}` as never)}
+              />
               {(errors as any)[`${option.name}`]?.message && (
-                <div>{(errors as any)[`${option.name}`]?.message}</div>
+                <div className={`flex items-center gap-2 text-red-700 ${props.styles?.error}`}>
+                  <HiOutlineExclamationCircle className='text-lg' />
+                  {(errors as any)[`${option.name}`]?.message}
+                </div>
               )}
             </React.Fragment>
           );
         })}
-        <ButtonComponent className={props.styles?.button} type='submit'>{props.submitBn ?? 'Submit'}</ButtonComponent>
+        <div className='flex justify-between items-center'>
+        <ButtonComponent className='text-stone-400' onClick={()=>reset()}>
+          Reset
+        </ButtonComponent>
+        <ButtonComponent className={props.styles?.button} type='submit'>
+          {props.submitBn ?? 'Submit'}
+        </ButtonComponent>
+        </div>
       </>
     </form>
   );

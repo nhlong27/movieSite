@@ -1,4 +1,4 @@
-import { hasQueryFiltersAtom } from '@/App';
+import { hasQueryFiltersAtom, mediaTypeAtom } from '@/App';
 import { useAtom } from 'jotai';
 import React from 'react';
 import SearchResult from './query/SearchResult';
@@ -7,11 +7,15 @@ import ButtonComponent from '@/components/generic/ButtonComponent';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { AiOutlineDown, AiOutlineUp } from 'react-icons/ai';
 import { queryAtom } from '../atoms';
+import { useMovieFiltersStore, useTVFiltersStore } from '../stores';
 
 const ResultSection = () => {
   const [query] = useAtom(queryAtom);
   const [hasQueryFilters, setHasQueryFilters] = useAtom(hasQueryFiltersAtom);
   const [animationParentRef] = useAutoAnimate();
+  const movieFiltersStore = useMovieFiltersStore();
+  const tvFiltersStore = useTVFiltersStore();
+  const [mediaType] = useAtom(mediaTypeAtom);
   return (
     <div
       ref={animationParentRef}
@@ -27,7 +31,7 @@ const ResultSection = () => {
         <div className='flex items-center gap-4'>
           <div>Search Results for </div>
           <div className='px-4 py-2 rounded-lg bg-stone-500 text-stone-200 uppercase font-extrabold'>
-            {query ?? '*'}
+            {query ?? '?'}
           </div>
         </div>
         {hasQueryFilters ? (
@@ -41,8 +45,39 @@ const ResultSection = () => {
         )}
       </ButtonComponent>
       {!hasQueryFilters && <SearchResult />}
-      <h1 className='mt-8 font-poppins text-xl font-black tracking-[0.1rem] text-stone-600 bg-stone-200 rounded-t-xl py-4 border-b-4 px-8 border-stone-400 shadow-xl'>
-        Filtered Resutls by
+      <h1 className='mt-8 font-poppins text-xl font-black tracking-[0.1rem] text-stone-600 bg-stone-200 rounded-t-xl py-4 border-b-4 px-8 border-stone-400 shadow-xl flex items-center gap-4 flex-wrap'>
+        <span>Filtered Results by</span>
+        {mediaType === 'movie'
+          ? [
+              'Movies',
+              movieFiltersStore.sort_by,
+              'Genre Ids: ' + [...(movieFiltersStore.with_genres ?? [])].join(','),
+              'Year release: ' + movieFiltersStore.year,
+            ].map((item, index) => (
+              <div
+                key={index}
+                className='px-4 py-2 rounded-lg bg-stone-500 text-stone-200 capitalize
+                text-base'
+              >
+                {item ?? '?'}
+              </div>
+            ))
+          : [
+              'TV Shows',
+              tvFiltersStore.sort_by,
+              'Genre Ids: ' + [...(tvFiltersStore.with_genres ?? [])].join(','),
+              'Year release: ' + tvFiltersStore.first_air_date_year,
+              'Status: ' + (tvFiltersStore.with_status ?? 'None'),
+              'Type: ' + (tvFiltersStore.with_type ?? 'None'),
+            ].map((item, index) => (
+              <div
+                key={index}
+                className='px-4 py-2 rounded-lg bg-stone-500 text-stone-200 capitalize
+                text-base'
+              >
+                {item ?? '?'}
+              </div>
+            ))}
       </h1>
       <FilterResult />
     </div>

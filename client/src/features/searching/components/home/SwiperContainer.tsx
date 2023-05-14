@@ -74,7 +74,7 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
                       transition-all
                       ease-in-out
                       duration-500 h-full shadow-xl  overflow-hidden bg-gradient-to-t from-stone-300 to-stone-200`,
-                      image: 'overflow-hidden rounded-xl',
+                      image: 'overflow-hidden rounded-xl bg-gradient-to-tr from-white to-black',
                       size: is4k ? 'original' : isXl ? 'w500' : 'w400',
                       detail: 'flex w-11/12 flex-col justify-end',
                     }}
@@ -103,7 +103,7 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
                           : ''
                       }
                       `,
-                      image: 'overflow-hidden',
+                      image: 'overflow-hidden bg-gradient-to-tr from-white to-black',
                       size: is4k ? 'original' : isXl ? 'w500' : 'w400',
                     }}
                   />
@@ -163,7 +163,7 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
             media={data?.results[slideIndex]}
             styles={{
               link: `w-full flex justify-center items-center flex-col`,
-              image: 'overflow-hidden rounded-xl shadow-xl',
+              image: 'overflow-hidden rounded-xl shadow-xl bg-gradient-to-tr from-white to-black',
               height: '320px',
               width: '320px',
               detail:

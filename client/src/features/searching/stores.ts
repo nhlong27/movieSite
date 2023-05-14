@@ -64,9 +64,9 @@ const useSectionBackdropItemsStore = create<SectionBackdropItem>((set, get) => (
 }));
 
 const useMovieFiltersStore = create<MovieFiltersStore>((set) => ({
-  sort_by: undefined,
+  sort_by: 'popular.desc',
   with_genres: new Set(),
-  year: undefined,
+  year: new Date().getFullYear(),
   addSortBy: (sortByValue: string) =>
     set(() => ({
       sort_by: sortByValue,
@@ -89,9 +89,9 @@ const useMovieFiltersStore = create<MovieFiltersStore>((set) => ({
 }));
 
 const useTVFiltersStore = create<TVFiltersStore>((set) => ({
-  sort_by: undefined,
+  sort_by: 'popular.desc',
   with_genres: new Set(),
-  first_air_date_year: undefined,
+  first_air_date_year: new Date().getFullYear(),
   with_status: undefined,
   with_type: undefined,
   addSortBy: (sortByValue: string) =>
