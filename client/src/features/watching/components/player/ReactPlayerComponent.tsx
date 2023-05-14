@@ -49,7 +49,7 @@ const ReactPlayerComponent: React.FC<ReactPlayerComponentProps> = (props) => {
             url={`${urls.yt}${trailerSource.key}`}
           />
         ) : (
-          <img src={`${urls.yt_img(trailerSource.key)}`} alt='' />
+          <img className='w-full h-full' src={`${urls.yt_img(trailerSource.key)}`} alt='' />
         )}
       </div>
     );

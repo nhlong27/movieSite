@@ -5,7 +5,8 @@ import {
   MovieDetailSchema,
   ReviewListSchema,
   SeasonSchema,
-  SimilarListSchema,
+  SimilarMovieListSchema,
+  SimilarTVListSchema,
   TVDetailSchema,
   VideoListSchema,
 } from './types';
@@ -26,7 +27,7 @@ const keys = {
   ],
 };
 
-// This object serves the purpose: Reducing fetcher, useQuery hook repetitions  
+// This object serves the purpose: Reducing fetcher, useQuery hook repetitions
 const itemDetailOptions: ItemDetailOptionsProps = {
   movie: {
     default: async (movieId?: string) =>
@@ -38,7 +39,7 @@ const itemDetailOptions: ItemDetailOptionsProps = {
     reviews: async (movieId?: string) =>
       ReviewListSchema.parse((await apiClient.get(`/movie/${movieId}/reviews`)).data),
     similar: async (movieId?: string) =>
-      SimilarListSchema.parse((await apiClient.get(`/movie/${movieId}/similar`)).data),
+      SimilarMovieListSchema.parse((await apiClient.get(`/movie/${movieId}/similar`)).data),
   },
   tv: {
     default: async (tvId?: string) =>
@@ -50,7 +51,7 @@ const itemDetailOptions: ItemDetailOptionsProps = {
     reviews: async (tvId?: string) =>
       ReviewListSchema.parse((await apiClient.get(`/tv/${tvId}/reviews`)).data),
     similar: async (tvId?: string) =>
-      SimilarListSchema.parse((await apiClient.get(`/tv/${tvId}/similar`)).data),
+      SimilarTVListSchema.parse((await apiClient.get(`/tv/${tvId}/similar`)).data),
   },
 };
 
@@ -92,7 +93,7 @@ const getSeasonQuery = (season_number?: string, tvId?: string) => {
     refetchOnReconnect: false,
     enabled: !!tvId,
     suspense: true,
-    useErrorBoundary: true
+    useErrorBoundary: true,
   };
 };
 

@@ -4,11 +4,12 @@ import LazyLoadImageComponent from '../handling/LazyLoadImageComponent';
 import { MovieType, TVType } from '@/types/types';
 import { SimilarMovieType } from '@/features/watching/types';
 import { SimilarTVType } from '@/features/watching/types';
+import {poster} from '@/config/images'
 
 interface ButtonMediaCardProps {
   media: MovieType | TVType | SimilarMovieType | SimilarTVType;
   handleButtonClick?: () => void;
-  styles?: Record<string, string>;
+  styles?: Record<string, any>;
   role?: 'buttonMovieCard' | 'buttonTVCard';
 }
 
@@ -19,7 +20,7 @@ const ButtonMediaCard: React.FC<ButtonMediaCardProps> = (props) => {
     <ButtonComponent onClick={handleButtonClick} className={`${styles?.button} font-poppins text-stone-100`}>
       <LazyLoadImageComponent
         styles={{height: styles?.height, width:styles?.width, size: styles?.size, image:styles?.image}}
-        path={media.poster_path ?? media.backdrop_path}
+        path={media.poster_path ?? poster}
       />
       {role === 'buttonMovieCard' ? (
         <div className={styles?.detail ?? 'flex flex-col w-11/12 mt-auto py-2'}>

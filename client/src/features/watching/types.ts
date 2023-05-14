@@ -39,7 +39,7 @@ const MovieDetailSchema = z
     runtime: z.number().nullable(),
     budget: z.number(),
     revenue: z.number(),
-    original_language: z.string()
+    original_language: z.string(),
   })
   .deepPartial();
 
@@ -257,6 +257,13 @@ const SimilarTVSchema = z
   })
   .partial();
 
+const SimilarMovieListSchema = z.object({
+  results: z.array(SimilarMovieSchema),
+});
+const SimilarTVListSchema = z.object({
+  results: z.array(SimilarTVSchema),
+});
+
 const SimilarListSchema = z
   .object({
     results: z.array(z.union([SimilarMovieSchema, SimilarTVSchema])),
@@ -273,7 +280,9 @@ type CastType = z.infer<typeof CastSchema>;
 type CrewType = z.infer<typeof CrewSchema>;
 type AuthorType = z.infer<typeof AuthorSchema>;
 type SimilarMovieType = z.infer<typeof SimilarMovieSchema>;
+type SimilarMovieListType = z.infer<typeof SimilarMovieListSchema>;
 type SimilarTVType = z.infer<typeof SimilarTVSchema>;
+type SimilarTVListType = z.infer<typeof SimilarTVListSchema>;
 type VideoListType = z.infer<typeof VideoListSchema>;
 type CreditListType = z.infer<typeof CreditListSchema>;
 type SimilarListType = z.infer<typeof SimilarListSchema>;
@@ -284,14 +293,14 @@ type ItemDetailOptionsProps = {
     videos: (movieId?: string) => Promise<VideoListType>;
     credits: (movieId?: string) => Promise<CreditListType>;
     reviews: (movieId?: string) => Promise<ReviewListType>;
-    similar: (movieId?: string) => Promise<SimilarListType>;
+    similar: (movieId?: string) => Promise<SimilarMovieListType>;
   };
   tv: {
     default: (tvId?: string) => Promise<TVDetailType>;
     videos: (tvId?: string) => Promise<VideoListType>;
     credits: (tvId?: string) => Promise<CreditListType>;
     reviews: (tvId?: string) => Promise<ReviewListType>;
-    similar: (tvId?: string) => Promise<SimilarListType>;
+    similar: (tvId?: string) => Promise<SimilarTVListType>;
   };
 };
 
@@ -318,5 +327,7 @@ export {
   VideoListType,
   CreditListType,
   ReviewListType,
-  ItemDetailOptionsProps
+  ItemDetailOptionsProps,
+  SimilarMovieListSchema,
+  SimilarTVListSchema,
 };

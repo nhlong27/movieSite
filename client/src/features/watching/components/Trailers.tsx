@@ -1,10 +1,10 @@
-
 import React from 'react';
 import { useGetItemExtraQuery } from '../hooks/useGetItemExtraQuery';
 import { VideoType } from '../types';
 import ReactPlayerComponent from './player/ReactPlayerComponent';
 import ButtonComponent from '@/components/generic/ButtonComponent';
 import { useMediaQueries } from '@/hooks/useMediaQueries';
+import { TfiLayoutMediaCenterAlt } from 'react-icons/tfi';
 
 interface TrailersProps {
   shouldTrailersDisplayProp?: boolean;
@@ -23,21 +23,56 @@ const Trailers: React.FC<TrailersProps> = (props) => {
     shouldTrailersDisplayProp ?? true,
   );
   const { isXs } = useMediaQueries();
-  return (
+  return isXs ? (
     <>
-      <ButtonComponent onClick={() => setShouldTrailersDisplay((prev) => !prev)}>
+      <ButtonComponent
+        className='flex items-center gap-2 text-xl tracking-[0.1rem] bg-transparent px-4 py-2 border-t-2 border-stone-400 hover:bg-stone-600 hover:bg-opacity-50 font-bold capitalize text-stone-300 '
+        onClick={() => setShouldTrailersDisplay((prev) => !prev)}
+      >
+        <TfiLayoutMediaCenterAlt className='text-xl' />
         Trailers
       </ButtonComponent>
+      {shouldTrailersDisplay && (
+        <div
+          className={`overflow-scroll scrollbar-hide flex w-11/12 flex-col gap-8 justify-start pr-8 items-end py-8 border-r-4 border-stone-600`}
+        >
+          {data.videos.results?.slice(0, 5).map((video: VideoType, index) => {
+            return (
+              <div
+                key={index}
+                className='
+                   shadow-lg shadow-stone-600 ring-offset-2 ring-offset-stone-200 relative'
+                onClick={() => setSelectedTrailer && setSelectedTrailer(video)}
+              >
+                <ReactPlayerComponent
+                  trailerType={isXs ? 'image' : 'video'}
+                  trailerSource={video}
+                  className='w-full'
+                />
+                <div className='absolute top-0 h-full w-full z-30 grid place-items-center hover:bg-stone-900  hover:bg-opacity-70 text-xl font-poppins font-black uppercase tracking-wider opacity-0 hover:opacity-100 '>Play</div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </>
+  ) : (<>
+    <ButtonComponent
+      className='flex items-center gap-2 bg-stone-300 px-4 py-2 rounded-lg hover:bg-stone-400 font-bold uppercase tracking-wider text-stone-500 shadow-lg mb-4  border-b-2 border-stone-400'
+      onClick={() => setShouldTrailersDisplay((prev) => !prev)}
+    >
+      <TfiLayoutMediaCenterAlt className='text-lg' />
+      Trailers
+    </ButtonComponent>
+    {shouldTrailersDisplay && (
       <div
-        className={`overflow-scroll scrollbar-hide flex xs:w-4/5 w-full flex-col gap-8 justify-start pr-2 items-end ${
-          shouldTrailersDisplay ? 'visible opacity-100' : 'invisible opacity-0 h-0'
-        } transition-all duration-1000`}
+        className={`overflow-scroll scrollbar-hide flex xs:w-4/5 w-full flex-col gap-8 justify-start pr-2 items-end py-8`}
       >
         {data.videos.results?.slice(0, 5).map((video: VideoType, index) => {
           return (
             <div
-            key={index}
-              className='h-full w-full'
+              key={index}
+              className='h-full w-full rounded-lg overflow-hidden shadow-lg ring-2 ring-stone-400 ring-offset-2 ring-offset-stone-200'
               onClick={() => setSelectedTrailer && setSelectedTrailer(video)}
             >
               <ReactPlayerComponent
@@ -49,8 +84,8 @@ const Trailers: React.FC<TrailersProps> = (props) => {
           );
         })}
       </div>
-    </>
-  );
+    )}
+  </>)
 };
 
 export default Trailers;

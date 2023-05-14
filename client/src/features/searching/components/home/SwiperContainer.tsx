@@ -9,6 +9,7 @@ import { FilteredMovieListType, FilteredTVListType } from '../../types';
 import { MdOutlineNavigateNext, MdOutlineNavigateBefore } from 'react-icons/md';
 import { BsPlayFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import { undefined } from 'zod';
 
 interface SwiperContainerProps {
   sectionName?: 'trending' | 'comingSoon' | 'airing' | 'popular' | 'top_rated' | 'history';
@@ -59,7 +60,9 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
           {data?.results?.map((media: MovieType | TVType, index: number) => {
             return (
               <React.Fragment key={index}>
-                {sectionName === 'popular' || sectionName === 'top_rated' || sectionName==='history' ? (
+                {sectionName === 'popular' ||
+                sectionName === 'top_rated' ||
+                sectionName === 'history' ? (
                   <LinkMediaCard
                     role={
                       mediaType === 'multiple'
@@ -75,7 +78,13 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
                       ease-in-out
                       duration-500 h-full shadow-xl  overflow-hidden bg-gradient-to-t from-stone-300 to-stone-200`,
                       image: 'overflow-hidden rounded-xl bg-gradient-to-tr from-white to-black',
-                      size: is4k ? 'original' : isXl ? 'w500' : 'w400',
+                      size: media.poster_path
+                        ? is4k
+                          ? 'original'
+                          : isXl
+                          ? 'w500'
+                          : 'w400'
+                        : undefined,
                       detail: 'flex w-11/12 flex-col justify-end',
                     }}
                   />
@@ -104,7 +113,7 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
                       }
                       `,
                       image: 'overflow-hidden bg-gradient-to-tr from-white to-black',
-                      size: is4k ? 'original' : isXl ? 'w500' : 'w400',
+                      size: media.poster_path ? (is4k ? 'original' : isXl ? 'w500' : 'w400') : undefined,
                     }}
                   />
                 )}
@@ -168,7 +177,7 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
               width: '320px',
               detail:
                 'relative flex -mt-4 z-20 flex-col bg-stone-100 w-[300px] rounded-xl shadow-xl px-8 py-2',
-              size: 'original',
+              size: data?.results[slideIndex].poster_path ? 'original' : undefined,
             }}
           />
         ) : null}

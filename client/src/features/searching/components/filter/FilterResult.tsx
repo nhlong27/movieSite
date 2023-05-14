@@ -27,6 +27,7 @@ const FilterResult = () => {
               styles={{
                 link: 'min-h-[320px] w-[200px] overflow-hidden flex justify-center items-center flex-col relative shadow-lg rounded-xl',
                 detail: 'mt-auto min-h-[4rem] flex flex-col w-11/12',
+                size: media?.poster_path ? 'w200' : undefined
               }}
             />
           ));

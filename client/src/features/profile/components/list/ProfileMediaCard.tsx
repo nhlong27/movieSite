@@ -38,17 +38,17 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
         className='w-[200px] overflow-hidden flex items-center flex-col rounded-t-xl'
       >
         <LazyLoadImageComponent
-          styles={{ image: 'object-cover bg-gradient-to-tr from-white to-black', size: 'original' }}
+          styles={{ image: 'object-cover bg-gradient-to-tr from-white to-black', size: media?.poster_path ?  'original' : undefined }}
           path={media?.poster_path ?? poster}
         />
         <div className={`w-11/12 flex flex-col bg-stone-100 my-4 `}>
-          <h1 className='truncate font-poppins font-black text-xl text-stone-600 tracking-wide'>
+          <h1 className='truncate font-poppins font-black text-xl lg:text-2xl text-stone-600 tracking-wide'>
             {media.title ? media.title : media.name}
           </h1>
-          <div className='flex justify-between font-poppins text-stone-500 font-extrabold text-base'>
+          <div className='flex justify-between font-poppins text-stone-300 font-extrabold text-base'>
             <p>
               Last updated:{' '}
-              <span className='text-stone-600 font-bold'>
+              <span className='text-stone-400 font-bold'>
                 {new Date(Date.parse((media as any).updatedAt)).toLocaleString('sv')}
               </span>
             </p>
@@ -91,12 +91,11 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
         <div className='py-2 w-full flex justify-between items-center'>
           <ButtonComponent
             role='trueFalse'
-            className={`font-bold flex gap-2 items-center rounded-lg py-[4px] bg-stone-300 ring-2 ring-yellow-600 px-2 text-sm
-            hover:bg-yellow-500
+            className={`font-bold flex gap-2 items-center rounded-lg py-[4px] bg-stone-300 ring-2  px-2 text-sm
             hover:ring-stone-900 hover:text-stone-900 ${
-              media.isFavorited
-                ? 'text-pink-500 font-black hover:bg-pink-600'
-                : 'text-yellow-600 hover:bg-yellow-700'
+              media?.isFavorited
+                ? 'text-pink-500 font-black hover:bg-pink-500 ring-pink-600'
+                : 'text-yellow-600 hover:bg-yellow-500 ring-yellow-600'
             }`}
             onClick={() => {
               handleUpdateShow('isFavorited', { value: !isFavorited });

@@ -7,7 +7,7 @@ import poster from '/assets/placeholders/poster.png';
 
 interface LinkMediaCardProps {
   media: MovieType | TVType | SimilarTVType | SimilarMovieType;
-  styles?: Record<string, string>;
+  styles?: Record<string, any>;
   role?: 'linkMovieCard' | 'linkTVCard' | 'linkMultipleCard';
 }
 
@@ -26,11 +26,11 @@ const LinkMediaCard: React.FC<LinkMediaCardProps> = (props) => {
         styles={{
           height: styles?.height,
           width: styles?.width,
-          size: styles?.size ?? 'w200',
+          size: styles?.size,
           image:
             styles?.image ?? 'h-[300px] overflow-hidden bg-gradient-to-tr from-white to-black ',
         }}
-        path={media.poster_path ?? media.backdrop_path ?? poster}
+        path={media.poster_path ?? poster}
       />
       <div className={styles?.detail ?? 'mt-auto flex flex-col w-full '}>
         <h1 className='truncate font-poppins font-bold text-lg text-stone-600 tracking-wide'>
@@ -60,10 +60,10 @@ const LinkMediaCard: React.FC<LinkMediaCardProps> = (props) => {
         styles={{
           height: styles?.height,
           width: styles?.width,
-          size: styles?.size ?? 'w200',
+          size: styles?.size,
           image: styles?.image ?? 'h-[300px] overflow-hidden bg-gradient-to-tr from-white to-black',
         }}
-        path={media.poster_path ?? media.backdrop_path ?? poster}
+        path={media.poster_path ?? poster}
       />
       <div className={styles?.detail ?? 'mt-auto flex flex-col w-full'}>
         <h1 className='truncate font-poppins font-bold text-lg text-stone-600 tracking-wide'>{(media as TVType | SimilarTVType).name}</h1>
@@ -89,18 +89,18 @@ const LinkMediaCard: React.FC<LinkMediaCardProps> = (props) => {
         styles={{
           height: styles?.height,
           width: styles?.width,
-          size: styles?.size ?? 'w200',
+          size: styles?.size,
           image: styles?.image ?? 'h-[300px] overflow-hidden bg-gradient-to-tr from-white to-black',
         }}
-        path={media.poster_path ?? media.backdrop_path ?? poster}
+        path={media.poster_path ?? poster}
       />
       <div className={styles?.detail ?? 'mt-auto flex flex-col w-full'}>
-        {(media as any) === 'movie' ? (
+        {(media as any).media_type === 'movie' ? (
           <h1 className='truncate font-poppins font-bold text-lg text-stone-600 tracking-wide'>{(media as any).title}</h1>
         ) : (
           <h1 className='truncate font-poppins font-bold text-lg text-stone-600 tracking-wide'>{(media as any).name}</h1>
         )}
-        <div className='flex justify-between font-poppins text-stone-500 font-extrabold text-xs'>
+        <div className='flex justify-between font-poppins text-stone-500 font-extrabold text-sm'>
           <p>
             Last updated:{' '}
             <span className='text-stone-600 font-bold'>

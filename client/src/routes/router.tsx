@@ -69,9 +69,9 @@ export const router = createBrowserRouter([
       {
         path: '/:mediaType/:id',
         element: (
-          // <ProtectedRoute>
-          <MediaPage />
-          // </ProtectedRoute>
+          <Suspense fallback={<LoadingPage />}>
+            <MediaPage />
+          </Suspense>
         ),
         loader: ({ params }) => itemLoader({ queryClient, params }),
       },

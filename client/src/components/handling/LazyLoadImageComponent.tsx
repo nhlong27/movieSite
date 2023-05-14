@@ -4,7 +4,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import { resizeImage } from '@/utils/resizeImage';
 
 type LazyLoadImageComponentProps = {
-  path?: string | null;
+  path?: string;
   styles?: Record<string, string | undefined>;
   effect?: Effect;
 };
@@ -17,7 +17,7 @@ const LazyLoadImageComponent: React.FC<LazyLoadImageComponentProps> = ({
   return (
     <div className={styles?.image}>
       <LazyLoadImage
-        src={resizeImage(path, styles?.size)}
+        src={styles?.size ? resizeImage(path, styles?.size) : path}
         height={styles?.height}
         width={styles?.width}
         alt='Error getting image'

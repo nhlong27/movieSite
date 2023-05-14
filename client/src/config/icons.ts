@@ -14,9 +14,15 @@ import {
   AiOutlineCheckCircle,
 } from 'react-icons/ai';
 
-import { BsTrash } from 'react-icons/bs';
+import { BsTrash, BsPlayFill } from 'react-icons/bs';
+
+import {FaListUl} from 'react-icons/fa'
 
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
+
+import {GrStatusInfo} from 'react-icons/gr'
+
+import {TfiLayoutMediaCenterAlt} from 'react-icons/tfi'
 
 export { all, completed, favorite, history, dropped, plan_to_watch };
 
@@ -26,4 +32,10 @@ export { TfiGallery };
 
 export { AiOutlineHeart, AiOutlineHistory, AiOutlineCalendar, AiOutlineCheckCircle };
 
-export {BsTrash}
+export {BsTrash, BsPlayFill}
+
+export {GrStatusInfo}
+
+export {TfiLayoutMediaCenterAlt}
+
+export {FaListUl}
