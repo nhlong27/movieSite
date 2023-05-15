@@ -119,7 +119,9 @@ const SeasonsAndEpisodes: React.FC<SeasonsAndEpisodesProps> = (props) => {
                   <BsListNested className='text-lg' />
                   Season {seasonIndex + 1}
                 </p>
-                <p className='text-lg  font-black text-stone-500'>{season?.name}</p>
+                <p className='text-lg  font-black text-stone-500 w-[10rem] truncate md:w-[30rem]'>
+                  {season?.name}
+                </p>
               </ButtonComponent>
             );
           })}
@@ -146,24 +148,30 @@ const SeasonsAndEpisodes: React.FC<SeasonsAndEpisodesProps> = (props) => {
                     setSeasonAndEpisode((prev) => ({ ...(prev ?? {}), episode: episodeIndex + 1 }));
                     options?.ref.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
                   }}
-                  className={` w-[300px] rounded-lg overflow-hidden flex flex-col  relative shadow-lg`}
+                  className={` w-[300px] h-[250px] rounded-lg overflow-hidden flex flex-col  relative shadow-lg bg-stone-200 ${seasonAndEpisode?.episode === episodeIndex + 1 ? 'bg-stone-900 ring-4 ring-stone-700 shadow-2xl' : ''}`}
                   key={episodeIndex}
                 >
-                  <LazyLoadImageComponent
-                    path={episode?.still_path ?? episode_image}
-                    styles={{
-                      image: 'w-[300px]object-cover',
-                      size: episode?.still_path ? 'w300' : undefined,
-                    }}
-                  />
-                  <div className='overflow-hidden w-full flex -mt-2 justify-between items-center py-2 bg-gradient-to-r from-stone-200 via-stone-300 to-stone-200 '>
+                  
+                    <LazyLoadImageComponent
+                      path={episode?.still_path ?? episode}
+                      styles={{
+                        image: 'w-[300px]  overflow-hidden bg-gradient-to-tr from-stone-900 to-stone-700  grow',
+                        size: episode?.still_path ? 'w300' : undefined,
+                      }}
+                    />
+                  
+                  <div className='overflow-hidden w-full flex flex-col -mt-2 justify-between items-center py-2  '>
                     <h1 className='font-bold text-stone-600 flex items-center gap-2'>
                       {' '}
                       <BsPlayFill className='text-lg text-stone-400' /> Episode {episodeIndex + 1}
                     </h1>
-                    <h2 className='text-lg  font-black text-stone-500 truncate'>{episode?.name}</h2>
+                    <h2 className='text-lg  font-black text-stone-500 w-[10rem] truncate md:w-[15rem]'>
+                      {episode?.name}
+                    </h2>
                   </div>
-                  <div className='absolute top-0 h-full w-full z-30 grid place-items-center hover:bg-stone-900  hover:bg-opacity-70 text-xl font-poppins font-black uppercase tracking-wider opacity-0 hover:opacity-100 text-stone-300 '>Play</div>
+                  <div className='absolute top-0 h-full w-full z-30 grid place-items-center hover:bg-stone-900  hover:bg-opacity-70 text-xl font-poppins font-black uppercase tracking-wider opacity-0 hover:opacity-100 text-stone-300 '>
+                    Play
+                  </div>
                 </ButtonComponent>
               );
             },

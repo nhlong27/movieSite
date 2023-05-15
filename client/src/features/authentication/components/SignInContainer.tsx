@@ -34,18 +34,20 @@ const SignInContainer = ({
           signInMutation.mutate(formInputs, {
             onError: (e: any) => {
               console.log(e);
-              toast(e.message + '. ' + e.response.data);
+              toast.error(e.message + '. ' + e.response.data);
             },
             onSuccess: async (response) => {
               try {
                 SignInResponse.parse(response.data);
+                toast.success('Success!');
+
                 console.log('Sign in success!');
                 queryClient.invalidateQueries({ queryKey: ['profile'] });
                 queryClient.invalidateQueries({ queryKey: ['shows'] });
                 navigate(0);
               } catch (e: any) {
                 console.log(e);
-                toast('Server error. Please retry.');
+                toast.error('Server error. Please retry.');
               }
             },
           })

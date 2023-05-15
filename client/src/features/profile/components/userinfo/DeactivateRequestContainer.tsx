@@ -1,56 +1,96 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import toast, { Toaster } from 'react-hot-toast';
-import FormComponent from '@/components/generic/FormComponent';
+import toast from 'react-hot-toast';
 import { useDeactivateUserMutation } from '../../hooks/useDeactivateUserMutation';
 import { UserDeactivateForm } from '../../types';
-import { AiOutlinePoweroff } from 'react-icons/ai';
+import { HiOutlineExclamationCircle } from 'react-icons/hi';
+import ButtonComponent from '@/components/generic/ButtonComponent';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import Wrapper from '@/components/handling/Wrapper';
 
-const DeactivateRequestContainer = () => {
+const DeactivateRequestContainer = ({
+  cancelFunction,
+}: {
+  cancelFunction: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const deactivateUserMutation = useDeactivateUserMutation();
 
   const navigate = useNavigate();
-
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    resolver: zodResolver(UserDeactivateForm),
+    defaultValues: {
+      password: '',
+    },
+  });
   return (
-    <div className='w-11/12 py-2'>
-      <Toaster />
-      <FormComponent
-        styles={{
-          form: 'bg-stone-200 gap-2 flex flex-col',
-          input: 'bg-stone-300 rounded-sm pl-2 text-stone-400',
-          button:
-            'ml-auto px-2 py-2  rounded-lg mt-4 bg-stone-300 ring-2 ring-red-500 text-red-600 text-base font-bold hover:bg-red-600 hover:text-stone-100',
-          inputName:
-            'font-bold text-stone-500 text-lg flex items-center justify-between gap-4 pr-2',
-        }}
-        schema={UserDeactivateForm}
-        submitFn={(formInputs: any) =>
+    <div className='w-full font-poppins text-lg flex flex-col items-center'>
+      <p className=''>Type your password to deactivate.</p>
+      <form
+        className='w-full flex flex-col'
+        onSubmit={handleSubmit((formInputs) =>
           deactivateUserMutation.mutate(formInputs.password, {
             onError: (e: any) => {
               console.log(e);
-              toast(e.message + '. ' + e.response.data);
+              toast.error(e.message + '. ' + e.response.data);
             },
             onSuccess: (response) => {
               try {
+                toast.success('Success! Deactivating now')
                 console.log(response.data);
                 console.log('Deactivated user.');
                 navigate(0);
               } catch (e: any) {
                 console.log(e);
-                toast('Server error. Please retry.');
+                toast.error('Server error. Please retry.');
               }
             },
-          })
-        }
-        options={[{ extras: { type: 'password' }, name: 'password' }]}
-        submitBn={
-          <span className='flex items-center gap-2'>
-            <AiOutlinePoweroff className='text-lg' /> Deactivate
-          </span>
-        }
-      />
+          }),
+        )}
+      >
+        <input
+          className='rounded-md pl-2 py-2 mx-auto w-[20rem] ring-2 ring-stone-700 my-4'
+          type='password'
+          {...register(`password` as never)}
+        />
+        {(errors as any)[`password`]?.message && (
+          <div className={`flex items-center gap-2 text-red-600 mx-auto`}>
+            <HiOutlineExclamationCircle className='text-3xl' />
+            {(errors as any)[`password`]?.message}
+          </div>
+        )}
+
+        <div className='bg-slate-100 px-4 py-4 sm:py-6 mt-4 gap-4 flex flex-col sm:flex-row sm:gap-0 sm:px-8 w-full grow'>
+          <ButtonComponent
+            onClick={() => cancelFunction(false)}
+            type='button'
+            className='ml-auto mt-3 inline-flex w-full justify-center rounded-md bg-stone-100 px-6 py-2 text-base font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-stone-300 hover:bg-stone-50 sm:mt-0 sm:w-auto'
+          >
+            Cancel
+          </ButtonComponent>
+          <ButtonComponent
+            type='submit'
+            className='inline-flex w-full justify-center rounded-md bg-red-600 px-6 py-2 text-base tracking-wider font-semibold text-stone-100 shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto'
+          >
+            Deactivate
+          </ButtonComponent>
+        </div>
+      </form>
     </div>
   );
 };
 
-export default DeactivateRequestContainer;
+export default ({
+  cancelFunction,
+}: {
+  cancelFunction: React.Dispatch<React.SetStateAction<boolean>>;
+}) => (
+  <Wrapper>
+    <DeactivateRequestContainer cancelFunction={cancelFunction} />
+  </Wrapper>
+);

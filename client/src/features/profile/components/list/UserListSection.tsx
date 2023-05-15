@@ -37,41 +37,11 @@ const listFilters: Record<string, any> = {
 const UserListSection = () => {
   const [queryTitle, setQueryTitle] = React.useState('');
   const [shouldQueryDisplay, setShouldQueryDisplay] = React.useState(false);
-  const [listFilter, setListFilter] = React.useState<string>('Watching');
-  const { data: mediaList } = useGetMultipleShowsQuery(queryTitle);
+  const [listFilter, setListFilter] = React.useState<string>('All');
+  const { data: mediaList, error } = useGetMultipleShowsQuery(queryTitle);
   const [animationParentRef] = useAutoAnimate();
 
-  // if (mediaList && mediaList?.length === 0) {
-  //   return (
-  //     <div className='md:row-start-1 md:col-start-1 md:col-span-3 w-full flex flex-col justify-start items-center min-h-screen bg-stone-200 rounded-xl py-4 px-4 shadow-xl font-poppins'>
-  //       <div className='ml-0 flex w-full uppercase text-2xl font-black tracking-[0.1rem] text-stone-500 py-2 border-b-2 border-stone-300'>
-  //         My List
-  //       </div>
-  //       <div className='relative flex flex-col justify-center items-center grow w-full bg-stone-900 rounded-xl'>
-  //         <img src={backdrop} alt='my_list' className='opacity-50' />
-  //         <div
-  //           className={
-  //             'absolute flex flex-col justify-center items-center gap-8 grow w-11/12 md:w-1/2 bg-stone-200 h-[10rem] rounded-xl shadow-xl'
-  //           }
-  //         >
-  //           <h1 className='text-xl font-bold text-stone-500 tracking-wide'>
-  //             Media doesn't exist in database.
-  //           </h1>
-  //           <Link
-  //             className='px-8 py-2 font-poppins rounded-xl bg-stone-300 grid place-items-center ring-2 ring-stone-400 text-stone-400 hover:bg-stone-400 hover:text-stone-600 font-bold text-xl hover:ring-stone-600'
-  //             to='/discover'
-  //             onClick={() => {
-  //               console.log('navigating to exploring page..');
-  //             }}
-  //           >
-  //             Find something else to watch
-  //           </Link>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   );
-  // }
-  return (
+  return mediaList ? (
     <div className='md:row-start-1 md:col-start-1 md:col-span-3 w-full flex flex-col items-center min-h-screen bg-stone-200 rounded-xl shadow-xl py-4 px-4 font-poppins'>
       <div className='ml-0 flex w-full uppercase text-2xl font-black tracking-[0.1rem] text-stone-500 py-2 border-b-2 border-stone-300'>
         My List
@@ -136,7 +106,7 @@ const UserListSection = () => {
         {mediaList && mediaList?.length === 0 ? (
           <div
             className={
-              'flex flex-col justify-center items-center gap-8 w-11/12 md:w-1/2 bg-stone-200 h-[10rem] rounded-xl shadow-xl'
+              'flex flex-col justify-center items-center gap-8 w-11/12 md:w-1/2 bg-stone-200 h-[10rem] rounded-xl shadow-xl z-20'
             }
           >
             <h1 className='text-base md:text-xl font-bold text-stone-500 tracking-wide'>
@@ -167,45 +137,36 @@ const UserListSection = () => {
         )}
       </div>
     </div>
+  ) : error instanceof Error ? (
+    <div className='md:row-start-1 md:col-start-1 md:col-span-3 w-full flex flex-col justify-start items-center min-h-screen'>
+      <div className={'grid place-items-center h-[10rem] w-full'}>
+        <h1 className='text-red-700 text-xl font-bold'>{'Failed to load resources'}</h1>
+        <ButtonComponent
+          className='px-8 py-2 bg-primary rounded-md text-stone-700 text-xl mt-8 hover:bg-yellow-200  transition duration-300 flex gap-2 items-center'
+          onClick={() => {
+            console.log('reloading the page..');
+            window.location.reload();
+          }}
+        >
+          <AiOutlineReload />
+          Reload
+        </ButtonComponent>
+      </div>
+    </div>
+  ) : (
+    <div className='md:row-start-1 md:col-start-1 md:col-span-3 w-full flex flex-col items-center min-h-screen bg-stone-200'>
+      <div className='w-full h-[2rem]'></div>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 place-content-start place-items-center w-full gap-y-4 2xl:gap-4 grow'>
+        {Array(20)
+          .fill('')
+          .map((media, index) => (
+            <div className='rounded-md aspect-[10/14] w-[200px]' key={index}>
+              <Skeleton className='h-full w-full' />
+            </div>
+          ))}
+      </div>
+    </div>
   );
 };
 
-export default () => (
-  <Wrapper
-    errorComponent={() => {
-      return (
-        <div className='md:row-start-1 md:col-start-1 md:col-span-3 w-full flex flex-col justify-start items-center min-h-screen'>
-          <div className={'grid place-items-center h-[10rem] w-full'}>
-            <h1 className='text-red-700 text-xl font-bold'>{'Failed to load resources'}</h1>
-            <ButtonComponent
-              className='px-8 py-2 bg-primary rounded-md text-stone-700 text-xl mt-8 hover:bg-yellow-200  transition duration-300 flex gap-2 items-center'
-              onClick={() => {
-                console.log('reloading the page..');
-                window.location.reload();
-              }}
-            >
-              <AiOutlineReload />
-              Reload
-            </ButtonComponent>
-          </div>
-        </div>
-      );
-    }}
-    suspenseComponent={
-      <div className='md:row-start-1 md:col-start-1 md:col-span-3 w-full flex flex-col items-center min-h-screen bg-stone-200'>
-        <div className='w-full h-[2rem]'></div>
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 place-content-start place-items-center w-full gap-y-4 2xl:gap-4 grow'>
-          {Array(20)
-            .fill('')
-            .map((media, index) => (
-              <div className='rounded-md aspect-[10/14] w-[200px]' key={index}>
-                <Skeleton className='h-full w-full' />
-              </div>
-            ))}
-        </div>
-      </div>
-    }
-  >
-    <UserListSection />
-  </Wrapper>
-);
+export default UserListSection

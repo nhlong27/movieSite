@@ -30,7 +30,7 @@ const getShowQuery = (id: string) => {
   return {
     queryKey: ['shows', id],
     queryFn: () => getShow(id),
-    retry: 2,
+    retry: 1,
     refetchOnWindowFocus: false,
     refetchOnReconnect: true,
     keepPreviousData: false,
@@ -47,8 +47,8 @@ const getMultipleShowsQuery = () => {
     refetchOnWindowFocus: false,
     refetchOnReconnect: true,
     keepPreviousData: false,
-    suspense: true,
-    useErrorBoundary: true,
+    // suspense: true,
+    // useErrorBoundary: true,
   };
 };
 

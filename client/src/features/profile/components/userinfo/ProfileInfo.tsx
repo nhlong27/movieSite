@@ -14,9 +14,15 @@ const ProfileInfo = () => {
 
   return (
     <div className='w-11/12 py-2'>
-      <Toaster />
       <FormComponent
-      styles={{form:'bg-stone-200 gap-2 flex flex-col', input:'bg-stone-300 rounded-sm pl-2 text-stone-400', button:'ml-auto px-2 py-2  rounded-lg mt-4 bg-stone-300 ring-2 ring-stone-400 text-stone-500 text-base hover:bg-stone-400', inputName: 'font-bold text-stone-500 text-lg flex items-center justify-between gap-4 pr-2'}}
+        styles={{
+          form: 'bg-stone-200 gap-2 flex flex-col',
+          input: 'bg-stone-300 rounded-sm pl-2 text-stone-400',
+          button:
+            'ml-auto px-2 py-2  rounded-lg mt-4 bg-stone-300 ring-2 ring-stone-400 text-stone-500 text-base hover:bg-stone-400',
+          inputName:
+            'font-bold text-stone-500 text-lg flex items-center justify-between gap-4 pr-2',
+        }}
         schema={UserInfoUpdateForm}
         submitFn={(formInputs: any) =>
           updateUserMutation.mutate(
@@ -24,15 +30,17 @@ const ProfileInfo = () => {
             {
               onError: (e: any) => {
                 console.log(e);
-                toast(e.message + '. ' + e.response.data);
+                toast.error(e.message + '. ' + e.response.data);
               },
               onSuccess: (response) => {
                 try {
                   UserUpdateResponse.parse(response.data);
+                  toast.success('Success!');
+
                   console.log('Update info success!');
                 } catch (e: any) {
                   console.log(e);
-                  toast('Server error. Please retry.');
+                  toast.error('Server error. Please retry.');
                 }
               },
             },

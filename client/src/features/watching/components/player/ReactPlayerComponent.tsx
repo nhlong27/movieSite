@@ -79,8 +79,8 @@ const ReactPlayerComponent: React.FC<ReactPlayerComponentProps> = (props) => {
     <iframe
       allowFullScreen={true}
       className={className}
-      width={500}
-      height={500}
+      // width={500}
+      // height={500}
       src={
         (
           serverSources({

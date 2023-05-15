@@ -8,6 +8,8 @@ import { useUpdateShowMutation } from '../../hooks/useUpdateShowMutation';
 import LazyLoadImageComponent from '@/components/handling/LazyLoadImageComponent';
 import { poster } from '@/config/images';
 import { AiOutlineHeart, BsTrash } from '@/config/icons';
+import { toast } from 'react-hot-toast';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface ProfileMediaCardProps {
   media: ShowQueryResponseType;
@@ -18,17 +20,36 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
 
   const deleteShowMutation = useDeleteShowMutation();
   const updateShowMutation = useUpdateShowMutation();
+  const queryClient = useQueryClient();
 
   const handleUpdateShow = (type: string, val: any) => {
-    return updateShowMutation.mutate({
-      id: media.id,
-      payload: {
-        [type]: val?.value,
-        [media.title ? 'title' : 'name']: media.title ?? media.name,
-        poster_path: media.poster_path,
-        media_type: media.title ? 'movie' : 'tv',
+    return updateShowMutation.mutate(
+      {
+        id: media.id,
+        payload: {
+          [type]: val?.value,
+          [media.title ? 'title' : 'name']: media.title ?? media.name,
+          poster_path: media.poster_path,
+          media_type: media.title ? 'movie' : 'tv',
+        },
       },
-    });
+      {
+        onError: (e: any) => {
+          console.log(e);
+          toast.error(e.message + '. ' + e.response.data);
+        },
+        onSuccess: async () => {
+          try {
+            console.log('Update media successfully!')
+            toast.success('Success!');
+            queryClient.invalidateQueries({ queryKey: ['shows'] });
+          } catch (e: any) {
+            console.log(e);
+            toast.error('Server error. Please retry.');
+          }
+        },
+      },
+    );
   };
 
   return (
@@ -38,7 +59,10 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
         className='w-[200px] overflow-hidden flex items-center flex-col rounded-t-xl'
       >
         <LazyLoadImageComponent
-          styles={{ image: 'object-cover bg-gradient-to-tr from-white to-black', size: media?.poster_path ?  'original' : undefined }}
+          styles={{
+            image: 'object-cover bg-gradient-to-tr from-white to-black',
+            size: media?.poster_path ? 'original' : undefined,
+          }}
           path={media?.poster_path ?? poster}
         />
         <div className={`w-11/12 flex flex-col bg-stone-100 my-4 `}>

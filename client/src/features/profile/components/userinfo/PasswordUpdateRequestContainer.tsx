@@ -8,8 +8,7 @@ const PasswordUpdateRequestContainer = () => {
   const updatePasswordMutation = useUpdateUserMutation();
 
   return (
-    <div  className='w-11/12 py-2'>
-      <Toaster />
+    <div className='w-11/12 py-2'>
       <FormComponent
         styles={{
           form: 'bg-stone-200 gap-2 flex flex-col',
@@ -17,7 +16,7 @@ const PasswordUpdateRequestContainer = () => {
           button:
             'ml-auto px-2 py-2  rounded-lg mt-4 bg-stone-300 ring-2 ring-stone-400 text-stone-500 text-base hover:bg-stone-400',
           inputName:
-            'font-bold text-stone-500 text-lg flex items-center justify-between gap-4 pr-2', 
+            'font-bold text-stone-500 text-lg flex items-center justify-between gap-4 pr-2',
         }}
         schema={UserPasswordUpdateForm as any}
         submitFn={(formInputs: any) =>
@@ -32,15 +31,17 @@ const PasswordUpdateRequestContainer = () => {
             {
               onError: (e: any) => {
                 console.log(e);
-                toast(e.message + '. ' + e.response.data);
+                toast.error(e.message + '. ' + e.response.data);
               },
               onSuccess: (response) => {
                 try {
                   UserUpdateResponse.parse(response.data);
+                  toast.success('Success!');
+
                   console.log('Update password success!');
                 } catch (e: any) {
                   console.log(e);
-                  toast('Server error. Please retry.');
+                  toast.error('Server error. Please retry.');
                 }
               },
             },

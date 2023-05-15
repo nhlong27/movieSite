@@ -41,39 +41,37 @@ function App() {
   }, [pathname]);
   return (
     <div className='bg-stone-400 min-h-dynamic-screen w-screen flex flex-col z-0'>
-        <LoadingBar
-          // className={` transition-all duration-1000 ease-in`}
-          height={4}
-          color='#292524'
-          progress={progress}
-          onLoaderFinished={() => {
-            setProgress(0);
-          }}
-          loaderSpeed={1000}
-        />
+      <LoadingBar
+        // className={` transition-all duration-1000 ease-in`}
+        height={4}
+        color='#292524'
+        progress={progress}
+        onLoaderFinished={() => {
+          setProgress(0);
+        }}
+        loaderSpeed={1000}
+      />
       <Toaster
-        position='top-center'
+        position='top-right'
         reverseOrder={false}
         gutter={8}
         containerClassName=''
         containerStyle={{}}
         toastOptions={{
-          // Define default options
-          className: 'tracking-wider border-4 border-red-700 ring-2 ring-red-700 font-poppins font-bold shadow-xl',
-          duration: 5000,
-          style: {
-            background: '#e7e5e4',
-            color: '#991b1b',
+          success: {
+            className:
+              'tracking-wider  font-poppins font-bold shadow-xl ',
+            duration: 5000,
           },
-
-          // Default options for specific types
-          // success: {
-          //   duration: 3000,
-          //   theme: {
-          //     primary: 'green',
-          //     secondary: 'black',
-          //   },
-          // },
+          error: {
+            className:
+              'tracking-wider  font-poppins font-bold shadow-xl',
+            duration: 5000,
+            style: {
+              background: '#e7e5e4',
+              color: '#991b1b',
+            },
+          },
         }}
       />
       <div className='sticky top-0 w-full z-30 flex flex-col items-center'>

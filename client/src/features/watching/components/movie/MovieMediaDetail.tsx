@@ -135,17 +135,18 @@ const MovieMediaDetail: React.FC<MovieMediaDetailProps> = (props) => {
             : 'No information'}
         </p>
         <h3 className='col-span-1 text-stone-500'>Production</h3>
-        <ul className='col-start-2 col-span-3 flex flex-wrap gap-4'>
+        <ul className='col-start-2 col-span-3 flex flex-wrap gap-8'>
           {data?.production_companies?.length ?? 0 > 0
             ? data?.production_companies?.map((company, index) => (
-                <li key={index} className='grid place-items-center'>
+                <li key={index} className='flex flex-col items-center justify-center'>
                   <LazyLoadImageComponent
                     path={company.logo_path ?? distributor}
                     styles={{
-                      image: ' object-contain aspect-1/2 w-[5rem] overflow-hidden',
+                      image: ' object-cover w-[5rem] h-[3rem] overflow-hidden bg-gradient-to-tr from-stone-900 to-stone-700  grow',
                       size: company?.logo_path ? 'w200' : undefined,
                     }}
                   />
+                  <span className='max-w-[10rem] truncate text-base font-normal'>{company.name}</span>
                 </li>
               ))
             : 'No information'}

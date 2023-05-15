@@ -34,15 +34,16 @@ const AvatarContainer = () => {
         {
           onError: (e: any) => {
             console.log(e);
-            toast(e.message + '. ' + e.response.data);
+            toast.error(e.message + '. ' + e.response.data);
           },
           onSuccess: (response) => {
             try {
               UserUpdateResponse.parse(response.data);
+              toast.success('Success!')
               console.log('Update avatar success!');
             } catch (e: any) {
               console.log(e);
-              toast('Server error. Please retry.');
+              toast.error('Server error. Please retry.');
             }
           },
         },
@@ -55,15 +56,16 @@ const AvatarContainer = () => {
       {
         onError: (e: any) => {
           console.log(e);
-          toast(e.message + '. ' + e.response.data);
+          toast.error(e.message + '. ' + e.response.data);
         },
         onSuccess: (response) => {
           try {
             UserUpdateResponse.parse(response.data);
+            toast.success('Success!')
             console.log('Update avatar success!');
           } catch (e: any) {
             console.log(e);
-            toast('Server error. Please retry.');
+            toast.error('Server error. Please retry.');
           }
         },
       },

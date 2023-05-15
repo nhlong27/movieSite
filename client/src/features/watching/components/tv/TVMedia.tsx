@@ -17,9 +17,8 @@ import { poster } from '@/config/images';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { BsPlayFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import { AiFillHeart, AiOutlineHeart, AiOutlineSearch } from 'react-icons/ai';
+import { AiOutlineSearch } from 'react-icons/ai';
 import { TVType } from '@/types/types';
-import { useGetShowQuery } from '@/features/profile';
 
 const TVMedia = () => {
   const { isMd } = useMediaQueries();
@@ -36,8 +35,6 @@ const TVMedia = () => {
     name?: string | undefined;
     key?: string | undefined;
   }>(null);
-
-  const { data: serverMedia } = useGetShowQuery(params.id!);
 
   const [animationParentRef] = useAutoAnimate();
   const [animationParentRef2] = useAutoAnimate();
@@ -74,47 +71,20 @@ const TVMedia = () => {
             {(data as TVType).name}
           </div>
           <div className='w-2/3 text-stone-200 py-4 flex gap-4 items-center'>
-            {serverMedia?.isFavorited ? (
-              <div className='text-rose-400 bg-stone-900 w-[7rem] h-[4rem] grid place-items-center text-lg px-4 shadow-lg shadow-stone-700 hover:text-rose-300 hover:shadow-stone-600 group'>
-                <AiFillHeart className='text-[2.1rem]' />
-                Favorited
-              </div>
-            ) : (
-              <div className='text-stone-400 bg-stone-900 w-[7rem] h-[4rem] grid place-items-center text-lg px-4 shadow-lg shadow-stone-700 font-bold hover:text-stone-100 hover:shadow-stone-600 group'>
-                <AiOutlineHeart className='text-[2.1rem] ' />
-                +Favorite
-              </div>
-            )}
-            <div className='text-amber-400 bg-stone-900 w-[7rem] h-[4rem] grid place-items-center text-lg px-4 shadow-lg shadow-stone-700 font-bold hover:text-amber-300 hover:shadow-stone-600 group'>
-              <svg
-                aria-hidden='true'
-                className='w-8 h-8 text-amber-400 hover:text-amber-300'
-                fill='currentColor'
-                viewBox='0 0 20 20'
-                xmlns='http://www.w3.org/2000/svg'
-              >
-                <title>Rating star</title>
-                <path d='M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z'></path>
-              </svg>
-              {serverMedia?.score ?? 'Rate'}
-            </div>
-            <div
-              className='text-stone-300 font-extrabold
-             bg-stone-900 to-transparent w-[15rem] h-[4rem] grid place-items-center text-xl tracking-[0.3rem] uppercase px-4 hover:text-stone-200 '
-            >
-              {serverMedia?.status ?? 'Plan to Watch'}
-            </div>
-            <div
-              className='text-stone-200 font-extrabold
-              uppercase bg-stone-900 bg-opacity-0 rounded-sm ring-2 hover:ring-4 ring-stone-300 h-[3.5rem] grid place-items-center text-xl tracking-[0.3rem] px-8 hover:text-stone-50 hover:ring-stone-100
-              hover:bg-opacity-100 hover:tracking-[0.4rem] transition-full duration-500 cursor-pointer hover:-ml-2'
-            >
-              Watch now
-            </div>
+            <MediaActions actionType='others' />
+
+            <MediaActions
+              actionType='play'
+              refs={{ playRef: seasonsAndEpisodesRef }}
+              handlingFunctions={{ playFunction: setIsMediaWindowDisplay }}
+            >Watch now</MediaActions>
           </div>
         </div>
-        <div ref={animationParentRef} className='pt-4 px-4 pb-6 bg-gradient-to-l from-stone-900 to-transparent row-start-1 row-end-3 col-start-3 z-10 text-stone-200 flex flex-col justify-start items-end'>
-        <Trailers setSelectedTrailer={setSelectedTrailer} />
+        <div
+          ref={animationParentRef}
+          className='pt-4 px-4 pb-6 bg-gradient-to-l from-stone-900 to-transparent row-start-1 row-end-3 col-start-3 z-20 text-stone-200 flex flex-col justify-start items-end'
+        >
+          <Trailers setSelectedTrailer={setSelectedTrailer} />
         </div>
       </div>
       <div className='relative min-h-[15vh] w-full pr-6 grid grid-cols-4 gap-4 overflow-hidden bg-stone-200  rounded-xl shadow-xl bg-opacity-90'>
@@ -128,12 +98,12 @@ const TVMedia = () => {
           />
         </div>
         <div className='col-start-2 col-span-3 p-2'>
-        {selectedTrailer ? (
+          {selectedTrailer ? (
             <>
               <ReactPlayerComponent className='h-[30rem]' trailerSource={selectedTrailer} />
               <ButtonComponent
                 onClick={() => setSelectedTrailer(null)}
-                className='absolute right-0 top-1/2 bg-stone-900 text-stone-200 text-lg px-8 py-4 hover:bg-stone-400 z-30'
+                className='absolute right-0 top-1/2 bg-stone-900 text-stone-200 text-lg px-8 py-4 hover:bg-stone-400 z-20'
               >
                 Close
               </ButtonComponent>
@@ -144,11 +114,11 @@ const TVMedia = () => {
         </div>
       </div>
       <div
-        className='relative  w-full z-10 grid place-items-center py-8 gap-4 bg-gradient-to-r from-stone-900 to-stone-900 via-stone-700 bg-opacity-50'
+        className='relative  w-full z-0 grid place-items-center py-8 gap-4 bg-gradient-to-r from-stone-900 to-stone-900 via-stone-700 bg-opacity-50'
         ref={animationParentRef2}
       >
         {!isMediaWindowDisplay ? (
-          <div className='w-3/4 flex flex-col justify-center items-center border-y-2 border-stone-500  py-8'>
+          <div className='w-3/4 flex flex-col justify-center items-center border-y-2 border-stone-500 mt-16 py-8'>
             <MediaActions
               actionType='play'
               handlingFunctions={{
@@ -160,29 +130,32 @@ const TVMedia = () => {
         {isMediaWindowDisplay ? (
           <div
             ref={reactPlayerRef}
-            className={`w-11/12 md:w-full p-2 bg-stone-200 md:bg-gradient-to-r md:from-stone-900 md:via-stone-700 md:to-stone-900 md:bg-opacity-50 rounded-xl shadow-xl pb-6`}
+            className={` w-full p-2 bg-stone-200 bg-gradient-to-r from-stone-900 via-stone-700 to-stone-900 bg-opacity-50 rounded-xl shadow-xl pb-6 `}
           >
             <div className='w-full py-4 border-b-4 border-stone-300 md:border-0 grid place-items-center mb-4'>
-              <div className='w-5/6 md:w-11/12 text-center rounded-xl shadow-inner px-4 py-2 bg-stone-300 font-poppins text-sm font-bold text-stone-500 md:text-lg md:text-stone-400 md:bg-opacity-20 md:tracking-wide'>
+              <div className=' w-11/12 text-center rounded-xl shadow-inner px-4 py-2 bg-stone-300 font-poppins  font-bold text-lg text-stone-400 bg-opacity-20 tracking-wide'>
                 If you get any error message when trying to stream, please refresh the page or
                 switch to another streaming server.
               </div>
             </div>
-            <ReactPlayerComponent
-              seasonNumber={seasonAndEpisode?.season?.toString()}
-              episodeNumber={seasonAndEpisode?.episode?.toString()}
-              serverSource={serverSource}
-              className='w-full aspect-square rounded-sm'
-            />
+            <div className='relative h-0 pb-[56.25%]'>
+              <ReactPlayerComponent
+                seasonNumber={seasonAndEpisode?.season?.toString()}
+                episodeNumber={seasonAndEpisode?.episode?.toString()}
+                serverSource={serverSource}
+                className='absolute top-0 left-0 w-full h-full'
+              />
+            </div>
           </div>
         ) : null}
       </div>
-      <div className='w-full md:w-3/4 bg-stone-300 md:bg-opacity-20 grid place-items-center font-poppins py-4'>
-        <div className='w-11/12 flex flex-col justify-center items-center gap-x-custom-x-max-medium bg-stone-400 rounded shadow-inner py-4 px-8 md:bg-opacity-20'>
-          <p className='text-left text-sm font-bold text-stone-700 py-4 md:text-stone-300 md:text-lg md:tracking-wider'>
+      <div className='w-full grid place-items-center
+      bg-gradient-to-r from-stone-900 via-stone-700 to-stone-900 bg-opacity-50 font-poppins py-16'>
+        <div className='w-3/4 flex flex-col justify-center items-center gap-x-custom-x-max-medium bg-stone-400 rounded shadow-inner py-4 px-8 bg-opacity-20'>
+          <p className='text-left  font-bold  py-4 text-stone-300 text-lg tracking-wider'>
             If current server doesn't work please try other servers below.
           </p>
-          <div className='flex xs:flex-row flex-col gap-2 justify-between text-stone-500 md:text-stone-700 font-bold md:text-lg md:gap-4'>
+          <div className='flex xs:flex-row flex-col  justify-between text-stone-700 font-bold text-lg gap-4'>
             <ButtonComponent
               className='uppercase  flex items-center gap-2 px-4 py-2 bg-stone-300 rounded-lg hover:bg-stone-200'
               onClick={() => setServerSource('2embed.to')}
@@ -199,7 +172,7 @@ const TVMedia = () => {
             >
               <BsPlayFill className='text-3xl' />
               <div className='flex flex-col justify-center items-start'>
-                <span className='text-sm capitalize text-stone-400 md:text-stone-600'>Server</span>
+                <span className='text-sm capitalize text-stone-600'>Server</span>
                 2embed.org
               </div>
             </ButtonComponent>
@@ -209,7 +182,7 @@ const TVMedia = () => {
             >
               <BsPlayFill className='text-3xl' />
               <div className='flex flex-col justify-center items-start'>
-                <span className='text-sm capitalize text-stone-400 md:text-stone-600'>Server</span>
+                <span className='text-sm capitalize text-stone-600'>Server</span>
                 vidsrc.me
               </div>
             </ButtonComponent>
@@ -217,7 +190,10 @@ const TVMedia = () => {
         </div>
       </div>
 
-      <div ref={seasonsAndEpisodesRef} className='relative w-full  py-4 px-4 bg-opacity-20 bg-stone-300 rounded-xl shadow-xl'>
+      <div
+        ref={seasonsAndEpisodesRef}
+        className='relative w-full  py-4 px-4 bg-opacity-20 bg-stone-300 z-0 rounded-xl shadow-xl'
+      >
         <SeasonsAndEpisodes
           options={{
             ref: reactPlayerRef,
@@ -229,7 +205,7 @@ const TVMedia = () => {
         className='relative w-full py-4 px-4 
          bg-stone-300 rounded-b-xl shadow-xl bg-opacity-20'
       >
-        <h1 className='py-2 px-4 text-left font-poppins text-stone-500 font-bold text-xl uppercase border-b-4 border-stone-400 bg-stone-200 rounded-t-lg md:text-2xl bg-opacity-90'>
+        <h1 className='py-2 px-4 text-left font-poppins text-stone-500 font-bold  uppercase border-b-4 border-stone-400 bg-stone-200 rounded-t-lg text-2xl bg-opacity-90'>
           You may also like
         </h1>
         {extraData.similar?.results?.length ?? 0 > 0 ? (
@@ -250,7 +226,7 @@ const TVMedia = () => {
             })}
           </div>
         ) : (
-          <div className='relative w-full flex md:flex-row flex-col h-[4rem] justify-center items-baseline gap-4 bg-stone-300 bg-opacity-20 shadow-inner border-2 border-stone-400 font-poppins text-normal font-bold px-8 py-8'>
+          <div className='relative w-full flex flex-row  h-[4rem] justify-center items-baseline gap-4 bg-stone-300 bg-opacity-20 shadow-inner border-2 border-stone-400 font-poppins text-normal font-bold px-8 py-8'>
             <h1 className='text-stone-400 text-sm'>No movies or TV shows for this media</h1>
             <Link
               className='text-stone-600 hover:text-stone-800 hover:underline flex items-start justify-center relative'
@@ -260,7 +236,7 @@ const TVMedia = () => {
               }}
             >
               <span> Find something else to watch</span>
-              <div className='rounded-full w-[1.5rem] grid place-items-center h-[1.5rem] bg-stone-400 absolute bottom-0 -right-8 md:right-16'>
+              <div className='rounded-full w-[1.5rem] grid place-items-center h-[1.5rem] bg-stone-400 absolute bottom-0 right-16'>
                 <AiOutlineSearch className='text-lg text-stone-700' />
               </div>
             </Link>
@@ -269,9 +245,9 @@ const TVMedia = () => {
       </div>
     </div>
   ) : (
-    <div className='w-11/12 min-h-screen flex flex-col justify-start items-center rounded-xl shadow-xl'>
+    <div className='w-11/12 min-h-screen flex flex-col justify-start items-center rounded-xl z-0 shadow-xl'>
       <div className='relative min-h-[30rem]  w-full z-10 flex flex-col justify-center items-center pt-4 pb-8 gap-4 bg-gradient-to-t from-stone-300 to-stone-900 via-stone-500'>
-        <div className='-z-10 grid place-items-center w-full bg-stone-900 rounded-t-xl overflow-hidden'>
+        <div className='grid place-items-center w-full bg-stone-900 -z-10 rounded-t-xl overflow-hidden'>
           <LazyLoadImageComponent
             path={data?.poster_path ?? poster}
             styles={{
@@ -281,21 +257,19 @@ const TVMedia = () => {
           />
         </div>
         <div
-          className='sm:w-4/5 w-[90%] bg-stone-100 z-10 -mt-[4rem]  py-4 px-8
+          className='sm:w-4/5 w-[90%] bg-stone-100 z-0 -mt-[4rem]  py-4 px-8
           rounded-xl shadow-xl flex flex-col items-center'
         >
-          <div className='flex justify-between w-full min-h-[2.5rem] items-center py-4'>
+          <div className='grid place-items-center w-full py-4'>
             <MediaActions
               actionType='play'
               refs={{ playRef: seasonsAndEpisodesRef }}
               handlingFunctions={{ playFunction: setIsMediaWindowDisplay }}
+              styles={{ play: 'px-16 py-4' }}
             />
-            <MediaActions actionType='isFavorited' />
           </div>
-          <div className='flex flex-col justify-between w-full min-h-[2.5rem] items-center'>
-            <MediaActions actionType='status' />
-
-            <MediaActions actionType='score' />
+          <div className='grid place-items-center w-full'>
+            <MediaActions actionType='others' styles={{ others: 'w-full flex-col' }} />
           </div>
         </div>
         <div
@@ -314,7 +288,7 @@ const TVMedia = () => {
       </div>
 
       <div
-        className='relative  w-full z-10 grid place-items-center py-4 gap-4 bg-stone-300'
+        className='relative  w-full z-0 grid place-items-center py-4 gap-4 bg-stone-300'
         ref={animationParentRef2}
       >
         {!isMediaWindowDisplay ? (
@@ -338,12 +312,14 @@ const TVMedia = () => {
                 switch to another streaming server.
               </div>
             </div>
-            <ReactPlayerComponent
-              seasonNumber={seasonAndEpisode?.season?.toString()}
-              episodeNumber={seasonAndEpisode?.episode?.toString()}
-              serverSource={serverSource}
-              className='w-full aspect-square rounded-sm'
-            />
+            <div className='relative h-0 pb-[56.25%]'>
+              <ReactPlayerComponent
+                seasonNumber={seasonAndEpisode?.season?.toString()}
+                episodeNumber={seasonAndEpisode?.episode?.toString()}
+                serverSource={serverSource}
+                className='absolute top-0 left-0 w-full h-full'
+              />
+            </div>
           </div>
         ) : null}
       </div>
