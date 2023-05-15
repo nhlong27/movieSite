@@ -12,7 +12,6 @@ import SeasonsAndEpisodes from './SeasonsAndEpisodes';
 import { useAtom } from 'jotai';
 import { seasonAndEpisodeAtom } from '../../atoms';
 import LinkMediaCard from '@/components/specific/LinkMediaCard';
-import Wrapper from '@/components/handling/Wrapper';
 import { poster } from '@/config/images';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { BsPlayFill } from 'react-icons/bs';
@@ -417,8 +416,4 @@ const TVMedia = () => {
   );
 };
 
-export default () => (
-  <Wrapper>
-    <TVMedia />
-  </Wrapper>
-);
+export default TVMedia

@@ -17,16 +17,16 @@ const SignInContainer = ({
   const navigate = useNavigate();
 
   return (
-    <div className='w-full h-full p-4 flex flex-col justify-start items-center'>
-      <div className='flex flex-col justify-center items-center'>
-        <h1>Sign In To Dawn Break</h1>
-        <p>Or use your email account</p>
+    <div className='w-full h-full p-4 flex flex-col justify-start items-center font-poppins bg-stone-50 rounded-xl shadow-xl'>
+      <div className='mt-10 text-center text-2xl font-black tracking-wide leading-9 text-stone-900'>
+        <h1 >Sign In To Dawn Break</h1>
       </div>
       <FormComponent
         styles={{
-          form: 'w-full mt-4 flex flex-col justify-center items-center',
-          input: 'w-4/5 mt-4',
-          button: 'rounded-xl px-4 py-2 my-4',
+          form: 'md:w-3/5 w-11/12  mt-8 flex flex-col justify-center items-center',
+          input: 'w-full py-2 px-2 mt-2 ring-2 ring-stone-300 rounded-lg',
+          inputName: 'text-base mt-4 block md:text-lg font-bold leading-6 text-gray-900 flex justify-start w-full',
+          button: 'ml-auto flex mt-8 justify-center rounded-md bg-blue-600 px-6 py-2 text-lg leading-6 text-stone-50 shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600',
         }}
         submitBn='Sign In'
         schema={SignInForm}
@@ -57,13 +57,13 @@ const SignInContainer = ({
           { extras: { type: 'password', placeholder: 'Password' }, name: 'password' },
         ]}
       />
-      <div className='mt-auto flex justify-center items-center w-full'>
+      <div className=' flex justify-center items-center w-full mt-10 gap-4 text-center text-base md:text-xl text-stone-500'>
         <h2>Not a member?</h2>
-        <ButtonComponent className='text-blue-400' onClick={() => setShouldSignInDisplay(false)}>
-          Sign Up
+        <ButtonComponent className='font-semibold leading-6 text-blue-500 hover:text-blue-600' onClick={() => setShouldSignInDisplay(false)}>
+          Create a new account
         </ButtonComponent>
       </div>
-      <Link to='/'>Or back to home page</Link>
+      <Link to='/' className='mt-8 text-stone-500 hover:underline  mb-16'>Or back to home page</Link>
     </div>
   );
 };

@@ -9,7 +9,6 @@ import { useGetItemExtraQuery } from '../../hooks/useGetItemExtraQuery';
 import ReactPlayerComponent from '../player/ReactPlayerComponent';
 import ButtonComponent from '@/components/generic/ButtonComponent';
 import LinkMediaCard from '@/components/specific/LinkMediaCard';
-import Wrapper from '@/components/handling/Wrapper';
 import { poster } from '@/config/images';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { BsPlayFill } from 'react-icons/bs';
@@ -144,7 +143,8 @@ const MovieMedia = () => {
         ) : null}
       </div>
 
-      <div ref={reactPlayerRef}
+      <div
+        ref={reactPlayerRef}
         className='w-full grid place-items-center
       bg-gradient-to-r from-stone-900 via-stone-700 to-stone-900 bg-opacity-50 font-poppins py-16'
       >
@@ -391,8 +391,4 @@ const MovieMedia = () => {
   );
 };
 
-export default () => (
-  <Wrapper>
-    <MovieMedia />
-  </Wrapper>
-);
+export default MovieMedia;

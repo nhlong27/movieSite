@@ -68,6 +68,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/:mediaType/:id',
+        errorElement: <ErrorPage />,
         element: (
           <Suspense fallback={<LoadingPage />}>
             <MediaPage />

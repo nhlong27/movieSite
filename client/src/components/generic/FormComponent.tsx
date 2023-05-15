@@ -58,7 +58,7 @@ const FormComponent: React.FC<FormComponentProps> = (props) => {
             </React.Fragment>
           );
         })}
-        <div className='flex justify-between items-center'>
+        <div className='flex justify-between items-center w-full'>
         <ButtonComponent className='text-stone-400' onClick={()=>reset()}>
           Reset
         </ButtonComponent>
