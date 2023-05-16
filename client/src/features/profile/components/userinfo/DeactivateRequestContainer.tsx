@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useDeactivateUserMutation } from '../../hooks/useDeactivateUserMutation';
 import { UserDeactivateForm } from '../../types';
-import { HiOutlineExclamationCircle } from 'react-icons/hi';
 import ButtonComponent from '@/components/generic/ButtonComponent';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import Wrapper from '@/components/handling/Wrapper';
+import { iconHelper } from '@/config/icons';
 
 const DeactivateRequestContainer = ({
   cancelFunction,
@@ -41,7 +41,7 @@ const DeactivateRequestContainer = ({
             },
             onSuccess: (response) => {
               try {
-                toast.success('Success! Deactivating now')
+                toast.success('Success! Deactivating now');
                 console.log(response.data);
                 console.log('Deactivated user.');
                 navigate(0);
@@ -60,7 +60,7 @@ const DeactivateRequestContainer = ({
         />
         {(errors as any)[`password`]?.message && (
           <div className={`flex items-center gap-2 text-red-600 mx-auto`}>
-            <HiOutlineExclamationCircle className='text-3xl' />
+            {iconHelper.exclamation('text-3xl')}
             {(errors as any)[`password`]?.message}
           </div>
         )}

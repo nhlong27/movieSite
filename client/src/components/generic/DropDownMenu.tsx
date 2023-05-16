@@ -11,7 +11,7 @@ import AvatarComponent from './AvatarComponent';
 import Wrapper from '../handling/Wrapper';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Skeleton from 'react-loading-skeleton';
-import human from '/assets/avatars/human.png';
+import { imageHelper } from '@/config/images';
 
 const DropDownMenu = () => {
   const [currentPath, setCurrentURLPath] = useAtom(currentURLPathAtom);
@@ -73,27 +73,25 @@ const DropDownMenu = () => {
               errorComponent={() => {
                 return (
                   <div className='h-[3rem] group flex justify-center items-center'>
-                    <div className='rounded-full grid place-items-center w-1/4 aspect-square group-hover:max-w-0 transition-all duration-300 overflow-hidden opacity-100 group-hover:opacity-0'>
-                      <LazyLoadImage src={human} alt='default_avatar' effect='blur' />
+                    <div className='rounded-full grid place-items-center w-8 aspect-square group-hover:max-w-0 transition-all duration-300 overflow-hidden opacity-100 group-hover:opacity-0'>
+                      <LazyLoadImage src={imageHelper.human} alt='default_avatar' effect='blur' />
                     </div>
                     <Link
-                      className=' max-w-0 overflow-hidden group-hover:max-w-[10rem] max-h-0 group-hover:max-h-[2rem] opacity-0 group-hover:opacity-100 transition-all duration-300 grid place-items-center'
+                      className=' h-0 max-w-0 group-hover:max-w-full overflow-hidden group-hover:h-3/4 opacity-0 invisible group-hover:visible group-hover:opacity-100 transition-all duration-300 grid place-items-center  font-poppins text-base px-4 py-2 rounded-lg bg-stone-600 text-stone-50 shadow-lg font-bold'
                       onClick={() => {
                         setProgress(100);
                         setCurrentURLPath('profile');
                       }}
                       to='/profile'
                     >
-                      Sign In
+                      Sign in
                     </Link>
                   </div>
                 );
               }}
             >
               <Link
-                className={`w-3/4 h-3/4 flex gap-2 justify-center items-center ${
-                  currentPath === 'profile' ? 'text-stone-500 border-b-4 border-stone-400' : ''
-                }`}
+                className={`w-8 h-3/4 flex gap-2 justify-center items-center`}
                 onClick={() => {
                   setProgress(100);
                   setCurrentURLPath('profile');
@@ -103,7 +101,9 @@ const DropDownMenu = () => {
                 <AvatarComponent
                   styles={{
                     image:
-                      'rounded-full overflow-hidden grid place-items-center w-2/5 max-w-[1.8rem] aspect-square',
+                      `rounded-full overflow-hidden grid place-items-center w-8 max-w-[1.8rem] aspect-square ${
+                        currentPath === 'profile' ? 'text-stone-500 border-b-4 border-stone-400' : ''
+                      }`,
                   }}
                 />
                 Profile

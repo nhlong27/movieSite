@@ -3,9 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AnyZodObject } from 'zod';
 import ButtonComponent from './ButtonComponent';
-
-import { AiFillEdit } from 'react-icons/ai';
-import { HiOutlineExclamationCircle } from 'react-icons/hi';
+import { iconHelper } from '@/config/icons';
 
 interface FormComponentProps {
   schema: AnyZodObject;
@@ -40,10 +38,7 @@ const FormComponent: React.FC<FormComponentProps> = (props) => {
         {props.options.map((option, index) => {
           return (
             <React.Fragment key={index}>
-              <div className={`capitalize ${props.styles?.inputName}`}>
-                {option.name}
-                <AiFillEdit />
-              </div>
+              <div className={`capitalize ${props.styles?.inputName}`}>{option.name}</div>
               <input
                 className={props.styles?.input}
                 {...option.extras}
@@ -51,7 +46,7 @@ const FormComponent: React.FC<FormComponentProps> = (props) => {
               />
               {(errors as any)[`${option.name}`]?.message && (
                 <div className={`flex items-center gap-2 text-red-700 ${props.styles?.error}`}>
-                  <HiOutlineExclamationCircle className='text-lg' />
+                  {iconHelper.exclamation('text-lg')}
                   {(errors as any)[`${option.name}`]?.message}
                 </div>
               )}
@@ -59,12 +54,12 @@ const FormComponent: React.FC<FormComponentProps> = (props) => {
           );
         })}
         <div className='flex justify-between items-center w-full'>
-        <ButtonComponent className='text-stone-400' onClick={()=>reset()}>
-          Reset
-        </ButtonComponent>
-        <ButtonComponent className={props.styles?.button} type='submit'>
-          {props.submitBn ?? 'Submit'}
-        </ButtonComponent>
+          <ButtonComponent className='text-stone-400' onClick={() => reset()}>
+            Reset
+          </ButtonComponent>
+          <ButtonComponent className={props.styles?.button} type='submit'>
+            {props.submitBn ?? 'Submit'}
+          </ButtonComponent>
         </div>
       </>
     </form>

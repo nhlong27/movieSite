@@ -3,14 +3,10 @@ import { useGetShowQuery, useGetUserQuery, useUpdateShowMutation } from '@/featu
 import { useGetItemDetailQuery } from '../hooks/useGetItemDetailQuery';
 import { MovieDetailType, TVDetailType } from '../types';
 import ButtonComponent from '@/components/generic/ButtonComponent';
-
 import { useParams } from 'react-router-dom';
-import { toast } from 'react-hot-toast';
 import Wrapper from '@/components/handling/Wrapper';
-import { BsPlayFill } from 'react-icons/bs';
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import MediaActionModalComponent from '@/components/generic/modals/MediaActionModelComponent';
-import { MdSystemUpdateAlt } from 'react-icons/md';
+import { iconHelper } from '@/config/icons';
 
 interface MediaActionsProps {
   styles?: Record<string, string>;
@@ -59,7 +55,7 @@ const MediaActions: React.FC<MediaActionsProps> = (props) => {
           handlingFunctions?.playFunction(true);
         }}
       >
-        {children ?? <BsPlayFill className='text-4xl' />}
+        {children ?? iconHelper.play('text-4xl')}
       </ButtonComponent>
     );
   } else
@@ -73,7 +69,7 @@ const MediaActions: React.FC<MediaActionsProps> = (props) => {
             onClick={() => setShouldMediaActionsModalDisplay(true)}
             className='text-rose-400 bg-stone-900 w-[7rem] h-[4rem] grid place-items-center text-lg px-4 shadow-lg shadow-stone-700 hover:text-rose-300 hover:shadow-stone-600 group'
           >
-            <AiFillHeart className='text-[2.1rem]' />
+            {iconHelper.fillHeart('text-[2.1rem]')}
             Favorited
           </ButtonComponent>
         ) : (
@@ -81,7 +77,7 @@ const MediaActions: React.FC<MediaActionsProps> = (props) => {
             onClick={() => setShouldMediaActionsModalDisplay(true)}
             className='text-stone-400 bg-stone-900 w-[7rem] h-[4rem] grid place-items-center text-lg px-4 shadow-lg shadow-stone-700 font-bold hover:text-stone-100 hover:shadow-stone-600 group'
           >
-            <AiOutlineHeart className='text-[2.1rem] ' />
+            {iconHelper.heart('text-[2.1rem] ')}
             +Favorite
           </ButtonComponent>
         )}
@@ -108,7 +104,7 @@ const MediaActions: React.FC<MediaActionsProps> = (props) => {
         >
           {serverMedia?.status ?? (
             <>
-              <MdSystemUpdateAlt className='text-3xl text-stone-50' />
+            {iconHelper.systemUpdate('text-3xl text-stone-50')}
               Add to My List
             </>
           )}
@@ -136,7 +132,7 @@ function DefaultPlayComponent({
         handlingFunctions?.playFunction(true);
       }}
     >
-      {children ?? <BsPlayFill className='text-4xl' />}
+      {children ?? iconHelper.play('text-4xl')}
     </ButtonComponent>
   );
 }
@@ -153,7 +149,7 @@ function DefaultOtherActionsComponent({ styles }: { styles?: Record<string, any>
         onClick={() => setShouldMediaActionsModalDisplay(true)}
         className='text-stone-400 bg-stone-900 w-[7rem] h-[4rem] grid place-items-center text-lg px-4 shadow-lg shadow-stone-700 font-bold hover:text-stone-100 hover:shadow-stone-600 group'
       >
-        <AiOutlineHeart className='text-[2.1rem] ' />
+        {iconHelper.heart('text-[2.1rem]')}
         +Favorite
       </ButtonComponent>
 
@@ -178,7 +174,7 @@ function DefaultOtherActionsComponent({ styles }: { styles?: Record<string, any>
         className='text-stone-300 font-extrabold
              bg-stone-900 to-transparent w-[15rem] md:w-[20rem] h-[4rem] flex justify-center items-center gap-4 text-xl tracking-[0.3rem] uppercase px-4 hover:text-stone-200'
       >
-        <MdSystemUpdateAlt className='text-3xl text-stone-50' />
+        {iconHelper.systemUpdate('text-3xl text-stone-50')}
         Add to My List
       </ButtonComponent>
     </div>

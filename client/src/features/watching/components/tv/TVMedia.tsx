@@ -12,12 +12,11 @@ import SeasonsAndEpisodes from './SeasonsAndEpisodes';
 import { useAtom } from 'jotai';
 import { seasonAndEpisodeAtom } from '../../atoms';
 import LinkMediaCard from '@/components/specific/LinkMediaCard';
-import { poster } from '@/config/images';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
-import { BsPlayFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import { AiOutlineSearch } from 'react-icons/ai';
 import { TVType } from '@/types/types';
+import { iconHelper } from '@/config/icons';
+import { imageHelper } from '@/config/images';
 
 const TVMedia = () => {
   const { isMd } = useMediaQueries();
@@ -76,7 +75,9 @@ const TVMedia = () => {
               actionType='play'
               refs={{ playRef: seasonsAndEpisodesRef }}
               handlingFunctions={{ playFunction: setIsMediaWindowDisplay }}
-            >Watch now</MediaActions>
+            >
+              Watch now
+            </MediaActions>
           </div>
         </div>
         <div
@@ -89,7 +90,7 @@ const TVMedia = () => {
       <div className='relative min-h-[15vh] w-full pr-6 grid grid-cols-4 gap-4 overflow-hidden bg-stone-200  rounded-xl shadow-xl bg-opacity-90'>
         <div className='col-start-1 col-span-1 bg-stone-900'>
           <LazyLoadImageComponent
-            path={data?.poster_path ?? poster}
+            path={data?.poster_path ?? imageHelper.poster}
             styles={{
               image: '-z-10 h-full w-full object-cover    overflow-hidden aspect-[12/16]',
               size: data?.poster_path ? 'original' : undefined,
@@ -148,8 +149,10 @@ const TVMedia = () => {
           </div>
         ) : null}
       </div>
-      <div className='w-full grid place-items-center
-      bg-gradient-to-r from-stone-900 via-stone-700 to-stone-900 bg-opacity-50 font-poppins py-16'>
+      <div
+        className='w-full grid place-items-center
+      bg-gradient-to-r from-stone-900 via-stone-700 to-stone-900 bg-opacity-50 font-poppins py-16'
+      >
         <div className='w-3/4 flex flex-col justify-center items-center gap-x-custom-x-max-medium bg-stone-400 rounded shadow-inner py-4 px-8 bg-opacity-20'>
           <p className='text-left  font-bold  py-4 text-stone-300 text-lg tracking-wider'>
             If current server doesn't work please try other servers below.
@@ -159,7 +162,7 @@ const TVMedia = () => {
               className='uppercase  flex items-center gap-2 px-4 py-2 bg-stone-300 rounded-lg hover:bg-stone-200'
               onClick={() => setServerSource('2embed.to')}
             >
-              <BsPlayFill className='text-3xl' />
+              {iconHelper.play('text-3xl')}
               <div className='flex flex-col justify-center items-start'>
                 <span className='text-sm capitalize text-stone-400 md:text-stone-600'>Server</span>
                 2embed.to
@@ -169,7 +172,8 @@ const TVMedia = () => {
               className='uppercase px-4 py-2 bg-stone-300 rounded-lg flex items-center gap-2 hover:bg-stone-200'
               onClick={() => setServerSource('2embed.org')}
             >
-              <BsPlayFill className='text-3xl' />
+              {iconHelper.play('text-3xl')}
+
               <div className='flex flex-col justify-center items-start'>
                 <span className='text-sm capitalize text-stone-600'>Server</span>
                 2embed.org
@@ -179,7 +183,8 @@ const TVMedia = () => {
               className='uppercase  flex items-center gap-2 px-4 py-2 bg-stone-300 rounded-lg hover:bg-stone-200'
               onClick={() => setServerSource('vidsrc.me')}
             >
-              <BsPlayFill className='text-3xl' />
+              {iconHelper.play('text-3xl')}
+
               <div className='flex flex-col justify-center items-start'>
                 <span className='text-sm capitalize text-stone-600'>Server</span>
                 vidsrc.me
@@ -209,7 +214,7 @@ const TVMedia = () => {
         </h1>
         {extraData.similar?.results?.length ?? 0 > 0 ? (
           <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 2xl:grid-cols-6 place-items-center w-full gap-4 2xl:gap-4 min-h-screen  place-content-start bg-stone-900 bg-opacity-30 rounded-b-xl shadow-xl py-8 '>
-            {extraData.similar?.results?.map((media, index) => {
+            {extraData.similar?.results?.map((media: any, index) => {
               return (
                 <LinkMediaCard
                   key={index}
@@ -236,7 +241,7 @@ const TVMedia = () => {
             >
               <span> Find something else to watch</span>
               <div className='rounded-full w-[1.5rem] grid place-items-center h-[1.5rem] bg-stone-400 absolute bottom-0 right-16'>
-                <AiOutlineSearch className='text-lg text-stone-700' />
+                {iconHelper.search('text-lg text-stone-700')}
               </div>
             </Link>
           </div>
@@ -248,7 +253,7 @@ const TVMedia = () => {
       <div className='relative min-h-[30rem]  w-full z-10 flex flex-col justify-center items-center pt-4 pb-8 gap-4 bg-gradient-to-t from-stone-300 to-stone-900 via-stone-500'>
         <div className='grid place-items-center w-full bg-stone-900 -z-10 rounded-t-xl overflow-hidden'>
           <LazyLoadImageComponent
-            path={data?.poster_path ?? poster}
+            path={data?.poster_path ?? imageHelper.poster}
             styles={{
               image: '-z-10 w-full object-cover',
               size: data?.poster_path ? 'original' : undefined,
@@ -332,7 +337,8 @@ const TVMedia = () => {
               className='uppercase  flex items-center gap-2 px-4 py-2 bg-stone-300 rounded-lg hover:bg-stone-200'
               onClick={() => setServerSource('2embed.to')}
             >
-              <BsPlayFill className='text-3xl' />
+              {iconHelper.play('text-3xl')}
+
               <div className='flex flex-col justify-center items-start'>
                 <span className='text-sm capitalize text-stone-400'>Server</span>
                 2embed.to
@@ -342,7 +348,7 @@ const TVMedia = () => {
               className='uppercase px-4 py-2 bg-stone-300 rounded-lg flex items-center gap-2 hover:bg-stone-200'
               onClick={() => setServerSource('2embed.org')}
             >
-              <BsPlayFill className='text-3xl' />
+              {iconHelper.play('text-3xl')}
               <div className='flex flex-col justify-center items-start'>
                 <span className='text-sm capitalize text-stone-400'>Server</span>
                 2embed.org
@@ -352,7 +358,7 @@ const TVMedia = () => {
               className='uppercase  flex items-center gap-2 px-4 py-2 bg-stone-300 rounded-lg hover:bg-stone-200'
               onClick={() => setServerSource('vidsrc.me')}
             >
-              <BsPlayFill className='text-3xl' />
+              {iconHelper.play('text-3xl')}
               <div className='flex flex-col justify-center items-start'>
                 <span className='text-sm capitalize text-stone-400'>Server</span>
                 vidsrc.me
@@ -406,7 +412,7 @@ const TVMedia = () => {
             >
               <span> Find something else to watch</span>
               <div className='rounded-full w-[1.5rem] grid place-items-center h-[1.5rem] bg-stone-400 absolute bottom-0 -right-8 md:right-16'>
-                <AiOutlineSearch className='text-lg text-stone-700' />
+                {iconHelper.search('text-lg text-stone-700')}
               </div>
             </Link>
           </div>
@@ -416,4 +422,4 @@ const TVMedia = () => {
   );
 };
 
-export default TVMedia
+export default TVMedia;

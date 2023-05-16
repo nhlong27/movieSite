@@ -6,10 +6,9 @@ import { useAtom } from 'jotai';
 import { seasonAndEpisodeAtom } from '../../atoms';
 import ButtonComponent from '@/components/generic/ButtonComponent';
 import LazyLoadImageComponent from '@/components/handling/LazyLoadImageComponent';
-import { episode as episode_image } from '@/config/images';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
-import { FaListUl } from 'react-icons/fa';
-import { BsPlayFill, BsListNested } from 'react-icons/bs';
+import { iconHelper } from '@/config/icons';
+import { imageHelper } from '@/config/images';
 
 interface SeasonsAndEpisodesProps {
   options: { [key: string]: any };
@@ -73,7 +72,7 @@ const SeasonsAndEpisodes: React.FC<SeasonsAndEpisodesProps> = (props) => {
               >
                 <div className='grid place-items-center'>
                   <LazyLoadImageComponent
-                    path={episode?.still_path ?? episode_image}
+                    path={episode?.still_path ?? imageHelper.episode}
                     styles={{
                       image: 'w-full object-contain',
                       size: episode?.still_path ? 'w200' : undefined,
@@ -100,7 +99,7 @@ const SeasonsAndEpisodes: React.FC<SeasonsAndEpisodesProps> = (props) => {
         className='flex justify-between items-center py-2 px-4 hover:bg-stone-300 md:hover:bg-stone-400'
       >
         <h1 className='text-lg md:text-2xl font-bold flex gap-2 items-center text-stone-600 '>
-          <FaListUl className='text-lg md:text-2xl' />
+          {iconHelper.list('text-lg md:text-2xl')}
           Season {seasonAndEpisode?.season}
         </h1>
       </ButtonComponent>
@@ -116,7 +115,7 @@ const SeasonsAndEpisodes: React.FC<SeasonsAndEpisodesProps> = (props) => {
                 key={seasonIndex}
               >
                 <p className='font-bold text-stone-600 flex items-center gap-2'>
-                  <BsListNested className='text-lg' />
+                  {iconHelper.listNested('text-lg')}
                   Season {seasonIndex + 1}
                 </p>
                 <p className='text-lg  font-black text-stone-500 w-[10rem] truncate md:w-[30rem]'>
@@ -132,7 +131,7 @@ const SeasonsAndEpisodes: React.FC<SeasonsAndEpisodesProps> = (props) => {
         className='flex justify-between items-center py-2 px-4 pl-3 hover:bg-stone-300 md:hover:bg-stone-400 mt-8'
       >
         <h1 className='text-lg font-bold flex gap-2 items-center text-stone-600 md:text-2xl '>
-          <BsPlayFill className='text-2xl md:text-[2rem]' />
+          {iconHelper.play('text-2xl md:text-[2rem]')}
           Episode {seasonAndEpisode?.episode}
         </h1>
       </ButtonComponent>
@@ -148,22 +147,26 @@ const SeasonsAndEpisodes: React.FC<SeasonsAndEpisodesProps> = (props) => {
                     setSeasonAndEpisode((prev) => ({ ...(prev ?? {}), episode: episodeIndex + 1 }));
                     options?.ref.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
                   }}
-                  className={` w-[300px] h-[250px] rounded-lg overflow-hidden flex flex-col  relative shadow-lg bg-stone-200 ${seasonAndEpisode?.episode === episodeIndex + 1 ? 'bg-stone-900 ring-4 ring-stone-700 shadow-2xl' : ''}`}
+                  className={` w-[300px] h-[250px] rounded-lg overflow-hidden flex flex-col  relative shadow-lg bg-stone-200 ${
+                    seasonAndEpisode?.episode === episodeIndex + 1
+                      ? 'bg-stone-900 ring-4 ring-stone-700 shadow-2xl'
+                      : ''
+                  }`}
                   key={episodeIndex}
                 >
-                  
-                    <LazyLoadImageComponent
-                      path={episode?.still_path ?? episode}
-                      styles={{
-                        image: 'w-[300px]  overflow-hidden bg-gradient-to-tr from-stone-900 to-stone-700  grow',
-                        size: episode?.still_path ? 'w300' : undefined,
-                      }}
-                    />
-                  
+                  <LazyLoadImageComponent
+                    path={episode?.still_path ?? episode}
+                    styles={{
+                      image:
+                        'w-[300px]  overflow-hidden bg-gradient-to-tr from-stone-900 to-stone-700  grow',
+                      size: episode?.still_path ? 'w300' : undefined,
+                    }}
+                  />
+
                   <div className='overflow-hidden w-full flex flex-col -mt-2 justify-between items-center py-2  '>
                     <h1 className='font-bold text-stone-600 flex items-center gap-2'>
                       {' '}
-                      <BsPlayFill className='text-lg text-stone-400' /> Episode {episodeIndex + 1}
+                      {iconHelper.play('text-lg text-stone-400')} Episode {episodeIndex + 1}
                     </h1>
                     <h2 className='text-lg  font-black text-stone-500 w-[10rem] truncate md:w-[15rem]'>
                       {episode?.name}

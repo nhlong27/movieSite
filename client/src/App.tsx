@@ -13,17 +13,23 @@ export const currentURLPathAtom = atom<'home' | 'discover' | 'profile'>('home');
 export const shouldDropdownDisplayAtom = atom<boolean>(false);
 export const hasQueryFiltersAtom = atom<boolean>(false);
 export const loadingBarProgress = atom<number>(0);
+export const themeAtom = atom<string>(localStorage.getItem('theme') ?? 'system');
 
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import LoadingBar from 'react-top-loading-bar';
+import { onWindowMatch } from './utils/onWindowMatch';
 
 function App() {
+
   const initialData = useLoaderData() as Awaited<ReturnType<typeof appLoader>>;
 
   const { pathname } = useLocation();
   const [animationParentRef] = useAutoAnimate();
 
   const [progress, setProgress] = useAtom(loadingBarProgress);
+
+  const [theme] = useAtom(themeAtom);
+  const {element} = onWindowMatch();
 
   React.useEffect(() => {
     search_queries.mediaTypeConfig.movie.discover.paramList = {
@@ -37,10 +43,26 @@ function App() {
   }, []);
 
   React.useEffect(() => {
+    switch (theme) {
+      case 'dark':
+        element.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        break;
+      case 'light':
+        element.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+        break;
+      default:
+        localStorage.removeItem('theme');
+        break;
+    }
+  }, [theme]);
+
+  React.useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
   return (
-    <div className='bg-stone-400 min-h-dynamic-screen w-screen flex flex-col z-0'>
+    <div className='bg-stone-400 dark:bg-stone-900  min-h-dynamic-screen w-screen flex flex-col z-0'>
       <LoadingBar
         // className={` transition-all duration-1000 ease-in`}
         height={4}
@@ -59,13 +81,11 @@ function App() {
         containerStyle={{}}
         toastOptions={{
           success: {
-            className:
-              'tracking-wider  font-poppins font-bold shadow-xl ',
+            className: 'tracking-wider  font-poppins font-bold shadow-xl ',
             duration: 5000,
           },
           error: {
-            className:
-              'tracking-wider  font-poppins font-bold shadow-xl',
+            className: 'tracking-wider  font-poppins font-bold shadow-xl',
             duration: 5000,
             style: {
               background: '#e7e5e4',

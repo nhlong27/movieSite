@@ -1,7 +1,7 @@
-import React, { ComponentType } from 'react';
+import React from 'react';
 import { FallbackProps } from 'react-error-boundary';
 import ButtonComponent from '../generic/ButtonComponent';
-import { AiOutlineReload } from 'react-icons/ai';
+import { iconHelper } from '@/config/icons';
 
 interface ErrorComponentProps extends FallbackProps {
   errorConfigs?: Record<string, any>;
@@ -26,7 +26,7 @@ const ErrorComponent: React.FC<ErrorComponentProps> = (props) => {
           window.location.reload();
         }}
       >
-        <AiOutlineReload />
+        {iconHelper.reload('text-lg')}
         Reload
       </ButtonComponent>
     </div>

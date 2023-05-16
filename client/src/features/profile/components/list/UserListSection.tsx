@@ -4,14 +4,12 @@ import MediaList from './MediaList';
 import { MultipleShowsQueryResponseType } from '../../types';
 import ListFilters from './ListFilters';
 import ButtonComponent from '@/components/generic/ButtonComponent';
-import Wrapper from '@/components/handling/Wrapper';
 import Skeleton from 'react-loading-skeleton';
 import { Link } from 'react-router-dom';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
-import backdrop from '/assets/placeholders/backdrop.png';
-import { MdOutlineNavigateNext, MdOutlineNavigateBefore } from 'react-icons/md';
-import { AiOutlineReload } from 'react-icons/ai';
 import { listFilterPrompts } from '@/config/constants';
+import { iconHelper } from '@/config/icons';
+import { imageHelper } from '@/config/images';
 
 const listFilters: Record<string, any> = {
   Watching: (list: MultipleShowsQueryResponseType, status: string) => (
@@ -67,7 +65,8 @@ const UserListSection = () => {
       <div className='flex justify-start w-full px-4 py-2 rounded-lg my-4 bg-stone-100 shadow-lg text-base text-stone-600 gap-4 font-bold'>
         <ButtonComponent className='' onClick={() => setShouldQueryDisplay(true)}>
           <h1 className='flex px-4 py-2 hover:bg-stone-300 rounded-xl gap-2 items-center'>
-            Search <MdOutlineNavigateNext className='text-2xl' />
+            Search
+            {iconHelper.next('text-2xl')}
           </h1>
         </ButtonComponent>
         <div
@@ -97,12 +96,12 @@ const UserListSection = () => {
         >
           <h1 className='grid place-items-center hover:bg-stone-300 rounded-full w-[1.4rem] h-[1.4rem]'>
             {' '}
-            <MdOutlineNavigateBefore className='text-2xl' />
+            {iconHelper.before('text-2xl')}
           </h1>
         </ButtonComponent>
       </div>
       <div className='relative flex flex-col justify-center items-center grow w-full bg-stone-900 rounded-xl'>
-        <img src={backdrop} alt='my_list' className='opacity-50 absolute top-0' />
+        <img src={imageHelper.backdrop} alt='my_list' className='opacity-50 absolute top-0' />
         {mediaList && mediaList?.length === 0 ? (
           <div
             className={
@@ -148,7 +147,7 @@ const UserListSection = () => {
             window.location.reload();
           }}
         >
-          <AiOutlineReload />
+          {iconHelper.reload()}
           Reload
         </ButtonComponent>
       </div>
@@ -169,4 +168,4 @@ const UserListSection = () => {
   );
 };
 
-export default UserListSection
+export default UserListSection;

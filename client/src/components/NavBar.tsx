@@ -8,23 +8,23 @@ import {
 } from '@/App';
 import { useAtom } from 'jotai';
 import SearchBar from '@/features/searching/components/query/SearchBar';
-import { GiHamburgerMenu } from 'react-icons/gi';
 import ButtonComponent from './generic/ButtonComponent';
 import { useMediaQueries } from '@/hooks/useMediaQueries';
 import AvatarComponent from './generic/AvatarComponent';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Wrapper from './handling/Wrapper';
 import Skeleton from 'react-loading-skeleton';
-import logo from '/assets/logos/logo.png';
-import logo_md from '/assets/logos/logo-md.png';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
-import human from '/assets/avatars/human.png'
+import { themeAtom } from '@/App';
+import { iconHelper } from '@/config/icons';
+import { imageHelper } from '@/config/images';
 
 const NavBar = () => {
   const [currentPath, setCurrentURLPath] = useAtom(currentURLPathAtom);
   const [mediaType, setMediaType] = useAtom(mediaTypeAtom);
   const [shouldDropdownDisplay, setShouldDropdownDisplay] = useAtom(shouldDropdownDisplayAtom);
   const [____, setProgress] = useAtom(loadingBarProgress);
+  const [theme, setTheme] = useAtom(themeAtom);
 
   const [animationParentRef] = useAutoAnimate();
 
@@ -42,16 +42,16 @@ const NavBar = () => {
         }}
       >
         <img
-          src={logo_md}
+          src={imageHelper.logo_md}
           className=' overflow-hidden object-full h-[4rem] rounded-full min-w-[4rem]'
         />
         <span className='text-stone-500 font-extrabold tracking-wider font-poppins text-2xl lg:text-3xl'>
           Green Dawn
         </span>
       </Link>
-      <div className='grid grid-cols-3 lg:col-start-3 col-span-2 place-items-center'>
+      <div className='grid grid-cols-4 lg:col-start-3 col-span-2 place-items-center'>
         <Link
-          className={`h-full w-3/4 whitespace-nowrap grid place-items-center tracking-wider font-poppins text-2xl ${
+          className={`col-span-1 h-full w-3/4 whitespace-nowrap grid place-items-center tracking-wider font-poppins text-2xl ${
             currentPath === 'home' && mediaType === 'movie'
               ? 'text-stone-600 border-b-4 border-stone-500 font-bold'
               : ''
@@ -66,7 +66,7 @@ const NavBar = () => {
           Movies
         </Link>
         <Link
-          className={`h-full w-full whitespace-nowrap grid place-items-center tracking-wider font-poppins text-2xl ${
+          className={`col-span-1 h-full w-full whitespace-nowrap grid place-items-center tracking-wider font-poppins text-2xl ${
             currentPath === 'home' && mediaType === 'tv'
               ? 'text-stone-600 border-b-4 border-stone-500 font-bold'
               : ''
@@ -82,37 +82,32 @@ const NavBar = () => {
         </Link>
         <Wrapper
           suspenseComponent={
-            <div className='w-full h-full grid place-items-center'>
+            <div className='col-span-1 w-full h-full grid place-items-center'>
               <div className='rounded-full overflow-hidden grid place-items-center xs:w-1/3 xl:w-1/4   aspect-square'>
                 <Skeleton className='h-full w-full' />
               </div>
             </div>
           }
           errorComponent={() => (
-            <div className='h-[3rem] group flex justify-center items-center w-full overflow-hidden'>
-              <div className='rounded-full grid place-items-center xs:w-1/3 xl:w-1/4 aspect-square group-hover:max-w-0 transition-all duration-300 overflow-hidden opacity-100 group-hover:opacity-0'>
-                <LazyLoadImage src={human}
-                alt='default_avatar' effect='blur' />
+            <div className='col-span-1 h-full group flex justify-center items-center w-full overflow-hidden'>
+              <div className='rounded-full grid place-items-center w-12  group-hover:max-w-0 transition-all duration-300 overflow-hidden opacity-100 group-hover:opacity-0'>
+                <LazyLoadImage src={imageHelper.human} alt='default_avatar' effect='blur' />
               </div>
               <Link
-                className='max-h-0 max-w-0 overflow-hidden group-hover:max-w-[10rem] group-hover:max-h-[2rem] opacity-0 group-hover:opacity-100 transition-all duration-300 grid place-items-center font-poppins text-base text-stone-400 font-bold'
+                className='h-0 max-w-0 group-hover:max-w-full overflow-hidden group-hover:h-3/4 opacity-0 invisible group-hover:visible group-hover:opacity-100 transition-all duration-300 grid place-items-center  font-poppins text-base px-4 py-2 rounded-lg bg-stone-600 text-stone-50 shadow-lg font-bold'
                 to='/profile'
                 onClick={() => {
                   setProgress(100);
                   setCurrentURLPath('profile');
                 }}
               >
-                Sign Up / Sign In
+                Sign In
               </Link>
             </div>
           )}
         >
           <Link
-            className={`aspect-square w-1/3 max-w-[2.8rem] whitespace-nowrap grid place-items-center rounded-full ${
-              currentPath === 'profile'
-                ? 'ring-black ring-offset-4 ring-offset-stone-300 ring-2'
-                : ''
-            }`}
+            className={`col-span-1 h-3/4 w-12 max-w-[2.8rem] whitespace-nowrap grid place-items-center rounded-full`}
             onClick={() => {
               setProgress(100);
               setCurrentURLPath('profile');
@@ -121,12 +116,32 @@ const NavBar = () => {
           >
             <AvatarComponent
               styles={{
-                image:
-                  'rounded-full overflow-hidden grid place-items-center object-cover aspect-square',
+                image: `rounded-full overflow-hidden grid w-12 place-items-center object-cover aspect-square ${
+                  currentPath === 'profile' ? 'text-stone-500 border-b-4 border-stone-400' : ''
+                }`,
               }}
             />
           </Link>
         </Wrapper>
+        <div className='ml-16 h-3/4 my-auto w-full whitespace-nowrap flex items-center col-span-1 justify-center gap-2 rounded-lg px-2 bg-stone-400 shadow-inner z-10'>
+          <ButtonComponent
+            className={`w-8 h-8 leading-9 text-xl rounded-full m-1  grid place-items-center ${
+              theme === 'dark' ? 'text-stone-300' : 'text-stone-900 shadow-xl'
+            }`}
+            onClick={() => setTheme('light')}
+          >
+            {iconHelper.light('text-4xl')}
+          </ButtonComponent>
+
+          <ButtonComponent
+            className={`w-8 h-8 leading-9 text-xl rounded-full m-1 grid place-items-center ${
+              theme === 'dark' ? 'text-stone-50 shadow-xl' : 'text-stone-600'
+            }`}
+            onClick={() => setTheme('dark')}
+          >
+            {iconHelper.dark('text-3xl')}
+          </ButtonComponent>
+        </div>
       </div>
       <Link
         className='flex col-span-1 lg:col-start-5 lg:col-span-2 justify-end items-center mr-4'
@@ -140,7 +155,7 @@ const NavBar = () => {
       </Link>
     </nav>
   ) : (
-    <nav className='grid grid-cols-4 w-11/12 min-w-[300px] '>
+    <nav className='grid grid-cols-5 w-11/12 min-w-[300px] '>
       <Link
         ref={animationParentRef}
         className={`flex justify-center items-center gap-2 ${
@@ -153,13 +168,32 @@ const NavBar = () => {
           setMediaType('movie');
         }}
       >
-        <img src={logo} className=' overflow-hidden object-full h-[4rem] w-[4rem]' />
+        <img src={imageHelper.logo} className=' overflow-hidden object-full h-[4rem] w-[4rem]' />
         {currentPath === 'home' && (
           <span className='text-stone-500 font-extrabold tracking-wider uppercase font-poppins text-[17px]'>
             Green Dawn
           </span>
         )}
       </Link>
+      <div className='h-3/4 my-auto w-full whitespace-nowrap flex items-center col-span-1 justify-center gap-2 px-2 z-10'>
+        <ButtonComponent
+          className={`w-8 h-8 leading-9 text-xl rounded-full m-1  grid place-items-center  ${
+            theme === 'dark' ? 'text-stone-300' : 'text-stone-900 shadow-xl'
+          }`}
+          onClick={() => setTheme('light')}
+        >
+          {iconHelper.light('text-4xl')}
+        </ButtonComponent>
+
+        <ButtonComponent
+          className={`w-8 h-8 leading-9 text-xl rounded-full m-1 grid place-items-center  ${
+            theme === 'dark' ? 'text-stone-50 shadow-xl' : 'text-stone-600'
+          }`}
+          onClick={() => setTheme('dark')}
+        >
+          {iconHelper.dark('text-3xl')}
+        </ButtonComponent>
+      </div>
       <Link
         className={`flex justify-center items-center ${
           currentPath === 'home' ? 'col-span-1' : 'col-span-2'
@@ -177,11 +211,11 @@ const NavBar = () => {
         onClick={() => setShouldDropdownDisplay((prev) => !prev)}
         className='flex justify-end items-center'
       >
-        <GiHamburgerMenu
-          className={`h-6 w-6 mr-4 text-stone-400 ${
+        {iconHelper.menu(
+          `h-6 w-6 mr-4 text-stone-400 ${
             shouldDropdownDisplay && 'rotate-90'
-          } transition-transform duration-300`}
-        />
+          } transition-transform duration-300`,
+        )}
       </ButtonComponent>
     </nav>
   );

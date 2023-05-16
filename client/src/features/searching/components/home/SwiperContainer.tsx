@@ -6,10 +6,9 @@ import { useMediaQueries } from '@/hooks/useMediaQueries';
 import ButtonMediaCard from '@/components/specific/ButtonMediaCard';
 import LinkMediaCard from '@/components/specific/LinkMediaCard';
 import { FilteredMovieListType, FilteredTVListType } from '../../types';
-import { MdOutlineNavigateNext, MdOutlineNavigateBefore } from 'react-icons/md';
-import { BsPlayFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { undefined } from 'zod';
+import { iconHelper } from '@/config/icons';
 
 interface SwiperContainerProps {
   sectionName?: 'trending' | 'comingSoon' | 'airing' | 'popular' | 'top_rated' | 'history';
@@ -52,7 +51,7 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
             }
           }}
         >
-          <MdOutlineNavigateBefore />
+          {iconHelper.before()}
         </ButtonComponent>
         <div
           className={`w-full gap-x-custom-x-max-normal absolute bottom-0 flex slider ml-20 -translate-x-[(calc(var(--slider-index)*(100%/var(--items-per-screen)*(var(--items-per-screen)-1))))] h-full transition-transform duration-500 ${sliderName}`}
@@ -130,7 +129,7 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
             }
           }}
         >
-          <MdOutlineNavigateNext />
+          {iconHelper.next()}
         </ButtonComponent>
       </div>
     </div>
@@ -142,7 +141,8 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
           className='w-full grid place-items-end text-xl absolute top-0 z-30 '
         >
           <div className='rounded-xl flex items-center mr-20 justify-center px-4 py-2 bg-stone-700 font-poppins text-stone-50 text-sm gap-2 border-b-2 border-stone-700 shadow-lg ring-2 ring-stone-200'>
-            <BsPlayFill className='text-xl font-bold' /> Watch
+            {iconHelper.play('text-xl font-bold')}
+             Watch
           </div>
         </Link>
       ) : null}
@@ -155,7 +155,7 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
           }
         }}
       >
-        <MdOutlineNavigateBefore />
+        {iconHelper.before()}
       </ButtonComponent>
       <div
         className={`w-full h-full absolute inset-0 flex slider transition-transform duration-500 gap-2 ${sliderName}`}
@@ -192,7 +192,7 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
           }
         }}
       >
-        <MdOutlineNavigateNext />
+        {iconHelper.next()}
       </ButtonComponent>
     </div>
   );

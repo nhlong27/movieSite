@@ -6,10 +6,10 @@ import { ShowQueryResponseType } from '../../types';
 import SelectComponent from '@/components/generic/SelectComponent';
 import { useUpdateShowMutation } from '../../hooks/useUpdateShowMutation';
 import LazyLoadImageComponent from '@/components/handling/LazyLoadImageComponent';
-import { poster } from '@/config/images';
-import { AiOutlineHeart, BsTrash } from '@/config/icons';
 import { toast } from 'react-hot-toast';
 import { useQueryClient } from '@tanstack/react-query';
+import { imageHelper } from '@/config/images';
+import { iconHelper } from '@/config/icons';
 
 interface ProfileMediaCardProps {
   media: ShowQueryResponseType;
@@ -63,7 +63,7 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
             image: 'object-cover bg-gradient-to-tr from-white to-black',
             size: media?.poster_path ? 'original' : undefined,
           }}
-          path={media?.poster_path ?? poster}
+          path={media?.poster_path ?? imageHelper.poster}
         />
         <div className={`w-11/12 flex flex-col bg-stone-100 my-4 `}>
           <h1 className='truncate font-poppins font-black text-xl lg:text-2xl text-stone-600 tracking-wide'>
@@ -126,7 +126,7 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
               setIsFavorited((prev) => !prev);
             }}
           >
-            <AiOutlineHeart className='text-xl' />
+            {iconHelper.heart('text-xl')}
             Favorite
           </ButtonComponent>
           <ButtonComponent
@@ -136,7 +136,7 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
               deleteShowMutation.mutate(media.id);
             }}
           >
-            <BsTrash className='text-lg' />
+            {iconHelper.trash('text-lg')}
           </ButtonComponent>
         </div>
       </div>

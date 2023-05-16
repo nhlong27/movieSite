@@ -3,7 +3,7 @@ import { useGetItemDetailQuery } from '../../hooks/useGetItemDetailQuery';
 import { MovieDetailType } from '../../types';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import LazyLoadImageComponent from '@/components/handling/LazyLoadImageComponent';
-import { distributor } from '@/config/images';
+import { imageHelper } from '@/config/images';
 
 interface MovieMediaDetailProps {
   role?: string;
@@ -140,7 +140,7 @@ const MovieMediaDetail: React.FC<MovieMediaDetailProps> = (props) => {
             ? data?.production_companies?.map((company, index) => (
                 <li key={index} className='flex flex-col items-center justify-center'>
                   <LazyLoadImageComponent
-                    path={company.logo_path ?? distributor}
+                    path={company.logo_path ?? imageHelper.distributor}
                     styles={{
                       image: ' object-cover w-[5rem] h-[3rem] overflow-hidden bg-gradient-to-tr from-stone-900 to-stone-700  grow',
                       size: company?.logo_path ? 'w200' : undefined,

@@ -1,14 +1,6 @@
 import ButtonComponent from '@/components/generic/ButtonComponent';
+import { iconHelper } from '@/config/icons';
 import React, { Dispatch } from 'react';
-
-import {
-  TfiGallery,
-  AiOutlineHeart,
-  AiOutlineHistory,
-  AiOutlineCalendar,
-  AiOutlineCheckCircle,
-  BsTrash,
-} from '@/config/icons';
 
 const ListFilters = ({
   listFilter,
@@ -26,7 +18,7 @@ const ListFilters = ({
           }`}
           onClick={() => setListFilter('All')}
         >
-          <TfiGallery className='text-xl' />
+          {iconHelper.gallery('text-xl')}
           All Media
         </ButtonComponent>
         <ButtonComponent
@@ -35,7 +27,7 @@ const ListFilters = ({
           }`}
           onClick={() => setListFilter('isFavorited')}
         >
-          <AiOutlineHeart className='text-xl' />
+          {iconHelper.heart('text-xl')}
           Favorited
         </ButtonComponent>
       </div>
@@ -46,7 +38,7 @@ const ListFilters = ({
           }`}
           onClick={() => setListFilter('Watching')}
         >
-          <AiOutlineHistory className='text-xl' />
+          {iconHelper.history('text-xl')}
           Watching
         </ButtonComponent>
         <ButtonComponent
@@ -55,7 +47,7 @@ const ListFilters = ({
           }`}
           onClick={() => setListFilter('Plan to Watch')}
         >
-          <AiOutlineCalendar className='text-xl' />
+          {iconHelper.calendar('text-xl')}
           Plan to Watch
         </ButtonComponent>
         <ButtonComponent
@@ -64,7 +56,7 @@ const ListFilters = ({
           }`}
           onClick={() => setListFilter('Completed')}
         >
-          <AiOutlineCheckCircle className='text-xl' />
+          {iconHelper.checkCircle('text-xl')}
           Completed
         </ButtonComponent>
         <ButtonComponent
@@ -73,7 +65,7 @@ const ListFilters = ({
           }`}
           onClick={() => setListFilter('Dropped')}
         >
-          <BsTrash className='text-xl' />
+          {iconHelper.trash('text-xl')}
           Dropped
         </ButtonComponent>
       </div>

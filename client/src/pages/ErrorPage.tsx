@@ -1,7 +1,7 @@
 import ButtonComponent from '@/components/generic/ButtonComponent';
+import { iconHelper } from '@/config/icons';
 import { useMediaQueries } from '@/hooks/useMediaQueries';
 import { Link } from 'react-router-dom';
-import { AiOutlineReload } from 'react-icons/ai';
 
 const ErrorPage = () => {
   const { isMd } = useMediaQueries();
@@ -36,7 +36,7 @@ const ErrorPage = () => {
                   window.location.reload();
                 }}
               >
-                <AiOutlineReload />
+                {iconHelper.reload()}
                 Reload
               </ButtonComponent>
             </div>

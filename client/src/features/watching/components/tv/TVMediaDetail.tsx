@@ -4,8 +4,8 @@ import { TVDetailType } from '../../types';
 import LazyLoadImageComponent from '@/components/handling/LazyLoadImageComponent';
 import ButtonComponent from '@/components/generic/ButtonComponent';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
+import { imageHelper } from '@/config/images';
 
-import { deer, network as network_image } from '@/config/images';
 
 interface TVMediaDetailProps {
   role?: string;
@@ -179,7 +179,7 @@ const TVMediaDetail: React.FC<TVMediaDetailProps> = (props) => {
               ) => (
                 <li key={index} className='grid place-items-center'>
                   <LazyLoadImageComponent
-                    path={network.logo_path ?? network_image}
+                    path={network.logo_path ?? imageHelper.network}
                     styles={{
                       image: ' object-contain aspect-1/2 w-[5rem] overflow-hidden',
                       size: network?.logo_path ? 'w200' : undefined,
@@ -194,7 +194,7 @@ const TVMediaDetail: React.FC<TVMediaDetailProps> = (props) => {
             {(data as TVDetailType)?.created_by?.map((creator, index) => (
               <li key={index} className='flex flex-col justify-center items-center'>
                 <LazyLoadImageComponent
-                  path={creator.profile_path ?? deer}
+                  path={creator.profile_path ?? imageHelper.deer}
                   styles={{
                     image: 'rounded-full object-contain h-[5rem] w-[5rem] overflow-hidden shadow-inner',
                     size: creator?.profile_path ? 'w200' : undefined,

@@ -3,7 +3,7 @@ import React from 'react';
 import { useGetItemDetailQuery } from '../hooks/useGetItemDetailQuery';
 import LazyLoadImageComponent from '@/components/handling/LazyLoadImageComponent';
 import Wrapper from '@/components/handling/Wrapper';
-import {backdrop} from '@/config/images';
+import { imageHelper } from '@/config/images';
 
 
 const BackdropComponent = () => {
@@ -11,7 +11,7 @@ const BackdropComponent = () => {
   return (
     <div className='absolute aspect-[18/9] top-0 w-full flex items-top overflow-hidden'>
       <LazyLoadImageComponent
-        path={data?.backdrop_path ?? backdrop}
+        path={data?.backdrop_path ?? imageHelper.backdrop}
         styles={{image:'w-full lg:object-left object-cover lg:h-[100%] aspect-[18/9]',
         size: data?.backdrop_path ? 'original' : undefined}}
       />

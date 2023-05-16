@@ -7,7 +7,7 @@ import TVFilterSection from './TVFilterSection';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { queryAtom } from '../../atoms';
 import { handleQueryInput } from '../query/SearchBar';
-import { IoMdOpen, IoMdClose } from 'react-icons/io';
+import { iconHelper } from '@/config/icons';
 
 const FilterSection: React.FC = () => {
   const [mediaType, setMediaType] = useAtom(mediaTypeAtom);
@@ -57,11 +57,11 @@ const FilterSection: React.FC = () => {
           </span>
           {hasQueryFilters ? (
             <div className='ring-2 ring-stone-600 rounded-sm'>
-              <IoMdClose className='text-lg' />
+              {iconHelper.close('text-lg')}
             </div>
           ) : (
             <div>
-              <IoMdOpen className='text-2xl' />
+              {iconHelper.open('text-2xl')}
             </div>
           )}
         </ButtonComponent>

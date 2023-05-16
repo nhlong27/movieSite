@@ -3,7 +3,7 @@ import React from 'react';
 import { useSectionBackdropItemsStore } from '../../stores';
 import { MovieType, TVType } from '@/types/types';
 import { mediaTypeConfig } from '../../queries';
-import {backdrop} from '@/config/images';
+import { imageHelper } from '@/config/images';
 
 
 const SectionBackdrop = ({ mediaType, section }: { mediaType?: string; section?: string }) => {
@@ -12,7 +12,7 @@ const SectionBackdrop = ({ mediaType, section }: { mediaType?: string; section?:
   return (
     <div className=' absolute aspect-[18/9] top-0 w-full flex z-0 items-top overflow-hidden'>
       <LazyLoadImageComponent
-        path={sectionBackdropItem?.backdrop_path ?? backdrop}
+        path={sectionBackdropItem?.backdrop_path ?? imageHelper.backdrop}
         styles={{
           size: sectionBackdropItem?.backdrop_path ? 'original' : undefined,
           image:

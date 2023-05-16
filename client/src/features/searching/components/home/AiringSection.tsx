@@ -8,10 +8,10 @@ import SwiperContainer from './SwiperContainer';
 import SectionBackdrop from './SectionBackdrop';
 import { useMediaQueries } from '@/hooks/useMediaQueries';
 import { useSectionBackdropItemsStore } from '../../stores';
-import { BsPlayFill } from 'react-icons/bs';
 
 import { Link } from 'react-router-dom';
 import HomeSectionSkeleton from '../skeletons/HomeSectionSkeleton';
+import { iconHelper } from '@/config/icons';
 
 const AiringSection = () => {
   const [mediaType] = useAtom(mediaTypeAtom);
@@ -44,7 +44,7 @@ const AiringSection = () => {
                   className='rounded-full bg-stone-200 h-[2.5rem] w-[2.5rem] grid pl-[3px]
               place-content-center text-stone-600 shadow-lg hover:bg-stone-300'
                 >
-                  <BsPlayFill className=' text-[2.8rem]' />
+                  {iconHelper.play('text-[2.8rem]')}
                 </div>
                 Watch
               </Link>

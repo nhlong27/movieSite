@@ -1,13 +1,13 @@
 import { convertToBase64 } from '@/utils/covertToBase64';
 import React, { ChangeEvent, useRef } from 'react';
 import { useUpdateUserMutation } from '../../hooks/useUpdateUserMutation';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { UserUpdateResponse } from '../../types';
 import AvatarComponent from '@/components/generic/AvatarComponent';
-import { HiOutlineUpload } from 'react-icons/hi';
 import ButtonComponent from '@/components/generic/ButtonComponent';
 import Wrapper from '@/components/handling/Wrapper';
 import Skeleton from 'react-loading-skeleton';
+import { iconHelper } from '@/config/icons';
 
 const AvatarContainer = () => {
   const updateUserMutation = useUpdateUserMutation();
@@ -39,7 +39,7 @@ const AvatarContainer = () => {
           onSuccess: (response) => {
             try {
               UserUpdateResponse.parse(response.data);
-              toast.success('Success!')
+              toast.success('Success!');
               console.log('Update avatar success!');
             } catch (e: any) {
               console.log(e);
@@ -61,7 +61,7 @@ const AvatarContainer = () => {
         onSuccess: (response) => {
           try {
             UserUpdateResponse.parse(response.data);
-            toast.success('Success!')
+            toast.success('Success!');
             console.log('Update avatar success!');
           } catch (e: any) {
             console.log(e);
@@ -95,7 +95,8 @@ const AvatarContainer = () => {
               className='flex gap-2 items-center hover:border-b-2 hover:border-stone-400'
               onClick={handleUploadClick}
             >
-              <HiOutlineUpload className='text-stone-700 text-lg' /> Upload new
+              {iconHelper.upload('text-stone-700 text-lg')}
+              Upload new
             </ButtonComponent>
             <input
               type='file'

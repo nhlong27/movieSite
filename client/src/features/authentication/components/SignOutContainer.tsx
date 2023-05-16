@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { signOutUser } from '../utils/signOutUser';
 import ButtonComponent from '@/components/generic/ButtonComponent';
 import { useQueryClient } from '@tanstack/react-query';
-import {FaSignOutAlt} from 'react-icons/fa'
+import { iconHelper } from '@/config/icons';
 
 const SignOutContainer = () => {
   const navigate = useNavigate();
@@ -18,13 +18,15 @@ const SignOutContainer = () => {
             console.log(response);
             queryClient.invalidateQueries({ queryKey: ['shows'] });
             queryClient.invalidateQueries({ queryKey: ['profile'] });
-            navigate(0)
+            navigate(0);
           })
           .catch((e) => {
             console.log(e.message);
           });
       }}
-    > <FaSignOutAlt className='text-lg' />
+    >
+      {' '}
+      {iconHelper.signOut('text-lg')}
       Sign Out
     </ButtonComponent>
   );

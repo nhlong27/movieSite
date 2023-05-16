@@ -3,7 +3,7 @@ import LazyLoadImageComponent from '../handling/LazyLoadImageComponent';
 import { Link } from 'react-router-dom';
 import { MovieType, TVType } from '@/types/types';
 import { SimilarMovieType, SimilarTVType } from '@/features/watching/types';
-import poster from '/assets/placeholders/poster.png';
+import { imageHelper } from '@/config/images';
 
 interface LinkMediaCardProps {
   media: MovieType | TVType | SimilarTVType | SimilarMovieType;
@@ -30,7 +30,7 @@ const LinkMediaCard: React.FC<LinkMediaCardProps> = (props) => {
           image:
             styles?.image ?? 'h-[300px] overflow-hidden bg-gradient-to-tr from-white to-black ',
         }}
-        path={media.poster_path ?? poster}
+        path={media.poster_path ?? imageHelper.poster}
       />
       <div className={styles?.detail ?? 'mt-auto flex flex-col w-full '}>
         <h1 className='truncate font-poppins font-bold text-lg text-stone-600 tracking-wide'>
@@ -63,7 +63,7 @@ const LinkMediaCard: React.FC<LinkMediaCardProps> = (props) => {
           size: styles?.size,
           image: styles?.image ?? 'h-[300px] overflow-hidden bg-gradient-to-tr from-white to-black',
         }}
-        path={media.poster_path ?? poster}
+        path={media.poster_path ?? imageHelper.poster}
       />
       <div className={styles?.detail ?? 'mt-auto flex flex-col w-full'}>
         <h1 className='truncate font-poppins font-bold text-lg text-stone-600 tracking-wide'>{(media as TVType | SimilarTVType).name}</h1>
@@ -92,7 +92,7 @@ const LinkMediaCard: React.FC<LinkMediaCardProps> = (props) => {
           size: styles?.size,
           image: styles?.image ?? 'h-[300px] overflow-hidden bg-gradient-to-tr from-white to-black',
         }}
-        path={media.poster_path ?? poster}
+        path={media.poster_path ?? imageHelper.poster}
       />
       <div className={styles?.detail ?? 'mt-auto flex flex-col w-full'}>
         {(media as any).media_type === 'movie' ? (

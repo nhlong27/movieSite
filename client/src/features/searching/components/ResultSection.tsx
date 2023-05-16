@@ -5,9 +5,9 @@ import SearchResult from './query/SearchResult';
 import FilterResult from './filter/FilterResult';
 import ButtonComponent from '@/components/generic/ButtonComponent';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
-import { AiOutlineDown, AiOutlineUp } from 'react-icons/ai';
 import { queryAtom } from '../atoms';
 import { useMovieFiltersStore, useTVFiltersStore } from '../stores';
+import { iconHelper } from '@/config/icons';
 
 const ResultSection = () => {
   const [query] = useAtom(queryAtom);
@@ -36,11 +36,11 @@ const ResultSection = () => {
         </div>
         {hasQueryFilters ? (
           <div className='rounded-full bg-stone-300 ring-2 ring-stone-500 grid place-items-center w-[1.4rem] h-[1.4rem]'>
-            <AiOutlineDown className='text-lg text-stone-500' />
+            {iconHelper.down('text-lg text-stone-500')}
           </div>
         ) : (
           <div className='rounded-full bg-stone-300 ring-2 ring-stone-500 grid place-items-center w-[1.4rem] h-[1.4rem]'>
-            <AiOutlineUp className='text-lg text-stone-500' />
+            {iconHelper.up('text-lg text-stone-500')}
           </div>
         )}
       </ButtonComponent>

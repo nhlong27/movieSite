@@ -8,8 +8,8 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useGetItemDetailQuery } from '@/features/watching';
 import { Link, useParams } from 'react-router-dom';
 import { MovieDetailType, TVDetailType } from '@/features/watching/types';
-import { MdSystemUpdateAlt } from 'react-icons/md';
 import Ratings from '@/components/specific/Ratings';
+import { iconHelper } from '@/config/icons';
 
 interface MediaActionModalComponentProps {
   cancelFunction: React.Dispatch<React.SetStateAction<boolean>>;
@@ -54,7 +54,7 @@ const MediaActionModalComponent: React.FC<MediaActionModalComponentProps> = (pro
             <div className='bg-white px-4 pb-4 pt-5 sm:p-8 sm:pr-8 sm:pl-8 sm:pb-4'>
               <div className='sm:flex sm:items-start'>
                 <div className='mx-auto flex h-12 w-full flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10'>
-                  <MdSystemUpdateAlt className='text-xl text-blue-700' />
+                  {iconHelper.update('text-xl text-blue-700')}
                 </div>
                 <div className='mt-3 grow text-center sm:ml-4 sm:mt-0 sm:text-left'>
                   <h3
