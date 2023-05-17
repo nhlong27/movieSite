@@ -13,7 +13,7 @@ export const currentURLPathAtom = atom<'home' | 'discover' | 'profile'>('home');
 export const shouldDropdownDisplayAtom = atom<boolean>(false);
 export const hasQueryFiltersAtom = atom<boolean>(false);
 export const loadingBarProgress = atom<number>(0);
-export const themeAtom = atom<string>(localStorage.getItem('theme') ?? 'system');
+export const themeAtom = atom<string>(localStorage.getItem('theme') ?? 'dark');
 
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import LoadingBar from 'react-top-loading-bar';
@@ -64,7 +64,6 @@ function App() {
   return (
     <div className='bg-stone-400 dark:bg-stone-900  min-h-dynamic-screen w-screen flex flex-col z-0'>
       <LoadingBar
-        // className={` transition-all duration-1000 ease-in`}
         height={4}
         color='#292524'
         progress={progress}

@@ -29,8 +29,8 @@ const DeactivateRequestContainer = ({
     },
   });
   return (
-    <div className='w-full font-poppins text-lg flex flex-col items-center'>
-      <p className=''>Type your password to deactivate.</p>
+    <div className='w-full font-poppins text-lg flex flex-col items-center mt-4'>
+      <p className='dark:text-yellow-50 text-xl'>Type in your password to deactivate.</p>
       <form
         className='w-full flex flex-col'
         onSubmit={handleSubmit((formInputs) =>
@@ -54,7 +54,7 @@ const DeactivateRequestContainer = ({
         )}
       >
         <input
-          className='rounded-md pl-2 py-2 mx-auto w-[20rem] ring-2 ring-stone-700 my-4'
+          className='rounded-md pl-2 py-2 mx-auto w-[20rem] ring-2 ring-stone-700 my-4 dark:bg-stone-700 dark:bg-opacity-75  dark:text-stone-50 dark:ring-transparent'
           type='password'
           {...register(`password` as never)}
         />
@@ -65,11 +65,11 @@ const DeactivateRequestContainer = ({
           </div>
         )}
 
-        <div className='bg-slate-100 px-4 py-4 sm:py-6 mt-4 gap-4 flex flex-col sm:flex-row sm:gap-0 sm:px-8 w-full grow'>
+        <div className='bg-slate-100 px-4 py-4 sm:py-6 mt-4 gap-4 flex flex-col sm:flex-row sm:gap-0 sm:px-8 w-full grow dark:bg-yellow-500'>
           <ButtonComponent
             onClick={() => cancelFunction(false)}
             type='button'
-            className='ml-auto mt-3 inline-flex w-full justify-center rounded-md bg-stone-100 px-6 py-2 text-base font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-stone-300 hover:bg-stone-50 sm:mt-0 sm:w-auto'
+            className='ml-auto mt-3 inline-flex w-full justify-center rounded-md bg-stone-100 px-6 py-2 text-base font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-stone-300 hover:bg-stone-50 sm:mt-0 sm:w-auto dark:bg-yellow-600 dark:ring-yellow-700 dark:hover:bg-yellow-700'
           >
             Cancel
           </ButtonComponent>

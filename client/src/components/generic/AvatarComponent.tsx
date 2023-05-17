@@ -12,7 +12,7 @@ const AvatarComponent: React.FC<AvatarComponentProps> = (props) => {
   return (
       <div className={`${styles?.image} shadow-inner`}>
         <LazyLoadImage
-          src={data && data?.avatar && data?.avatar !== '' ? data?.avatar : imageHelper.human}
+          src={data && data?.avatar && data?.avatar !== '' ? data?.avatar : imageHelper.logo_better}
           height={styles?.height}
           width={styles?.width}
           alt={styles?.alt ?? 'image'}

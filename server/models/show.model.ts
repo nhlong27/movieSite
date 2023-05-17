@@ -8,6 +8,7 @@ interface ShowDocument extends mongoose.Document {
   title?: string;
   name?: string;
   poster_path?: string;
+  backdrop_path?: string;
   media_type?: string;
   season_number?: number;
   id: string;
@@ -23,6 +24,7 @@ const ShowSchema = new mongoose.Schema({
   title: String,
   name: String,
   poster_path: String,
+  backdrop_path: String,
   media_type: String,
   season_number: Number,
   id: {type: String, required: true},

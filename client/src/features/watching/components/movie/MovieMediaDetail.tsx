@@ -14,76 +14,28 @@ const MovieMediaDetail: React.FC<MovieMediaDetailProps> = (props) => {
 
   const [animationParentRef] = useAutoAnimate();
 
-  return role ? (
-    <div className='flex flex-col gap-4'>
-      <div>{(data as MovieDetailType).overview}</div>
-      <div className='flex justify-start items-start'>
-        <div>
-          <p>Released: {(data as MovieDetailType).release_date}</p>
-          <div>
-            Genres: {data?.genres?.map((genre) => genre.name)?.join(', ')}
-            <div>
-              Language:{' '}
-              {(data as MovieDetailType).original_language === 'en'
-                ? 'English'
-                : (data as MovieDetailType).original_language}
-            </div>
-          </div>
-          <p>Duration: {(data as MovieDetailType).runtime} min</p>
-          <p>
-            Budget:{' '}
-            {(data as MovieDetailType).budget
-              ? Math.floor((data as MovieDetailType).budget! / 1000000)
-              : 'No information'}{' '}
-            mil
-          </p>
-          <p>
-            Revenue:{' '}
-            {(data as MovieDetailType).revenue
-              ? Math.floor((data as MovieDetailType).revenue! / 1000000)
-              : 'No information'}{' '}
-            mil
-          </p>
-        </div>
-        <div>
-          <p>Status: {data.status}</p>
-          <p>Country: {data?.production_countries?.map((country) => country.name)?.join(', ')}</p>
-          <p>
-            Production: {data?.production_companies?.map((company) => company.name)?.join(', ')}
-          </p>
-        </div>
-      </div>
-    </div>
-  ) : (
+  return (
     <div ref={animationParentRef}>
-      <h1 className='truncate font-poppins font-black text-2xl text-stone-700 tracking-wide py-4 md:text-3xl md:uppercase'>
+      <h1 className='truncate font-poppins font-black text-2xl text-stone-700 tracking-wide py-4 md:text-3xl md:uppercase dark:text-stone-900'>
         {(data as MovieDetailType).title}
       </h1>
-      <h2 className='rounded-lg bg-stone-300 md:bg-stone-200 py-2 px-4 md:hidden'>
-        <div className='h-3 text-3xl text-left text-stone-600'>“</div>
-        <p className='px-4 text-base italic text-center text-stone-600'>
-          {(data as MovieDetailType).tagline !== ''
-            ? (data as MovieDetailType).tagline
-            : 'Have you watched Morbius?'}
-        </p>
-        <div className='h-3 text-3xl text-right text-stone-600'>”</div>
-      </h2>
+    
       <div className='flex justify-start gap-4 flex-wrap text-lg py-4 md:py-0'>
         {data?.genres?.map((genre, index) => (
           <span
-            className='rounded-lg ring-2 md:ring-amber-700 md:text-amber-800 md:bg-yellow-400 md:bg-opacity-70 md:px-4 font-bold ring-stone-400 px-2 bg-stone-300 text-stone-500'
+            className='rounded-lg ring-2 md:ring-amber-700 md:text-amber-800 md:bg-yellow-400 md:bg-opacity-70 md:px-4 font-bold ring-stone-400  bg-stone-300 text-stone-500 dark:bg-lime-900 dark:text-lime-200 dark:ring-transparent px-4 py-2'
             key={index}
           >
             {genre.name}
           </span>
         ))}
       </div>
-      <div className='text-base  font-bold text-stone-500 flex items-center py-4'>
+      <div className='text-base  font-bold text-stone-500 flex items-center py-6 dark:text-stone-900'>
         <p className='md:text-xl'>{(data as MovieDetailType).release_date}</p>
-        <div className='ml-auto flex items-center rounded-lg tracking-[0.2rem] md:hidden'>
+        <div className='ml-16 flex items-center rounded-lg tracking-[0.2rem] dark:bg-stone-900 px-2 py-[4px]'>
           <svg
             aria-hidden='true'
-            className='w-8 h-8 text-amber-400'
+            className='w-6 h-6 text-amber-400'
             fill='currentColor'
             viewBox='0 0 20 20'
             xmlns='http://www.w3.org/2000/svg'
@@ -96,7 +48,7 @@ const MovieMediaDetail: React.FC<MovieMediaDetailProps> = (props) => {
           </p>
         </div>
       </div>
-      <p className='text-stone-500 mb-2 md:text-xl md:font-bold '>
+      <p className='text-stone-500 mb-2 md:text-xl md:font-bold dark:text-lime-900 dark:border-l-4 dark:border-lime-900 pl-8 py-8'>
         {(data as MovieDetailType).overview}
       </p>
 
@@ -135,7 +87,7 @@ const MovieMediaDetail: React.FC<MovieMediaDetailProps> = (props) => {
             : 'No information'}
         </p>
         <h3 className='col-span-1 text-stone-500'>Production</h3>
-        <ul className='col-start-2 col-span-3 flex flex-wrap gap-8'>
+        <ul className='col-start-2 col-span-3 flex flex-wrap gap-8 py-4'>
           {data?.production_companies?.length ?? 0 > 0
             ? data?.production_companies?.map((company, index) => (
                 <li key={index} className='flex flex-col items-center justify-center'>

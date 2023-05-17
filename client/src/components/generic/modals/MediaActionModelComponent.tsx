@@ -34,6 +34,7 @@ const MediaActionModalComponent: React.FC<MediaActionModalComponentProps> = (pro
           (serverMediaDetail as MovieDetailType)?.title ??
           (serverMediaDetail as TVDetailType)?.name,
         poster_path: serverMediaDetail?.poster_path,
+        backdrop_path: serverMediaDetail?.backdrop_path,
         media_type: (serverMediaDetail as MovieDetailType).title ? 'movie' : 'tv',
       },
     });

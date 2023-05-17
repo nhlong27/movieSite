@@ -11,7 +11,7 @@ const SignOutContainer = () => {
 
   return (
     <ButtonComponent
-      className='ml-auto flex px-2 py-2 rounded-sm bg-stone-300 ring-2 ring-stone-500 text-stone-600 text-base font-bold hover:bg-stone-600 hover:text-stone-200 items-center gap-2'
+      className='ml-auto flex px-2 py-2 rounded-sm bg-stone-300 ring-2 ring-stone-500 text-stone-600 text-base font-bold hover:bg-stone-600 hover:text-stone-200 items-center gap-2 dark:bg-yellow-500 dark:hover:ring-stone-800 dark:hover:text-stone-900'
       onClick={() => {
         signOutUser()
           .then(async (response) => {

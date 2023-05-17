@@ -54,7 +54,7 @@ const SearchBar = () => {
             type='text'
             className={`${
               currentURLPath === 'discover' && !hasQueryFilters ? 'w-full pl-4' : 'w-0 opacity-0'
-            } transition-all h-full duration-300 shadow-inner  bg-stone-300 rounded-l-full`}
+            } transition-all h-full duration-300 shadow-inner  bg-stone-300  dark:bg-yellow-400  rounded-l-full`}
             value={inputValue ?? ''}
             onChange={(e) => {
               setInputValue(() => e.target.value);
@@ -67,7 +67,7 @@ const SearchBar = () => {
             }}
             placeholder={inputValue ?? 'Search a movie or tv show'}
           />
-          <div className=' bg-stone-300 h-full w-[2.5rem] lg:w-[3rem] grid place-items-center p-2'>
+          <div className=' bg-stone-300  dark:bg-yellow-500 h-full w-[2.5rem] lg:w-[3rem] grid place-items-center p-2'>
             {iconHelper.search('h-6 lg:h-8 w-6 lg:w-8 text-stone-600')}
           </div>
         </div>
@@ -76,14 +76,14 @@ const SearchBar = () => {
           ref={animationParentRef}
           className=' overflow-hidden h-full rounded-full min-w-[2.4rem] flex'
         >
-          <div className=' bg-stone-300 h-full w-[2.4rem] grid place-items-center p-2'>
+          <div className=' bg-stone-300  dark:bg-yellow-500  h-full w-[2.4rem] grid place-items-center p-2'>
             {iconHelper.search('h-6 w-6 text-stone-600')}
           </div>
           {currentURLPath === 'discover' && !hasQueryFilters ? (
             <input
               ref={inputRef}
               type='text'
-              className={`h-full w-full shadow-inner bg-stone-300 rounded-r-full`}
+              className={`h-full w-full shadow-inner bg-stone-300  dark:bg-yellow-500  rounded-r-full`}
               value={inputValue ?? ''}
               onChange={(e) => {
                 setInputValue(() => e.target.value);

@@ -31,7 +31,7 @@ const NavBar = () => {
   const { isMd } = useMediaQueries();
 
   return isMd ? (
-    <nav className='grid lg:grid-cols-6 grid-cols-4 w-11/12 max-w-[1920px] min-w-[300px]'>
+    <nav className='grid lg:grid-cols-6 grid-cols-4 w-11/12 max-w-[1920px] min-w-[300px] '>
       <Link
         className='flex col-span-1 lg:col-span-2 justify-start items-center font-poppins font-extrabold text-3xl gap-4'
         to='/'
@@ -45,16 +45,16 @@ const NavBar = () => {
           src={imageHelper.logo_md}
           className=' overflow-hidden object-full h-[4rem] rounded-full min-w-[4rem]'
         />
-        <span className='text-stone-500 font-extrabold tracking-wider font-poppins text-2xl lg:text-3xl'>
-          Green Dawn
+        <span className='text-stone-500 dark:text-yellow-400 font-extrabold tracking-wider text-2xl lg:text-3xl font-serif'>
+          Fir Media
         </span>
       </Link>
       <div className='grid grid-cols-4 lg:col-start-3 col-span-2 place-items-center'>
         <Link
-          className={`col-span-1 h-full w-3/4 whitespace-nowrap grid place-items-center tracking-wider font-poppins text-2xl ${
+          className={`col-span-1 h-full w-3/4 whitespace-nowrap grid place-items-center tracking-wider font-poppins text-2xl transition-full duration-500 ${
             currentPath === 'home' && mediaType === 'movie'
-              ? 'text-stone-600 border-b-4 border-stone-500 font-bold'
-              : ''
+              ? 'text-stone-600 dark:text-yellow-500 border-b-4 border-stone-500 dark:border-yellow-500 font-bold'
+              : 'dark:text-yellow-500 text-xl'
           }`}
           to='/'
           onClick={() => {
@@ -66,10 +66,10 @@ const NavBar = () => {
           Movies
         </Link>
         <Link
-          className={`col-span-1 h-full w-full whitespace-nowrap grid place-items-center tracking-wider font-poppins text-2xl ${
+          className={`col-span-1 h-full w-full whitespace-nowrap grid place-items-center tracking-wider font-poppins text-2xl transition-full duration-500 ${
             currentPath === 'home' && mediaType === 'tv'
-              ? 'text-stone-600 border-b-4 border-stone-500 font-bold'
-              : ''
+              ? 'text-stone-600 dark:text-yellow-400 border-b-4 border-stone-500 dark:border-yellow-500 font-bold'
+              : 'dark:text-yellow-500 text-xl'
           }`}
           to='/'
           onClick={() => {
@@ -91,10 +91,11 @@ const NavBar = () => {
           errorComponent={() => (
             <div className='col-span-1 h-full group flex justify-center items-center w-full overflow-hidden'>
               <div className='rounded-full grid place-items-center w-12  group-hover:max-w-0 transition-all duration-300 overflow-hidden opacity-100 group-hover:opacity-0'>
-                <LazyLoadImage src={imageHelper.human} alt='default_avatar' effect='blur' />
+                <LazyLoadImage src={imageHelper.logo_better} alt='default_avatar' effect='blur' />
               </div>
               <Link
-                className='h-0 max-w-0 group-hover:max-w-full overflow-hidden group-hover:h-3/4 opacity-0 invisible group-hover:visible group-hover:opacity-100 transition-all duration-300 grid place-items-center  font-poppins text-base px-4 py-2 rounded-lg bg-stone-600 text-stone-50 shadow-lg font-bold'
+                className='h-0 max-w-0 group-hover:max-w-full overflow-hidden group-hover:h-3/4 opacity-0 invisible group-hover:visible group-hover:opacity-100 transition-all duration-300 grid place-items-center  font-poppins text-base px-4 py-2 rounded-lg dark:bg-yellow-400
+                dark:text-yellow-900 bg-stone-600 text-stone-50 shadow-lg font-bold  whitespace-nowrap'
                 to='/profile'
                 onClick={() => {
                   setProgress(100);
@@ -117,16 +118,18 @@ const NavBar = () => {
             <AvatarComponent
               styles={{
                 image: `rounded-full overflow-hidden grid w-12 place-items-center object-cover aspect-square ${
-                  currentPath === 'profile' ? 'text-stone-500 border-b-4 border-stone-400' : ''
+                  currentPath === 'profile'
+                    ? 'text-stone-500 border-b-4 border-stone-400 dark:border-yellow-500'
+                    : ''
                 }`,
               }}
             />
           </Link>
         </Wrapper>
-        <div className='ml-16 h-3/4 my-auto w-full whitespace-nowrap flex items-center col-span-1 justify-center gap-2 rounded-lg px-2 bg-stone-400 shadow-inner z-10'>
+        <div className='ml-16 h-3/4 my-auto w-full whitespace-nowrap flex items-center col-span-1 justify-center gap-2 rounded-lg px-2 bg-stone-400 dark:bg-yellow-400 dark:bg-opacity-70 shadow-inner z-10'>
           <ButtonComponent
             className={`w-8 h-8 leading-9 text-xl rounded-full m-1  grid place-items-center ${
-              theme === 'dark' ? 'text-stone-300' : 'text-stone-900 shadow-xl'
+              theme === 'dark' ? 'text-stone-50' : 'text-stone-900 shadow-xl'
             }`}
             onClick={() => setTheme('light')}
           >
@@ -135,7 +138,7 @@ const NavBar = () => {
 
           <ButtonComponent
             className={`w-8 h-8 leading-9 text-xl rounded-full m-1 grid place-items-center ${
-              theme === 'dark' ? 'text-stone-50 shadow-xl' : 'text-stone-600'
+              theme === 'dark' ? 'text-stone-900 shadow-xl' : 'text-stone-50'
             }`}
             onClick={() => setTheme('dark')}
           >
@@ -168,16 +171,16 @@ const NavBar = () => {
           setMediaType('movie');
         }}
       >
-        <img src={imageHelper.logo} className=' overflow-hidden object-full h-[4rem] w-[4rem]' />
+        <img src={imageHelper.logo_better} className=' overflow-hidden object-full h-[4rem] w-[4rem]' />
         {currentPath === 'home' && (
-          <span className='text-stone-500 font-extrabold tracking-wider uppercase font-poppins text-[17px]'>
-            Green Dawn
+          <span className='text-stone-500 dark:text-yellow-500 font-extrabold tracking-wider uppercase font-poppins text-[17px]'>
+            Fir Media
           </span>
         )}
       </Link>
       <div className='h-3/4 my-auto w-full whitespace-nowrap flex items-center col-span-1 justify-center gap-2 px-2 z-10'>
         <ButtonComponent
-          className={`w-8 h-8 leading-9 text-xl rounded-full m-1  grid place-items-center  ${
+          className={`w-6 h-6 leading-9 text-xl rounded-full m-1  grid place-items-center  ${
             theme === 'dark' ? 'text-stone-300' : 'text-stone-900 shadow-xl'
           }`}
           onClick={() => setTheme('light')}
@@ -186,7 +189,7 @@ const NavBar = () => {
         </ButtonComponent>
 
         <ButtonComponent
-          className={`w-8 h-8 leading-9 text-xl rounded-full m-1 grid place-items-center  ${
+          className={`w-6 h-6 leading-9 text-xl rounded-full m-1 grid place-items-center  ${
             theme === 'dark' ? 'text-stone-50 shadow-xl' : 'text-stone-600'
           }`}
           onClick={() => setTheme('dark')}
@@ -212,7 +215,7 @@ const NavBar = () => {
         className='flex justify-end items-center'
       >
         {iconHelper.menu(
-          `h-6 w-6 mr-4 text-stone-400 ${
+          `h-6 w-6 mr-4 text-stone-400 dark:text-yellow-500 ${
             shouldDropdownDisplay && 'rotate-90'
           } transition-transform duration-300`,
         )}

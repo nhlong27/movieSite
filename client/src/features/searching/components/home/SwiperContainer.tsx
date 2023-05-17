@@ -37,13 +37,13 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
   const { isXs, is4k, isXl } = useMediaQueries();
   return isXs ? (
     <div
-      className={`z-20 w-full xs:h-[20rem] lg:h-[24rem] overflow-hidden  ${
+      className={`z-20 w-full xs:h-[20rem] lg:h-[24rem] overflow-x-clip ${
         styles?.swiper ?? 'absolute bottom-0 left-0 right-0'
       }`}
     >
       <div className='absolute bottom-0 left-0 right-0 w-full h-full'>
         <ButtonComponent
-          className='w-20 h-full bottom-0 left-0 cursor-pointer z-30 opacity-50 bg-gray-300 absolute text-[5rem] rounded-lg bg-gradient-to-l from-stone-100 to-stone-200 flex justify-center items-center hover:opacity-70'
+          className='w-20 h-full bottom-0 left-0 cursor-pointer z-30 opacity-50 absolute text-[5rem] rounded-lg bg-gradient-to-l from-stone-100 to-stone-200 flex justify-center items-center hover:opacity-70 dark:from-stone-900 dark:to-stone-800 dark:text-yellow-200'
           onClick={() => {
             const { slider, sliderIndex } = handleClick();
             if (sliderIndex > 0) {
@@ -75,8 +75,9 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
                       link: `max-w-[calc(100%/var(--items-per-screen))] flex justify-center items-center flex-col flex-[0_0_calc(100%_/_var(--items-per-screen))] 
                       transition-all
                       ease-in-out
-                      duration-500 h-full shadow-xl  overflow-hidden bg-gradient-to-t from-stone-300 to-stone-200`,
-                      image: 'overflow-hidden rounded-xl bg-gradient-to-tr from-white to-black',
+                      duration-500 h-full shadow-lg shadow-stone-900 dark:shadow-yellow-900  overflow-hidden bg-gradient-to-t from-stone-300 to-stone-200 dark:from-yellow-500 dark:to-yellow-500 dark:text-stone-900 dark:font-black rounded-lg`,
+                      image:
+                        'overflow-hidden  bg-gradient-to-tr  from-white  to-black  dark:from-stone-900 dark:to-yellow-500 grow ',
                       size: media.poster_path
                         ? is4k
                           ? 'original'
@@ -84,7 +85,6 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
                           ? 'w500'
                           : 'w400'
                         : undefined,
-                      detail: 'flex w-11/12 flex-col justify-end',
                     }}
                   />
                 ) : (
@@ -99,20 +99,28 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
                       button: `max-w-[calc(100%/var(--items-per-screen))] flex flex-col flex-[0_0_calc(100%_/_var(--items-per-screen))] transition-all
                       ease-in-out
                       duration-500
-                      h-full rounded-xl overflow-hidden bg-gradient-to-tr from-stone-700 to-stone-500 
+                      h-full rounded-xl overflow-hidden bg-gradient-to-tr dark:shadow-yellow-900
+                      shadow-lg from-stone-700 to-stone-500 dark:from-yellow-500 dark:to-yellow-500 dark:text-stone-900 dark:font-black 
                       flex flex-col items-center
-                      shadow-[1rem]  
+                        
                       ${
                         sectionName
                           ? sectionBackdropItems.getSectionBackdropItem(sectionName)?.id ===
                             media.id
-                            ? 'opacity-50 ring-8 ring-stone-900'
+                            ? ' dark:shadow-yellow-300 ring-2 dark:ring-yellow-500 -mt-16 relative   shadow-2xl '
                             : ''
                           : ''
                       }
                       `,
-                      image: 'overflow-hidden bg-gradient-to-tr from-white to-black',
-                      size: media.poster_path ? (is4k ? 'original' : isXl ? 'w500' : 'w400') : undefined,
+                      image:
+                        'overflow-hidden  bg-gradient-to-tr  from-white  to-black  dark:from-stone-900 dark:to-yellow-500 grow',
+                      size: media.poster_path
+                        ? is4k
+                          ? 'original'
+                          : isXl
+                          ? 'w500'
+                          : 'w400'
+                        : undefined,
                     }}
                   />
                 )}
@@ -121,7 +129,7 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
           })}
         </div>
         <ButtonComponent
-          className='w-20 z-30 h-full absolute bottom-0 right-0 flex justify-center items-center cursor-pointer opacity-50 text-[5rem] rounded-lg bg-gradient-to-l from-stone-100 to-stone-200 hover:opacity-70 '
+          className='w-20 z-30 h-full absolute bottom-0 right-0 flex justify-center items-center cursor-pointer opacity-50 text-[5rem] rounded-lg bg-gradient-to-l from-stone-100 to-stone-200 hover:opacity-70 dark:from-stone-900 dark:to-stone-800 dark:text-yellow-200'
           onClick={() => {
             const { slider, sliderIndex, itemNum } = handleClick();
             if (sliderIndex < (data?.results?.length ?? 0) / itemNum) {
@@ -140,15 +148,15 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
           to={`/${mediaType}/${sectionBackdropItem?.id}`}
           className='w-full grid place-items-end text-xl absolute top-0 z-30 '
         >
-          <div className='rounded-xl flex items-center mr-20 justify-center px-4 py-2 bg-stone-700 font-poppins text-stone-50 text-sm gap-2 border-b-2 border-stone-700 shadow-lg ring-2 ring-stone-200'>
+          <div className='rounded-xl flex items-center mr-20 justify-center px-4 py-2 bg-stone-700 font-poppins text-stone-50 font-black text-sm gap-2 shadow-lg ring-2 ring-stone-200 dark:ring-stone-900 dark:bg-yellow-500 dark:text-stone-900'>
             {iconHelper.play('text-xl font-bold')}
-             Watch
+            Watch
           </div>
         </Link>
       ) : null}
 
       <ButtonComponent
-        className='w-16 absolute h-full z-30 cursor-pointer opacity-50 hover:opacity-70 text-[5rem] rounded-lg bg-gradient-to-l from-stone-100 to-stone-200 flex justify-center items-center'
+        className='w-16 absolute h-full z-30 cursor-pointer opacity-50 hover:opacity-70 text-[5rem] rounded-lg bg-gradient-to-l from-stone-100 to-stone-200 flex justify-center items-center dark:from-stone-900 dark:to-stone-800 dark:text-yellow-200'
         onClick={() => {
           if (slideIndex > 0) {
             setSlideIndex((prev) => prev - 1);
@@ -172,18 +180,19 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
             media={data?.results[slideIndex]}
             styles={{
               link: `w-full flex justify-center items-center flex-col`,
-              image: 'overflow-hidden rounded-xl shadow-xl bg-gradient-to-tr from-white to-black',
+              image:
+                ' rounded-xl shadow-xl  overflow-hidden  bg-gradient-to-tr  from-white  to-black  dark:from-stone-900 dark:to-yellow-500 grow',
               height: '320px',
               width: '320px',
               detail:
-                'relative flex -mt-4 z-20 flex-col bg-stone-100 w-[300px] rounded-xl shadow-xl px-8 py-2',
+                'relative flex -mt-4 z-20 flex-col bg-stone-100 w-[300px] rounded-xl shadow-xl px-8 py-2 dark:bg-yellow-500',
               size: data?.results[slideIndex].poster_path ? 'original' : undefined,
             }}
           />
         ) : null}
       </div>
       <ButtonComponent
-        className='w-16 h-full absolute bottom-0 right-0 flex justify-center items-center cursor-pointer z-30 opacity-50 hover:opacity-70 rounded-lg bg-gradient-to-r from-stone-100 to-stone-200 text-[5rem]'
+        className='w-16 h-full absolute bottom-0 right-0 flex justify-center items-center cursor-pointer z-30 opacity-50 hover:opacity-70 rounded-lg bg-gradient-to-r from-stone-100 to-stone-200 text-[5rem] dark:from-stone-900 dark:to-stone-800 dark:text-yellow-200'
         disabled={data?.results?.length === 1}
         onClick={() => {
           const { itemNum } = handleClick();

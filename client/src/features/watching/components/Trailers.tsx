@@ -26,7 +26,7 @@ const Trailers: React.FC<TrailersProps> = (props) => {
   return isXs ? (
     <>
       <ButtonComponent
-        className='flex items-center gap-2 text-xl tracking-[0.1rem] bg-transparent px-4 py-2 border-t-2 border-stone-400 hover:bg-stone-600 hover:bg-opacity-50 font-bold capitalize text-stone-300 '
+        className='flex items-center gap-2 text-xl tracking-[0.1rem] bg-transparent px-4 py-2 border-t-2 border-stone-400 hover:bg-stone-600 hover:bg-opacity-50 font-bold capitalize text-stone-300 dark:text-yellow-400'
         onClick={() => setShouldTrailersDisplay((prev) => !prev)}
       >
         {iconHelper.trailer('text-xl')}
@@ -61,7 +61,7 @@ const Trailers: React.FC<TrailersProps> = (props) => {
   ) : (
     <>
       <ButtonComponent
-        className='flex items-center gap-2 bg-stone-300 px-4 py-2 rounded-lg hover:bg-stone-400 font-bold uppercase tracking-wider text-stone-500 shadow-lg mb-4  border-b-2 border-stone-400'
+        className='flex items-center gap-2 bg-stone-300 px-4 py-2 rounded-lg hover:bg-stone-400 font-bold uppercase tracking-wider text-stone-500 shadow-lg mb-4  border-b-2 border-stone-400 dark:bg-stone-900 dark:border-transparent dark:text-yellow-500 dark:ring-2 dark:ring-yellow-500'
         onClick={() => setShouldTrailersDisplay((prev) => !prev)}
       >
         {iconHelper.trailer('text-lg')}
@@ -75,7 +75,7 @@ const Trailers: React.FC<TrailersProps> = (props) => {
             return (
               <div
                 key={index}
-                className='h-full w-full rounded-lg overflow-hidden shadow-lg ring-2 ring-stone-400 ring-offset-2 ring-offset-stone-200'
+                className='h-full w-full rounded-lg overflow-hidden shadow-lg ring-2 ring-stone-400 ring-offset-2 ring-offset-stone-200 dark:ring-transparent dark:ring-offset-transparent'
                 onClick={() => setSelectedTrailer && setSelectedTrailer(video)}
               >
                 <ReactPlayerComponent

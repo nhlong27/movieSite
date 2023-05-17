@@ -5,6 +5,7 @@ const payload = {
         title: z.string().optional(),
         name: z.string().optional(),
         poster_path: z.string().optional(),
+        backdrop_path: z.string().optional(),
         media_type: z.string().optional(),
         season_number: z.number().optional(),
         id: z.string().optional(),

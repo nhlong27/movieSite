@@ -38,25 +38,25 @@ const FormComponent: React.FC<FormComponentProps> = (props) => {
         {props.options.map((option, index) => {
           return (
             <React.Fragment key={index}>
-              <div className={`capitalize ${props.styles?.inputName}`}>{option.name}</div>
+              <div className={`capitalize ${props.styles?.inputName}`}>{option.name.replace(/_/g, ' ')}</div>
               <input
                 className={props.styles?.input}
                 {...option.extras}
                 {...register(`${option.name}` as never)}
               />
               {(errors as any)[`${option.name}`]?.message && (
-                <div className={`flex items-center gap-2 text-red-700 ${props.styles?.error}`}>
-                  {iconHelper.exclamation('text-lg')}
-                  {(errors as any)[`${option.name}`]?.message}
+                <div className={`flex items-center gap-2 text-white bg-stone-900 rounded-xl px-4 py-2 mt-2 ${props.styles?.error}`}>
+                  {iconHelper.exclamation('text-4xl')}
+                  {(errors as any)[`${option.name}`].message}
                 </div>
               )}
             </React.Fragment>
           );
         })}
         <div className='flex justify-between items-center w-full'>
-          <ButtonComponent className='text-stone-400' onClick={() => reset()}>
+          {!props.styles?.reset && <ButtonComponent className='text-stone-400 dark:text-stone-700' onClick={() => reset()}>
             Reset
-          </ButtonComponent>
+          </ButtonComponent>}
           <ButtonComponent className={props.styles?.button} type='submit'>
             {props.submitBn ?? 'Submit'}
           </ButtonComponent>

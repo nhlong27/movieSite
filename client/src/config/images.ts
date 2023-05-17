@@ -14,6 +14,12 @@ import plan_to_watch from '/assets/icons/plan_to_watch.png';
 import dropped from '/assets/icons/dropped.png';
 import logo from '/assets/logos/logo.png';
 import logo_md from '/assets/logos/logo-md.png';
+import background from '/assets/placeholders/background.png'
+import background2 from '/assets/placeholders/background2.png'
+import background3 from '/assets/placeholders/background3.png'
+import logo_better from '/assets/logos/logo_better.png'
+import forest from '/assets/background/forest.png'
+import forest2 from '/assets/background/forest2.png'
 
 export const imageHelper : Record<string, string> = {
   all: all,
@@ -31,4 +37,10 @@ export const imageHelper : Record<string, string> = {
   human: human,
   logo: logo,
   logo_md: logo_md,
+  background: background,
+  background2: background2,
+  background3: background3,
+  logo_better: logo_better,
+  forest: forest,
+  forest2: forest2,
 }

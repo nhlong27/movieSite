@@ -7,6 +7,7 @@ import LinkMediaCard from '@/components/specific/LinkMediaCard';
 import Skeleton from 'react-loading-skeleton';
 import { ItemListType } from '../../types';
 import { MovieType, TVType } from '@/types/types';
+import { iconHelper } from '@/config/icons';
 const SearchResult = () => {
   const [hasQueryFilters] = useAtom(hasQueryFiltersAtom);
 
@@ -18,9 +19,9 @@ const SearchResult = () => {
     <div
       className={`${
         hasQueryFilters ? 'max-h-0' : 'max-h-min'
-      } transition-all duration-500 overflow-hidden flex flex-col w-full bg-stone-200 rounded-b-xl font-poppins shadow-xl`}
+      } transition-all duration-500 overflow-hidden flex flex-col w-full bg-stone-200 dark:bg-stone-900 rounded-b-xl font-poppins shadow-xl`}
     >
-      <h1 className='w-full h-[2rem] bg-stone-500 text-stone-100 grid place-items-center text-xl uppercase font-black tracking-[0.6rem] shadow-lg'>
+      <h1 className='w-full bg-stone-500 text-stone-100 grid place-items-center text-xl uppercase font-black tracking-[0.6rem] shadow-lg dark:bg-gradient-to-r dark:from-stone-900 dark:via-yellow-500 dark:to-stone-900 dark:text-stone-900 py-4'>
         Movies
       </h1>
       <div className='flex justify-center items-start w-full'>
@@ -34,16 +35,16 @@ const SearchResult = () => {
                   media={media}
                   role='linkMovieCard'
                   styles={{
-                    link: 'min-h-[320px] w-[200px] overflow-hidden flex justify-center items-center flex-col relative shadow-lg rounded-xl',
-                    detail: 'mt-auto min-h-[4rem] flex flex-col w-11/12',
-                    size: (media as any).poster_path ? 'w200': undefined
+                    link: 'h-[22rem] w-[200px] overflow-hidden flex justify-center items-center flex-col relative shadow-lg rounded-xl shadow-stone-900 dark:shadow-yellow-900 bg-gradient-to-t from-stone-300 to-stone-200 dark:from-yellow-500 dark:to-yellow-500 dark:text-stone-900 dark:font-black',
+                    image: 'overflow-hidden  bg-gradient-to-tr  from-white  to-black  dark:from-stone-900 dark:to-yellow-500 grow',
+                    size: (media as any).poster_path ? 'original': undefined
                   }}
                 />
               );
             })}
         </div>
       </div>
-      <h1 className='w-full h-[2rem] bg-stone-500 text-stone-100 grid place-items-center text-xl uppercase font-black tracking-[0.6rem] shadow-lg'>
+      <h1 className='w-full  bg-stone-500 text-stone-100 grid place-items-center text-xl uppercase font-black tracking-[0.6rem] shadow-lg dark:bg-gradient-to-r dark:from-stone-900 dark:via-yellow-500 dark:to-stone-900 dark:text-stone-900 py-4'>
         TV Shows
       </h1>
       <div className='flex justify-center items-start w-full  place-content-start'>
@@ -57,9 +58,9 @@ const SearchResult = () => {
                   media={media}
                   role='linkTVCard'
                   styles={{
-                    link: 'min-h-[320px] w-[200px] overflow-hidden flex justify-center items-center flex-col relative shadow-lg rounded-xl',
-                    detail: 'mt-auto min-h-[4rem] flex flex-col w-11/12',
-                    size: (media as any).poster_path ? 'w200': undefined
+                    link: 'h-[22rem] w-[200px] overflow-hidden flex justify-center items-center flex-col relative shadow-lg rounded-xl shadow-stone-900 dark:shadow-yellow-900 bg-gradient-to-t from-stone-300 to-stone-200 dark:from-yellow-500 dark:to-yellow-500 dark:text-stone-900 dark:font-black',
+                    image: 'overflow-hidden  bg-gradient-to-tr  from-white  to-black  dark:from-stone-900 dark:to-yellow-500 grow',
+                    size: (media as any).poster_path ? 'original': undefined
                   }}
                 />
               );
@@ -68,8 +69,9 @@ const SearchResult = () => {
       </div>
     </div>
   ) : (
-    <div className='bg-stone-300 rounded-b-xl shadow-xl grid place-items-center  font-poppins text-lg py-4'>
-      <div className='ring-stone-600 ring-2 text-stone-900 bg-stone-400 rounded-xl px-8 py-2 font-bold'>
+    <div className='bg-stone-300 rounded-b-xl shadow-xl grid place-items-center font-poppins text-lg py-4 dark:bg-stone-900'>
+      <div className='ring-stone-600 ring-2 text-stone-900 bg-stone-400 rounded-xl px-8 py-2 font-bold flex gap-2 items-center dark:bg-yellow-50 '>
+        {iconHelper.exclamation('text-2xl')}
         No Movie or TV Show exists with that name
       </div>
     </div>
@@ -77,7 +79,7 @@ const SearchResult = () => {
 };
 const SuspenseState = () => {
   return (
-    <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 2xl:grid-cols-6 place-items-center w-full gap-4 2xl:gap-4 min-h-screen bg-stone-200 rounded-b-xl shadow-xl'>
+    <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 2xl:grid-cols-6 place-items-center w-full gap-4 2xl:gap-4 min-h-screen bg-stone-200 dark:bg-stone-900 rounded-b-xl shadow-xl'>
       {Array(20)
         .fill(0)
         .map((item, index) => (
