@@ -126,10 +126,10 @@ const NavBar = () => {
             />
           </Link>
         </Wrapper>
-        <div className='ml-16 h-3/4 my-auto w-full whitespace-nowrap flex items-center col-span-1 justify-center gap-2 rounded-lg px-2 bg-stone-400 dark:bg-yellow-400 dark:bg-opacity-70 shadow-inner z-10'>
+        <div className='ml-16 h-3/4 my-auto w-full whitespace-nowrap flex items-center col-span-1 justify-center gap-2 rounded-lg px-2 bg-stone-400  dark:bg-stone-700  dark:bg-opacity-70 shadow-inner z-10'>
           <ButtonComponent
             className={`w-8 h-8 leading-9 text-xl rounded-full m-1  grid place-items-center ${
-              theme === 'dark' ? 'text-stone-50' : 'text-stone-900 shadow-xl'
+              theme === 'dark' ? 'text-yellow-500' : 'text-yellow-50 shadow-xl'
             }`}
             onClick={() => setTheme('light')}
           >
@@ -137,8 +137,8 @@ const NavBar = () => {
           </ButtonComponent>
 
           <ButtonComponent
-            className={`w-8 h-8 leading-9 text-xl rounded-full m-1 grid place-items-center ${
-              theme === 'dark' ? 'text-stone-900 shadow-xl' : 'text-stone-50'
+            className={`w-8 h-8 leading-9 text-xl rounded-full m-1  grid place-items-center ${
+              theme === 'light' ? 'text-yellow-500' : 'text-yellow-50 shadow-xl'
             }`}
             onClick={() => setTheme('dark')}
           >
