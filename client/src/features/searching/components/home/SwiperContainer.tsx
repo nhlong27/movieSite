@@ -75,7 +75,7 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
                       link: `max-w-[calc(100%/var(--items-per-screen))] flex justify-center items-center flex-col flex-[0_0_calc(100%_/_var(--items-per-screen))] 
                       transition-all
                       ease-in-out
-                      duration-500 h-full shadow-lg shadow-stone-900 dark:shadow-yellow-900  overflow-hidden bg-gradient-to-t from-stone-300 to-stone-200 dark:from-yellow-500 dark:to-yellow-500 dark:text-stone-900 dark:font-black rounded-lg`,
+                      duration-100 h-full shadow-lg shadow-stone-900 dark:shadow-yellow-900  overflow-hidden bg-gradient-to-t from-stone-300 to-stone-200 dark:from-yellow-500 dark:to-yellow-500 dark:text-stone-900 dark:font-black rounded-lg dark:hover:shadow-2xl dark:hover:shadow-yellow-500 hover:shadow-xl hover:shadow-stone-900`,
                       image:
                         'overflow-hidden  bg-gradient-to-tr  from-white  to-black  dark:from-stone-900 dark:to-yellow-500 grow ',
                       size: media.poster_path
@@ -101,7 +101,7 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
                       duration-500
                       h-full rounded-xl overflow-hidden bg-gradient-to-tr dark:shadow-yellow-900
                       shadow-lg from-stone-700 to-stone-500 dark:from-yellow-500 dark:to-yellow-500 dark:text-stone-900 dark:font-black 
-                      flex flex-col items-center
+                      flex flex-col items-center dark:hover:shadow-xl dark:hover:shadow-yellow-500 hover:shadow-xl hover:shadow-stone-900
                         
                       ${
                         sectionName

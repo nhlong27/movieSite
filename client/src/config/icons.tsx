@@ -8,9 +8,10 @@ import {
   AiOutlineUp,
   AiOutlineQuestionCircle,
   AiOutlineSearch,
-  AiFillHeart
+  AiFillHeart,
+  AiFillGithub
 } from 'react-icons/ai';
-import { BsTrash, BsPlayFill, BsListNested } from 'react-icons/bs';
+import { BsTrash, BsPlayFill, BsListNested, BsFacebook } from 'react-icons/bs';
 import { FaListUl, FaSignOutAlt } from 'react-icons/fa';
 import { HiOutlineExclamationCircle, HiOutlineUpload  } from 'react-icons/hi';
 import { TfiLayoutMediaCenterAlt, TfiGallery } from 'react-icons/tfi';
@@ -57,6 +58,6 @@ export const iconHelper: Record<string, Function> = {
   calendar: (className: string) => <AiOutlineCalendar className={className} />,
   checkCircle: (className: string) => <AiOutlineCheckCircle className={className} />,
   trash: (className: string) => <BsTrash className={className} />,
-
-  
+  github: (className: string) => <AiFillGithub className={className} />,
+  facebook: (className: string) => <BsFacebook className={className} />,
 };

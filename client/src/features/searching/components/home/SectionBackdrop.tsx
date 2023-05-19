@@ -15,10 +15,10 @@ const SectionBackdrop = ({ mediaType, section }: { mediaType?: string; section?:
         styles={{
           size: sectionBackdropItem?.backdrop_path ? 'original' : undefined,
           image:
-            'ml-[25%] object-left sm:object-scale-down lg:h-full aspect-[18/9] mix-blend-overlay  lg:rounded-l-full overflow-hidden',
+            'ml-[25%] sm:object-left object-scale-down lg:h-full aspect-[18/9] mix-blend-overlay   lg:rounded-l-full overflow-hidden dark:rounded-none',
         }}
       />
-      <div className='ml-[25%] absolute  xs:bg-gradient-radial-top-right  ring-2 ring-stone-800 from-transparent via-stone-800 to-stone-900 h-full aspect-[18/9] rounded-l-full dark:rounded-l-none' />
+      <div className='ml-[25%] absolute  xs:bg-gradient-radial-top-right  ring-2 ring-stone-800 dark:ring-transparent from-transparent via-stone-900 to-stone-900 h-full aspect-[18/9] rounded-l-full dark:rounded-l-none' />
 
       <div className=' ring-2 ring-stone-200 h-5/6 via-stone-300 bg-gradient-to-t from-stone-200 shadow-xl lg:rounded-3xl to-stone-400 absolute bottom-0 w-2/5 ml-8  flex flex-col z-20 lg:py-8  font-poppins dark:ring-stone-900 dark:from-transparent dark:to-amber-400 dark:via-amber-400'>
         <div className='w-full xs:pl-0 md:pl-4 lg:pl-16 flex flex-col lg:pr-8'>
@@ -54,7 +54,7 @@ const SectionBackdrop = ({ mediaType, section }: { mediaType?: string; section?:
             {sectionBackdropItem?.genre_ids?.map((genreId) => {
               return (
                 <span
-                  className='rounded-lg ring-2 ring-stone-500 px-2 bg-stone-300 text-stone-700 dark:bg-yellow-400 dark:ring-stone-800 dark:text-stone-900'
+                  className='rounded-lg ring-2 md:ring-amber-700 md:text-amber-800 md:bg-yellow-400 md:bg-opacity-70 md:px-4 font-bold ring-stone-400  bg-stone-300 text-stone-500 dark:bg-lime-900 dark:text-lime-200 dark:ring-transparent px-4 py-2'
                   key={genreId}
                 >
                   {mediaTypeConfig[
@@ -66,8 +66,8 @@ const SectionBackdrop = ({ mediaType, section }: { mediaType?: string; section?:
           </div>
         </div>
 
-        <div className='w-full xs:pl-0 md:pl-4 lg:pl-16 flex flex-col lg:pr-8 mt-4 border-t-2 dark:bg-yellow-500 dark:border-stone-600'>
-          <div className='grow w-full overflow-scroll scrollbar-hide text-lg text-stone-800 font-bold py-4 mt-4'>
+        <div className='w-full xs:pl-0 md:pl-4 lg:pl-16 flex flex-col lg:pr-4 mt-4 border-t-2 dark:bg-gradient-to-t from-stone-900 to-yellow-500 dark:border-stone-600 overflow-y-scroll h-[30rem] scrollbar-hide '>
+          <div className='px-4 grow w-full text-lg text-lime-800 font-bold py-4 mt-4 scrollbar dark:bg-amber-300 shadow-md rounded-xl'>
             {sectionBackdropItem?.overview}
           </div>
         </div>

@@ -46,9 +46,11 @@ const ResultSection = () => {
         )}
       </ButtonComponent>
       {!hasQueryFilters && <SearchResult />}
-      <div className='w-full'>
-        <img src={imageHelper.background3} alt="background" className='object-contain' />
-      </div>
+      {!hasQueryFilters && (
+        <div className='w-full'>
+          <img src={imageHelper.background3} alt='background' className='object-contain' />
+        </div>
+      )}
       <h1 className='mt-8 font-poppins text-xl font-black tracking-[0.1rem] text-stone-600 bg-stone-200 rounded-t-xl py-4 border-b-4 px-8 border-stone-400 shadow-xl flex items-center gap-4 flex-wrap dark:bg-stone-900 dark:text-yellow-500 dark:border-yellow-600'>
         <span>Filtered Results by</span>
         {mediaType === 'movie'
@@ -58,13 +60,14 @@ const ResultSection = () => {
               'Genre Ids: ' + [...(movieFiltersStore.with_genres ?? [])].join(','),
               'Year release: ' + movieFiltersStore.year,
             ].map((item, index) => (
-              <div
+              <ButtonComponent
+                onClick={() => setHasQueryFilters(true)}
                 key={index}
-                className='px-4 py-2 rounded-lg bg-stone-500 text-stone-200 capitalize
-                text-base dark:bg-yellow-400 dark:text-stone-900'
+                className='px-4 py-2 rounded-lg bg-stone-500 text-lime-200 capitalize
+                text-base dark:bg-lime-400 dark:text-stone-900'
               >
                 {item ?? '?'}
-              </div>
+              </ButtonComponent>
             ))
           : [
               'TV Shows',
@@ -74,13 +77,14 @@ const ResultSection = () => {
               'Status: ' + (tvFiltersStore.with_status ?? 'None'),
               'Type: ' + (tvFiltersStore.with_type ?? 'None'),
             ].map((item, index) => (
-              <div
+              <ButtonComponent
+                onClick={() => setHasQueryFilters(true)}
                 key={index}
                 className='px-4 py-2 rounded-lg bg-stone-500 text-stone-200 capitalize
                 text-base dark:bg-yellow-400 dark:text-stone-900'
               >
                 {item ?? '?'}
-              </div>
+              </ButtonComponent>
             ))}
       </h1>
       <FilterResult />

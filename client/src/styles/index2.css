@@ -94,7 +94,7 @@
   opacity: 0.6;
   animation: pan-image 30s linear infinite;
 }
-
+/* 
 .screen > .screen-content {
   display: flex;
   flex-direction: column;
@@ -191,14 +191,14 @@
 
 .screen > .screen-content > .screen-user > .link:is(:hover, :focus) {
   text-decoration: underline;
-}
+} */
 
-@media (max-width: 700px) {
+/* @media (max-width: 700px) {
   .screen {
     scale: 0.6;
     margin-bottom: 0rem;
   }
-}
+} */
 
 /* -- Blob effect -- */
 

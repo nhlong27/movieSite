@@ -7,6 +7,7 @@ import { useMediaQueries } from '@/hooks/useMediaQueries';
 import { iconHelper } from '@/config/icons';
 
 interface TrailersProps {
+  refs?: Record<string, React.RefObject<HTMLInputElement>>;
   shouldTrailersDisplayProp?: boolean;
   setSelectedTrailer?: React.Dispatch<
     React.SetStateAction<{
@@ -42,7 +43,9 @@ const Trailers: React.FC<TrailersProps> = (props) => {
                 key={index}
                 className='
                    shadow-lg shadow-stone-600 ring-offset-2 ring-offset-stone-200 relative'
-                onClick={() => setSelectedTrailer && setSelectedTrailer(video)}
+                onClick={() => {setSelectedTrailer && setSelectedTrailer(video);
+                props.refs?.playRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }}
               >
                 <ReactPlayerComponent
                   trailerType={isXs ? 'image' : 'video'}

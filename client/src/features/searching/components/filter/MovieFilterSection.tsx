@@ -32,10 +32,10 @@ const MovieFilterSection = () => {
         <div className='mt-4 w-full py-4 px-2 flex-wrap flex shadow-inner gap-4 rounded-xl ring-2 ring-stone-400 bg-stone-300 dark:bg-amber-400  dark:ring-stone-900'>
           {[...(mediaTypeConfig.movie.discover.paramList.with_genres ?? [])].map((genreObject) => (
             <ButtonComponent
-              className={`rounded-xl ring-2 ring-stone-500 px-4 py-2 shadow-lg   text-stone-600 dark:text-stone-900 dark:ring-stone-900 ${
+              className={`rounded-xl ring-2 ring-stone-500 px-4 py-2 shadow-lg   text-stone-600  dark:ring-stone-900 ${
                 movieFiltersStore.with_genres?.has(genreObject[0]!)
-                  ? 'bg-amber-200 dark:bg-stone-900 dark:text-amber-300'
-                  : 'bg-stone-200 dark:bg-amber-300'
+                  ? 'bg-amber-200 dark:bg-stone-800  dark:text-lime-300'
+                  : 'bg-stone-200 dark:bg-amber-300 dark:text-stone-900'
               }`}
               onClick={() => movieFiltersStore.addGenres(genreObject[0]!)}
               key={genreObject[0]}

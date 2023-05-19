@@ -43,7 +43,7 @@ const WatchHistorySection = () => {
               styles={{
                 swiper: 'bg-opacity-0 relative z-20 w-full h-[24rem] overflow-hidden bg-stone-400 shadow-inner dark:bg-stone-900',
               }}
-              sliderName={'slider6'}
+              sliderName='slider7'
               data={{
                 results: historyList
                   ?.sort((a, b) => {

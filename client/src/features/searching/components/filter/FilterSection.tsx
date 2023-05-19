@@ -21,7 +21,7 @@ const FilterSection: React.FC = () => {
     <div className='order-first px-2 col-start-1 md:col-start-4 h-auto'>
       <div
         ref={animationParentRef}
-        className='md:sticky md:top-[6vh] h-auto w-full flex flex-col rounded-xl bg-stone-200 dark:bg-yellow-500 justify-start items-center font-poppins shadow-xl'
+        className='h-auto w-full flex flex-col rounded-xl bg-stone-200 dark:bg-yellow-500 justify-start items-center font-poppins shadow-xl'
       >
         {!hasQueryFilters && (
           <div className=' bg-stone-300 w-full rounded-xl dark:bg-yellow-500 pt-4'>

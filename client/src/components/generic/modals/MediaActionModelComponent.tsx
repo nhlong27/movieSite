@@ -1,5 +1,4 @@
 import React from 'react';
-import DeactivateRequestContainer from '@/features/profile/components/userinfo/DeactivateRequestContainer';
 import Wrapper from '@/components/handling/Wrapper';
 import { useGetShowQuery, useGetUserQuery, useUpdateShowMutation } from '@/features/profile';
 import ButtonComponent from '../ButtonComponent';
@@ -47,25 +46,28 @@ const MediaActionModalComponent: React.FC<MediaActionModalComponentProps> = (pro
       role='dialog'
       aria-modal='true'
     >
-      <div className='fixed inset-0 bg-stone-700 bg-opacity-75 transition-opacity'></div>
+      <div className='fixed inset-0 bg-stone-700 dark:bg-stone-900 dark:bg-opacity-75  bg-opacity-75 transition-opacity'></div>
 
       <div className='fixed inset-0 z-10 overflow-y-auto'>
         <div className='flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0'>
-          <div className='relative transform rounded-lg bg-white  text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg'>
-            <div className='bg-white px-4 pb-4 pt-5 sm:p-8 sm:pr-8 sm:pl-8 sm:pb-4'>
+          <div className='relative transform rounded-lg bg-stone-200  text-left shadow-sm transition-all sm:my-8 sm:w-full sm:max-w-lg dark:bg-stone-900 dark:shadow-yellow-500 shadow-stone-50'>
+            <div className='bg-stone-200 px-4 pb-4 pt-5 sm:p-8 sm:pr-8 sm:pl-8 sm:pb-4 dark:bg-stone-900'>
               <div className='sm:flex sm:items-start'>
-                <div className='mx-auto flex h-12 w-full flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10'>
+                <div className='mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-lime-100 dark:bg-lime-300 sm:mx-0 sm:h-10 sm:w-10'>
                   {iconHelper.update('text-xl text-blue-700')}
                 </div>
                 <div className='mt-3 grow text-center sm:ml-4 sm:mt-0 sm:text-left'>
                   <h3
-                    className='text-2xl font-semibold leading-6 text-gray-900 tracking-wider'
+                    className='text-2xl font-semibold leading-6 text-stone-900 tracking-[0.1rem] dark:text-lime-400'
                     id='modal-title'
                   >
                     Update media
                   </h3>
                   <div className='mt-4'>
-                    <div className='w-5/6 text-base text-stone-400 font-black pt-4'>
+                    <p className='text-lg text-stone-900 dark:text-stone-100'>
+                      You can always change this later in your profile lists.
+                    </p>
+                    <div className='mt-4 w-5/6 text-lg dark:text-stone-50 text-stone-900 font-black pt-4'>
                       <div className='flex gap-4 items-center h-[4rem]'>
                         <span>Add to list</span>
                         <SelectComponent
@@ -75,7 +77,7 @@ const MediaActionModalComponent: React.FC<MediaActionModalComponentProps> = (pro
                             { value: 'Dropped', label: 'Dropped' },
                           ]}
                           name={'status'}
-                          className='bg-stone-50 rounded-sm w-[10rem] text-stone-900 my-4'
+                          className='bg-stone-50 rounded-sm w-[10rem]  text-stone-900 my-4'
                           placeholder={serverMedia?.status ?? 'Add status'}
                           extras={{ isSearchable: false, isClearable: true }}
                           handleOnChange={(val: any) => handleMediaUpdate('status', val)}
@@ -97,7 +99,7 @@ const MediaActionModalComponent: React.FC<MediaActionModalComponentProps> = (pro
                             { value: 10, label: '10' },
                           ]}
                           name={'score'}
-                          className='bg-stone-50 rounded-sm w-[5rem] text-stone-900 my-4'
+                          className='bg-stone-50 rounded-sm w-[7rem]  text-stone-900 my-4 '
                           placeholder={serverMedia?.score?.toString() ?? ''}
                           extras={{ isSearchable: false, isClearable: true }}
                           handleOnChange={(val: any) => handleMediaUpdate('score', val)}
@@ -107,7 +109,7 @@ const MediaActionModalComponent: React.FC<MediaActionModalComponentProps> = (pro
                       <div className='py-2 w-full flex justify-between items-center mt-8'>
                         {serverMedia?.isFavorited ? (
                           <ButtonComponent
-                            className='inline-flex justify-center rounded-md bg-rose-400 px-6 py-2 text-base tracking-wider font-semibold text-stone-50 shadow-sm hover:bg-rose-500 sm:ml-3 sm:w-auto'
+                            className='inline-flex justify-center rounded-md bg-rose-400 px-6 py-2 text-base tracking-wider font-semibold text-stone-900 shadow-sm hover:bg-rose-500 sm:ml-3 sm:w-auto'
                             onClick={() => {
                               handleMediaUpdate('isFavorited', { value: !isFavorited });
                               setIsFavorited((prev) => !prev);
@@ -132,11 +134,11 @@ const MediaActionModalComponent: React.FC<MediaActionModalComponentProps> = (pro
                 </div>
               </div>
             </div>
-            <div className='bg-slate-100 px-4 py-4 sm:py-6 mt-4 gap-4 flex justify-end sm:gap-0 sm:px-8 w-full grow'>
+            <div className='bg-stone-300 px-4 py-4 sm:py-6 mt-4 gap-4 flex sm:gap-0 sm:px-8 w-full justify-end dark:bg-stone-700'>
               <ButtonComponent
                 onClick={() => cancelFunction(false)}
                 type='button'
-                className='ml-auto inline-flex w-full justify-center rounded-md bg-blue-600 px-6 py-2 text-base tracking-wider font-semibold text-stone-100 shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto'
+                className='ml-auto inline-flex justify-center rounded-md bg-lime-500 px-6 py-2 text-base tracking-wider font-semibold text-stone-100 shadow-sm hover:bg-lime-400 sm:ml-3'
               >
                 Done
               </ButtonComponent>
@@ -160,10 +162,10 @@ const NotSignedInDefaultComponent = ({
       role='dialog'
       aria-modal='true'
     >
-      <div className='fixed inset-0 bg-stone-700 bg-opacity-75 transition-opacity'></div>
+      <div className='fixed inset-0 bg-stone-700 dark:bg-stone-900 dark:bg-opacity-75 bg-opacity-75 transition-opacity'></div>
       <div className='fixed inset-0 z-10 overflow-y-auto'>
         <div className='flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0'>
-          <div className='relative transform overflow-hidden rounded-lg bg-white  text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg'>
+          <div className='relative transform rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg'>
             <div className='bg-white px-4 pb-4 pt-5 sm:p-8 sm:pr-8 sm:pl-8 sm:pb-4'>
               <div className='sm:flex sm:items-start'>
                 <div className='mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10'>

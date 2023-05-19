@@ -21,6 +21,7 @@ const MovieMedia = () => {
   const { data } = useGetItemDetailQuery();
   const { data: extraData } = useGetItemExtraQuery();
   const reactPlayerRef = useRef<HTMLInputElement>(null);
+  const trailerRef = useRef<HTMLInputElement>(null);
   const [isMediaWindowDisplay, setIsMediaWindowDisplay] = React.useState(false);
 
   const [animationParentRef] = useAutoAnimate();
@@ -79,7 +80,7 @@ const MovieMedia = () => {
           ref={animationParentRef}
           className='pt-4 px-4 pb-6 bg-gradient-to-l from-stone-900 to-transparent row-start-1 row-end-3 col-start-3 z-20 text-stone-200 flex flex-col justify-start items-end dark:text-yellow-500'
         >
-          <Trailers setSelectedTrailer={setSelectedTrailer} />
+          <Trailers setSelectedTrailer={setSelectedTrailer} refs={{playRef: trailerRef}} />
         </div>
       </div>
       <div className='relative min-h-[15vh] w-full pr-6 grid grid-cols-4 gap-4 overflow-hidden bg-stone-200  rounded-xl shadow-xl bg-opacity-90 dark:bg-amber-400'>
@@ -92,7 +93,7 @@ const MovieMedia = () => {
             }}
           />
         </div>
-        <div className='col-start-2 col-span-3 p-2'>
+        <div ref={trailerRef} className='col-start-2 col-span-3 p-2'>
           {selectedTrailer ? (
             <>
               <ReactPlayerComponent className='h-[30rem]' trailerSource={selectedTrailer} />
@@ -124,7 +125,7 @@ const MovieMedia = () => {
         ) : null}
         {isMediaWindowDisplay ? (
           <div
-            className={` w-full p-2  bg-gradient-to-r from-stone-900 via-stone-700 to-stone-900 bg-opacity-50 rounded-xl shadow-xl pb-6  dark:via-stone-900 dark:bg-opacity-100`}
+            className={` w-3/4 p-2  bg-gradient-to-r from-stone-900 via-stone-700 to-stone-900 bg-opacity-50 rounded-xl shadow-xl pb-6  dark:via-stone-900 dark:bg-opacity-100`}
           >
             <div className='w-full py-4 border-b-4 border-stone-300 md:border-0 grid place-items-center mb- flex-grow'>
               <div className='w-11/12 text-center rounded-xl shadow-inner px-4 py-2 bg-stone-300 font-poppins font-bold  text-lg text-stone-400 bg-opacity-20 tracking-wide dark:bg-stone-900 dark:text-yellow-600'>

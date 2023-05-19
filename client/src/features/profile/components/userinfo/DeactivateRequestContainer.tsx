@@ -65,7 +65,7 @@ const DeactivateRequestContainer = ({
           </div>
         )}
 
-        <div className='bg-slate-100 px-4 py-4 sm:py-6 mt-4 gap-4 flex flex-col sm:flex-row sm:gap-0 sm:px-8 w-full grow dark:bg-yellow-500'>
+        <div className='bg-stone-300 px-4 py-4 sm:py-6 mt-4 gap-4 flex flex-col sm:flex-row sm:gap-0 sm:px-8 w-full grow dark:bg-yellow-500'>
           <ButtonComponent
             onClick={() => cancelFunction(false)}
             type='button'

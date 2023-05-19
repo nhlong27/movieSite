@@ -41,7 +41,7 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
         },
         onSuccess: async () => {
           try {
-            console.log('Update media successfully!')
+            console.log('Update media successfully!');
             toast.success('Success!');
             queryClient.invalidateQueries({ queryKey: ['shows'] });
           } catch (e: any) {
@@ -54,14 +54,15 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
   };
 
   return (
-    <div className='w-[200px] rounded-xl shadow-lg shadow-stone-600 flex flex-col justify-center items-center bg-stone-200 dark:bg-amber-400 dark:shadow-yellow-900 overflow-hidden'>
+    <div className='w-[200px] rounded-xl shadow-lg shadow-stone-600 flex flex-col justify-center items-center bg-stone-200 dark:bg-amber-400 dark:shadow-yellow-900 dark:hover:shadow-xl dark:hover:shadow-yellow-500 hover:shadow-xl hover:shadow-stone-50'>
       <Link
         to={`/${media.title ? 'movie' : 'tv'}/${media.id}`}
         className='w-[200px] overflow-hidden flex items-center flex-col rounded-t-xl'
       >
         <LazyLoadImageComponent
           styles={{
-            image: 'overflow-hidden  bg-gradient-to-tr  from-white  to-black  dark:from-stone-900 dark:to-yellow-500 grow',
+            image:
+              'overflow-hidden  bg-gradient-to-tr  from-white  to-black  dark:from-stone-900 dark:to-yellow-500 grow',
             size: media?.poster_path ? 'original' : undefined,
           }}
           path={media?.poster_path ?? imageHelper.poster}
@@ -81,24 +82,23 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
         </div>
       </Link>
       <div className='py-4 w-full flex flex-col justify-start gap-4 items-center border-t-2 border-stone-500'>
-          <ButtonComponent
-            role='trueFalse'
-            className={`font-bold flex gap-2 items-center rounded-lg py-2 px-4 bg-stone-300 ring-2  text-base
-            hover:ring-stone-900 hover:text-stone-900 dark:bg-stone-900 dark:text-yellow-50  dark:ring-transparent dark:hover:bg-yellow-400 dark:hover:ring-stone-800 dark:hover:text-stone-900 shadow-lg ${
+        <ButtonComponent
+          role='trueFalse'
+          className={`font-bold flex gap-2 items-center rounded-lg py-2 px-4 bg-stone-300 ring-2  text-base
+            hover:ring-stone-900 hover:text-stone-900 dark:bg-stone-900     dark:hover:ring-stone-800 dark:hover:text-stone-900 shadow-lg ${
               media?.isFavorited
-                ? 'text-pink-500 font-black hover:bg-pink-500 ring-pink-600 dark:text-rose-400'
-                : 'text-yellow-600 hover:bg-yellow-500 ring-yellow-600'
+                ? 'text-stone-900 font-black bg-rose-500 dark:bg-rose-500'
+                : 'text-yellow-600 hover:bg-yellow-500 ring-yellow-600 dark:hover:bg-yellow-400 dark:text-yellow-50 dark:ring-transparent'
             }`}
-            onClick={() => {
-              handleUpdateShow('isFavorited', { value: !isFavorited });
-              setIsFavorited((prev) => !prev);
-            }}
-          >
-            {iconHelper.heart('text-xl')}
-            Favorite
-          </ButtonComponent>
-          
-        </div>
+          onClick={() => {
+            handleUpdateShow('isFavorited', { value: !isFavorited });
+            setIsFavorited((prev) => !prev);
+          }}
+        >
+          {iconHelper.heart('text-xl')}
+          Favorite
+        </ButtonComponent>
+      </div>
       <div className='w-full text-base text-stone-400 font-black pt-2 border-t-2 border-stone-400 dark:border-stone-500 dark:bg-yellow-500'>
         <SelectComponent
           options={[
@@ -132,9 +132,8 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
           extras={{ isSearchable: false, isClearable: true }}
           handleOnChange={(val: any) => handleUpdateShow('score', val)}
         />
-        
-        <div className='w-full grid place-items-center border-t-2 border-stone-500 dark:bg-yellow-600 dark:hover:bg-amber-600'>
 
+        <div className='w-full grid place-items-center border-t-2 border-stone-500 dark:bg-yellow-600 dark:hover:bg-amber-600 mt-8'>
           <ButtonComponent
             className='flex py-4 px-4 gap-2 items-center rounded-lg dark:text-stone-800 hover:text-stone-600 '
             role='delete'
@@ -145,7 +144,7 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
             {iconHelper.trash('text-lg')}
             Delete
           </ButtonComponent>
-          </div>
+        </div>
       </div>
     </div>
   );

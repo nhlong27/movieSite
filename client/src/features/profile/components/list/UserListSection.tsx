@@ -10,7 +10,7 @@ import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { listFilterPrompts } from '@/config/constants';
 import { iconHelper } from '@/config/icons';
 import { imageHelper } from '@/config/images';
-import ErrorComponent from '@/components/handling/ErrorComponent';
+
 
 const listFilters: Record<string, any> = {
   Watching: (list: MultipleShowsQueryResponseType, status: string) => (
@@ -102,7 +102,7 @@ const UserListSection = () => {
           <p className={`${shouldQueryDisplay ? '' : 'hidden'} dark:text-yellow-400 whitespace-nowrap text-base md:visible invisible`}>Type a name</p>
         </ButtonComponent>
       </div>
-      <div className='relative flex flex-col justify-center items-center grow w-full bg-stone-900 rounded-xl'>
+      <div className='relative flex flex-col justify-center items-center grow w-full bg-stone-900 rounded-xl overflow-hidden'>
         <img src={imageHelper.backdrop} alt='my_list' className='opacity-50 absolute top-0' />
         {mediaList && mediaList?.length === 0 ? (
           <div

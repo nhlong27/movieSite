@@ -25,7 +25,7 @@ const FilterResult = () => {
               media={media}
               role={(media as MovieType)?.title ? 'linkMovieCard' : 'linkTVCard'}
               styles={{
-                link: 'h-[22rem] w-[200px] overflow-hidden flex justify-center items-center flex-col relative shadow-lg rounded-xl shadow-stone-900 dark:shadow-yellow-900 bg-gradient-to-t from-stone-300 to-stone-200 dark:from-yellow-500 dark:to-yellow-500 dark:text-stone-900 dark:font-black',
+                link: 'h-[22rem] w-[200px] overflow-hidden flex justify-center items-center flex-col relative shadow-lg rounded-xl shadow-stone-900 dark:shadow-yellow-900 bg-gradient-to-t from-stone-300 to-stone-200 dark:from-yellow-500 dark:to-yellow-500 dark:text-stone-900 dark:font-black dark:hover:shadow-xl dark:hover:shadow-yellow-500 hover:shadow-xl hover:shadow-stone-900',
                 image: 'overflow-hidden  bg-gradient-to-tr  from-white  to-black  dark:from-stone-900 dark:to-yellow-500 grow',
                 size: (media as any).poster_path ? 'original': undefined
               }}
@@ -43,7 +43,7 @@ const SuspenseState = () => {
       {Array(20)
         .fill(0)
         .map((item, index) => (
-          <div key={index} className='min-h-[320px] w-[200px] overflow-hidden flex justify-center items-center flex-col relative shadow-lg rounded-xl'>
+          <div key={index} className='min-h-[320px] w-[200px] overflow-hidden flex justify-center items-center flex-col relative shadow-lg rounded-xl dark:bg-gradient-to-tr bg-gradient-to-tr from-stone-900 to-stone-100  dark:from-stone-900 dark:to-yellow-500'>
             <Skeleton className='h-full w-full' />
           </div>
         ))}

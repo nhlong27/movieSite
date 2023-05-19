@@ -18,6 +18,7 @@ const ExplorePage = React.lazy(() => import('@/pages/ExplorePage'));
 const MediaPage = React.lazy(() => import('@/pages/MediaPage'));
 const ProfilePage = React.lazy(() => import('@/pages/ProfilePage'));
 const ErrorPage = React.lazy(() => import('@/pages/ErrorPage'));
+const AboutPage = React.lazy(() => import('@/pages/AboutPage'));
 
 export const appLoader = async (queryClient: QueryClient) => {
   return await Promise.all(
@@ -83,6 +84,14 @@ export const router = createBrowserRouter([
             <ProtectedRoute>
               <ProfilePage />
             </ProtectedRoute>
+          </Suspense>
+        ),
+      },
+      {
+        path: '/about/',
+        element: (
+          <Suspense fallback={<LoadingPage />}>
+            <AboutPage />
           </Suspense>
         ),
       },

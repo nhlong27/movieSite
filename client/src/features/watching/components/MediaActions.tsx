@@ -52,7 +52,7 @@ const MediaActions: React.FC<MediaActionsProps> = (props) => {
         onClick={() => {
           handleMediaUpdate('status', { value: 'Watching' });
 
-          refs?.playRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          refs?.playRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
           handlingFunctions?.playFunction(true);
         }}
       >

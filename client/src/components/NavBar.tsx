@@ -126,23 +126,23 @@ const NavBar = () => {
             />
           </Link>
         </Wrapper>
-        <div className='ml-16 h-3/4 my-auto w-full whitespace-nowrap flex items-center col-span-1 justify-center gap-2 rounded-lg px-2 bg-stone-400  dark:bg-stone-700  dark:bg-opacity-70 shadow-inner z-10'>
+        <div className='ml-16 h-3/4 my-auto w-full whitespace-nowrap flex items-center col-span-1 justify-center gap-6 rounded-lg px-2 bg-stone-400   dark:bg-stone-700  dark:bg-opacity-70 shadow-inner z-10'>
           <ButtonComponent
-            className={`w-8 h-8 leading-9 text-xl rounded-full m-1  grid place-items-center ${
-              theme === 'dark' ? 'text-yellow-500' : 'text-yellow-50 shadow-xl'
+            className={`w-6 h-6  rounded-full grid place-items-center ${
+              theme === 'light' ? 'text-yellow-500' : 'text-stone-300'
             }`}
             onClick={() => setTheme('light')}
           >
-            {iconHelper.light('text-4xl')}
+            {iconHelper.light('text-3xl')}
           </ButtonComponent>
 
           <ButtonComponent
-            className={`w-8 h-8 leading-9 text-xl rounded-full m-1  grid place-items-center ${
-              theme === 'light' ? 'text-yellow-500' : 'text-yellow-50 shadow-xl'
+            className={`w-6 h-6  rounded-full  grid place-items-center ${
+              theme === 'dark' ? 'text-yellow-500' : 'text-stone-300'
             }`}
             onClick={() => setTheme('dark')}
           >
-            {iconHelper.dark('text-3xl')}
+            {iconHelper.dark('text-2xl')}
           </ButtonComponent>
         </div>
       </div>
@@ -178,23 +178,23 @@ const NavBar = () => {
           </span>
         )}
       </Link>
-      <div className='h-3/4 my-auto w-full whitespace-nowrap flex items-center col-span-1 justify-center gap-2 px-2 z-10'>
+      <div className='h-1/2 rounded-lg my-auto w-full whitespace-nowrap flex items-center col-span-1 justify-center bg-stone-300 dark:bg-stone-700 gap-4 z-10'>
         <ButtonComponent
-          className={`w-6 h-6 leading-9 text-xl rounded-full m-1  grid place-items-center  ${
-            theme === 'dark' ? 'text-stone-300' : 'text-stone-900 shadow-xl'
+          className={`w-4 h-4 rounded-full grid place-items-center  ${
+            theme === 'light' ? 'text-yellow-600' : 'text-stone-800 '
           }`}
           onClick={() => setTheme('light')}
         >
-          {iconHelper.light('text-4xl')}
+          {iconHelper.light('text-lg')}
         </ButtonComponent>
 
         <ButtonComponent
-          className={`w-6 h-6 leading-9 text-xl rounded-full m-1 grid place-items-center  ${
-            theme === 'dark' ? 'text-stone-50 shadow-xl' : 'text-stone-600'
+          className={`w-4 h-4 rounded-full grid place-items-center   ${
+            theme === 'dark' ? 'text-yellow-600' : 'text-stone-800'
           }`}
           onClick={() => setTheme('dark')}
         >
-          {iconHelper.dark('text-3xl')}
+          {iconHelper.dark('text-base')}
         </ButtonComponent>
       </div>
       <Link
