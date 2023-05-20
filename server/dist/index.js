@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import user from './routes/user.js';
 import show from './routes/show.js';
+import comment from './routes/comment.js';
 import urls from './config/urls.js';
 import { deserializeUserFromJWT } from './middlewares/deserializeUser.js';
 dotenv.config();
@@ -39,4 +40,5 @@ app.use(deserializeUserFromJWT);
 // ROUTES
 app.use('/api/v1/user', user);
 app.use('/api/v1/show', show);
+app.use('/api/v1/comment', comment);
 //# sourceMappingURL=index.js.map
