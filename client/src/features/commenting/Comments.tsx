@@ -5,18 +5,18 @@ import { CommentType } from './types';
 const Comments = ({
   itemIds,
   itemsById,
+  options,
 }: {
   itemIds?: string[];
   itemsById: Record<string, CommentType>;
+  options?: Record<string, any>;
 }) => {
   return (
     <>
       {itemIds?.map((id) => (
-        <React.Fragment key={id} >
-          <div  className='text-gray-300 font-bold pl-14'>|</div>
-          <div className='flex justify-between border ml-5  rounded-md'>
-            <CommentItem key={id} itemId={id} itemsById={itemsById} />
-          </div>
+        <React.Fragment key={id}>
+          {!options?.isRoot && <div className='text-stone-800 font-bold pl-14 text-left dark:text-yellow-50'>|</div>}
+          <CommentItem key={id} itemId={id} itemsById={itemsById} />
         </React.Fragment>
       ))}
     </>

@@ -3,6 +3,7 @@ import { z } from 'zod';
 const commentPayload = {
   body: z.object({
     user: z.string(),
+    userName: z.string(),
     id: z.string().optional(),
     content: z.string(),
     href: z.string().optional(),
