@@ -37,7 +37,7 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
   const { isXs, is4k, isXl } = useMediaQueries();
   return isXs ? (
     <div
-      className={`z-20 w-full xs:h-[20rem] lg:h-[24rem] overflow-x-clip ${
+      className={`z-20 w-full xs:h-[20rem] lg:h-[21rem] overflow-x-clip ${
         styles?.swiper ?? 'absolute bottom-0 left-0 right-0'
       }`}
     >
