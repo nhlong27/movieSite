@@ -141,7 +141,6 @@ Around 2 months - March to May 2023
 
 <h3>API Source</h3>
 The Movie Database API
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Solution Stack
 
@@ -203,7 +202,6 @@ _Below is how you can install and set up your app._
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
 ## Contributing
