@@ -2,7 +2,7 @@ import { CommentModel } from '../models/comment.model.js';
 const createComment = async (input) => {
     return CommentModel.create(input);
 };
-const findComments = async (query, options = { lean: true }) => {
+const findCommentsByMediaId = async (query, options = { lean: true }) => {
     return CommentModel.find(query, {}, options);
 };
 const findComment = async (query, options = { lean: true }) => {
@@ -14,5 +14,5 @@ const updateComment = async (query, update, options) => {
 const deleteComment = async (query) => {
     return CommentModel.deleteOne(query);
 };
-export { createComment, updateComment, findComments, deleteComment, findComment };
+export { createComment, updateComment, findCommentsByMediaId, deleteComment, findComment };
 //# sourceMappingURL=comment.service.js.map

@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import Comments from './Comments';
-import { useGetCommentsQuery } from './hooks/useGetCommentsQuery';
-import { useDeleteCommentMutation } from './hooks/useDeleteCommentMutation';
+import { useGetCommentsByMediaIdQuery } from './hooks/useGetCommentsByMediaIdQuery';
 import { useUpdateCommentMutation } from './hooks/useUpdateCommentMutation';
 import Wrapper from '@/components/handling/Wrapper';
 import { useGetUserQuery } from '../profile';
@@ -9,9 +8,10 @@ import { useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-hot-toast';
 import ButtonComponent from '@/components/generic/ButtonComponent';
 import { iconHelper } from '@/config/icons';
+import { imageHelper } from '@/config/images';
 
-const CommentSection = () => {
-  const { data: comments, error } = useGetCommentsQuery();
+const CommentSection = ({ mediaId }: { mediaId: string }) => {
+  const { data: comments, error } = useGetCommentsByMediaIdQuery(mediaId);
 
   const itemsById = (comments ?? []).reduce(
     (prev, item) => ({ ...prev, [`${item.id}`]: item }),
@@ -33,6 +33,8 @@ const CommentSection = () => {
         id: user?._id! + Math.floor(Math.random() * 100).toString(),
         payload: {
           user: user?._id!,
+          mediaId: mediaId,
+          avatar: user?.avatar ?? imageHelper.logo_better,
           userName: user?.name!,
           content: val.content,
           children: [],
@@ -71,12 +73,21 @@ const CommentSection = () => {
         >
           Add a comment
         </button>
+
         <div>
-          {comments ? ( 
-            (comments?.length ?? 0 > 0) ? 
-            <Comments options={{ isRoot: true }} itemIds={rootIds} itemsById={itemsById} /> : <div className='w-full text-center py-8 font-black text-stone-900 dark:text-yellow-500 dark:bg-stone-700 rounded-lg'>
-              There is currently no comment. <br/> It would be great if you can add one.
-            </div>
+          {comments ? (
+            comments?.length ?? 0 > 0 ? (
+              <Comments
+                options={{ isRoot: true }}
+                mediaId={mediaId}
+                itemIds={rootIds}
+                itemsById={itemsById}
+              />
+            ) : (
+              <div className='w-full text-center py-8 font-black text-stone-900 dark:text-yellow-500 dark:bg-stone-700 rounded-lg'>
+                There is currently no comment. <br /> It would be great if you can add one.
+              </div>
+            )
           ) : error instanceof Error ? (
             <>
               <div className='w-full text-center py-8 font-black text-stone-900 dark:text-yellow-500 dark:bg-stone-700 rounded-lg'>
@@ -111,11 +122,13 @@ const CommentSection = () => {
           onSubmit={(e) => {
             e.preventDefault();
             handleUpdateComment(true, new FormData(e.currentTarget));
-            e.currentTarget.reset()
+            e.currentTarget.reset();
           }}
         >
           <div className='flex flex-wrap -mx-3 mb-6'>
-            <h2 className='px-4 pt-3 pb-2 text-stone-800 text-lg dark:text-stone-100'>Add a new comment</h2>
+            <h2 className='px-4 pt-3 pb-2 text-stone-800 text-lg dark:text-stone-100'>
+              Add a new comment
+            </h2>
             <div className='w-full md:w-full px-3 mb-2 mt-2'>
               <textarea
                 className='bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white dark:bg-stone-600 dark:border-none dark:focus:bg-stone-600 dark:placeholder-stone-200 dark:text-white'
@@ -133,9 +146,9 @@ const CommentSection = () => {
                   stroke='currentColor'
                 >
                   <path
-                    stroke-linecap='round'
-                    stroke-linejoin='round'
-                    stroke-width='2'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth='2'
                     d='M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
                   />
                 </svg>
@@ -156,8 +169,8 @@ const CommentSection = () => {
   );
 };
 
-export default () => (
-  <Wrapper>
-    <CommentSection />
+export default ({ mediaId }: { mediaId: string }) => (
+  <Wrapper errorComponent={() => <div>You need to sign in to view this section</div>}>
+    <CommentSection mediaId={mediaId} />
   </Wrapper>
 );

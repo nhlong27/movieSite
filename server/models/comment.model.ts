@@ -5,7 +5,9 @@ import { UserDocument } from "./user.model.js";
 
 interface CommentDocument extends mongoose.Document {
   user: UserDocument['_id'];
+  mediaId: string;
   userName: string;
+  avatar?: string;
   id: string;
   content: string;
   href?: string;
@@ -17,6 +19,8 @@ interface CommentDocument extends mongoose.Document {
 
 const CommentSchema = new mongoose.Schema({
   user: {type: mongoose.Schema.Types.ObjectId, ref: "User"},
+  mediaId: {type: String, required: true},
+  avatar: String,
   userName: String,
   id: {type: String, required: true},
   content: String,

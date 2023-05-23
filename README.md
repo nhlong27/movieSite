@@ -13,13 +13,13 @@
 <br />
 <div align="center">
   <a href="https://github.com/nhlong27/..">
-    <img src="" alt="Logo" width="80" height="80">
+    <img src="./client/public/assets/logos/logo-md.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">MOVIESITE</h3>
+  <h3 align="center">FIR MEDIA</h3>
 
   <p align="center">
-    Short descriptions...
+    A nature inspired movie website 
     <br />
     Author: Nguyen Hoang Long 
     <!-- <a href="https://github.com/nhlong27/dengueapp"><strong>Explore the docs »</strong></a> -->
@@ -68,19 +68,18 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://dengueapp.vercel.app/)
 
-This application .. long description
+Fir Media is nature-inspired movie website, where it  celebrate the beauty and wonder of the natural world through the lens of cinema. Browse our carefully curated categories, immerse yourself in the wonders of nature, and let the power of film transport you to the world's most breathtaking landscapes
 
-An UI that doesn't overwhelm user
 <br/>
 <br/>
-Problems to solve:
+User stories
 <ul>
   <li>Problem 1
   </li>
   <li>Problem 2
   </li>
 </ul>
-Features:
+Challenges:
 <ul>
   <li>
   </li>
@@ -97,32 +96,25 @@ Features:
 This section lists all major frameworks/libraries used to bootstrap this project.
 
 * [![React][React-badge]][React-url]
+* [![Typescript][Typescript-badge]][Typescript-url]
+* [![Jotai][Jotai-badge]][Jotai-url]
+* [![Zustand][Zustand-badge]][Zustand-url]
+* [![Zod][Zod-badge]][Zod-url]
 * [![Vite][Vite-badge]][Vite-url]
 * [![TailwindCSS][TailwindCSS-badge]][TailwindCSS-url]
 * [![NodeJS][NodeJS-badge]][NodeJS-url]
-* [![Mantine][Mantine-badge]][Mantine-url]
-* [![MUI][MUI-badge]][MUI-url]
-* [![Jotai][Jotai-badge]][Jotai-url]
-* [![Supabase][Supabase-badge]][Supabase-url]
-* [![Chartjs][Chartjs-badge]][Chartjs-url]
+* [![ExpressJS][ExpressJS-badge]][ExpressJS-url]
+* [![MongoDB][MongoDB-badge]][MongoDB-url]
 
 
-### Client Setup
-Extends from 
+### Setup
+Originally setup extended from 
 * [vite-react-ts-eslint-prettier](https://github.com/igdev116/vite-react-ts-eslint-prettier)
-
-Configurations
-* README.md, .eslintrc, tsconfig.json, TailwindCSS, dotenv, jotai, zustand, axios, zod, react-query, react-router-dom
-
-### Server Setup
-Extends from
 * Express js with MongoDB
 
-Configurations
-* README.md, tsconfig.json, nodemon, concurrently, bcrypt, cookie-parser, cors, dotenv, expres, jsonwebtoken, lodash, moongoose, zod
+Deployment
+* 
 
-% https://stackoverflow.com/questions/72600316/ts-node-module-not-found-when-using-absolute-imports-in-typescript
-% https://bobbyhadz.com/blog/javascript-cannot-find-module-lodash (didn't work)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -155,47 +147,6 @@ _Below is how you can install and set up your app. This template doesn't rely on
    const VITE_RANDOM = 'your_random'; 
    
    ```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-### Guide
-<!-- 
-
-#### **Basic: Landing page, Auth, Dashboard**
-
-- Home page: smoothscroll
-- Sign up page: explain why only doctor, show mail validation 
-_ Log in page: show logging in with existing doctor account 
-- Account page: show avatar uploading, explain update personal info
-_ Dashboard/Home: explain each section: dashboard, nurses, facilities, devices
-
-#### **CRUD**
-_ Device page: show device creation
-_ Facility page: show room & bed creation
-- Patient page: show patient registering & bed, device assignment
-- Patient Detail page: explain update patient and assigning bed/device
-
-#### **Monitoring: Data collection, Categorization, Alarms** 
-
-- Device page: show device stream (virtual/real), explain receiving/paused
-- Patient Detail page: show real-time line charts, show time series history charts
-- Patient page: explain status, show categories
- 
-#### **Interaction: Messages, Scheduling** 
-
-- Nurse page: show nurse registering & room assignment
-- Message page: show messaging
-
-#### **Alternatives**
-
-- Nurse View/ Dashboard: show notifications from messages
-
-- Patient View/ Dashboard: show telemetry data stream and line graphs -->
-
-<!-- _For more examples, please refer to the [Documentation](https://example.com)_ -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -505,7 +456,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
+This space is for resources I found helpful and would like to give credit to.
 
 * [Choose an Open Source License](https://choosealicense.com)
 * [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
@@ -549,15 +500,17 @@ Use this space to list resources you find helpful and would like to give credit 
 [Vite-url]: https://vitejs.dev/
 [TailwindCSS-badge]: https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white
 [TailwindCSS-url]: https://tailwindcss.com/
-[MUI-badge]: https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white
-[MUI-url]: https://mui.com/
-[Chartjs-badge]: https://img.shields.io/badge/-Chart.js-pink?style=for-the-badge
-[Chartjs-url]: https://www.chartjs.org/
 [Jotai-badge]: https://img.shields.io/badge/-Jotai-white?style=for-the-badge
 [Jotai-url]: https://jotai.org/
-[Mantine-badge]: https://img.shields.io/badge/-Mantine-blue?style=for-the-badge
-[Mantine-url]: https://mantine.dev/pages/getting-started/
 [NodeJS-badge]: https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white
 [NodeJS-url]: https://nodejs.org/en/
-[Supabase-badge]: https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white
-[Supabase-url]: https://supabase.com/
+[MongoDB-badge]: https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white
+[MongoDB-url]: https://www.mongodb.com/
+[ExpressJS-badge]: 	https://img.shields.io/badge/Express.js-404D59?style=for-the-badge
+[ExpressJS-url]: https://expressjs.com/
+[Zustand-badge]: https://img.shields.io/badge/-zustand-orange
+[Zustand-url]: https://github.com/pmndrs/zustand
+[Typescript-badge]: https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white
+[Typescript-url]: https://www.typescriptlang.org/
+[Zod-badge]: https://img.shields.io/badge/-zod-blue
+[Zod-url]: https://zod.dev/

@@ -2,7 +2,9 @@ import {z} from 'zod';
 
 const CommentSchema = z.object({
   user: z.string(),
+  mediaId: z.string(),
   userName: z.string(),
+  avatar: z.string().optional(),
   id: z.string(),
   content: z.string(),
   children: z.array(z.string()).optional(),
@@ -18,6 +20,8 @@ const CommentsResponseSchema = z.array(
 
 const CommentUpdateFormSchema = z.object({
   user: z.string().min(1, { message: 'User id is required' }),
+  avatar: z.string().optional(),
+  mediaId: z.string().min(1, { message: 'Media id is required' }),
   userName: z.string().min(1, { message: 'User name is required' }),
   id: z.string().optional(),
   content: z.string().min(1, { message: 'Content is required' }),

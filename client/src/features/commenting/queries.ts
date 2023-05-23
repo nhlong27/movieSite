@@ -2,15 +2,15 @@ import { serverClient } from "@/lib/serverClient"
 import { CommentsResponseSchema } from "./types"
 
 
-const getComments = async () => {
-  return CommentsResponseSchema.parse((await serverClient.get('/api/v1/comment')).data)
+const getCommentsByMediaId = async (id:string) => {
+  return CommentsResponseSchema.parse((await serverClient.get(`/api/v1/comment/${id}`)).data)
 }
 
-const getCommentsQuery = () => {
+const getCommentsByMediaIdQuery = (mediaId: string ) => {
   return {
-    queryKey: ['comments'],
-    queryFn: getComments,
+    queryKey: ['comments', mediaId],
+    queryFn: ()=>getCommentsByMediaId(mediaId),
   }
 }
 
-export {getCommentsQuery}
+export {getCommentsByMediaIdQuery}

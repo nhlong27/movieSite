@@ -1,4 +1,4 @@
-import { createComment, deleteComment, findComment, findComments, updateComment, } from '../services/comment.service.js';
+import { createComment, deleteComment, findComment, findCommentsByMediaId, updateComment, } from '../services/comment.service.js';
 const updateCommentHandler = async (req, res) => {
     try {
         const user = res.locals.user._id;
@@ -16,12 +16,16 @@ const updateCommentHandler = async (req, res) => {
         res.status(400).send(e.message);
     }
 };
-const getAllCommentsHandler = async (req, res) => {
+const getCommentsByMediaIdHandler = async (req, res) => {
     try {
-        const user = res.locals.user._id;
-        const comments = await findComments({});
-        if (!comments)
+        const mediaId = req.params.id;
+        if (mediaId === '404') {
             return res.status(404).send('No comment found.');
+        }
+        let comments = await findCommentsByMediaId({ mediaId });
+        if (!comments) {
+            return res.send([]);
+        }
         return res.send(comments);
     }
     catch (e) {
@@ -41,5 +45,5 @@ const deleteCommentHandler = async (req, res) => {
         res.status(400).send(e.message);
     }
 };
-export { updateCommentHandler, deleteCommentHandler, getAllCommentsHandler };
+export { updateCommentHandler, deleteCommentHandler, getCommentsByMediaIdHandler };
 //# sourceMappingURL=comment.controller.js.map

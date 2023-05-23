@@ -17,6 +17,7 @@ import { Link } from 'react-router-dom';
 import { TVType } from '@/types/types';
 import { iconHelper } from '@/config/icons';
 import { imageHelper } from '@/config/images';
+import { CommentSection } from '@/features/commenting';
 
 const TVMedia = () => {
   const { isMd } = useMediaQueries();
@@ -222,7 +223,7 @@ const TVMedia = () => {
                   media={media}
                   role='linkTVCard'
                   styles={{
-                    link: 'h-[22rem] w-[200px] overflow-hidden flex justify-center items-center flex-col relative shadow-lg rounded-xl shadow-stone-900 dark:shadow-yellow-900 bg-gradient-to-t from-stone-300 to-stone-200 dark:from-yellow-500 dark:to-yellow-500 dark:text-stone-900 dark:font-black',
+                    link: 'h-[22rem] w-[200px] overflow-hidden flex justify-center items-center flex-col relative shadow-lg rounded-xl shadow-stone-900 dark:shadow-yellow-900 bg-gradient-to-t from-stone-300 to-stone-200 dark:from-yellow-500 dark:to-yellow-500 dark:text-stone-900 dark:font-black dark:hover:shadow-2xl dark:hover:shadow-yellow-500 hover:shadow-xl hover:shadow-stone-900',
                     image:'overflow-hidden  bg-gradient-to-tr  from-white  to-black  dark:from-stone-900 dark:to-yellow-500 grow',
                     size: (media as any).poster_path ? 'w400' : undefined,
                   }}
@@ -234,7 +235,7 @@ const TVMedia = () => {
           <div className='relative w-full flex flex-row  h-[4rem] justify-center items-baseline gap-4 bg-stone-300 bg-opacity-20 shadow-inner border-2 border-stone-400 font-poppins text-normal font-bold px-8 py-8 dark:bg-stone-900 dark:border-yellow-600'>
             <h1 className='text-stone-400 text-sm dark:text-yellow-500'>No movies or TV shows for this media</h1>
             <Link
-              className='w-3/4 px-8 py-2 font-poppins rounded-xl bg-stone-300 grid place-items-center ring-2 ring-stone-400 text-stone-400 hover:bg-stone-400 hover:text-stone-600  text-xl hover:ring-stone-600 dark:bg-stone-900 dark:ring-transparent dark:text-yellow-500 dark:hover:bg-yellow-400 dark:hover:text-stone-900 dark:hover:ring-stone-800'
+              className='w-3/4 px-8 py-2 font-poppins rounded-xl bg-stone-300 grid place-items-center ring-2 ring-stone-400 text-stone-400 hover:bg-stone-400 hover:text-stone-600  text-xl hover:ring-stone-600 dark:bg-stone-900 dark:ring-transparent dark:text-yellow-500 dark:hover:bg-yellow-400 dark:hover:text-stone-900 dark:hover:ring-stone-800 dark:hover:shadow-2xl dark:hover:shadow-yellow-500 hover:shadow-xl hover:shadow-stone-900'
               to='/discover'
               onClick={() => {
                 console.log('navigating to exploring page..');
@@ -247,6 +248,9 @@ const TVMedia = () => {
             </Link>
           </div>
         )}
+      </div>
+      <div className='w-full flex flex-col justify-center items-center gap-4 bg-stone-300 shadow-inner border-t-2 border-stone-400 font-poppins text-normal font-bold px-8 py-8 dark:bg-stone-900 dark:border-yellow-600'>
+        <CommentSection mediaId={data.id?.toString() ?? '404'} />
       </div>
     </div>
   ) : (
@@ -418,6 +422,9 @@ const TVMedia = () => {
             </Link>
           </div>
         )}
+      </div>
+      <div className='w-full flex flex-col justify-center items-center gap-4 bg-stone-300 shadow-inner border-t-2 border-stone-400 font-poppins text-normal font-bold py-8 dark:bg-stone-900 dark:border-yellow-600'>
+        <CommentSection mediaId={data.id?.toString() ?? '404'} />
       </div>
     </div>
   );

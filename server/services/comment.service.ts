@@ -7,7 +7,7 @@ const createComment = async (
   return CommentModel.create(input);
 };
 
-const findComments = async (
+const findCommentsByMediaId = async (
   query: FilterQuery<CommentDocument>,
   options: QueryOptions = { lean: true },
 ) => {
@@ -34,4 +34,4 @@ const deleteComment = async (query: FilterQuery<CommentDocument>) => {
   return CommentModel.deleteOne(query);
 };
 
-export {createComment, updateComment, findComments, deleteComment, findComment}
+export {createComment, updateComment, findCommentsByMediaId, deleteComment, findComment}

@@ -6,12 +6,14 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useGetUserQuery } from '../profile';
 import { toast } from 'react-hot-toast';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
-import { useDeleteCommentMutation } from './hooks/useDeleteCommentMutation';
+import { imageHelper } from '@/config/images';
 
 const CommentItem = ({
+  mediaId,
   itemId,
   itemsById,
 }: {
+  mediaId: string;
   itemId: string;
   itemsById: Record<string, CommentType>;
 }) => {
@@ -24,7 +26,6 @@ const CommentItem = ({
   const { data: user } = useGetUserQuery();
 
   const [animationParentRef] = useAutoAnimate();
-  const deleteCommentMutation = useDeleteCommentMutation();
 
   const handleUpdateComment = (isRoot: boolean, val: any) => {
     let newId = user?._id! + Math.floor(Math.random() * 100).toString();
@@ -34,6 +35,8 @@ const CommentItem = ({
         payload: {
           ...val,
           user: user?._id,
+          mediaId: mediaId,
+          avatar: user?.avatar ?? imageHelper.logo_better,
           userName: user?.name!,
           isRoot: val.isRoot ?? isRoot,
         },
@@ -59,13 +62,13 @@ const CommentItem = ({
   };
 
   return (
-    <div ref={animationParentRef} className={`flex flex-col ml-12 ${item?.isRoot && 'mt-8'}`}>
+    <div ref={animationParentRef} className={`flex flex-col ml-2 md:ml-12 ${item?.isRoot && 'mt-8'}`}>
       <div className='flex justify-between rounded-md ring-2 ring-stone-500 bg-stone-100  dark:bg-stone-800  dark:ring-transparent'>
         <div className='p-3 flex flex-col items-start'>
           <div className='flex gap-3 items-center'>
             <img
-              src='https://avatars.githubusercontent.com/u/22263436?v=4'
-              className='object-cover w-10 h-10 rounded-full border-2 border-emerald-400  shadow-emerald-400'
+              src={item?.avatar}
+              className='object-cover w-10 h-10 rounded-full border-2 border-yellow-400  shadow-yellow-400'
             />
             <h3 className='font-bold dark:text-stone-50 text-left'>
               {item?.userName}
@@ -75,37 +78,32 @@ const CommentItem = ({
               </span>
             </h3>
           </div>
-          <p className='text-gray-600 my-4 pl-4 text-lg dark:text-stone-100'>{item?.content}</p>
-          {item?.content !== 'Comment has been deleted' && <div>
-            <button
-              onClick={() => setShouldReplayBoxDisplay(true)}
-              className='mr-4 text-right text-yellow-400 hover:text-yellow-300'
-            >
-              Reply
-            </button>
-            {user?._id === item?.user ? (
-              <>
-                {/* <button
-            onClick={() => setShouldReplayBoxDisplay(true)}
-            className='mr-4 text-right text-blue-500 hover:text-blue-400 '
-          >
-            Edit
-          </button> */}
-                <button
-                  onClick={() => {
-                    handleUpdateComment(false, {
-                      ...item,
-                      content: 'Comment has been deleted',
-                    });
-                    setShouldReplayBoxDisplay(false);
-                  }}
-                  className='mr-4 text-right text-red-500 hover:text-red-400'
-                >
-                  Delete
-                </button>
-              </>
-            ) : null}
-          </div>}
+          <p className='text-gray-600 my-4 pl-4 text-sm md:text-lg dark:text-stone-100'>{item?.content}</p>
+          {item?.content !== 'Comment has been deleted' && (
+            <div>
+              <button
+                onClick={() => setShouldReplayBoxDisplay(true)}
+                className='mr-4 text-right text-yellow-400 hover:text-yellow-300'
+              >
+                Reply
+              </button>
+              {user?._id === item?.user ? (
+                <>
+                  <button
+                    onClick={() => {
+                      handleUpdateComment(false, {
+                        ...item,
+                        content: 'Comment has been deleted',
+                      });
+                    }}
+                    className='mr-4 text-right text-red-500 hover:text-red-400'
+                  >
+                    Delete
+                  </button>
+                </>
+              ) : null}
+            </div>
+          )}
         </div>
         {item?.children?.length ?? 0 > 0 ? (
           <div className='flex flex-col items-end gap-3 pr-3 py-3'>
@@ -158,8 +156,8 @@ const CommentItem = ({
               setShouldReplayBoxDisplay(false);
             }}
           >
-            <div className='flex -mx-3 mb-6'>
-              <h2 className='px-4 pt-3 pb-2 w-[10rem] text-stone-800 text-lg text-end pr-4 dark:text-stone-100'>
+            <div className='flex md:flex-row flex-col -mx-3 mb-6'>
+              <h2 className='md:px-4 pt-3 pb-2 w-[10rem] text-stone-800 text-sm md:text-lg text-end md:pr-4 dark:text-stone-100'>
                 Add a reply
               </h2>
               <div className='grow px-3 mb-2 mt-2'>
@@ -185,7 +183,7 @@ const CommentItem = ({
       ) : null}
 
       {item?.children && shouldChildrenDisplay ? (
-        <Comments itemIds={item?.children} itemsById={itemsById} />
+        <Comments mediaId={mediaId} itemIds={item?.children} itemsById={itemsById} />
       ) : null}
     </div>
   );
