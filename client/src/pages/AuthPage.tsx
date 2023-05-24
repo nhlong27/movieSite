@@ -16,13 +16,13 @@ const AuthPage = () => {
         ></div>
         <div className='screen-overlay'></div>
         <div className='w-full h-full flex justify-center items-start z-10'>
-          <div className='w-11/12 max-w-[1920px] min-w-[300px] h-auto flex flex-col md:justify-center items-center mt-[5rem]'>
+          <div  className='w-11/12 max-w-[1920px] min-w-[300px] h-auto flex flex-col md:justify-center items-center mt-[5rem]'>
             {shouldSignInDisplay ? (
-              <div className=' min-w-[300px] max-w-[600px] w-full md:w-3/4 z-10 '>
-                <SignInContainer setShouldSignInDisplay={setShouldSignInDisplay} />
+              <div data-testid='sign-in-container' className=' min-w-[300px] max-w-[600px] w-full md:w-3/4 z-10 '>
+                <SignInContainer   setShouldSignInDisplay={setShouldSignInDisplay} />
               </div>
             ) : (
-              <div className=' min-w-[300px] max-w-[600px] w-full md:w-3/4  z-10 '>
+              <div data-testid='sign-up-container' className=' min-w-[300px] max-w-[600px] w-full md:w-3/4  z-10 '>
                 <SignUpContainer setShouldSignInDisplay={setShouldSignInDisplay} />
               </div>
             )}

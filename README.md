@@ -262,6 +262,7 @@ This space is for resources I found helpful and would like to give credit to.
 * [RefactoringUI](https://www.refactoringui.com/) 
 * [React bulletproof](https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md)
 * [Midjourney](https://www.midjourney.com/)
+* [Testing with Vitest](https://eternaldev.com/blog/testing-a-react-application-with-vitest/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
