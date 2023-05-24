@@ -39,37 +39,42 @@ Official website: <a href="">dfdfdfdff</a>
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#about">About The Project</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#screenshots">Screenshots</a></li>
+        <li><a href="#duration">Duration</a></li>
+        <li><a href="#challenges">Challenges</a></li>
+        <li><a href="#solutions">Solutions</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#getting_started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
+    <!-- <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li> -->
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <!-- <li><a href="#contact">Contact</a></li> -->
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
 
 <!-- ABOUT THE PROJECT -->
+<a id='about'></a>
 ## About The Project
+
+[![Product Name Screen Shot][homePage_preview-screenshot]](...url)
 
 Fir Media celebrates the beauty and wonder of the natural world through the lens of cinema. Browse and and let the power of films transport you to the world's most breathtaking landscapes.
 
 
 #
-## Screenshots
 <a id='screenshot'></a>
+## Screenshots
 <details>
   <summary>Toggle Show/Hide</summary>
   <h1>Home page</h1>
@@ -106,7 +111,9 @@ Fir Media celebrates the beauty and wonder of the natural world through the lens
 [![Product Name Screen Shot][profilePage-screenshot]](...url) -->
 #
 
+<a id='duration'></a>
 ## Duration
+
 Around 2 months - March to May 2023 
 ## User stories  
 <b>Note</b>: media = movie | TV shows
@@ -125,7 +132,9 @@ Around 2 months - March to May 2023
   <li>User should be able to see the comment section as well as add and delete their comments for a media </li>
 </ul>
 
+<a id='challenges'></a>
 <h2>Challenges</h2>
+
 <ul>
   <li>Use 100% Typescript with frontend and backend</li>
   <li>Pick a suitable API</li>
@@ -137,6 +146,7 @@ Around 2 months - March to May 2023
   <li>Deploy frontend and backend on seperate machines</li>
 </ul>
 
+<a id='solutions'></a>
 <h2>Solutions</h2>
 
 <h3>API Source</h3>
@@ -175,12 +185,14 @@ Here are all major frameworks/libraries used to bootstrap this project
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
+<a id='getting_started'></a>
 ## Getting Started
-
-Originally setup extended from 
-* [vite-react-ts-eslint-prettier](https://github.com/igdev116/vite-react-ts-eslint-prettier)
+<!-- 
+You can use this setup if you don't want to self-configure your project 
+* [vite-react-ts-eslint-prettier](https://github.com/igdev116/vite-react-ts-eslint-prettier) -->
 
 ### Installation
+<a id='installation'></a>
 
 _Below is how you can install and set up your app._
 
@@ -204,6 +216,7 @@ _Below is how you can install and set up your app._
 
 
 <!-- CONTRIBUTING -->
+<a id='contributing'></a>
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -217,17 +230,24 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+
+See the [open issues](https://github.com/nhlong27/movieSite/issues) for a full list of proposed features (and known issues).
+
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <!-- LICENSE -->
+<a id='license'></a>
 ## License
 
 <!-- Distributed under the MIT License. See `LICENSE.txt` for more information. -->
-None yet
+To be added 
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ACKNOWLEDGMENTS -->
+<a id='acknowledgments'></a>
 ## Acknowledgments
 
 This space is for resources I found helpful and would like to give credit to.
@@ -269,6 +289,7 @@ This space is for resources I found helpful and would like to give credit to.
 [mediaPage-screenshot]: screenshots/mediaPage.png
 [profilePage-screenshot]: screenshots/profilePage.png
 [authPage-screenshot]: screenshots/authPage.png
+[homePage_preview-screenshot]: screenshots/homePage_preview.png
 
 <!-- Frameworks/libraries -->
 [React-badge]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
