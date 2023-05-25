@@ -165,10 +165,10 @@ const NotSignedInDefaultComponent = ({
       <div className='fixed inset-0 bg-stone-700 dark:bg-stone-900 dark:bg-opacity-75 bg-opacity-75 transition-opacity'></div>
       <div className='fixed inset-0 z-10 overflow-y-auto'>
         <div className='flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0'>
-          <div className='relative transform rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg'>
-            <div className='bg-white px-4 pb-4 pt-5 sm:p-8 sm:pr-8 sm:pl-8 sm:pb-4'>
+          <div className='relative transform overflow-hidden rounded-lg bg-stone-200 text-left shadow-sm transition-all sm:my-8 sm:w-full sm:max-w-lg dark:bg-stone-900 dark:shadow-yellow-500 shadow-stone-50'>
+            <div className='bg-stone-200 px-4 pb-4 pt-5 sm:p-8 sm:pr-8 sm:pl-8 sm:pb-4 dark:bg-stone-900'>
               <div className='sm:flex sm:items-start'>
-                <div className='mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10'>
+                <div className='mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 dark:bg-rose-300 sm:mx-0 sm:h-10 sm:w-10'>
                   <svg
                     className='h-8 w-8 text-red-600'
                     fill='none'
@@ -186,26 +186,26 @@ const NotSignedInDefaultComponent = ({
                 </div>
                 <div className='mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left'>
                   <h3
-                    className='text-2xl font-semibold leading-6 text-gray-900 tracking-wider'
+                    className='text-2xl font-semibold leading-6 text-stone-900 dark:text-stone-100 tracking-wider'
                     id='modal-title'
                   >
                     You need an account
                   </h3>
                   <div className='mt-4'>
-                    <p className='text-lg text-stone-500'>
+                    <p className='text-lg text-stone-500 dark:text-stone-100'>
                       An account lets you favorite, rate or add to lists. e.g. 'Plan to Watch'.
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-            <div className='bg-slate-100 px-4 py-4 sm:py-6 mt-4 gap-4 flex flex-col sm:flex-row sm:gap-0 sm:px-8 w-full grow'>
+            <div className='bg-stone-300 px-4 py-4 sm:py-6 mt-4 gap-4 flex sm:gap-0 sm:px-8 w-full justify-end dark:bg-stone-700'>
               <ButtonComponent
                 onClick={() => cancelFunction(false)}
                 type='button'
-                className='ml-auto mt-3 inline-flex w-full justify-center rounded-md bg-stone-100 px-6 py-2 text-base font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-stone-300 hover:bg-stone-50 sm:mt-0 sm:w-auto'
+                className='ml-auto mt-3 inline-flex w-full justify-center rounded-md bg-stone-100 px-6 py-2 text-base text-gray-900 shadow-sm ring-1 ring-inset ring-stone-300 hover:bg-stone-50 sm:mt-0 sm:w-auto'
               >
-                Cancel
+                Back
               </ButtonComponent>
               <Link
                 to='/profile'

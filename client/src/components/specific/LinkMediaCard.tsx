@@ -33,16 +33,16 @@ const LinkMediaCard: React.FC<LinkMediaCardProps> = (props) => {
         path={media.poster_path ?? imageHelper.poster}
       />
       <div className={styles?.detail ?? 'flex flex-col w-11/12 mt-auto py-2'}>
-        <h1 className='truncate font-poppins font-bold text-xl tracking-wide dark:text-stone-900'>
+        <h1 className='truncate font-poppins font-bold text-lg tracking-wide dark:text-stone-900'>
           {(media as MovieType | SimilarMovieType).title}
         </h1>
-        <div className='flex justify-between font-poppins text-stone-500 font-extrabold text-base'>
+        <div className='flex justify-between font-poppins text-stone-500 font-extrabold text-sm'>
           <p className='tracking-[0.3rem] dark:text-stone-800'>
             {(media as MovieType | SimilarMovieType).release_date
               ? parseInt((media as MovieType | SimilarMovieType).release_date ?? '404')
               : 'Movie'}
           </p>
-          <div className='px-2 bg-amber-100 rounded-lg shadow-md text-xl grid place-items-center text-yellow-600 font-black  tracking-[0.1rem] dark:text-yellow-500 dark:bg-stone-900'>
+          <div className='px-2 bg-amber-100 rounded-lg shadow-md text-lg grid place-items-center text-yellow-600 font-black tracking-[0.1rem] dark:text-yellow-500 dark:bg-stone-900'>
             {media?.vote_average?.toFixed(1)}
           </div>
         </div>
@@ -66,16 +66,16 @@ const LinkMediaCard: React.FC<LinkMediaCardProps> = (props) => {
         path={media.poster_path ?? imageHelper.poster}
       />
       <div className={styles?.detail ?? 'flex flex-col w-11/12 mt-auto py-2'}>
-        <h1 className='truncate font-poppins font-bold text-xl text-stone-600 tracking-wide dark:text-stone-900'>
+        <h1 className='truncate font-poppins font-bold text-lg text-stone-600 tracking-wide dark:text-stone-900'>
           {(media as TVType | SimilarTVType).name}
         </h1>
-        <div className='flex justify-between font-poppins text-stone-500 font-extrabold text-base'>
+        <div className='flex justify-between font-poppins text-stone-500 font-extrabold text-sm'>
           <p className='tracking-[0.3rem] dark:text-stone-800'>
             {(media as TVType | SimilarTVType).first_air_date
               ? parseInt((media as TVType | SimilarTVType).first_air_date ?? '404')
               : 'TV'}
           </p>
-          <p className='px-2 bg-amber-100 rounded-lg shadow-md text-xl grid place-items-center text-yellow-600 font-black  tracking-[0.1rem] dark:text-yellow-500 dark:bg-stone-900'>
+          <p className='px-2 bg-amber-100 rounded-lg shadow-md text-lg grid place-items-center text-yellow-600 font-black  tracking-[0.1rem] dark:text-yellow-500 dark:bg-stone-900'>
             {media.vote_average?.toFixed(1)}
           </p>
         </div>

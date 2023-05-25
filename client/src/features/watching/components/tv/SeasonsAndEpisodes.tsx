@@ -42,10 +42,10 @@ const SeasonsAndEpisodes: React.FC<SeasonsAndEpisodesProps> = (props) => {
     >
       <ButtonComponent
         onClick={() => setShouldSeasonsDisplay((prev) => !prev)}
-        className='flex justify-between items-center py-2 px-4 hover:bg-stone-300 md:hover:bg-stone-400 dark:hover:bg-stone-900 dark:hover:pl-16 transition-all duration-300'
+        className='flex justify-between items-center py-2 px-4 hover:bg-stone-300 md:hover:bg-stone-400 dark:hover:bg-stone-900  transition-all duration-300'
       >
-        <h1 className='text-lg md:text-2xl font-bold flex gap-2 items-center text-stone-600 dark:text-yellow-500 '>
-          {iconHelper.list('text-lg md:text-2xl')}
+        <h1 className='text-lg md:text-xl font-bold flex gap-2 items-center text-stone-600 dark:text-yellow-500 '>
+          {iconHelper.list('text-lg md:text-xl')}
           Season {seasonAndEpisode?.season}
         </h1>
       </ButtonComponent>
@@ -57,14 +57,14 @@ const SeasonsAndEpisodes: React.FC<SeasonsAndEpisodesProps> = (props) => {
                 onClick={() =>
                   setSeasonAndEpisode((prev) => ({ ...(prev ?? {}), season: seasonIndex + 1 }))
                 }
-                className={` overflow-hidden  w-full flex justify-between items-center md:grid md:grid-cols-2 md:place-items-start py-2 pl-8 pr-4 bg-stone-300 hover:bg-stone-400 md:hover:bg-stone-500 dark:hover:bg-stone-900 dark:bg-stone-900 dark:hover:pl-16 transition-all duration-300 `}
+                className={` overflow-hidden  w-full flex justify-between items-center md:grid md:grid-cols-2 md:place-items-start py-2 pl-8 pr-4 bg-stone-300 hover:bg-stone-400  dark:hover:bg-stone-900 dark:bg-stone-900 hover:pl-4 transition-all duration-100 `}
                 key={seasonIndex}
               >
-                <p className='font-bold text-stone-600 flex items-center gap-2 dark:text-yellow-400'>
+                <p className=' text-stone-900 flex items-center gap-2 dark:text-white'>
                   {iconHelper.listNested('text-lg')}
                   Season {seasonIndex + 1}
                 </p>
-                <p className='text-lg  font-black text-stone-500 w-[10rem] truncate md:w-[30rem] dark:text-yellow-400'>
+                <p className='text-lg text-stone-900 w-[10rem] truncate md:w-[30rem] dark:text-yellow-400'>
                   {season?.name}
                 </p>
               </ButtonComponent>
@@ -74,17 +74,17 @@ const SeasonsAndEpisodes: React.FC<SeasonsAndEpisodesProps> = (props) => {
       ) : null}
       <ButtonComponent
         onClick={() => setShouldEpisodesDisplay((prev) => !prev)}
-        className='flex justify-between items-center py-2 px-4 pl-3 hover:bg-stone-300 md:hover:bg-stone-400 mt-8 dark:hover:pl-16 transition-all duration-300
+        className='flex justify-between items-center py-2 px-4 pl-3 hover:bg-stone-300 md:hover:bg-stone-400 mt-8  transition-all duration-300
         dark:hover:bg-stone-900'
       >
-        <h1 className='text-lg font-bold flex gap-2 items-center text-stone-600 md:text-2xl dark:text-yellow-500'>
-          {iconHelper.play('text-2xl md:text-[2rem]')}
+        <h1 className='text-lg font-bold flex gap-2 items-center text-stone-600 md:text-xl dark:text-yellow-500'>
+          {iconHelper.play('text-2xl md:text-[1.5rem]')}
           Episode {seasonAndEpisode?.episode}
         </h1>
       </ButtonComponent>
       {shouldEpisodesDisplay ? (
         <div
-          className={`flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 2xl:grid-cols-6md:place-content-start md:place-items-center  justify-start items-center gap-8 md:bg-stone-400 px-8 py-8 dark:bg-stone-900`}
+          className={`flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 2xl:grid-cols-6md:place-content-start md:place-items-center justify-start items-center gap-8 md:bg-stone-400 px-8 py-8 dark:bg-stone-900`}
         >
           {seasonList[`${seasonAndEpisode?.season! - 1}` as any]?.episodes?.map(
             (episode: any, episodeIndex) => {
@@ -94,10 +94,10 @@ const SeasonsAndEpisodes: React.FC<SeasonsAndEpisodesProps> = (props) => {
                     setSeasonAndEpisode((prev) => ({ ...(prev ?? {}), episode: episodeIndex + 1 }));
                     options?.ref.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
                   }}
-                  className={` w-[300px] h-[14rem] rounded-lg overflow-hidden flex flex-col  relative shadow-md bg-stone-200 dark:bg-stone-900 dark:shadow-yellow-500 ${
+                  className={` w-[300px] h-[14rem] rounded-lg overflow-hidden flex flex-col  relative shadow-sm bg-stone-200 dark:bg-stone-900 dark:shadow-yellow-500 ${
                     seasonAndEpisode?.episode === episodeIndex + 1
-                      ? 'bg-stone-900 ring-4 dark:bg-yellow-500 dark:ring-transparent dark:text-stone-900 ring-stone-700 shadow-2xl '
-                      : 'dark:text-yellow-400'
+                      ? 'bg-stone-900 ring-4 dark:bg-yellow-400 dark:bg-opacity-70 dark:ring-transparent text-white dark:text-stone-900 ring-stone-700'
+                      : 'dark:text-yellow-400 text-stone-900'
                   }`}
                   key={episodeIndex}
                 >
@@ -111,11 +111,11 @@ const SeasonsAndEpisodes: React.FC<SeasonsAndEpisodesProps> = (props) => {
                   />
 
                   <div className='overflow-hidden w-full flex flex-col -mt-2 justify-between items-center py-2  '>
-                    <h1 className='font-bold flex items-center gap-2'>
+                    <h1 className=' flex items-center gap-2 dark:text-white'>
                       {' '}
-                      {iconHelper.play('text-lg text-stone-400 dark:text-yellow-500')} Episode {episodeIndex + 1}
+                      {iconHelper.play('text-lg text-stone-400 dark:text-white')} Episode {episodeIndex + 1}
                     </h1>
-                    <h2 className='text-lg  font-black opacity-70 w-[10rem] truncate md:w-[15rem]'>
+                    <h2 className='text-lg w-[10rem] truncate md:w-[15rem]'>
                       {episode?.name}
                     </h2>
                   </div>

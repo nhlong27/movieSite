@@ -126,9 +126,9 @@ const NavBar = () => {
             />
           </Link>
         </Wrapper>
-        <div className='ml-16 h-3/4 my-auto w-full whitespace-nowrap flex items-center col-span-1 justify-center gap-6 rounded-lg px-2 bg-stone-400   dark:bg-stone-700  dark:bg-opacity-70 shadow-inner z-10'>
+        <div className='ml-16 min-h-1/2 py-2 my-auto w-3/4 whitespace-nowrap flex items-center col-span-1 justify-center gap-4 rounded-lg px-2 bg-stone-700   dark:bg-stone-700 dark:bg-opacity-70 shadow-inner z-10'>
           <ButtonComponent
-            className={`w-6 h-6  rounded-full grid place-items-center ${
+            className={`w-6 h-6 rounded-full flex justify-center items-center ${
               theme === 'light' ? 'text-yellow-500' : 'text-stone-300'
             }`}
             onClick={() => setTheme('light')}
@@ -142,7 +142,7 @@ const NavBar = () => {
             }`}
             onClick={() => setTheme('dark')}
           >
-            {iconHelper.dark('text-2xl')}
+            {iconHelper.dark('text-xl')}
           </ButtonComponent>
         </div>
       </div>

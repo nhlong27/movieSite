@@ -67,7 +67,7 @@ const TVMedia = () => {
             </p>
             <div className='h-3 text-3xl text-right text-stone-300'>”</div>
           </h2>
-          <div className='w-2/3 truncate font-black capitalize text-[3.5rem] text-stone-200 tracking-[0.2rem] py-4 dark:text-yellow-500'>
+          <div className='w-2/3 truncate font-black capitalize text-[3.3rem] text-stone-200 font-serif tracking-[0.2rem] py-4 dark:text-yellow-500'>
             {(data as TVType).name}
           </div>
           <div className='w-2/3 text-stone-200 py-4 flex gap-4 items-center'>
@@ -89,8 +89,8 @@ const TVMedia = () => {
           <Trailers setSelectedTrailer={setSelectedTrailer} refs={{playRef: trailerRef}}/>
         </div>
       </div>
-      <div className='relative min-h-[15vh] w-full pr-6 grid grid-cols-4 gap-4 overflow-hidden bg-stone-200  rounded-xl shadow-xl bg-opacity-90 dark:bg-amber-400'>
-        <div className='col-start-1 col-span-1 bg-stone-900'>
+      <div className='relative min-h-[15vh] w-full pr-6 grid grid-cols-4 gap-4 overflow-hidden bg-transparent  rounded-xl'>
+        <div className='col-start-1 col-span-1'>
           <LazyLoadImageComponent
             path={data?.poster_path ?? imageHelper.poster}
             styles={{
@@ -156,12 +156,12 @@ const TVMedia = () => {
       bg-gradient-to-r from-stone-900 via-stone-700 to-stone-900 bg-opacity-50 font-poppins py-16 dark:via-stone-900'
       >
         <div className='w-3/4 flex flex-col justify-center items-center gap-x-custom-x-max-medium bg-stone-400 rounded shadow-inner py-4 px-8 bg-opacity-20 dark:bg-yellow-400 dark:bg-opacity-40'>
-          <p className='text-left  font-bold  py-4 text-stone-300 text-lg tracking-wider dark:text-yellow-500'>
+          <p className='text-left  py-4 text-stone-300 text- tracking-wider dark:text-yellow-500'>
             If current server doesn't work please try other servers below.
           </p>
-          <div className='flex xs:flex-row flex-col  justify-between text-stone-700 font-bold text-lg gap-4'>
+          <div className='flex xs:flex-row flex-col  justify-between text-stone-700 font-bold text-base gap-4'>
             <ButtonComponent
-              className='uppercase  flex items-center gap-2 px-4 py-2 bg-stone-300 rounded-lg hover:bg-stone-200 dark:bg-amber-200 dark:hover:bg-amber-300'
+              className='uppercase flex items-center gap-2 px-4 py-2 bg-stone-300 rounded-lg hover:bg-stone-200 dark:bg-amber-200 dark:hover:bg-amber-300'
               onClick={() => setServerSource('2embed.to')}
             >
               {iconHelper.play('text-3xl')}
@@ -211,7 +211,7 @@ const TVMedia = () => {
         className='relative w-full py-4 px-4 
          bg-stone-300 rounded-b-xl shadow-xl bg-opacity-20 dark:bg-stone-900'
       >
-        <h1 className='py-2 px-4 text-left font-poppins text-stone-500 font-bold  uppercase border-b-4 border-stone-400 bg-stone-200 rounded-t-lg text-2xl bg-opacity-90 dark:bg-stone-900 dark:border-yellow-600  dark:text-yellow-400'>
+        <h1 className='py-2 px-4 text-left font-poppins text-stone-500 uppercase border-b-4 border-stone-400 bg-stone-200 rounded-t-lg text-2xl bg-opacity-90 dark:bg-stone-900 dark:border-yellow-600  dark:text-yellow-400'>
           You may also like
         </h1>
         {extraData.similar?.results?.length ?? 0 > 0 ? (
@@ -283,7 +283,7 @@ const TVMedia = () => {
         </div>
         <div
           className='sm:w-4/5 w-[90%] py-4 
-        px-custom-x-max-medium bg-stone-200 rounded-xl shadow-xl dark:bg-yellow-500'
+        px-custom-x-max-medium bg-transparent rounded-xl shadow-xl '
         >
           <TVMediaDetail />
         </div>
@@ -301,7 +301,7 @@ const TVMedia = () => {
         ref={animationParentRef2}
       >
         {!isMediaWindowDisplay ? (
-          <div className='w-full flex flex-col justify-center items-center border-y-8 border-stone-400 py-2 dark:border-yellow-600'>
+          <div className='w-full flex flex-col justify-center items-center border-y-2 border-stone-400 py-8 dark:border-yellow-600'>
             <MediaActions
               actionType='play'
               handlingFunctions={{
@@ -385,7 +385,7 @@ const TVMedia = () => {
         className='relative w-full py-4 
         px-custom-x-max-medium bg-stone-300 rounded-b-xl shadow-xl dark:bg-stone-900'
       >
-        <h1 className='py-2 px-4 text-left font-poppins text-stone-500 font-bold text-xl uppercase border-b-4 border-stone-400 bg-stone-200 rounded-t-lg dark:bg-stone-900 dark:text-yellow-400 dark:border-yellow-600'>
+        <h1 className='py-2 px-4 text-left font-poppins text-stone-500 text-xl uppercase border-b-4 border-stone-400 bg-stone-200 rounded-t-lg dark:bg-stone-900 dark:text-yellow-400 dark:border-yellow-600'>
           You may also like
         </h1>
         {extraData.similar?.results?.length ?? 0 > 0 ? (

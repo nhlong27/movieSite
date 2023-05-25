@@ -48,7 +48,7 @@ const MediaActions: React.FC<MediaActionsProps> = (props) => {
       <ButtonComponent
         className={`text-stone-700 md:text-stone-200 font-extrabold
       uppercase bg-stone-900 bg-opacity-0 rounded-sm ring-2 hover:ring-4 ring-stone-600 md:ring-stone-300 md:h-[3.5rem] text-xl tracking-[0.3rem] px-8 md:px-12 hover:text-stone-50 hover:ring-stone-100
-      hover:bg-opacity-100 hover:tracking-[0.4rem] transition-full duration-500 cursor-pointer hover:-ml-2 flex items-center justify-center gap-2 md:py-8 ${styles?.play}`}
+      hover:bg-opacity-100 hover:tracking-[0.4rem] transition-full duration-500 cursor-pointer hover:-ml-2 flex items-center justify-center gap-2 md:py-6 ${styles?.play}`}
         onClick={() => {
           handleMediaUpdate('status', { value: 'Watching' });
 
@@ -84,11 +84,11 @@ const MediaActions: React.FC<MediaActionsProps> = (props) => {
         )}
         <ButtonComponent
           onClick={() => setShouldMediaActionsModalDisplay(true)}
-          className='text-amber-400 bg-stone-900 w-[7rem] h-[4rem] grid place-items-center text-lg px-4 shadow-lg shadow-stone-700 font-bold hover:text-amber-300 hover:shadow-stone-600 group'
+          className='text-amber-400 bg-stone-900 w-[7rem] h-[4rem] grid place-items-center text-lg px-4 shadow-md shadow-yellow-900 font-bold hover:text-amber-100 hover:shadow-yellow-600 group'
         >
           <svg
             aria-hidden='true'
-            className='w-8 h-8 text-amber-400 hover:text-amber-300'
+            className='w-8 h-8 text-amber-400 hover:text-amber-100'
             fill='currentColor'
             viewBox='0 0 20 20'
             xmlns='http://www.w3.org/2000/svg'
@@ -101,7 +101,7 @@ const MediaActions: React.FC<MediaActionsProps> = (props) => {
         <ButtonComponent
           onClick={() => setShouldMediaActionsModalDisplay(true)}
           className='text-stone-300 font-extrabold
-          bg-stone-900 to-transparent md:w-[20rem] w-[15rem] h-[4rem] flex justify-center items-center gap-4 text-xl tracking-[0.3rem] uppercase px-4 hover:text-stone-200'
+          bg-stone-900 to-transparent w-[13rem] md:w-[18rem] h-[4rem] flex justify-center items-center gap-4 text-lg tracking-[0.3rem] uppercase px-4 hover:text-stone-200'
         >
           {serverMedia?.status ?? (
             <>
@@ -125,9 +125,9 @@ function DefaultPlayComponent({
 }) {
   return (
     <ButtonComponent
-      className='text-stone-700 md:text-stone-200 font-extrabold
-      uppercase bg-stone-900 bg-opacity-0 rounded-sm ring-2 hover:ring-4 ring-stone-600 md:ring-stone-300 md:h-[3.5rem] text-xl tracking-[0.3rem] px-8 md:px-12 hover:text-stone-50 hover:ring-stone-100
-      hover:bg-opacity-100 hover:tracking-[0.4rem] transition-full duration-500 cursor-pointer hover:-ml-2 flex items-center justify-center gap-2 md:py-8 '
+      className='text-white font-extrabold
+      uppercase bg-stone-900 bg-opacity-0 rounded-sm ring-2 hover:ring-4 ring-white md:h-[3.5rem] text-xl tracking-[0.3rem] px-8 md:px-12 hover:text-stone-50 hover:ring-stone-100
+      hover:bg-opacity-100 hover:tracking-[0.4rem] transition-full duration-500 cursor-pointer hover:-ml-2 flex items-center justify-center gap-2 md:py-8'
       onClick={() => {
         refs?.playRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
         handlingFunctions?.playFunction(true);
@@ -156,11 +156,11 @@ function DefaultOtherActionsComponent({ styles }: { styles?: Record<string, any>
 
       <ButtonComponent
         onClick={() => setShouldMediaActionsModalDisplay(true)}
-        className='text-amber-400 bg-stone-900 w-[7rem] h-[4rem] grid place-items-center text-lg px-4 shadow-lg shadow-stone-700 font-bold hover:text-amber-300 hover:shadow-stone-600 group'
+        className='text-amber-400 bg-stone-900 w-[7rem] h-[4rem] grid place-items-center text-lg px-4 shadow-md shadow-yellow-900 font-bold hover:text-amber-100  hover:shadow-yellow-600 group'
       >
         <svg
           aria-hidden='true'
-          className='w-8 h-8 text-amber-400 hover:text-amber-300'
+          className='w-8 h-8 text-amber-400 hover:text-amber-100'
           fill='currentColor'
           viewBox='0 0 20 20'
           xmlns='http://www.w3.org/2000/svg'
@@ -173,7 +173,7 @@ function DefaultOtherActionsComponent({ styles }: { styles?: Record<string, any>
       <ButtonComponent
         onClick={() => setShouldMediaActionsModalDisplay(true)}
         className='text-stone-300 font-extrabold
-             bg-stone-900 to-transparent w-[15rem] md:w-[20rem] h-[4rem] flex justify-center items-center gap-4 text-xl tracking-[0.3rem] uppercase px-4 hover:text-stone-200'
+             bg-stone-900 to-transparent w-[13rem] md:w-[18rem] h-[4rem] flex justify-center items-center gap-4 text-lg tracking-[0.3rem] uppercase px-4 hover:text-stone-200'
       >
         {iconHelper.systemUpdate('text-3xl text-stone-50')}
         Add to My List

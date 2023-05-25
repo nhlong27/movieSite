@@ -5,33 +5,29 @@ import { useAutoAnimate } from '@formkit/auto-animate/react';
 import LazyLoadImageComponent from '@/components/handling/LazyLoadImageComponent';
 import { imageHelper } from '@/config/images';
 
-interface MovieMediaDetailProps {
-  role?: string;
-}
-const MovieMediaDetail: React.FC<MovieMediaDetailProps> = (props) => {
-  const { role } = props;
+const MovieMediaDetail= () => {
   const { data } = useGetItemDetailQuery();
 
   const [animationParentRef] = useAutoAnimate();
 
   return (
     <div ref={animationParentRef}>
-      <h1 className='truncate font-poppins font-black text-2xl text-stone-700 tracking-wide py-4 md:text-3xl md:uppercase dark:text-stone-900'>
+      <h1 className='truncate font-poppins font-black text-2xl  tracking-wide py-4 md:text-3xl md:uppercase text-yellow-300'>
         {(data as MovieDetailType).title}
       </h1>
     
       <div className='flex justify-start gap-4 flex-wrap text-lg py-4 md:py-0'>
         {data?.genres?.map((genre, index) => (
           <span
-            className='rounded-lg ring-2 md:ring-amber-700 md:text-amber-800 md:bg-yellow-400 md:bg-opacity-70 md:px-4 font-bold ring-stone-400  bg-stone-300 text-stone-500 dark:bg-lime-900 dark:text-lime-200 dark:ring-transparent px-4 py-2'
+            className='rounded-lg md:ring-amber-700  md:bg-yellow-400 md:px-4 font-bold  bg-stone-300 text-stone-900 dark:bg-lime-500 dark:text-stone-900 dark:ring-transparent px-4 py-[2px]'
             key={index}
           >
             {genre.name}
           </span>
         ))}
       </div>
-      <div className='text-base  font-bold text-stone-500 flex items-center py-6 dark:text-stone-900'>
-        <p className='md:text-xl'>{(data as MovieDetailType).release_date}</p>
+      <div className='text-base font-bold flex items-center py-4 text-white'>
+        <p className='md:text-base'>{(data as MovieDetailType).release_date}</p>
         <div className='ml-16 flex items-center rounded-lg tracking-[0.2rem] dark:bg-stone-900 px-2 py-[4px]'>
           <svg
             aria-hidden='true'
@@ -48,45 +44,45 @@ const MovieMediaDetail: React.FC<MovieMediaDetailProps> = (props) => {
           </p>
         </div>
       </div>
-      <p className='text-stone-500 mb-2 md:text-xl md:font-bold dark:text-lime-900 dark:border-l-4 dark:border-lime-900 pl-8 py-8'>
+      <p className='text-white mb-2 md:text-lg border-l-4 border-yellow-500 pl-4 py-4'>
         {(data as MovieDetailType).overview}
       </p>
 
-      <div className='border-t-4 border-stone-300 md:mt-0 md:border-0 py-4 mt-8 grid grid-cols-4 gap-x-8 gap-y-4 text-sm font-bold text-stone-400 md:text-stone-700 md:text-lg md:gap-y-0'>
-        <h3 className='col-span-1 text-stone-500'>Language</h3>
+      <div className='border-t-4 border-stone-300 pl-8 md:mt-0 md:border-0 py-4 mt-8 grid grid-cols-4 gap-x-16 md:gap-x-8 gap-y-4 text-sm text-white md:text-base md:gap-y-0'>
+        <h3 className='col-span-1 '>Language</h3>
         <p className='col-start-2 col-span-3'>
           {(data as MovieDetailType).original_language === 'en'
             ? 'English'
             : (data as MovieDetailType).original_language ?? 'No information'}
         </p>
-        <h3 className='col-span-1 text-stone-500'>Duration</h3>
+        <h3 className='col-span-1 '>Duration</h3>
         <p className='col-start-2 col-span-3'>
           {(data as MovieDetailType).runtime
             ? (data as MovieDetailType).runtime + 'min'
             : 'No information'}
         </p>
 
-        <h3 className='col-span-1 text-stone-500'>Budget</h3>
+        <h3 className='col-span-1 '>Budget</h3>
         <p className='col-start-2 col-span-3'>
           {(data as MovieDetailType).budget
             ? Math.floor((data as MovieDetailType).budget! / 1000000) + 'mil'
             : 'No information'}
         </p>
-        <h3 className='col-span-1 text-stone-500'>Revenue</h3>
+        <h3 className='col-span-1 '>Revenue</h3>
         <p className='col-start-2 col-span-3'>
           {(data as MovieDetailType).revenue
             ? Math.floor((data as MovieDetailType).revenue! / 1000000) + 'mil'
             : 'No information'}
         </p>
-        <h3 className='col-span-1 text-stone-500'>Status</h3>
+        <h3 className='col-span-1'>Status</h3>
         <p className='col-start-2 col-span-3'>{data.status ?? 'No information'}</p>
-        <h3 className='col-span-1 text-stone-500'>Country</h3>
+        <h3 className='col-span-1'>Country</h3>
         <p className='col-start-2 col-span-3'>
           {data?.production_countries?.length ?? 0 > 0
             ? data?.production_countries?.map((country) => country.name)?.join(', ')
             : 'No information'}
         </p>
-        <h3 className='col-span-1 text-stone-500'>Production</h3>
+        <h3 className='col-span-1'>Production</h3>
         <ul className='col-start-2 col-span-3 flex flex-wrap gap-8 py-4'>
           {data?.production_companies?.length ?? 0 > 0
             ? data?.production_companies?.map((company, index) => (

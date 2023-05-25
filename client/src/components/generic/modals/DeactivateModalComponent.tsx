@@ -17,7 +17,7 @@ const DeactivateModalComponent = ({
 
       <div className='fixed inset-0 z-10 overflow-y-auto '>
         <div className='flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0 '>
-          <div className='relative transform overflow-hidden rounded-lg bg-stone-200  text-left shadow-sm transition-all sm:my-8 sm:w-full sm:max-w-lg dark:bg-stone-900 dark:shadow-yellow-500 shadow-stone-50'>
+          <div className='relative transform overflow-hidden rounded-lg bg-stone-200 text-left shadow-sm transition-all sm:my-8 sm:w-full sm:max-w-lg dark:bg-stone-900 dark:shadow-yellow-500 shadow-stone-50'>
             <div className='bg-stone-200 px-4 pb-4 pt-5 sm:p-8 sm:pr-8 sm:pl-8 sm:pb-4 dark:bg-stone-900'>
               <div className='sm:flex sm:items-start'>
                 <div className='mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 dark:bg-rose-300 sm:mx-0 sm:h-10 sm:w-10'>
