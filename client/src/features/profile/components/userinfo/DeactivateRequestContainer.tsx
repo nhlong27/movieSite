@@ -44,6 +44,7 @@ const DeactivateRequestContainer = ({
                 toast.success('Success! Deactivating now');
                 console.log(response.data);
                 console.log('Deactivated user.');
+                navigate('/');
                 navigate(0);
               } catch (e: any) {
                 console.log(e);

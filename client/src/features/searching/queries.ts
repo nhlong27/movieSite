@@ -18,7 +18,7 @@ const keys = {
   getItemListKey: (query?: string) => ['search', 'multi', { query: query }] as const,
   getFilteredItemKey: (
     mediaType: 'tv' | 'movie',
-    queryType: keyof MediaTypeConfig[`movie` | 'tv'],
+    queryType: string,
     paramList: MovieFilterList | TVFilterList | string,
     period?: string,
   ) =>
@@ -107,7 +107,7 @@ const mediaTypeConfig: MediaTypeConfig = {
 
 const getFilteredItemList = async (
   mediaType: 'tv' | 'movie',
-  queryType: keyof MediaTypeConfig[`movie` | 'tv'],
+  queryType: string,
   paramList: MovieFilterList | TVFilterList | string,
   period?: string,
   page: number = 1,
@@ -126,7 +126,7 @@ const getFilteredItemList = async (
 
 const getFilteredItemListQuery = (
   mediaType: 'tv' | 'movie',
-  queryType: keyof MediaTypeConfig[`movie` | 'tv'],
+  queryType: string,
   paramList: MovieFilterList | TVFilterList | string,
   period?: string,
 ) => {

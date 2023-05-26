@@ -1,7 +1,8 @@
 {
-  "name": "vite-react-ts-eslint-prettier",
+  "name": "@movie-site/client",
   "private": true,
   "version": "0.0.0",
+  "description": "Client for the movie site application",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
