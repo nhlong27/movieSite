@@ -42,7 +42,7 @@ const LinkMediaCard: React.FC<LinkMediaCardProps> = (props) => {
               ? parseInt((media as MovieType | SimilarMovieType).release_date ?? '404')
               : 'Movie'}
           </p>
-          <div className='px-2 bg-amber-100 rounded-lg shadow-md text-lg grid place-items-center text-yellow-600 font-black tracking-[0.1rem] dark:text-yellow-500 dark:bg-stone-900'>
+          <div className='px-2 bg-amber-100 rounded-lg shadow-md text-base grid place-items-center text-yellow-600 font-semibold tracking-[0.1rem] dark:text-yellow-500 dark:bg-stone-900'>
             {media?.vote_average?.toFixed(1)}
           </div>
         </div>
@@ -75,7 +75,7 @@ const LinkMediaCard: React.FC<LinkMediaCardProps> = (props) => {
               ? parseInt((media as TVType | SimilarTVType).first_air_date ?? '404')
               : 'TV'}
           </p>
-          <p className='px-2 bg-amber-100 rounded-lg shadow-md text-lg grid place-items-center text-yellow-600 font-black  tracking-[0.1rem] dark:text-yellow-500 dark:bg-stone-900'>
+          <p className='px-2 bg-amber-100 rounded-lg shadow-md text-base grid place-items-center text-yellow-600 font-semibold tracking-[0.1rem] dark:text-yellow-500 dark:bg-stone-900'>
             {media.vote_average?.toFixed(1)}
           </p>
         </div>
@@ -101,15 +101,15 @@ const LinkMediaCard: React.FC<LinkMediaCardProps> = (props) => {
       />
       <div className={styles?.detail ?? 'flex flex-col w-11/12 mt-auto py-6'}>
         {(media as any).media_type === 'movie' ? (
-          <h1 className='truncate font-poppins font-bold text-2xl text-stone-600 tracking-wide dark:text-yellow-500 '>
+          <h1 className='truncate font-poppins font-bold text-lg text-stone-600 tracking-wide dark:text-yellow-500 '>
             {(media as any).title}
           </h1>
         ) : (
-          <h1 className='truncate font-poppins font-bold text-2xl text-stone-600 dark:text-yellow-500 tracking-wide'>
+          <h1 className='truncate font-poppins font-bold text-lg text-stone-600 dark:text-yellow-500 tracking-wide'>
             {(media as any).name}
           </h1>
         )}
-        <div className='flex justify-between font-poppins text-stone-500 dark:text-yellow-600 font-extrabold text-lg'>
+        <div className='flex justify-between font-poppins text-stone-500 dark:text-yellow-600 font-extrabold text-sm'>
           <p>
             Last updated:{' '}
             <span className=' font-bold'>
@@ -118,8 +118,8 @@ const LinkMediaCard: React.FC<LinkMediaCardProps> = (props) => {
           </p>
         </div>
       </div>
-      <div className='absolute top-0 h-full w-full z-30 grid place-items-center hover:bg-stone-900  hover:bg-opacity-70 text-xl font-poppins font-black uppercase tracking-wider opacity-0 hover:opacity-100 text-stone-300 '>
-        Play
+      <div className='absolute top-0 h-full w-full z-30 grid place-items-center hover:bg-stone-900  hover:bg-opacity-70 text-lg font-poppins font-black uppercase tracking-wider opacity-0 hover:opacity-100 text-stone-300 '>
+        Continue
       </div>
     </Link>
   );

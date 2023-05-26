@@ -25,7 +25,7 @@ const SearchResult = () => {
         Movies
       </h1>
       <div className='flex justify-center items-start w-full'>
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-y-4 2xl:gap-4 place-items-center w-full place-content-start py-4'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 4k:grid-cols-6 gap-y-4 2xl:gap-4 place-items-center w-full place-content-start py-4'>
           {itemList
             ?.filter((media) => media.media_type === 'movie')
             .map((media, index: number) => {
@@ -69,9 +69,9 @@ const SearchResult = () => {
       </div>
     </div>
   ) : (
-    <div className='bg-stone-300 rounded-b-xl shadow-xl grid place-items-center font-poppins text-lg py-4 dark:bg-stone-900'>
-      <div className='ring-stone-600 ring-2 text-stone-900 bg-stone-400 rounded-xl px-8 py-2 font-bold flex gap-2 items-center dark:bg-yellow-50 '>
-        {iconHelper.exclamation('text-2xl')}
+    <div className='bg-stone-300 rounded-b-xl shadow-xl grid place-items-center font-poppins text-base py-4 dark:bg-stone-900'>
+      <div className='ring-stone-600 ring-2 text-stone-900 bg-stone-400 rounded-xl px-8 py-2 font-semibold flex gap-2 items-center dark:bg-yellow-50 '>
+        {iconHelper.exclamation('text-xl')}
         No Movie or TV Show exists with that name
       </div>
     </div>

@@ -42,7 +42,7 @@ const UserListSection = () => {
 
   return mediaList ? (
     <div className='md:row-start-1 md:col-start-1 md:col-span-3 w-full flex flex-col items-center min-h-screen bg-stone-200 rounded-xl shadow-xl py-4 px-4 font-poppins dark:bg-stone-900'>
-      <div className='ml-0 flex w-full uppercase text-2xl font-black tracking-[0.1rem] text-stone-500 py-2 border-b-2 border-stone-300 dark:text-yellow-500 dark:border-yellow-500'>
+      <div className='ml-0 flex w-full uppercase text-xl font-black tracking-[0.1rem] text-stone-500 py-2 border-b-2 border-stone-300 dark:text-yellow-500 dark:border-yellow-500'>
         My List
       </div>
       <ListFilters listFilter={listFilter} setListFilter={setListFilter} />
@@ -57,15 +57,15 @@ const UserListSection = () => {
           alt='img'
         />
         <div className='flex flex-col text-stone-100 items-center md:items-start dark:text-lime-400'>
-          <div className='uppercase font-black tracking-[0.3rem] text-2xl py-4'>
+          <div className='uppercase font-black tracking-[0.3rem] text-xl py-4'>
             {listFilterPrompts[listFilter]['title']}
           </div>
-          <p className='text-base md:text-lg py-2 text-stone-400 '>{listFilterPrompts[listFilter]['text']}</p>
+          <p className='text-base py-2 text-stone-400 '>{listFilterPrompts[listFilter]['text']}</p>
         </div>
       </div>
       <div className='flex justify-start w-full px-4 py-2 rounded-lg my-4 bg-stone-100 shadow-lg text-lg text-stone-600 gap-4 font-bold dark:bg-stone-900  dark:rounded-none dark:text-yellow-400 h-[4rem]'>
         <ButtonComponent className='' onClick={() => setShouldQueryDisplay((prev) => !prev)}>
-          <h1 className='flex px-4 py-2 hover:bg-stone-300 rounded-xl gap-2 items-center dark:hover:bg-stone-900 dark:hover:text-yellow-300 dark:hover:shadow-yellow-200 dark:hover:shadow-sm'>
+          <h1 className='flex px-4 py-2 text-base hover:bg-stone-300 rounded-xl gap-2 items-center dark:hover:bg-stone-900 dark:hover:text-yellow-300 dark:hover:shadow-yellow-200 dark:hover:shadow-sm'>
             Search
             {iconHelper.next('text-2xl')}
           </h1>
@@ -77,7 +77,7 @@ const UserListSection = () => {
         >
           <input
             type='text'
-            className='grow bg-stone-300 shadow-inner rounded-2xl pl-4 dark:bg-stone-900 dark:rounded-none dark:border-b-4 dark:border-yellow-400'
+            className='grow bg-stone-300 shadow-inner rounded-2xl pl-4 dark:bg-stone-900 dark:rounded-none dark:border-b-2 dark:border-yellow-400'
             value={queryTitle}
             onChange={(e) => {
               setQueryTitle(e.currentTarget.value);
@@ -99,7 +99,7 @@ const UserListSection = () => {
             {' '}
             {iconHelper.before('text-2xl')}
           </h1>
-          <p className={`${shouldQueryDisplay ? '' : 'hidden'} dark:text-yellow-400 whitespace-nowrap text-base md:visible invisible`}>Type a name</p>
+          <p className={`${shouldQueryDisplay ? '' : 'hidden'} dark:text-yellow-500 whitespace-nowrap text-sm md:visible invisible`}>Type a name</p>
         </ButtonComponent>
       </div>
       <div className='relative flex flex-col justify-center items-center grow w-full bg-stone-900 rounded-xl overflow-hidden'>
@@ -107,14 +107,14 @@ const UserListSection = () => {
         {mediaList && mediaList?.length === 0 ? (
           <div
             className={
-              'flex flex-col justify-center items-center gap-8 w-11/12 md:w-1/2 bg-stone-200 h-[10rem] rounded-xl shadow-xl z-20 dark:bg-amber-300'
+              'flex flex-col justify-center items-center gap-4 w-11/12 md:w-1/2 bg-stone-200 h-[8rem] rounded-xl shadow-xl z-20 dark:bg-amber-300'
             }
           >
-            <h1 className='text-base md:text-xl font-bold text-stone-500 tracking-wide dark:text-stone-900'>
+            <h1 className='text-base font-semibold text-stone-500 tracking-wide dark:text-stone-900'>
               Media doesn't exist in database.
             </h1>
             <Link
-              className='w-3/4 px-8 py-2 font-poppins rounded-xl bg-stone-300 grid place-items-center ring-2 ring-stone-400 text-stone-400 hover:bg-stone-400 hover:text-stone-600  text-xl hover:ring-stone-600 dark:bg-stone-900 dark:ring-transparent dark:text-yellow-500 dark:hover:bg-yellow-400 dark:hover:text-stone-900 dark:hover:ring-stone-800'
+              className='w-3/4 px-4 py-2 font-poppins rounded-xl bg-stone-300 grid place-items-center ring-2 ring-stone-400 text-stone-400 hover:bg-stone-400 hover:text-stone-600 text-base hover:ring-stone-600 dark:bg-stone-900 dark:ring-transparent dark:text-yellow-500 dark:hover:bg-yellow-400 dark:hover:text-stone-900 dark:hover:ring-stone-800'
               to='/discover'
               onClick={() => {
                 console.log('navigating to exploring page..');
@@ -126,7 +126,7 @@ const UserListSection = () => {
         ) : (
           <div
             ref={animationParentRef}
-            className='grow grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 place-content-start place-items-center w-full gap-y-4 2xl:gap-4 py-8'
+            className='grow grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 4k:grid-cols-6 place-content-start place-items-center w-full gap-y-4 2xl:gap-4 py-8'
           >
             {listFilters[`${listFilter}`](
               mediaList!.sort((a, b) => {
@@ -144,12 +144,12 @@ const UserListSection = () => {
         'grid place-content-center place-items-center h-[10rem] w-full bg-stone-200 dark:bg-stone-900 font-poppins shadow-xl rounded-b-xl'
       }
     >
-      <h1 className='text-lg ring-stone-600 ring-2 text-stone-900 bg-stone-400 rounded-xl px-8 py-2 font-bold flex gap-2 items-center dark:bg-yellow-50 '>
+      <h1 className='text-base ring-stone-600 ring-2 text-stone-900 bg-stone-400 rounded-xl px-8 py-2 font-semibold flex gap-2 items-center dark:bg-yellow-50 '>
       {iconHelper.exclamation('text-2xl')}
         {error.message ?? 'Failed to load resources'}
       </h1>
       <ButtonComponent
-        className='px-8 py-2 bg-primary rounded-md text-stone-900 text-xl mt-8 hover:bg-yellow-200  transition duration-300 flex gap-2 items-center dark:bg-yellow-500 font-black dark:hover:bg-stone-900 dark:hover:text-yellow-500 dark:hover:ring-2 dark:hover:ring-yellow-500'
+        className='px-4 py-[2px] bg-primary rounded-md text-stone-900 text-lg mt-4 hover:bg-yellow-200  transition duration-300 flex gap-2 items-center dark:bg-yellow-500 font-black dark:hover:bg-stone-900 dark:hover:text-yellow-500 dark:hover:ring-2 dark:hover:ring-yellow-500'
         onClick={() => {
           console.log('reloading the page..');
           window.location.reload();
@@ -162,7 +162,7 @@ const UserListSection = () => {
   ) : (
     <div className='md:row-start-1 md:col-start-1 md:col-span-3 w-full flex flex-col items-center min-h-screen bg-stone-200 dark:bg-stone-900'>
       <div className='w-full h-[2rem]'></div>
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 place-content-start place-items-center w-full gap-y-4 2xl:gap-4 grow'>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 4k:grid-cols-6 place-content-start place-items-center w-full gap-y-4 2xl:gap-4 grow'>
         {Array(20)
           .fill('')
           .map((media, index) => (

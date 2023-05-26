@@ -17,7 +17,7 @@ const FilterResult = () => {
       endMessage={<></>}
       style={{ width: '100%', display: 'grid', placeItems: 'center' }}
     >
-      <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 2xl:grid-cols-6 place-items-center w-full gap-4 2xl:gap-4 min-h-screen  place-content-start bg-stone-200 rounded-b-xl shadow-xl py-4 dark:bg-stone-900'>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 4k:grid-cols-6 place-items-center w-full gap-4 2xl:gap-4 min-h-screen  place-content-start bg-stone-200 rounded-b-xl shadow-xl py-4 dark:bg-stone-900'>
         {data!.pages.map((page: any) => {
           return page?.results?.map((media: MovieType | TVType, index: number) => (
             <LinkMediaCard

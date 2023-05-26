@@ -54,7 +54,7 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
   };
 
   return (
-    <div className='w-[200px] rounded-xl shadow-lg shadow-stone-600 flex flex-col justify-center items-center bg-stone-200 dark:bg-amber-400 dark:shadow-yellow-900 dark:hover:shadow-xl dark:hover:shadow-yellow-500 hover:shadow-xl hover:shadow-stone-50'>
+    <div className='w-[200px] rounded-xl shadow-sm shadow-stone-600 flex flex-col justify-center items-center bg-stone-200 dark:bg-amber-400 dark:shadow-yellow-900 dark:hover:shadow-md dark:hover:shadow-yellow-500 hover:shadow-md hover:shadow-stone-50'>
       <Link
         to={`/${media.title ? 'movie' : 'tv'}/${media.id}`}
         className='w-[200px] overflow-hidden flex items-center flex-col rounded-t-xl'
@@ -62,19 +62,19 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
         <LazyLoadImageComponent
           styles={{
             image:
-              'overflow-hidden  bg-gradient-to-tr  from-white  to-black  dark:from-stone-900 dark:to-yellow-500 grow',
+              'overflow-hidden h-[18rem] bg-gradient-to-tr  from-white  to-black  dark:from-stone-900 dark:to-yellow-500 grow',
             size: media?.poster_path ? 'original' : undefined,
           }}
           path={media?.poster_path ?? imageHelper.poster}
         />
         <div className={`w-full px-4 flex flex-col bg-stone-100 my-4 dark:bg-amber-400`}>
-          <h1 className='truncate font-poppins font-black text-xl lg:text-2xl text-stone-600 tracking-wide dark:text-stone-900'>
+          <h1 className='truncate font-poppins font-bold text-lg text-stone-600 tracking-wide dark:text-stone-900'>
             {media.title ? media.title : media.name}
           </h1>
-          <div className='flex justify-between font-poppins text-stone-300 dark:text-stone-800 font-extrabold text-base'>
+          <div className='flex justify-between font-poppins text-stone-300 dark:text-stone-800 text-sm'>
             <p>
               Last updated:{' '}
-              <span className='text-stone-400 dark:text-stone-800 font-bold'>
+              <span className='text-stone-400 dark:text-stone-800'>
                 {new Date(Date.parse((media as any).updatedAt)).toLocaleString('sv')}
               </span>
             </p>
@@ -84,10 +84,10 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
       <div className='py-4 w-full flex flex-col justify-start gap-4 items-center border-t-2 border-stone-500'>
         <ButtonComponent
           role='trueFalse'
-          className={`font-bold flex gap-2 items-center rounded-lg py-2 px-4 bg-stone-300 ring-2  text-base
+          className={`flex gap-2 items-center rounded-lg py-2 px-4 bg-stone-300 ring-2  text-base
             hover:ring-stone-900 hover:text-stone-900 dark:bg-stone-900     dark:hover:ring-stone-800 dark:hover:text-stone-900 shadow-lg ${
               media?.isFavorited
-                ? 'text-stone-900 font-black bg-rose-500 dark:bg-rose-500'
+                ? 'text-stone-900 font-semibold bg-rose-500 dark:bg-rose-500'
                 : 'text-yellow-600 hover:bg-yellow-500 ring-yellow-600 dark:hover:bg-yellow-400 dark:text-yellow-50 dark:ring-transparent'
             }`}
           onClick={() => {
@@ -99,7 +99,7 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
           Favorite
         </ButtonComponent>
       </div>
-      <div className='w-full text-base text-stone-400 font-black pt-2 border-t-2 border-stone-400 dark:border-stone-500 dark:bg-yellow-500'>
+      <div className='w-full text-base text-stone-400 pt-2 border-t-2 border-stone-400 dark:border-stone-500 dark:bg-yellow-500'>
         <SelectComponent
           options={[
             { value: 'Watching', label: 'Watching' },

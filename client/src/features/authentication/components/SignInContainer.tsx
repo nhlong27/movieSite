@@ -61,16 +61,16 @@ const SignInContainer = ({
           { extras: { type: 'password', placeholder: 'Password' }, name: 'password' },
         ]}
       />
-      <div className=' flex justify-center items-center w-5/6 px-4 mt-10 gap-4 font-bold text-center text-base md:text-lg text-stone-900 bg-yellow-500 py-4 rounded-xl'>
+      <div className=' flex justify-center items-center w-3/4 px-4 mt-10 gap-4 font-bold text-center text-base text-stone-900 bg-yellow-500 py-4 rounded-md'>
         <h2>Not a member?</h2>
         <ButtonComponent
-          className='font-black leading-6 text-orange-700 hover:text-orange-600 text-lg xs:text-xl'
+          className='font-black leading-6 text-orange-700 hover:text-orange-600 text-lg'
           onClick={() => setShouldSignInDisplay(false)}
         >
           Create a new account
         </ButtonComponent>
       </div>
-      <Link to='/' className='mt-8 text-white text-base xs:text-xl hover:underline  mb-16'>
+      <Link to='/' className='mt-8 text-white text-base  hover:underline  mb-16'>
         Or back to home page
       </Link>
     </div>

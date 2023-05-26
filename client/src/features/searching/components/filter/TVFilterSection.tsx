@@ -10,8 +10,8 @@ const TVFilterSection: React.FC<TVFilterSectionProps> = (props) => {
 
   return (
     <div className='w-full min-h-screen flex flex-col justify-start items-center dark:bg-yellow-500'>
-      <div className='w-full text-xl text-stone-400 font-normal px-4 py-2 mt-4 dark:text-stone-900  dark:border-b-2 dark:border-stone-500'>
-      <span className='pl-2 border-l-4 border-stone-800 font-bold '>Status</span>
+      <div className='w-full text-base text-stone-400 font-normal px-4 py-2 mt-4 dark:text-stone-900  dark:border-b-2 dark:border-stone-500'>
+      <span className='pl-2 border-l-4 text-lg border-stone-800 font-bold '>Status</span>
         <SelectComponent
           options={[
             { value: 'popularity.desc', label: 'Most popular' },
@@ -26,14 +26,14 @@ const TVFilterSection: React.FC<TVFilterSectionProps> = (props) => {
           handleOnChange={(val: any) => tvFiltersStore.addSortBy(val.value)}
         />
       </div>
-      <div className='w-full text-xl text-stone-400 font-normal px-4 py-2 pb-8 dark:text-stone-900  dark:border-b-2 dark:border-stone-500 mt-4'>
-      <h1 className='pl-2 border-l-4 border-stone-800 font-bold'>
+      <div className='w-full text-base text-stone-400 font-normal px-4 py-2 pb-8 dark:text-stone-900  dark:border-b-2 dark:border-stone-500 mt-4'>
+      <h1 className='pl-2 border-l-4 text-lg border-stone-800 font-bold'>
           Genres
         </h1>
-        <div className='mt-4 w-full py-4 px-2 flex-wrap flex shadow-inner gap-4 rounded-xl ring-2 ring-stone-400 bg-stone-300 dark:bg-amber-400  dark:ring-stone-900'>
+        <div className='mt-4 w-full px-4 py-2 font-semibold flex-wrap flex shadow-inner gap-4 rounded-xl ring-2 ring-stone-400 bg-stone-300 dark:bg-amber-400  dark:ring-stone-900'>
           {[...(mediaTypeConfig.tv.discover.paramList.with_genres ?? [])].map((genreObject) => (
             <ButtonComponent
-            className={`rounded-xl ring-2 ring-stone-500 px-4 py-2 shadow-lg   text-stone-600  dark:ring-stone-900 ${
+            className={`rounded-xl ring-2 ring-stone-500 px-2 py-[2px] shadow-lg text-stone-600  dark:ring-stone-900 ${
               tvFiltersStore.with_genres?.has(genreObject[0]!)
                 ? 'bg-amber-200 dark:bg-stone-800  dark:text-lime-300'
                 : 'bg-stone-200 dark:bg-amber-300 dark:text-stone-900'
@@ -46,8 +46,8 @@ const TVFilterSection: React.FC<TVFilterSectionProps> = (props) => {
           ))}
         </div>
       </div>
-      <div className='w-full text-xl text-stone-400 font-normal px-4 py-2 dark:text-stone-900  dark:border-b-2 dark:border-stone-500 mt-4'>
-      <h1 className='pl-2 border-l-4 border-stone-800 font-bold'>From year</h1>
+      <div className='w-full text-base text-stone-400 font-normal px-4 py-2 dark:text-stone-900  dark:border-b-2 dark:border-stone-500 mt-4'>
+      <h1 className='pl-2 border-l-4 text-lg border-stone-800 font-bold'>From year</h1>
         <SelectComponent
           options={[
             ...Array.from(
@@ -62,8 +62,8 @@ const TVFilterSection: React.FC<TVFilterSectionProps> = (props) => {
           handleOnChange={(val: any) => tvFiltersStore.addReleasedYear(parseInt(val?.value))}
         />
       </div>
-      <div className='w-full text-xl text-stone-400 font-normal px-4 py-2 dark:text-stone-900  dark:border-b-2 dark:border-stone-500 mt-4'>
-        <h1 className='pl-2 border-l-4 border-stone-800 font-bold '>With status</h1>
+      <div className='w-full text-base text-stone-400 font-normal px-4 py-2 dark:text-stone-900  dark:border-b-2 dark:border-stone-500 mt-4'>
+        <h1 className='pl-2 border-l-4 text-lg border-stone-800 font-bold '>With status</h1>
         <SelectComponent
           options={[
             { value: '0', label: 'Returning Series' },
@@ -80,8 +80,8 @@ const TVFilterSection: React.FC<TVFilterSectionProps> = (props) => {
           handleOnChange={(val: any) => tvFiltersStore.addStatus(val?.value)}
         />
       </div>
-      <div className='w-full text-xl text-stone-400 font-normal px-4 py-2 dark:text-stone-900  dark:border-b-2 dark:border-stone-500 mt-4'>
-        <h1 className='pl-2 border-l-4 border-stone-800 font-bold '>With type</h1>
+      <div className='w-full text-base text-stone-400 font-normal px-4 py-2 dark:text-stone-900  dark:border-b-2 dark:border-stone-500 mt-4'>
+        <h1 className='pl-2 border-l-4 text-lg border-stone-800 font-bold '>With type</h1>
         <SelectComponent
           options={[
             { value: '0', label: 'Documentary' },

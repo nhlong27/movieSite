@@ -27,7 +27,7 @@ const Trailers: React.FC<TrailersProps> = (props) => {
   return isXs ? (
     <>
       <ButtonComponent
-        className='flex items-center gap-2 text-xl tracking-[0.1rem] bg-transparent px-4 py-2 border-t-2 border-stone-400 hover:bg-stone-600 hover:bg-opacity-50 font-bold capitalize text-stone-300 dark:text-yellow-400'
+        className='flex items-center gap-2 tracking-[0.1rem] bg-transparent px-4 py-2 border-t-2 border-stone-400 hover:bg-stone-600 hover:bg-opacity-50 font-semibold capitalize text-stone-300 dark:text-yellow-400 text-base'
         onClick={() => setShouldTrailersDisplay((prev) => !prev)}
       >
         {iconHelper.trailer('text-xl')}

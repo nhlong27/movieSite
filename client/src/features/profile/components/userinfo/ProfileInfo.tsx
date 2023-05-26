@@ -19,9 +19,9 @@ const ProfileInfo = () => {
           form: 'bg-stone-200 gap-2 flex flex-col dark:bg-amber-400',
           input: 'bg-stone-300 rounded-md py-[3px] pl-2 text-stone-400 dark:bg-amber-300 dark:text-stone-900 shadow-inner',
           button:
-            'ml-auto py-2  rounded-lg mt-4 bg-stone-300 ring-2 ring-stone-400 text-stone-500 text-base hover:bg-stone-400 dark:bg-stone-900 dark:ring-transparent shadow-lg dark:text-amber-400 px-4 font-bold dark:hover:text-stone-900 dark:hover:bg-amber-300 dark:hover:ring-stone-800',
+            'ml-auto py-2  rounded-lg mt-4 text-sm bg-stone-300 ring-2 ring-stone-400 text-stone-500 hover:bg-stone-400 dark:bg-stone-900 dark:ring-transparent shadow-lg dark:text-amber-400 px-4 font-bold dark:hover:text-stone-900 dark:hover:bg-amber-300 dark:hover:ring-stone-800',
           inputName:
-            'font-bold text-stone-500 text-lg flex items-center justify-between gap-4 pr-2 dark:text-stone-900 mt-4',
+            'font-bold text-stone-500 text-base flex items-center justify-between gap-4 pr-2 dark:text-stone-900 mt-4',
         }}
         schema={UserInfoUpdateForm}
         submitFn={(formInputs: any) =>

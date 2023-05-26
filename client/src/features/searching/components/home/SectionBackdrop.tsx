@@ -23,10 +23,12 @@ const SectionBackdrop = ({ mediaType, section }: { mediaType?: string; section?:
       <div className='h-4/5 shadow-xl lg:rounded-3xl  absolute bottom-0 w-4/5 ml-8 flex flex-col z-20 lg:py-4 font-poppins bg-gradient-to-r from-stone-900 to-transparent'>
         <div className='w-auto max-w-[40rem] rounded-t-md xs:pl-0 md:pl-4 lg:pl-16 flex flex-col lg:pr-8  pt-4'>
           <div className='text-3xl font-black flex justify-between items-center font-serif text-white  tracking-wider'>
-            {mediaType === 'movie'
-              ? (sectionBackdropItem as MovieType)?.title
-              : (sectionBackdropItem as TVType)?.name}
-              <div className='ml-auto flex items-center rounded-lg bg-transparent ring-2 ring-white px-2 py-[2px] dark:bg-stone-900 min-w-[5rem]'>
+            <div className='truncate grow'>
+              {mediaType === 'movie'
+                ? (sectionBackdropItem as MovieType)?.title
+                : (sectionBackdropItem as TVType)?.name}
+            </div>
+            <div className='ml-auto flex items-center rounded-lg bg-transparent ring-2 ring-white px-2 py-[2px] dark:bg-stone-900 min-w-[5rem]'>
               <svg
                 aria-hidden='true'
                 className='w-6 h-6 text-amber-400'
@@ -37,7 +39,7 @@ const SectionBackdrop = ({ mediaType, section }: { mediaType?: string; section?:
                 <title>Rating star</title>
                 <path d='M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z'></path>
               </svg>
-              <p className='ml-2 text-[1.3rem] tracking-[0.2rem] text-yellow-400 font-poppins font-bold'>
+              <p className='ml-2 text-lg tracking-[0.2rem] text-yellow-400 font-poppins font-bold'>
                 {(sectionBackdropItem?.vote_average ?? 0).toFixed(1)}
               </p>
             </div>
@@ -50,27 +52,25 @@ const SectionBackdrop = ({ mediaType, section }: { mediaType?: string; section?:
                 : (sectionBackdropItem as TVType)?.first_air_date!,
             ).getFullYear()}
             <div className='ml-8 flex justify-start gap-4 flex-wrap text-lg py-0'>
-            {sectionBackdropItem?.genre_ids?.map((genreId) => {
-              return (
-                <span
-                  className='rounded-lg ring-2 md:ring-amber-700 md:bg-yellow-400 md:px-4 font-bold ring-stone-400 text-sm bg-stone-300 text-stone-900 dark:bg-lime-400 dark:text-stone-900 dark:ring-transparent px-4 py-[2px]'
-                  key={genreId}
-                >
-                  {mediaTypeConfig[
-                    `${mediaType}` as keyof typeof mediaTypeConfig
-                  ].discover.paramList.with_genres?.get(genreId)}
-                </span>
-              );
-            })}
-          </div>
-            
+              {sectionBackdropItem?.genre_ids?.map((genreId) => {
+                return (
+                  <span
+                    className='rounded-lg ring-2 md:ring-amber-700 md:bg-yellow-400 md:px-4 font-bold ring-stone-400 text-sm bg-stone-300 text-stone-900 dark:bg-lime-400 dark:text-stone-900 dark:ring-transparent px-4 py-[2px]'
+                    key={genreId}
+                  >
+                    {mediaTypeConfig[
+                      `${mediaType}` as keyof typeof mediaTypeConfig
+                    ].discover.paramList.with_genres?.get(genreId)}
+                  </span>
+                );
+              })}
+            </div>
           </div>
           <div></div>
-          
         </div>
 
         <div className='w-full xs:pl-0 md:pl-4 lg:pl-16 flex flex-col lg:pr-4 overflow-y-scroll h-[30rem] scrollbar-hide '>
-          <div className='px-4 grow w-full text-lg text-yellow-500 font-bold py-4 mt-4 scrollbar  shadow-md rounded-xl'>
+          <div className='px-4 grow w-full text-base text-yellow-500 font-bold py-4 scrollbar  shadow-md rounded-xl'>
             {sectionBackdropItem?.overview}
           </div>
         </div>

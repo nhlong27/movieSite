@@ -23,7 +23,7 @@ const ResultSection = () => {
       className='md:row-start-1 md:col-start-1 md:col-span-3 w-full flex flex-col'
     >
       <ButtonComponent
-        className='flex font-poppins text-xl font-black tracking-[0.1rem] text-stone-600 px-8 items-center gap-4 bg-stone-200 rounded-t-xl py-4 border-b-4 border-stone-400 shadow-xl dark:bg-stone-900 dark:border-yellow-600 dark:text-yellow-500'
+        className='flex font-poppins text-lg font-black tracking-[0.1rem] text-stone-600 px-8 items-center gap-4 bg-stone-200 rounded-t-xl py-4 border-b-4 border-stone-400 shadow-xl dark:bg-stone-900 dark:border-yellow-600 dark:text-yellow-500'
         onClick={() => {
           setHasQueryFilters((prev) => !prev);
           window.scrollTo(0, 0);
@@ -51,7 +51,7 @@ const ResultSection = () => {
           <img src={imageHelper.background3} alt='background' className='object-contain' />
         </div>
       )}
-      <h1 className='mt-8 font-poppins text-xl font-black tracking-[0.1rem] text-stone-600 bg-stone-200 rounded-t-xl py-4 border-b-4 px-8 border-stone-400 shadow-xl flex items-center gap-4 flex-wrap dark:bg-stone-900 dark:text-yellow-500 dark:border-yellow-600'>
+      <h1 className='mt-8 font-poppins text-lg font-black tracking-[0.1rem] text-stone-600 bg-stone-200 rounded-t-xl py-4 border-b-4 px-8 border-stone-400 shadow-xl flex items-center gap-4 flex-wrap dark:bg-stone-900 dark:text-yellow-500 dark:border-yellow-600'>
         <span>Filtered Results by</span>
         {mediaType === 'movie'
           ? [
@@ -63,7 +63,7 @@ const ResultSection = () => {
               <ButtonComponent
                 onClick={() => setHasQueryFilters(true)}
                 key={index}
-                className='px-4 py-2 rounded-lg bg-stone-500 text-lime-200 capitalize
+                className='px-2 py-[2px] rounded-lg bg-stone-500 text-lime-200 capitalize
                 text-base dark:bg-lime-400 dark:text-stone-900'
               >
                 {item ?? '?'}
@@ -80,7 +80,7 @@ const ResultSection = () => {
               <ButtonComponent
                 onClick={() => setHasQueryFilters(true)}
                 key={index}
-                className='px-4 py-2 rounded-lg bg-stone-500 text-stone-200 capitalize
+                className='px-2 py-[2px] rounded-lg bg-stone-500 text-stone-200 capitalize
                 text-base dark:bg-yellow-400 dark:text-stone-900'
               >
                 {item ?? '?'}

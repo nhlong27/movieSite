@@ -7,6 +7,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import DropDownMenu from './components/generic/DropDownMenu';
 import { Toaster } from 'react-hot-toast';
+import { BiArrowFromBottom } from 'react-icons/bi';
 
 export const mediaTypeAtom = atom<'movie' | 'tv'>('movie');
 export const currentURLPathAtom = atom<'home' | 'discover' | 'profile'>('home');
@@ -18,9 +19,9 @@ export const themeAtom = atom<string>(localStorage.getItem('theme') ?? 'dark');
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import LoadingBar from 'react-top-loading-bar';
 import { onWindowMatch } from './utils/onWindowMatch';
+import ButtonComponent from './components/generic/ButtonComponent';
 
 function App() {
-
   const initialData = useLoaderData() as Awaited<ReturnType<typeof appLoader>>;
 
   const { pathname } = useLocation();
@@ -29,7 +30,32 @@ function App() {
   const [progress, setProgress] = useAtom(loadingBarProgress);
 
   const [theme] = useAtom(themeAtom);
-  const {element} = onWindowMatch();
+  const { element } = onWindowMatch();
+
+  const [isVisible, setIsVisible] = React.useState(false);
+
+  const toggleVisibility = () => {
+    if (window.pageYOffset > 300) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
+  React.useEffect(() => {
+    window.addEventListener('scroll', toggleVisibility);
+
+    return () => {
+      window.removeEventListener('scroll', toggleVisibility);
+    };
+  }, []);
 
   React.useEffect(() => {
     search_queries.mediaTypeConfig.movie.discover.paramList = {
@@ -103,6 +129,13 @@ function App() {
       >
         <Outlet />
       </div>
+      <ButtonComponent
+        type='button'
+        onClick={scrollToTop}
+        className={` z-40 bg-green-400 fixed bottom-16 max-w-[10rem] right-16 hover:bg-green-500 focus:ring-green-500 inline-flex items-center rounded-full p-3 text- shadow-sm transition-opacity focus:outline-none focus:ring-2 focus:ring-offset-2 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+      >
+        <BiArrowFromBottom className='h-6 w-6' aria-hidden='true' />
+      </ButtonComponent>
       <Footer />
     </div>
   );

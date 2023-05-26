@@ -43,17 +43,17 @@ const NavBar = () => {
       >
         <img
           src={imageHelper.logo_md}
-          className=' overflow-hidden object-full h-[4rem] rounded-full min-w-[4rem]'
+          className=' overflow-hidden object-full h-[3.2rem] rounded-full min-w-[3.2rem]'
         />
-        <span className='text-stone-500 dark:text-yellow-400 font-extrabold tracking-wider text-2xl lg:text-3xl font-serif'>
+        <span className='text-stone-500 dark:text-yellow-400 font-extrabold tracking-wider text-2xl font-serif'>
           Fir Media
         </span>
       </Link>
       <div className='grid grid-cols-4 lg:col-start-3 col-span-2 place-items-center'>
         <Link
-          className={`col-span-1 h-full w-3/4 whitespace-nowrap grid place-items-center tracking-wider font-poppins text-2xl transition-full duration-500 ${
+          className={`col-span-1 h-full w-3/4   whitespace-nowrap grid place-items-center tracking-wider font-poppins text-xl transition-full duration-100 ${
             currentPath === 'home' && mediaType === 'movie'
-              ? 'text-stone-600 dark:text-yellow-500 border-b-4 border-stone-500 dark:border-yellow-500 font-bold'
+              ? 'text-stone-600 dark:text-yellow-500 border-b-4 border-stone-500 dark:border-yellow-500 font-semibold'
               : 'dark:text-yellow-500 text-xl'
           }`}
           to='/'
@@ -66,9 +66,9 @@ const NavBar = () => {
           Movies
         </Link>
         <Link
-          className={`col-span-1 h-full w-full whitespace-nowrap grid place-items-center tracking-wider font-poppins text-2xl transition-full duration-500 ${
+          className={`col-span-1 h-full w-3/4 whitespace-nowrap grid place-items-center tracking-wider font-poppins text-xl transition-full duration-100 ${
             currentPath === 'home' && mediaType === 'tv'
-              ? 'text-stone-600 dark:text-yellow-400 border-b-4 border-stone-500 dark:border-yellow-500 font-bold'
+              ? 'text-stone-600 dark:text-yellow-400 border-b-4 border-stone-500 dark:border-yellow-500 font-semibold'
               : 'dark:text-yellow-500 text-xl'
           }`}
           to='/'
@@ -78,7 +78,7 @@ const NavBar = () => {
             setMediaType('tv');
           }}
         >
-          TV Shows
+          TVs
         </Link>
         <Wrapper
           suspenseComponent={
@@ -95,7 +95,7 @@ const NavBar = () => {
               </div>
               <Link
                 className='h-0 max-w-0 group-hover:max-w-full overflow-hidden group-hover:h-3/4 opacity-0 invisible group-hover:visible group-hover:opacity-100 transition-all duration-300 grid place-items-center  font-poppins text-base px-4 py-2 rounded-lg dark:bg-yellow-400
-                dark:text-yellow-900 bg-stone-600 text-stone-50 shadow-lg font-bold  whitespace-nowrap'
+                dark:text-yellow-900 dark:hover:bg-yellow-500 bg-stone-600 text-stone-50 shadow-lg font-bold  whitespace-nowrap'
                 to='/profile'
                 onClick={() => {
                   setProgress(100);

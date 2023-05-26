@@ -73,8 +73,8 @@ const AvatarContainer = () => {
   };
 
   return (
-    <div className='w-full flex flex-col justify-center items-center mt-4 font-poppins px-4 py-4'>
-      <h1 className='w-11/12 text-stone-500 tracking-wide text-xl flex py-2 font-bold dark:text-stone-900'>Avatar</h1>
+    <div className='w-full flex flex-col justify-center items-center font-poppins px-4 py-4'>
+      <h1 className='w-11/12 text-stone-500 tracking-wide text-lg flex py-2 font-bold dark:text-stone-900'>Avatar</h1>
       <Wrapper
         suspenseComponent={
           <div className='rounded-full object-cover overflow-hidden'>
@@ -82,7 +82,7 @@ const AvatarContainer = () => {
           </div>
         }
       >
-        <div className='w-11/12 py-2 ring-2 ring-stone-400 grid place-items-center rounded-xl dark:ring-stone-800 bg-stone-300 dark:bg-yellow-600'>
+        <div className='w-full py-2 ring-2 ring-stone-400 grid place-items-center rounded-xl dark:ring-stone-800 bg-stone-300 dark:bg-yellow-600'>
           <AvatarComponent
             styles={{
               image: 'rounded-full object-cover overflow-hidden',
@@ -90,12 +90,12 @@ const AvatarContainer = () => {
               width: '150px',
             }}
           />
-          <div className='flex items-center gap-4 justify-center divide-stone-400 divide-x-2 pt-4 dark:divide-stone-800'>
+          <div className='flex items-center gap-4 justify-center divide-stone-400 divide-x-2 pt-4 h-[3rem] dark:divide-stone-800 px-4 text-sm'>
             <ButtonComponent
-              className='flex gap-2 items-center hover:border-b-2 hover:border-stone-400 dark:hover:border-stone-800'
+              className='flex gap-2 items-center hover:border-b-2 justify-center hover:border-stone-400 dark:hover:border-stone-800'
               onClick={handleUploadClick}
             >
-              {iconHelper.upload('text-stone-700 text-lg')}
+              {iconHelper.upload('text-stone-700 text-xl')}
               Upload new
             </ButtonComponent>
             <input

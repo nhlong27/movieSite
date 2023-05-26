@@ -43,11 +43,11 @@ const SearchBar = () => {
         setHasQueryFilters(false);
         window.scrollTo(0, 0);
       }}
-      className='flex w-full justify-end align-baseline md:h-[2.5rem] lg:min-h-[3rem] h-[2.4rem] min-w-[2.4rem] lg:min-w-[3rem]'
+      className='flex w-full justify-end align-baseline md:h-[2.5rem] lg:min-h-[2.6rem] h-[2.4rem] min-w-[2.4rem] lg:min-w-[2.6rem]'
     >
       {isMd ? (
         <div className={`${
-          currentURLPath === 'discover' && !hasQueryFilters ? 'w-3/4' : 'min-w-[2.5rem] lg:min-w-[3rem]'
+          currentURLPath === 'discover' && !hasQueryFilters ? 'w-3/4' : 'min-w-[2.5rem] lg:min-w-[2.6rem]'
         } overflow-hidden h-full rounded-full flex justify-end items-center`}>
           <input
             ref={inputRef}
@@ -67,8 +67,8 @@ const SearchBar = () => {
             }}
             placeholder={inputValue ?? 'Search a movie or tv show'}
           />
-          <div className=' bg-stone-300  dark:bg-yellow-500 h-full w-[2.5rem] lg:w-[3rem] grid place-items-center p-2'>
-            {iconHelper.search('h-6 lg:h-8 w-6 lg:w-8 text-stone-600')}
+          <div className=' bg-stone-300  dark:bg-yellow-500 h-full w-[2.4rem] lg:w-[2.6rem] grid place-items-center p-2'>
+            {iconHelper.search('h-6 w-6 text-stone-600')}
           </div>
         </div>
       ) : (

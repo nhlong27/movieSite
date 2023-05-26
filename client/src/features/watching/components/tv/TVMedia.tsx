@@ -43,10 +43,10 @@ const TVMedia = () => {
     <div className='w-11/12 min-h-screen flex flex-col justify-start items-center z-0 rounded-xl shadow-xl font-poppins'>
       <div className='relative z-10 aspect-[22/12] w-full grid grid-cols-3 grid-rows-2 overflow-hidden'>
         <div className='ml-6 mt-4 absolute top-0 left-0'>
-          <div className='flex items-center bg-opacity-70 bg-stone-600 px-4 py-2 dark:bg-amber-400'>
+          <div className='flex items-center bg-opacity-70 bg-stone-600 px-2 py-[2px] dark:bg-amber-400'>
             <svg
               aria-hidden='true'
-              className='w-8 h-8 text-amber-400  dark:text-stone-900'
+              className='w-6 h-6 text-amber-400  dark:text-stone-900'
               fill='currentColor'
               viewBox='0 0 20 20'
               xmlns='http://www.w3.org/2000/svg'
@@ -54,18 +54,18 @@ const TVMedia = () => {
               <title>Rating star</title>
               <path d='M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z'></path>
             </svg>
-            <p className='ml-2 text-[1.6rem] text-lime-300 font-bold tracking-[0.3rem] dark:text-stone-900'>
+            <p className='ml-2 text-[1.2rem] text-lime-300 font-bold tracking-[0.3rem] dark:text-stone-900'>
               {(data.vote_average ?? 0).toFixed(1)}
             </p>
           </div>
         </div>
         <div className=' bg-gradient-to-t from-stone-900 to-transparent row-start-2 col-start-1 col-end-4 p-6 lg:p-6 flex flex-col justify-start'>
-          <h2 className='py-2 px-4  w-[40rem] bg-gradient-to-r from-transparent via-stone-900 to-transparent bg-opacity-100 border-y-2 border-stone-500'>
-            <div className='h-3 text-3xl text-left text-stone-300'>“</div>
-            <p className='px-4 text-lg tracking-[0.1rem] italic text-center truncate text-stone-300'>
+          <h2 className=' px-4  w-[40rem] bg-gradient-to-r from-transparent via-stone-900 to-transparent bg-opacity-100 border-y-2 border-stone-500'>
+            <div className='h-3 text-2xl text-left text-stone-300'>“</div>
+            <p className='px-4 text-base tracking-[0.1rem] italic text-center truncate text-stone-300'>
               {data.tagline !== '' ? data.tagline : 'Have you watched Morbius?'}
             </p>
-            <div className='h-3 text-3xl text-right text-stone-300'>”</div>
+            <div className='h-3 text-2xl text-right text-stone-300'>”</div>
           </h2>
           <div className='w-2/3 truncate font-black capitalize text-[3.3rem] text-stone-200 font-serif tracking-[0.2rem] py-4 dark:text-yellow-500'>
             {(data as TVType).name}
@@ -215,7 +215,7 @@ const TVMedia = () => {
           You may also like
         </h1>
         {extraData.similar?.results?.length ?? 0 > 0 ? (
-          <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 2xl:grid-cols-6 place-items-center w-full gap-4 2xl:gap-4 min-h-screen  place-content-start bg-stone-900 bg-opacity-30 rounded-b-xl shadow-xl py-8 '>
+          <div className='grid md:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-6 grid-cols-1  place-items-center w-full gap-4 2xl:gap-4 min-h-screen  place-content-start bg-stone-900 bg-opacity-30 rounded-b-xl shadow-xl py-8 '>
             {extraData.similar?.results?.map((media: any, index) => {
               return (
                 <LinkMediaCard
@@ -232,10 +232,10 @@ const TVMedia = () => {
             })}
           </div>
         ) : (
-          <div className='relative w-full flex flex-row  h-[4rem] justify-center items-baseline gap-4 bg-stone-300 bg-opacity-20 shadow-inner border-2 border-stone-400 font-poppins text-normal font-bold px-8 py-8 dark:bg-stone-900 dark:border-yellow-600'>
+          <div className='relative w-full flex flex-row  h-[4rem] justify-center items-baseline gap-4 bg-stone-300 bg-opacity-20 shadow-inner border-2 border-stone-400 font-poppins text-normal font-semibold px-8 py-8 dark:bg-stone-900 dark:border-yellow-600'>
             <h1 className='text-stone-400 text-sm dark:text-yellow-500'>No movies or TV shows for this media</h1>
             <Link
-              className='w-3/4 px-8 py-2 font-poppins rounded-xl bg-stone-300 grid place-items-center ring-2 ring-stone-400 text-stone-400 hover:bg-stone-400 hover:text-stone-600  text-xl hover:ring-stone-600 dark:bg-stone-900 dark:ring-transparent dark:text-yellow-500 dark:hover:bg-yellow-400 dark:hover:text-stone-900 dark:hover:ring-stone-800 dark:hover:shadow-2xl dark:hover:shadow-yellow-500 hover:shadow-xl hover:shadow-stone-900'
+              className='w-3/4 px-8 py-2 font-poppins rounded-xl bg-stone-300 grid place-items-center ring-2 ring-stone-400 text-stone-400 hover:bg-stone-400 hover:text-stone-600  text-lg hover:ring-stone-600 dark:bg-stone-900 dark:ring-transparent dark:text-yellow-500 dark:hover:bg-yellow-400 dark:hover:text-stone-900 dark:hover:ring-stone-800 dark:hover:shadow-2xl dark:hover:shadow-yellow-500 hover:shadow-xl hover:shadow-stone-900'
               to='/discover'
               onClick={() => {
                 console.log('navigating to exploring page..');
@@ -249,7 +249,7 @@ const TVMedia = () => {
           </div>
         )}
       </div>
-      <div className='w-full flex flex-col justify-center items-center gap-4 bg-stone-300 shadow-inner border-t-2 border-stone-400 font-poppins text-normal font-bold px-8 py-8 dark:bg-stone-900 dark:border-yellow-600'>
+      <div className='w-full flex flex-col justify-center items-center gap-4 bg-stone-300 shadow-inner border-t-2 border-stone-400 font-poppins text-normal px-8 py-8 dark:bg-stone-900 dark:border-yellow-600'>
         <CommentSection mediaId={data.id?.toString() ?? '404'} />
       </div>
     </div>
