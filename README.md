@@ -12,7 +12,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://firmedia.site/">
+  <a href="https://firmedia.site/" target='_blank'>
     <img src="./client/public/assets/logos/logo-md.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -27,16 +27,16 @@
     <br />
     Email: nhlong2706@gmail.com 
     <br />
-    <a href="https://firmedia.site">View Demo</a>
+    <a href="https://firmedia.site" target='_blank'>View Demo</a>
     ·
-    <a href="https://github.com/nhlong27/movieSite/issues">Report Bug</a>
+    <a href="https://github.com/nhlong27/movieSite/issues" target='_blank'>Report Bug</a>
     ·
-    <a href="https://github.com/nhlong27/movieSite/pulls">Request Feature</a>
+    <a href="https://github.com/nhlong27/movieSite/pulls" target='_blank'>Request Feature</a>
   </p>
 </div>
 
 ## Live Demo
-Official website: <a href="https://firmedia.site/">https://firmedia.site</a>
+Official website: <a href="https://firmedia.site/" target='_blank'>https://firmedia.site</a>
 
 <!-- TABLE OF CONTENTS -->
 <details>
