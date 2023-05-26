@@ -48,7 +48,7 @@ const SignInContainer = ({
                 console.log('Sign in success!');
                 queryClient.invalidateQueries({ queryKey: ['profile'] });
                 queryClient.invalidateQueries({ queryKey: ['shows'] });
-                navigate(0);
+                navigate("/");
               } catch (e: any) {
                 console.log(e);
                 toast.error('Server error. Please retry.');

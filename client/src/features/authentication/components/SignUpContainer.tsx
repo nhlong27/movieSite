@@ -44,7 +44,7 @@ const SignUpContainer = ({
                 console.log('Sign up success!');
                 await queryClient.invalidateQueries({ queryKey: ['profile'] });
                 await queryClient.invalidateQueries({ queryKey: ['shows'] });
-                navigate(0)
+                navigate("/")
               } catch (e: any) {
                 console.log(e);
                 toast.error('Server error. Please retry.');

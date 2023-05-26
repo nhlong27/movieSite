@@ -18,6 +18,7 @@ const SignOutContainer = () => {
             console.log(response);
             queryClient.invalidateQueries({ queryKey: ['shows'] });
             queryClient.invalidateQueries({ queryKey: ['profile'] });
+            navigate('/');
             navigate(0);
           })
           .catch((e) => {
