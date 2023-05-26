@@ -33,17 +33,20 @@ const signUpHandler = async (req: Request<{}, {}, UserType['body']>, res: Respon
     const refreshToken = signJWT({ ...newUser, avatar: _ }, { expiresIn: '1y' }); //1 year
     res.cookie('accessToken', accessToken, {
       httpOnly: true,
-      // sameSite: 'strict',
-      //secure: true,
+      sameSite: 'none',
+      secure: true,
       //maxAge: 1000000,
       //signed: true
+      domain: process.env.DOMAIN,
     });
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
-      // sameSite: 'strict',
-      //secure: true,
+      sameSite: 'none',
+      secure: true,
       //maxAge: 1000000,
       //signed: true
+      domain: process.env.DOMAIN,
+
     });
     return res.send(newUser);
   } catch (e: any) {
@@ -71,8 +74,8 @@ const signInHandler = async (req: Request<{}, {}, UserSignInType['body']>, res: 
     });
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
-      // sameSite: 'none',
-      // //secure: true,
+      sameSite: 'none',
+      secure: true,
       //maxAge: 1000000,
       //signed: true
       domain: process.env.DOMAIN,
