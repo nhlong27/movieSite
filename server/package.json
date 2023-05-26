@@ -2,12 +2,11 @@
   "name": "@movie-site/server",
   "version": "1.0.0",
   "description": "Server for the movie site application",
-  "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --watch dist/index.js ",
-    "build": "tsc",
+    "build": "tsc && node dist/index.js",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
   },
   "keywords": [],
