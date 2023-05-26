@@ -41,8 +41,22 @@ const deserializeUserFromJWT = async (req: Request, res: Response, next: NextFun
     }
   }
 
-  res.clearCookie('accessToken');
-  res.clearCookie('refreshToken');
+  res.clearCookie('accessToken', {
+    httpOnly: true,
+    sameSite: 'none',
+    secure: true,
+    //maxAge: 1000000,
+    //signed: true
+    domain: process.env.DOMAIN,
+  });
+  res.clearCookie('refreshToken', {
+    httpOnly: true,
+    sameSite: 'none',
+    secure: true,
+    //maxAge: 1000000,
+    //signed: true
+    domain: process.env.DOMAIN,
+  });
   return res.status(404).send('Invalid access token or refresh token');
 };
 
