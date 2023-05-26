@@ -12,7 +12,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/nhlong27/..">
+  <a href="https://firmedia.site/">
     <img src="./client/public/assets/logos/logo-md.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -21,18 +21,22 @@
   <p align="center">
     A nature-inspired movie website
     <br />
+    Version: v1.0.0-alpha
+    <br />
     Author: Nguyen Hoang Long 
     <br />
-    <a href="">View Demo</a>
+    Email: nhlong2706@gmail.com 
+    <br />
+    <a href="https://firmedia.site">View Demo</a>
     ·
-    <a href="https://github.com/nhlong27/../issues">Report Bug</a>
+    <a href="https://github.com/nhlong27/movieSite/issues">Report Bug</a>
     ·
-    <a href="https://github.com/nhlong27/../issues">Request Feature</a>
+    <a href="https://github.com/nhlong27/movieSite/pulls">Request Feature</a>
   </p>
 </div>
 
 ## Live Demo
-Official website: <a href="">dfdfdfdff</a>
+Official website: <a href="https://firmedia.site/">https://firmedia.site</a>
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -71,12 +75,12 @@ Official website: <a href="">dfdfdfdff</a>
 
 Fir Media celebrates the beauty and wonder of the natural world through the lens of cinema. Browse and and let the power of films transport you to the world's most breathtaking landscapes.
 
-
 #
 <a id='screenshot'></a>
 ## Screenshots
+Note: some screenshots might have been outdated
 <details>
-  <summary>Toggle Show/Hide</summary>
+  <summary>Toggle Show/Hide </summary>
   <h1>Home page</h1>
   <img src='./screenshots/homePage.png' name="homePage-screenshot">
   <p align="right"><a href="#screenshot">back to section</a></p>
@@ -150,7 +154,9 @@ Around 2 months - March to May 2023
 <h2>Solutions</h2>
 
 <h3>API Source</h3>
-The Movie Database API
+The Movie Database API. (refer https://developer.themoviedb.org/docs/getting-started)
+<br />
+(Please look into the ./client/src/config/urls.ts file for more resource details)
 
 ### Solution Stack
 
@@ -182,6 +188,15 @@ Here are all major frameworks/libraries used to bootstrap this project
 * React Icons
 * Midjourney 
 
+### Deployment
+
+Frontend: React + Vite - render.com (refer https://render.com/docs/static-sites)
+<br />
+Backend logic: Express + Node - render.com (refer https://render.com/docs/web-services)
+<br />
+Database: Mongodb instance - railway.app (refer https://docs.railway.app/databases/mongodb)
+
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
@@ -194,23 +209,25 @@ You can use this setup if you don't want to self-configure your project
 ### Installation
 <a id='installation'></a>
 
-_Below is how you can install and set up your app._
+_Below is how you can install and set up your own app._
 
-1. Default hosts are *** and ***. Create your own accounts
-2. Clone the repo
+1. Because this is an isolated monorepo which contains both the client and the server, you need to clone the repo and individually install the packet.json files of each directory ./client and ./server.
    ```sh
    git clone https://github.com/nhlong27/movieSite
    ```
-3. Install NPM packages
+2. Install NPM packages
    ```sh
-   npm install
+   cd ./client && npm install *** (cd ./server && npm i)
    ```
-4. Replace with your local environment variables: 
+3. Default hosts are render.com and railway.app. Create your own accounts and add environment variables (locally or on your hosts)
+  - for Client: VITE_TMDB_API_KEY (from your tmdb account), VITE_SERVER (your server address)
+  - for Server: PORT (your server port), CLIENT (your client address), MONGOUSER('mongo'), MONGOHOST, MONGOPASSWORD, MONGOPORT, DOMAIN(* wildcard domain for setting cookies). As for authentication with JWT. Create your own PUBLIC_KEY, PRIVATE_KEY with openSSL (you can download it here: https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/openssl-for-windows/openssl-0.9.8k_X64.zip) (refer https://gist.github.com/Hakky54/b30418b25215ad7d18f978bc0b448d81 for useful commands)
+3. Then if locally run the scripts for both directories
    ```js
-   const ***
+   npm run dev
    
    ```
-
+(if you have any troubles please either create an issue or email me. Or message me here: (link to be added))
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
