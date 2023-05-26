@@ -46,7 +46,7 @@ const signInHandler = async (req, res) => {
         // Add tokens to cookie
         res.cookie('accessToken', accessToken, {
             httpOnly: true,
-            // sameSite: 'strict',
+            sameSite: 'none',
             //secure: true,
             //maxAge: 1000000,
             //signed: true
@@ -54,7 +54,7 @@ const signInHandler = async (req, res) => {
         });
         res.cookie('refreshToken', refreshToken, {
             httpOnly: true,
-            // sameSite: 'strict',
+            sameSite: 'none',
             //secure: true,
             //maxAge: 1000000,
             //signed: true
