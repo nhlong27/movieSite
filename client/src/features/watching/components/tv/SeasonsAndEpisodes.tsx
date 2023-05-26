@@ -119,7 +119,7 @@ const SeasonsAndEpisodes: React.FC<SeasonsAndEpisodesProps> = (props) => {
                       {episode?.name}
                     </h2>
                   </div>
-                  <div className='absolute top-0 h-full w-full z-30 grid place-items-center hover:bg-stone-900  hover:bg-opacity-70 text-xl font-poppins font-black uppercase tracking-wider opacity-0 hover:opacity-100 text-stone-300 '>
+                  <div className='absolute top-0 h-full w-full z-30 grid place-items-center hover:bg-stone-900  hover:bg-opacity-70 text-xl font-poppins font-black uppercase tracking-wider opacity-0 hover:opacity-100 text-stone-300 transition-full duration-200'>
                     Play
                   </div>
                 </ButtonComponent>

@@ -53,7 +53,7 @@ const NavBar = () => {
         <Link
           className={`col-span-1 h-full w-3/4   whitespace-nowrap grid place-items-center tracking-wider font-poppins text-xl transition-full duration-100 ${
             currentPath === 'home' && mediaType === 'movie'
-              ? 'text-stone-600 dark:text-yellow-500 border-b-4 border-stone-500 dark:border-yellow-500 font-semibold'
+              ? 'text-stone-600 dark:text-yellow-500 border-b-2 border-stone-500 dark:border-yellow-500 font-semibold'
               : 'dark:text-yellow-500 text-xl'
           }`}
           to='/'
@@ -68,7 +68,7 @@ const NavBar = () => {
         <Link
           className={`col-span-1 h-full w-3/4 whitespace-nowrap grid place-items-center tracking-wider font-poppins text-xl transition-full duration-100 ${
             currentPath === 'home' && mediaType === 'tv'
-              ? 'text-stone-600 dark:text-yellow-400 border-b-4 border-stone-500 dark:border-yellow-500 font-semibold'
+              ? 'text-stone-600 dark:text-yellow-400 border-b-2 border-stone-500 dark:border-yellow-500 font-semibold'
               : 'dark:text-yellow-500 text-xl'
           }`}
           to='/'
@@ -90,12 +90,12 @@ const NavBar = () => {
           }
           errorComponent={() => (
             <div className='col-span-1 h-full group flex justify-center items-center w-full overflow-hidden'>
-              <div className='rounded-full grid place-items-center w-12  group-hover:max-w-0 transition-all duration-300 overflow-hidden opacity-100 group-hover:opacity-0'>
+              <div className='rounded-full grid place-items-center w-12  group-hover:max-w-0 transition-all duration-500 overflow-hidden opacity-100 group-hover:opacity-0'>
                 <LazyLoadImage src={imageHelper.logo_better} alt='default_avatar' effect='blur' />
               </div>
               <Link
-                className='h-0 max-w-0 group-hover:max-w-full overflow-hidden group-hover:h-3/4 opacity-0 invisible group-hover:visible group-hover:opacity-100 transition-all duration-300 grid place-items-center  font-poppins text-base px-4 py-2 rounded-lg dark:bg-yellow-400
-                dark:text-yellow-900 dark:hover:bg-yellow-500 bg-stone-600 text-stone-50 shadow-lg font-bold  whitespace-nowrap'
+                className='h-0 max-w-0 group-hover:max-w-full overflow-hidden group-hover:h-3/4 opacity-0 invisible group-hover:visible group-hover:opacity-100 transition-all duration-500 grid place-items-center  font-poppins text-base px-4 py-2 rounded-lg dark:bg-yellow-400
+                dark:text-stone-900 dark:hover:bg-yellow-500 bg-stone-600 text-stone-50 shadow-lg font-bold  whitespace-nowrap'
                 to='/profile'
                 onClick={() => {
                   setProgress(100);

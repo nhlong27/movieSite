@@ -21,7 +21,7 @@ const TVFilterSection: React.FC<TVFilterSectionProps> = (props) => {
           ]}
           name={'sort_by'}
           className='bg-stone-50 rounded-md shadow-inner  dark:bg-yellow-400 dark:text-stone-900 text-amber-900 my-2'
-          placeholder='Select'
+          placeholder='Most popular'
           extras={{ isSearchable: false, isClearable: true }}
           handleOnChange={(val: any) => tvFiltersStore.addSortBy(val.value)}
         />
@@ -36,7 +36,7 @@ const TVFilterSection: React.FC<TVFilterSectionProps> = (props) => {
             className={`rounded-xl ring-2 ring-stone-500 px-2 py-[2px] shadow-lg text-stone-600  dark:ring-stone-900 ${
               tvFiltersStore.with_genres?.has(genreObject[0]!)
                 ? 'bg-amber-200 dark:bg-stone-800  dark:text-lime-300'
-                : 'bg-stone-200 dark:bg-amber-300 dark:text-stone-900'
+                : 'bg-stone-200 dark:bg-amber-300 dark:text-stone-900 dark:hover:bg-amber-400'
             }`}
               onClick={() => tvFiltersStore.addGenres(genreObject[0]!)}
               key={genreObject[0]}

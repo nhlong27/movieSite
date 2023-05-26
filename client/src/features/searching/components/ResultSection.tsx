@@ -52,7 +52,7 @@ const ResultSection = () => {
         </div>
       )}
       <h1 className='mt-8 font-poppins text-lg font-black tracking-[0.1rem] text-stone-600 bg-stone-200 rounded-t-xl py-4 border-b-4 px-8 border-stone-400 shadow-xl flex items-center gap-4 flex-wrap dark:bg-stone-900 dark:text-yellow-500 dark:border-yellow-600'>
-        <span>Filtered Results by</span>
+        <span>Filter Results by</span>
         {mediaType === 'movie'
           ? [
               'Movies',
@@ -64,7 +64,7 @@ const ResultSection = () => {
                 onClick={() => setHasQueryFilters(true)}
                 key={index}
                 className='px-2 py-[2px] rounded-lg bg-stone-500 text-lime-200 capitalize
-                text-base dark:bg-lime-400 dark:text-stone-900'
+                text-base dark:bg-lime-400 dark:hover:bg-lime-500 dark:text-stone-900'
               >
                 {item ?? '?'}
               </ButtonComponent>

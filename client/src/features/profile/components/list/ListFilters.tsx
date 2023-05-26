@@ -13,8 +13,8 @@ const ListFilters = ({
     <div className='flex flex-col w-full md:justify-between items-center '>
       <div className='flex flex-wrap md:flex-row w-full gap-4 md:mt-0 border-b-2 border-stone-300 py-4 dark:border-yellow-500'>
         <ButtonComponent
-          className={` py-2 px-4 text-stone-700 font-bold ring-2 ring-stone-500 hover:bg-stone-400 hover:text-stone-800 hover:ring-stone-600 rounded-xl shadow-xl flex gap-2 items-center ${
-            listFilter === 'All' ? 'bg-amber-300' : 'bg-stone-400'
+          className={` py-2 rounded-lg mt-4 text-sm   dark:ring-transparent shadow-xl px-4 font-bold  transition-full duration-200 bg-stone-700 text-amber-300 hover:text-amber-400 hover:bg-stone-800 ${
+            listFilter === 'All' ? 'text-lime-400 bg-stone-800' : ''
           }`}
           onClick={() => setListFilter('All')}
         >
@@ -22,8 +22,8 @@ const ListFilters = ({
           All Media
         </ButtonComponent>
         <ButtonComponent
-          className={` py-2 px-4 text-stone-700 font-bold ring-2 ring-stone-500 hover:bg-stone-400 hover:text-stone-800 hover:ring-stone-600 rounded-xl shadow-xl flex gap-2 items-center ${
-            listFilter === 'isFavorited' ? 'bg-amber-300' : 'bg-stone-400'
+          className={` py-2 rounded-lg mt-4 text-sm   dark:ring-transparent shadow-xl px-4 font-bold  transition-full duration-200 bg-stone-700 text-amber-300 hover:text-amber-400 hover:bg-stone-800 ${
+            listFilter === 'isFavorited' ? 'text-lime-400 bg-stone-800' : ''
           }`}
           onClick={() => setListFilter('isFavorited')}
         >
@@ -33,8 +33,8 @@ const ListFilters = ({
       </div>
       <div className={`flex md:flex-row w-full flex-wrap gap-4 py-4 border-b-2 border-stone-300 dark:border-yellow-500 ${listFilter === 'isFavorited' ? 'opacity-50' : 'opacity-100'}`}>
         <ButtonComponent
-          className={` py-2 px-4 bg-yellow-500  hover:bg-opacity-100 text-stone-700 font-bold ring-2 ring-stone-500 hover:bg-stone-400 hover:text-stone-800 hover:ring-stone-600 rounded-xl shadow-xl flex gap-2 items-center ${
-            listFilter === 'Watching' ? 'bg-opacity-100' : 'bg-opacity-50'
+          className={` py-2 rounded-lg mt-4 text-sm   dark:ring-transparent shadow-xl px-4 font-bold  transition-full duration-200 bg-stone-700 text-amber-300 hover:text-amber-400 hover:bg-stone-800 ${
+            listFilter === 'Watching' ? 'text-lime-400 bg-stone-800' : ''
           }`}
           onClick={() => setListFilter('Watching')}
         >
@@ -42,8 +42,8 @@ const ListFilters = ({
           Watching
         </ButtonComponent>
         <ButtonComponent
-          className={` py-2 px-4 bg-yellow-500  hover:bg-opacity-100 text-stone-700 font-bold ring-2 ring-stone-500 hover:bg-stone-400 hover:text-stone-800 hover:ring-stone-600 rounded-xl shadow-xl flex gap-2 items-center ${
-            listFilter === 'Plan to Watch' ? 'bg-opacity-100' : 'bg-opacity-50'
+          className={` py-2 rounded-lg mt-4 text-sm   dark:ring-transparent shadow-xl px-4 font-bold  transition-full duration-200 bg-stone-700 text-amber-300 hover:text-amber-400 hover:bg-stone-800 ${
+            listFilter === 'Plan to Watch' ? 'text-lime-400 bg-stone-800' : ''
           }`}
           onClick={() => setListFilter('Plan to Watch')}
         >
@@ -51,8 +51,8 @@ const ListFilters = ({
           Plan to Watch
         </ButtonComponent>
         <ButtonComponent
-          className={` py-2 px-4 bg-yellow-500  hover:bg-opacity-100 text-stone-700 font-bold ring-2 ring-stone-500 hover:bg-stone-400 hover:text-stone-800 hover:ring-stone-600 rounded-xl shadow-xl flex gap-2 items-center ${
-            listFilter === 'Completed' ? 'bg-opacity-100' : 'bg-opacity-50'
+          className={` py-2 rounded-lg mt-4 text-sm   dark:ring-transparent shadow-xl px-4 font-bold  transition-full duration-200 bg-stone-700 text-amber-300 hover:text-amber-400 hover:bg-stone-800 ${
+            listFilter === 'Completed' ? 'text-lime-400 bg-stone-800' : ''
           }`}
           onClick={() => setListFilter('Completed')}
         >
@@ -60,8 +60,8 @@ const ListFilters = ({
           Completed
         </ButtonComponent>
         <ButtonComponent
-          className={` py-2 px-4 bg-yellow-500  hover:bg-opacity-100 text-stone-700 font-bold ring-2 ring-stone-500 hover:bg-stone-400 hover:text-stone-800 hover:ring-stone-600 rounded-xl shadow-xl flex gap-2 items-center ${
-            listFilter === 'Dropped' ? 'bg-opacity-100' : 'bg-opacity-50'
+          className={` py-2 rounded-lg mt-4 text-sm   dark:ring-transparent shadow-xl px-4 font-bold  transition-full duration-200 bg-stone-700 text-amber-300 hover:text-amber-400 hover:bg-stone-800 ${
+            listFilter === 'Dropped' ? 'text-lime-400 bg-stone-800' : ''
           }`}
           onClick={() => setListFilter('Dropped')}
         >

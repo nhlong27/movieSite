@@ -21,7 +21,7 @@ const HomeSectionSkeleton = (props: Record<string, any>) => {
               <Skeleton className='h-full w-full' />
             </div>
             <div className={`w-full justify-between absolute bottom-0 flex slider ml-20 h-full`}>
-              {Array(is4k ? 8 : isLg ? 6 : 4)
+              {Array(is4k ? 6 : isLg ? 4 : 1)
                 .fill(0)
                 .map((item, index: number) => {
                   return (

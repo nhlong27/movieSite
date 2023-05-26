@@ -1,5 +1,5 @@
-import { reIssueAccessToken } from "../services/jwt.service.js";
-import { verifyJWT } from "../utils/jwt.utils.js";
+import { reIssueAccessToken } from '../services/jwt.service.js';
+import { verifyJWT } from '../utils/jwt.utils.js';
 import dotenv from 'dotenv';
 dotenv.config();
 const deserializeUserFromJWT = async (req, res, next) => {
@@ -21,18 +21,33 @@ const deserializeUserFromJWT = async (req, res, next) => {
             // res.setHeader("x-access-token", newAccessToken)
             res.cookie('accessToken', newAccessToken, {
                 httpOnly: true,
-                sameSite: 'strict',
-                //secure: true,
+                sameSite: 'none',
+                secure: true,
                 //maxAge: 1000000,
                 //signed: true
+                domain: process.env.DOMAIN,
             });
             const { decoded } = verifyJWT(newAccessToken);
             res.locals.user = decoded;
             return next();
         }
     }
-    res.clearCookie("accessToken");
-    res.clearCookie("refreshToken");
+    res.clearCookie('accessToken', {
+        httpOnly: true,
+        sameSite: 'none',
+        secure: true,
+        //maxAge: 1000000,
+        //signed: true
+        domain: process.env.DOMAIN,
+    });
+    res.clearCookie('refreshToken', {
+        httpOnly: true,
+        sameSite: 'none',
+        secure: true,
+        //maxAge: 1000000,
+        //signed: true
+        domain: process.env.DOMAIN,
+    });
     return res.status(404).send('Invalid access token or refresh token');
 };
 // const deserializeUserFromSession = async (req: Request, res: Response, next: NextFunction) => {
@@ -47,6 +62,6 @@ const deserializeUserFromJWT = async (req, res, next) => {
 //   // user null
 //   res.clearCookie("sessionId")
 //   return res.status(404).send('Invalid session Id or user not found').redirect('/')
-// } 
+// }
 export { deserializeUserFromJWT };
 //# sourceMappingURL=deserializeUser.js.map

@@ -62,16 +62,16 @@ const WatchHistorySection = () => {
           No movies or TV shows in watch history
         </h1>
         <Link
-          className='text-stone-600 hover:text-stone-900 flex items-start justify-center relative md:bg-stone-50 md:px-8 md:py-2 md:text-xl gap-2 md:rounded-lg md:shadow-xl md:hover:bg-stone-200 dark:bg-amber-300 dark:text-stone-900'
+          className='text-stone-600 hover:text-stone-900 flex items-start justify-center relative md:bg-stone-50 md:px-8 md:py-2 md:text-lg gap-2 md:rounded-lg md:shadow-xl md:hover:bg-stone-200 transition-full duration-300 dark:bg-amber-300 dark:text-stone-900'
           to='/discover'
           onClick={() => {
             console.log('navigating to exploring page..');
           }}
         >
           <span> Find something to watch</span>
-          <div className='rounded-full w-[1.8rem] grid place-items-center h-[1.8rem] bg-stone-400 dark:bg-stone-700 '>
+          {/* <div className='rounded-full w-[1.8rem] grid place-items-center h-[1.8rem] bg-stone-400 dark:bg-stone-700 '>
             {iconHelper.search('text-lg text-stone-700 dark:text-yellow-500')}
-          </div>
+          </div> */}
         </Link>
       </div>
     )

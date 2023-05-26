@@ -52,7 +52,7 @@ const Trailers: React.FC<TrailersProps> = (props) => {
                   trailerSource={video}
                   className='w-full'
                 />
-                <div className='absolute top-0 h-full w-full z-30 grid place-items-center hover:bg-stone-900  hover:bg-opacity-70 text-xl font-poppins font-black uppercase tracking-wider opacity-0 hover:opacity-100 '>
+                <div className='absolute top-0 h-full w-full z-30 grid place-items-center hover:bg-stone-900  hover:bg-opacity-70 text-xl font-poppins font-black uppercase tracking-wider opacity-0 hover:opacity-100 transition-full duration-200'>
                   Play
                 </div>
               </div>

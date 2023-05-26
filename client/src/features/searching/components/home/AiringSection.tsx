@@ -38,9 +38,9 @@ const AiringSection = () => {
             {isXs ? (
               <Link
                 to={`/${mediaType}/${sectionBackdropItem?.id}`}
-                className='text-stone-900   dark:text-yellow-900 flex ml-auto justify-center items-center gap-2 px-2 py-[3px] transition-full duration-500  
-                bg-gradient-to-r from-yellow-500 to-yellow-100  
-                 cursor-pointer hover:to-white dark:rounded-lg hover:shadow-md text-base hover:shadow-yellow-100 h-[2.4rem]'
+                className='text-stone-900   dark:text-yellow-900 flex ml-auto justify-center items-center gap-2 px-2 h-[2.4rem] py-[3px]  
+                bg-gradient-to-r from-yellow-500 hover:from-yellow-600 hover:bg-gradient-to-r transition-full duration-200 hover:to-yellow-200 to-yellow-100  
+                  cursor-pointer rounded-lg text-base'
               >
                 <div
                   className='rounded-full bg-yellow-500  dark:bg-yellow-500 h-[2rem] w-[2rem] grid pl-[3px]
