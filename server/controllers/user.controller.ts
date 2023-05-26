@@ -67,7 +67,7 @@ const signInHandler = async (req: Request<{}, {}, UserSignInType['body']>, res: 
       secure: true,
       //maxAge: 1000000,
       //signed: true
-      domain: process.env.CLIENT,
+      domain: process.env.DOMAIN,
     });
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
@@ -75,7 +75,7 @@ const signInHandler = async (req: Request<{}, {}, UserSignInType['body']>, res: 
       // //secure: true,
       //maxAge: 1000000,
       //signed: true
-      domain: process.env.CLIENT,
+      domain: process.env.DOMAIN,
     });
     return res.send(user);
   } catch (e: any) {
