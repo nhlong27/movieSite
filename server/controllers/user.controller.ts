@@ -64,18 +64,18 @@ const signInHandler = async (req: Request<{}, {}, UserSignInType['body']>, res: 
     res.cookie('accessToken', accessToken, {
       httpOnly: true,
       sameSite: 'none',
-      //secure: true,
+      secure: true,
       //maxAge: 1000000,
       //signed: true
-      domain: process.env.NODE_ENV === 'production' ? process.env.CLIENT : 'localhost',
+      domain: process.env.CLIENT,
     });
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
-      sameSite: 'none',
-      //secure: true,
+      // sameSite: 'none',
+      // //secure: true,
       //maxAge: 1000000,
       //signed: true
-      domain: process.env.NODE_ENV === 'production' ? process.env.CLIENT : 'localhost',
+      domain: process.env.CLIENT,
     });
     return res.send(user);
   } catch (e: any) {
