@@ -161,7 +161,7 @@ const TVMedia = () => {
           </p>
           <div className='flex xs:flex-row flex-col  justify-between text-stone-700 font-bold text-base gap-4'>
             <ButtonComponent
-              className='uppercase flex items-center gap-2 px-4 py-2 bg-stone-300 rounded-lg hover:bg-stone-200 dark:bg-amber-200 dark:hover:bg-amber-300'
+              className='uppercase flex items-center gap-2 px-4 py-2 bg-stone-300 rounded-lg hover:bg-stone-200 dark:bg-amber-200 dark:hover:bg-amber-300 transition-full duration-200'
               onClick={() => setServerSource('2embed.to')}
             >
               {iconHelper.play('text-3xl')}
@@ -171,7 +171,7 @@ const TVMedia = () => {
               </div>
             </ButtonComponent>
             <ButtonComponent
-              className='uppercase px-4 py-2 bg-stone-300 rounded-lg flex items-center gap-2 hover:bg-stone-200 dark:bg-amber-200 dark:hover:bg-amber-300'
+              className='uppercase px-4 py-2 bg-stone-300 rounded-lg flex items-center gap-2 hover:bg-stone-200 dark:bg-amber-200 dark:hover:bg-amber-300 transition-full duration-200'
               onClick={() => setServerSource('2embed.org')}
             >
               {iconHelper.play('text-3xl')}
@@ -182,7 +182,7 @@ const TVMedia = () => {
               </div>
             </ButtonComponent>
             <ButtonComponent
-              className='uppercase  flex items-center gap-2 px-4 py-2 bg-stone-300 rounded-lg hover:bg-stone-200 dark:bg-amber-200 dark:hover:bg-amber-300'
+              className='uppercase  flex items-center gap-2 px-4 py-2 bg-stone-300 rounded-lg hover:bg-stone-200 dark:bg-amber-200 dark:hover:bg-amber-300 transition-full duration-200'
               onClick={() => setServerSource('vidsrc.me')}
             >
               {iconHelper.play('text-3xl')}
@@ -223,7 +223,7 @@ const TVMedia = () => {
                   media={media}
                   role='linkTVCard'
                   styles={{
-                    link: 'h-[22rem] w-[200px] overflow-hidden flex justify-center items-center flex-col relative shadow-lg rounded-xl shadow-stone-900 dark:shadow-yellow-900 bg-gradient-to-t from-stone-300 to-stone-200 dark:from-yellow-500 dark:to-yellow-500 dark:text-stone-900 dark:font-black dark:hover:shadow-2xl dark:hover:shadow-yellow-500 hover:shadow-xl hover:shadow-stone-900',
+                    link: 'h-[22rem] w-[200px] overflow-hidden flex justify-center items-center flex-col relative shadow-lg rounded-xl shadow-stone-900 dark:shadow-yellow-900 bg-gradient-to-t from-stone-300 to-stone-200 dark:from-yellow-500 dark:to-yellow-500 dark:text-stone-900 dark:font-black dark:hover:shadow-2xl dark:hover:shadow-yellow-500 hover:shadow-xl hover:shadow-stone-900 transition-full duration-200',
                     image:'overflow-hidden  bg-gradient-to-tr  from-white  to-black  dark:from-stone-900 dark:to-yellow-500 grow',
                     size: (media as any).poster_path ? 'w400' : undefined,
                   }}
@@ -235,16 +235,16 @@ const TVMedia = () => {
           <div className='relative w-full flex flex-row  h-[4rem] justify-center items-baseline gap-4 bg-stone-300 bg-opacity-20 shadow-inner border-2 border-stone-400 font-poppins text-normal font-semibold px-8 py-8 dark:bg-stone-900 dark:border-yellow-600'>
             <h1 className='text-stone-400 text-sm dark:text-yellow-500'>No movies or TV shows for this media</h1>
             <Link
-              className='w-3/4 px-8 py-2 font-poppins rounded-xl bg-stone-300 grid place-items-center ring-2 ring-stone-400 text-stone-400 hover:bg-stone-400 hover:text-stone-600  text-lg hover:ring-stone-600 dark:bg-stone-900 dark:ring-transparent dark:text-yellow-500 dark:hover:bg-yellow-400 dark:hover:text-stone-900 dark:hover:ring-stone-800 dark:hover:shadow-2xl dark:hover:shadow-yellow-500 hover:shadow-xl hover:shadow-stone-900'
+              className='w-3/4 px-6 py-2 font-poppins rounded-xl bg-stone-300 grid place-items-center ring-2 ring-stone-400 text-stone-400 hover:bg-stone-400 hover:text-stone-600 text-lg hover:ring-stone-600 dark:bg-stone-900 dark:ring-transparent dark:text-yellow-500 dark:hover:bg-yellow-400 dark:hover:text-stone-900 dark:hover:ring-stone-800 dark:hover:shadow-2xl dark:hover:shadow-yellow-500 hover:shadow-xl hover:shadow-stone-900 transition-full duration-300'
               to='/discover'
               onClick={() => {
                 console.log('navigating to exploring page..');
               }}
             >
               <span> Find something else to watch</span>
-              <div className='rounded-full w-[1.5rem] grid place-items-center h-[1.5rem] bg-stone-400 absolute bottom-0 right-16'>
+              {/* <div className='rounded-full w-[1.5rem] grid place-items-center h-[1.5rem] bg-stone-400 absolute bottom-0 right-16'>
                 {iconHelper.search('text-lg text-stone-700')}
-              </div>
+              </div> */}
             </Link>
           </div>
         )}
@@ -339,7 +339,7 @@ const TVMedia = () => {
           </p>
           <div className='flex xs:flex-row flex-col gap-2 justify-between text-stone-500 font-bold'>
             <ButtonComponent
-              className='uppercase  flex items-center gap-2 px-4 py-2 bg-stone-300 rounded-lg hover:bg-stone-200 dark:bg-amber-200 dark:hover:bg-amber-300'
+              className='uppercase  flex items-center gap-2 px-4 py-2 bg-stone-300 rounded-lg hover:bg-stone-200 dark:bg-amber-200 dark:hover:bg-amber-300 transition-full duration-200'
               onClick={() => setServerSource('2embed.to')}
             >
               {iconHelper.play('text-3xl')}
@@ -350,7 +350,7 @@ const TVMedia = () => {
               </div>
             </ButtonComponent>
             <ButtonComponent
-              className='uppercase px-4 py-2 bg-stone-300 rounded-lg flex items-center gap-2 hover:bg-stone-200 dark:bg-amber-200 dark:hover:bg-amber-300'
+              className='uppercase px-4 py-2 bg-stone-300 rounded-lg flex items-center gap-2 hover:bg-stone-200 dark:bg-amber-200 dark:hover:bg-amber-300 transition-full duration-200'
               onClick={() => setServerSource('2embed.org')}
             >
               {iconHelper.play('text-3xl')}
@@ -360,7 +360,7 @@ const TVMedia = () => {
               </div>
             </ButtonComponent>
             <ButtonComponent
-              className='uppercase  flex items-center gap-2 px-4 py-2 bg-stone-300 rounded-lg hover:bg-stone-200 dark:bg-amber-200 dark:hover:bg-amber-300'
+              className='uppercase  flex items-center gap-2 px-4 py-2 bg-stone-300 rounded-lg hover:bg-stone-200 dark:bg-amber-200 dark:hover:bg-amber-300 transition-full duration-200'
               onClick={() => setServerSource('vidsrc.me')}
             >
               {iconHelper.play('text-3xl')}
@@ -397,7 +397,7 @@ const TVMedia = () => {
                   media={media}
                   role='linkTVCard'
                   styles={{
-                    link: 'h-[22rem] w-[200px] overflow-hidden flex justify-center items-center flex-col relative shadow-lg rounded-xl shadow-stone-900 dark:shadow-yellow-900 bg-gradient-to-t from-stone-300 to-stone-200 dark:from-yellow-500 dark:to-yellow-500 dark:text-stone-900 dark:font-black',
+                    link: 'h-[22rem] w-[200px] overflow-hidden flex justify-center items-center flex-col relative shadow-lg rounded-xl shadow-stone-900 dark:shadow-yellow-900 bg-gradient-to-t from-stone-300 to-stone-200 dark:from-yellow-500 dark:to-yellow-500 dark:text-stone-900 dark:font-black transition-full duration-200',
                     image:'overflow-hidden  bg-gradient-to-tr  from-white  to-black  dark:from-stone-900 dark:to-yellow-500 grow',
                     size: (media as any).poster_path ? 'w400' : undefined,
                   }}
@@ -409,7 +409,7 @@ const TVMedia = () => {
           <div className='relative w-full flex md:flex-row flex-col h-[4rem] justify-center items-baseline gap-4 bg-stone-300 shadow-inner border-2 border-stone-400 font-poppins text-normal font-bold px-8 py-8 dark:bg-stone-900 dark:border-yellow-600'>
             <h1 className='text-stone-400 text-sm dark:text-yellow-500'>No movies or TV shows for this media</h1>
             <Link
-              className='w-3/4 px-8 py-2 font-poppins rounded-xl bg-stone-300 grid place-items-center ring-2 ring-stone-400 text-stone-400 hover:bg-stone-400 hover:text-stone-600  text-xl hover:ring-stone-600 dark:bg-stone-900 dark:ring-transparent dark:text-yellow-500 dark:hover:bg-yellow-400 dark:hover:text-stone-900 dark:hover:ring-stone-800'
+              className='w-3/4 px-6 py-2 font-poppins rounded-xl bg-stone-300 grid place-items-center ring-2 ring-stone-400 text-stone-400 hover:bg-stone-400 hover:text-stone-600 text-lg hover:ring-stone-600 dark:bg-stone-900 dark:ring-transparent dark:text-yellow-500 dark:hover:bg-yellow-400 dark:hover:text-stone-900 dark:hover:ring-stone-800 transition-full duration-300'
               to='/discover'
               onClick={() => {
                 console.log('navigating to exploring page..');
@@ -417,7 +417,7 @@ const TVMedia = () => {
             >
               <span> Find something else to watch</span>
               <div className='rounded-full w-[1.5rem] grid place-items-center h-[1.5rem] bg-stone-400 absolute bottom-0 -right-8 md:right-16'>
-                {iconHelper.search('text-lg text-stone-700')}
+                {/* {iconHelper.search('text-lg text-stone-700')} */}
               </div>
             </Link>
           </div>

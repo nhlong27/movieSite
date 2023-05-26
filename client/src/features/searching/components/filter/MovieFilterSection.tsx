@@ -35,7 +35,7 @@ const MovieFilterSection = () => {
               className={`rounded-xl ring-2 ring-stone-500 px-2 py-[2px] shadow-lg font-semibold text-stone-600  dark:ring-stone-900 ${
                 movieFiltersStore.with_genres?.has(genreObject[0]!)
                   ? 'bg-amber-200 dark:bg-stone-800  dark:text-lime-300'
-                  : 'bg-stone-200 dark:bg-amber-300 dark:text-stone-900'
+                  : 'bg-stone-200 dark:bg-amber-300 dark:text-stone-900 dark:hover:bg-amber-400'
               }`}
               onClick={() => movieFiltersStore.addGenres(genreObject[0]!)}
               key={genreObject[0]}

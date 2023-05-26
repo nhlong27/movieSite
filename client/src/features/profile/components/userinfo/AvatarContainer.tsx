@@ -90,9 +90,9 @@ const AvatarContainer = () => {
               width: '150px',
             }}
           />
-          <div className='flex items-center gap-4 justify-center divide-stone-400 divide-x-2 pt-4 h-[3rem] dark:divide-stone-800 px-4 text-sm'>
+          <div className='flex items-center gap-4 justify-center divide-stone-400 divide-x-2 pt-4 h-[3rem] dark:divide-stone-800 px-4 text-sm '>
             <ButtonComponent
-              className='flex gap-2 items-center hover:border-b-2 justify-center hover:border-stone-400 dark:hover:border-stone-800'
+              className='flex gap-2 items-center hover:border-b-2 justify-center hover:border-stone-400 dark:hover:border-stone-800 transition-full duration-75'
               onClick={handleUploadClick}
             >
               {iconHelper.upload('text-stone-700 text-xl')}
@@ -106,7 +106,7 @@ const AvatarContainer = () => {
               style={{ display: 'none' }}
             />
             <ButtonComponent
-              className='hover:border-b-2 hover:border-stone-400 dark:hover:border-stone-800 px-4'
+              className='hover:border-b-2 hover:border-stone-400 dark:hover:border-stone-800 px-4 transition-full duration-75'
               onClick={setToDefault}
             >
               Set default

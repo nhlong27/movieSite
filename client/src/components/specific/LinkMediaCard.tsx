@@ -118,7 +118,7 @@ const LinkMediaCard: React.FC<LinkMediaCardProps> = (props) => {
           </p>
         </div>
       </div>
-      <div className='absolute top-0 h-full w-full z-30 grid place-items-center hover:bg-stone-900  hover:bg-opacity-70 text-lg font-poppins font-black uppercase tracking-wider opacity-0 hover:opacity-100 text-stone-300 '>
+      <div className='absolute top-0 h-full w-full z-30 grid place-items-center hover:bg-stone-900  hover:bg-opacity-70 text-lg font-poppins font-black uppercase tracking-wider opacity-0 transition-full duration-200 hover:opacity-100 text-stone-300 '>
         Continue
       </div>
     </Link>

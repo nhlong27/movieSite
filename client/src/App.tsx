@@ -88,7 +88,7 @@ function App() {
     window.scrollTo(0, 0);
   }, [pathname]);
   return (
-    <div className='bg-stone-400 dark:bg-stone-900  min-h-dynamic-screen min-w-[300px] w-screen flex flex-col z-0'>
+    <div className='bg-stone-400 dark:bg-stone-900  min-h-dynamic-screen min-w-[300px] w-screen flex flex-col z-0 '>
       <LoadingBar
         height={4}
         color='#292524'
@@ -132,7 +132,7 @@ function App() {
       <ButtonComponent
         type='button'
         onClick={scrollToTop}
-        className={` z-40 bg-green-400 fixed bottom-16 max-w-[10rem] right-16 hover:bg-green-500 focus:ring-green-500 inline-flex items-center rounded-full p-3 text- shadow-sm transition-opacity focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+        className={`z-40 bg-green-400 fixed bottom-16 max-w-[10rem] right-16 hover:bg-green-500 focus:ring-green-500 inline-flex items-center rounded-full p-3 text- shadow-md transition-opacity focus:outline-none focus:ring-2 focus:ring-offset-2 ${
           isVisible ? 'opacity-100' : 'opacity-0'
         }`}
       >

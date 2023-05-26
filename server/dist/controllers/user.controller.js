@@ -16,17 +16,19 @@ const signUpHandler = async (req, res) => {
         const refreshToken = signJWT({ ...newUser, avatar: _ }, { expiresIn: '1y' }); //1 year
         res.cookie('accessToken', accessToken, {
             httpOnly: true,
-            // sameSite: 'strict',
-            //secure: true,
+            sameSite: 'none',
+            secure: true,
             //maxAge: 1000000,
             //signed: true
+            domain: process.env.DOMAIN,
         });
         res.cookie('refreshToken', refreshToken, {
             httpOnly: true,
-            // sameSite: 'strict',
-            //secure: true,
+            sameSite: 'none',
+            secure: true,
             //maxAge: 1000000,
             //signed: true
+            domain: process.env.DOMAIN,
         });
         return res.send(newUser);
     }
@@ -50,15 +52,15 @@ const signInHandler = async (req, res) => {
             secure: true,
             //maxAge: 1000000,
             //signed: true
-            domain: process.env.CLIENT,
+            domain: process.env.DOMAIN,
         });
         res.cookie('refreshToken', refreshToken, {
             httpOnly: true,
-            // sameSite: 'none',
-            // //secure: true,
+            sameSite: 'none',
+            secure: true,
             //maxAge: 1000000,
             //signed: true
-            domain: process.env.CLIENT,
+            domain: process.env.DOMAIN,
         });
         return res.send(user);
     }
@@ -69,8 +71,22 @@ const signInHandler = async (req, res) => {
 };
 const signOutHandler = async (req, res) => {
     try {
-        res.clearCookie('accessToken');
-        res.clearCookie('refreshToken');
+        res.clearCookie('accessToken', {
+            httpOnly: true,
+            sameSite: 'none',
+            secure: true,
+            //maxAge: 1000000,
+            //signed: true
+            domain: process.env.DOMAIN,
+        });
+        res.clearCookie('refreshToken', {
+            httpOnly: true,
+            sameSite: 'none',
+            secure: true,
+            //maxAge: 1000000,
+            //signed: true
+            domain: process.env.DOMAIN,
+        });
         return res.send('Sign out successfully.');
     }
     catch (e) {
@@ -85,8 +101,22 @@ const userDeactivateHandler = async (req, res) => {
         });
         if (!success)
             return res.status(401).send('Wrong confirmation password.');
-        res.clearCookie('accessToken');
-        res.clearCookie('refreshToken');
+        res.clearCookie('accessToken', {
+            httpOnly: true,
+            sameSite: 'none',
+            secure: true,
+            //maxAge: 1000000,
+            //signed: true
+            domain: process.env.DOMAIN,
+        });
+        res.clearCookie('refreshToken', {
+            httpOnly: true,
+            sameSite: 'none',
+            secure: true,
+            //maxAge: 1000000,
+            //signed: true
+            domain: process.env.DOMAIN,
+        });
         return res.send('Deactivate user successfully.');
     }
     catch (e) {

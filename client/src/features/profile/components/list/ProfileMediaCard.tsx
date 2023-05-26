@@ -54,7 +54,7 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
   };
 
   return (
-    <div className='w-[200px] rounded-xl shadow-sm shadow-stone-600 flex flex-col justify-center items-center bg-stone-200 dark:bg-amber-400 dark:shadow-yellow-900 dark:hover:shadow-md dark:hover:shadow-yellow-500 hover:shadow-md hover:shadow-stone-50'>
+    <div className='w-[200px] rounded-xl shadow-sm shadow-stone-600 flex flex-col justify-center items-center bg-stone-200 dark:bg-amber-400 dark:shadow-yellow-900 dark:hover:shadow-md dark:hover:shadow-yellow-500 hover:shadow-md hover:shadow-stone-50 transition-full duration-200'>
       <Link
         to={`/${media.title ? 'movie' : 'tv'}/${media.id}`}
         className='w-[200px] overflow-hidden flex items-center flex-col rounded-t-xl'
@@ -63,7 +63,7 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
           styles={{
             image:
               'overflow-hidden h-[18rem] bg-gradient-to-tr  from-white  to-black  dark:from-stone-900 dark:to-yellow-500 grow',
-            size: media?.poster_path ? 'original' : undefined,
+            size: media?.poster_path ? 'w200' : undefined,
           }}
           path={media?.poster_path ?? imageHelper.poster}
         />
@@ -84,11 +84,10 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
       <div className='py-4 w-full flex flex-col justify-start gap-4 items-center border-t-2 border-stone-500'>
         <ButtonComponent
           role='trueFalse'
-          className={`flex gap-2 items-center rounded-lg py-2 px-4 bg-stone-300 ring-2  text-base
-            hover:ring-stone-900 hover:text-stone-900 dark:bg-stone-900     dark:hover:ring-stone-800 dark:hover:text-stone-900 shadow-lg ${
+          className={`flex gap-2 items-center py-2 rounded-lg text-sm  ri shadow-xl px-4 font-bold  transition-full duration-200 bg-stone-700 hover:bg-stone-900 ${
               media?.isFavorited
-                ? 'text-stone-900 font-semibold bg-rose-500 dark:bg-rose-500'
-                : 'text-yellow-600 hover:bg-yellow-500 ring-yellow-600 dark:hover:bg-yellow-400 dark:text-yellow-50 dark:ring-transparent'
+                ? 'text-rose-300 hover:text-rose-400'
+                : ' text-white hover:text-stone-100'
             }`}
           onClick={() => {
             handleUpdateShow('isFavorited', { value: !isFavorited });
@@ -133,9 +132,9 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
           handleOnChange={(val: any) => handleUpdateShow('score', val)}
         />
 
-        <div className='w-full grid place-items-center border-t-2 border-stone-500 dark:bg-yellow-600 dark:hover:bg-amber-600 mt-8'>
+        <div className='w-full grid place-items-center border-t-2 border-stone-500 bg-gray-500 hover:bg-gray-600 mt-4 dark:text-stone-800 hover:text-stone-200 transition-full duration-200'>
           <ButtonComponent
-            className='flex py-4 px-4 gap-2 items-center rounded-lg dark:text-stone-800 hover:text-stone-600 '
+            className='flex py-2 px-4 gap-2 items-center rounded-lg  '
             role='delete'
             onClick={() => {
               deleteShowMutation.mutate(media.id);

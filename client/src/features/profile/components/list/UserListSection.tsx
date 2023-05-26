@@ -65,7 +65,7 @@ const UserListSection = () => {
       </div>
       <div className='flex justify-start w-full px-4 py-2 rounded-lg my-4 bg-stone-100 shadow-lg text-lg text-stone-600 gap-4 font-bold dark:bg-stone-900  dark:rounded-none dark:text-yellow-400 h-[4rem]'>
         <ButtonComponent className='' onClick={() => setShouldQueryDisplay((prev) => !prev)}>
-          <h1 className='flex px-4 py-2 text-base hover:bg-stone-300 rounded-xl gap-2 items-center dark:hover:bg-stone-900 dark:hover:text-yellow-300 dark:hover:shadow-yellow-200 dark:hover:shadow-sm'>
+          <h1 className='flex px-4 py-2 text-base hover:bg-stone-300 rounded-xl gap-2 items-center dark:hover:bg-stone-900 dark:hover:text-yellow-500 dark:shadow-yellow-200 transition-full duration-200 dark:shadow-sm dark:hover:shadow-none'>
             Search
             {iconHelper.next('text-2xl')}
           </h1>
@@ -95,7 +95,7 @@ const UserListSection = () => {
             setQueryTitle('');
           }}
         >
-          <h1 className='grid place-items-center hover:bg-stone-300 rounded-full w-[1.4rem] h-[1.4rem]'>
+          <h1 className='grid place-items-center hover:text-yellow-500 rounded-full w-[1.4rem] h-[1.4rem]'>
             {' '}
             {iconHelper.before('text-2xl')}
           </h1>

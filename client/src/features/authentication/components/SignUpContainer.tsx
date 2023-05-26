@@ -18,17 +18,17 @@ const SignUpContainer = ({
 
   return (
     <div className='w-full h-full p-4 flex flex-col justify-start items-center font-poppins bg-transparent'>
-      <div className='mb-[1rem] xs:mb-[2rem] text-center md:text-[3rem] text-[2rem] font-black tracking-wide leading-9 text-amber-50'>
+      <div className='mb-[1rem] xs:mb-[2rem] text-center md:text-[2.5rem] text-[2rem] font-black tracking-wide leading-9 text-amber-50'>
         <h1>Create a New Account</h1>
       </div>
       <FormComponent
         styles={{
-          form: 'md:w-3/5 w-11/12  mt-8 flex flex-col justify-center items-center',
-          input: 'w-full py-2 px-2 mt-2 text-stone-900 shadow-inner rounded-lg bg-white',
+          form: 'md:w-3/5 w-11/12  mt-4 flex flex-col justify-center items-center',
+          input: 'w-full py-2 px-4 mt-2 text-stone-900 shadow-inner rounded-lg outline-none focus:ring-2 focus:ring-stone-900 bg-white text-base',
           inputName:
-            'text-lg mt-8 block md:text-lg font-bold leading-6 text-stone-50 flex justify-start w-full ',
+            'text-lg mt-8 block md:text-lg font-semibold leading-6 text-white tracking-wider flex justify-start w-full ',
           button:
-            'ml-auto flex justify-center rounded-md bg-stone-900 px-6 py-3 px-6  text-lg leading-6 text-stone-50 shadow-lg mt-8 xs:mt-16 hover:bg-yellow-500 hover:text-stone-900 font-black',
+            'ml-auto flex justify-center rounded-lg bg-stone-900 py-2 px-5 text-lg leading-6 text-stone-50 shadow-lg mt-8 xs:mt-16 hover:bg-yellow-400 hover:text-stone-900 transition-full duration-200 hover:ring-2 hover:ring-stone-900 hover:font-semibold',
           reset: 'none',
         }}
         submitBn='Register'
@@ -56,19 +56,19 @@ const SignUpContainer = ({
           })
         }
         options={[
-          { extras: { type: 'text', placeholder: 'Username' }, name: 'name' },
-          { extras: { type: 'text', placeholder: 'Email' }, name: 'email' },
-          { extras: { type: 'password', placeholder: 'Password' }, name: 'password' },
+          { extras: { type: 'text', placeholder: 'John' }, name: 'name' },
+          { extras: { type: 'text', placeholder: 'John@gmail.com' }, name: 'email' },
+          { extras: { type: 'password', placeholder: '1234567' }, name: 'password' },
           {
             extras: { type: 'password', placeholder: 'Confirm Password' },
             name: 'passwordConfirmation',
           },
         ]}
       />
-      <div className='flex justify-center items-center w-3/4 px-4 mt-10 gap-4 font-bold text-center text-base  text-stone-900 bg-yellow-500 py-4 rounded-md'>
+      <div className='flex justify-center items-center w-11/12  md:w-3/5 px-4 mt-10 gap-4 md:font-semibold text-center text-base  text-stone-900 bg-yellow-500 py-3 shadow-lg  rounded-md'>
         <h2>Already has an account?</h2>
         <ButtonComponent
-          className='font-black leading-6 text-orange-700 hover:text-orange-600 text-lg '
+          className='md:font-black font-semibold leading-6 text-green-700 hover:text-green-600 text-lg '
           onClick={() => setShouldSignInDisplay(true)}
         >
           Sign In

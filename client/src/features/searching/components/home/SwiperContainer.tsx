@@ -37,7 +37,7 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
   const { isXs, is4k, isXl } = useMediaQueries();
   return isXs ? (
     <div
-      className={`z-20 w-full h-[20rem] overflow-x-clip ${
+      className={`z-20 w-full h-[20rem] 4k:h-[25rem] overflow-x-clip ${
         styles?.swiper ?? 'absolute bottom-0 left-0 right-0'
       }`}
     >
@@ -75,15 +75,15 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
                       link: `max-w-[calc(100%/var(--items-per-screen))] flex justify-center items-center flex-col flex-[0_0_calc(100%_/_var(--items-per-screen))] 
                       transition-all
                       ease-in-out
-                      duration-100 h-full shadow-lg shadow-stone-900 dark:shadow-yellow-900  overflow-hidden bg-gradient-to-t from-stone-300 to-stone-200 dark:from-yellow-500 dark:to-yellow-500 dark:text-stone-900 dark:font-black rounded-lg dark:hover:shadow-2xl dark:hover:shadow-yellow-500 hover:shadow-xl hover:shadow-stone-900`,
+                      duration-200 h-full shadow-lg shadow-stone-900 dark:shadow-yellow-900  overflow-hidden bg-gradient-to-t from-stone-300 to-stone-200 dark:from-yellow-500 dark:to-yellow-500 dark:text-stone-900 dark:font-black rounded-lg dark:hover:shadow-xl dark:hover:shadow-yellow-500 hover:shadow-xl hover:shadow-stone-900`,
                       image:
                         'overflow-hidden bg-gradient-to-tr  from-white  to-black  dark:from-stone-900 dark:to-yellow-500 grow ',
                       size: media.poster_path
                         ? is4k
-                          ? 'original'
-                          : isXl
                           ? 'w500'
-                          : 'w400'
+                          : isXl
+                          ? 'w300'
+                          : 'w200'
                         : undefined,
                     }}
                   />
@@ -98,7 +98,7 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
                     styles={{
                       button: `max-w-[calc(100%/var(--items-per-screen))] flex flex-col flex-[0_0_calc(100%_/_var(--items-per-screen))] transition-all
                       ease-in-out
-                      duration-500
+                      duration-200
                       h-full rounded-xl overflow-hidden bg-gradient-to-tr dark:shadow-yellow-900
                       shadow-lg from-stone-700 to-stone-500 dark:from-yellow-500 dark:to-yellow-500 dark:text-stone-900 dark:font-black 
                       flex flex-col items-center dark:hover:shadow-xl dark:hover:shadow-yellow-500 hover:shadow-xl hover:shadow-stone-900
@@ -116,10 +116,10 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
                         'overflow-hidden  bg-gradient-to-tr  from-white  to-black  dark:from-stone-900 dark:to-yellow-500 grow',
                       size: media.poster_path
                         ? is4k
-                          ? 'original'
-                          : isXl
                           ? 'w500'
-                          : 'w400'
+                          : isXl
+                          ? 'w300'
+                          : 'w200'
                         : undefined,
                     }}
                   />
@@ -186,7 +186,7 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
               width: '320px',
               detail:
                 'relative flex -mt-4 z-20 flex-col bg-stone-100 w-[300px] rounded-xl shadow-xl px-8 py-2 dark:bg-yellow-500',
-              size: data?.results[slideIndex].poster_path ? 'original' : undefined,
+              size: data?.results[slideIndex].poster_path ? 'w200' : undefined,
             }}
           />
         ) : null}

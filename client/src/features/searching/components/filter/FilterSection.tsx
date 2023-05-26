@@ -65,7 +65,7 @@ const FilterSection: React.FC = () => {
           </div>
         </ButtonComponent>
         {hasQueryFilters && (
-          <div className={` overflow-hidden w-full font-poppins `}>
+          <div className={`w-full font-poppins`}>
             <div className='flex justify-evenly py-4 text-lg font-semibold tracking-wide dark:border-b-2 dark:border-stone-800 dark:bg-amber-400'>
               <ButtonComponent
                 className={`${
