@@ -1,5 +1,5 @@
 import { Outlet, useLoaderData, useLocation } from 'react-router-dom';
-import React, { useRef } from 'react';
+import React from 'react';
 import { atom, useAtom } from 'jotai';
 import { appLoader } from './routes/router';
 import { search_queries } from './features/searching';
@@ -10,7 +10,7 @@ import { Toaster } from 'react-hot-toast';
 import { BiArrowFromBottom } from 'react-icons/bi';
 
 export const mediaTypeAtom = atom<'movie' | 'tv'>('movie');
-export const currentURLPathAtom = atom<'home' | 'discover' | 'profile'>('home');
+export const currentURLPathAtom = atom<string>('home');
 export const shouldDropdownDisplayAtom = atom<boolean>(false);
 export const hasQueryFiltersAtom = atom<boolean>(false);
 export const loadingBarProgress = atom<number>(0);
@@ -132,7 +132,9 @@ function App() {
       <ButtonComponent
         type='button'
         onClick={scrollToTop}
-        className={` z-40 bg-green-400 fixed bottom-16 max-w-[10rem] right-16 hover:bg-green-500 focus:ring-green-500 inline-flex items-center rounded-full p-3 text- shadow-sm transition-opacity focus:outline-none focus:ring-2 focus:ring-offset-2 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+        className={` z-40 bg-green-400 fixed bottom-16 max-w-[10rem] right-16 hover:bg-green-500 focus:ring-green-500 inline-flex items-center rounded-full p-3 text- shadow-sm transition-opacity focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+          isVisible ? 'opacity-100' : 'opacity-0'
+        }`}
       >
         <BiArrowFromBottom className='h-6 w-6' aria-hidden='true' />
       </ButtonComponent>

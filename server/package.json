@@ -1,7 +1,7 @@
 {
-  "name": "server",
+  "name": "@movie-site/server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Server for the movie site application",
   "main": "index.js",
   "type": "module",
   "scripts": {
