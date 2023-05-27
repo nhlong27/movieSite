@@ -16,21 +16,21 @@ const WatchHistorySection = () => {
     historyList?.filter((each) => each.status === 'Watching').length ?? 0 > 0 ? (
       <div className='relative w-full flex justify-center items-center bg-stone-200 py-4  ring-8 ring-offset-8 ring-offset-stone-300 ring-stone-400 dark:bg-stone-900 dark:ring-transparent dark:ring-offset-transparent dark:shadow-yellow-400 shadow-sm'>
         <div className='w-full flex flex-col relative items-center' ref={animationParentRef}>
-          <strong className='z-10 grow w-11/12 flex gap-4 font-poppins text-xl font-black tracking-[0.1rem] text-stone-600 uppercase py-2 dark:text-yellow-500 '>
+          <strong className='z-10 grow w-11/12 flex gap-4 font-poppins text-xl tracking-[0.1rem] text-stone-600 uppercase py-2 dark:text-yellow-500 '>
             Continue Watching
             <button
               className='rounded-lg bg-stone-300 px-2 hover:bg-stone-400 text-lg ml-auto dark:bg-stone-900'
               onClick={() => setShouldWatchHistoryDisplay((prev) => !prev)}
             >
               {shouldWatchHistoryDisplay ? (
-                <div className='flex gap-2 items-center'>
+                <div className='flex gap-2 font-normal items-center'>
                   Hide{' '}
                   <div className='ring-2 ring-stone-600 rounded-sm'>
                     {iconHelper.close('text-lg')}
                   </div>
                 </div>
               ) : (
-                <div className='flex gap-2 items-center'>
+                <div className='flex gap-2  font-normal items-center'>
                   Show
                   {iconHelper.open('text-xl')}
                 </div>
@@ -40,7 +40,7 @@ const WatchHistorySection = () => {
           {shouldWatchHistoryDisplay && (
             <SwiperContainer
               styles={{
-                swiper: 'bg-opacity-0 relative z-20 w-full h-[24rem] overflow-hidden bg-stone-400 shadow-inner dark:bg-stone-900',
+                swiper: 'bg-opacity-0 relative z-20 w-full h-[18rem] overflow-hidden bg-stone-400 shadow-inner dark:bg-stone-900',
               }}
               sliderName='slider7'
               data={{

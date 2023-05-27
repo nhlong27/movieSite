@@ -41,7 +41,7 @@ const UserListSection = () => {
   const [animationParentRef] = useAutoAnimate();
 
   return mediaList ? (
-    <div className='md:row-start-1 md:col-start-1 md:col-span-3 w-full flex flex-col items-center min-h-screen bg-stone-200 rounded-xl shadow-xl py-4 px-4 font-poppins dark:bg-stone-900'>
+    <div className='lg:row-start-1 lg:col-start-1 lg:col-span-3 w-full flex flex-col items-center min-h-screen bg-stone-200 rounded-xl shadow-xl py-4 px-4 font-poppins dark:bg-stone-900'>
       <div className='ml-0 flex w-full uppercase text-xl font-black tracking-[0.1rem] text-stone-500 py-2 border-b-2 border-stone-300 dark:text-yellow-500 dark:border-yellow-500'>
         My List
       </div>
@@ -126,7 +126,7 @@ const UserListSection = () => {
         ) : (
           <div
             ref={animationParentRef}
-            className='grow grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 4k:grid-cols-6 place-content-start place-items-center w-full gap-y-4 2xl:gap-4 py-8'
+            className='grid grid-cols-1 md:grid-cols-3 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5 4k:grid-cols-6 place-items-center w-full gap-4 2xl:gap-4 min-h-screen  place-content-start bg-stone-200 rounded-b-xl shadow-xl py-4 dark:bg-stone-900'
           >
             {listFilters[`${listFilter}`](
               mediaList!.sort((a, b) => {
@@ -162,7 +162,7 @@ const UserListSection = () => {
   ) : (
     <div className='md:row-start-1 md:col-start-1 md:col-span-3 w-full flex flex-col items-center min-h-screen bg-stone-200 dark:bg-stone-900'>
       <div className='w-full h-[2rem]'></div>
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 4k:grid-cols-6 place-content-start place-items-center w-full gap-y-4 2xl:gap-4 grow'>
+      <div className='grid grid-cols-1 md:grid-cols-3 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5 4k:grid-cols-6 place-items-center w-full gap-4 2xl:gap-4 min-h-screen  place-content-start bg-stone-200 rounded-b-xl shadow-xl py-4 dark:bg-stone-900'>
         {Array(20)
           .fill('')
           .map((media, index) => (

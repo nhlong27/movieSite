@@ -20,7 +20,7 @@ const ResultSection = () => {
   return (
     <div
       ref={animationParentRef}
-      className='md:row-start-1 md:col-start-1 md:col-span-3 w-full flex flex-col'
+      className='lg:row-start-1 lg:col-start-1 lg:col-span-3 w-full flex flex-col'
     >
       <ButtonComponent
         className='flex font-poppins text-lg font-black tracking-[0.1rem] text-stone-600 px-8 items-center gap-4 bg-stone-200 rounded-t-xl py-4 border-b-4 border-stone-400 shadow-xl dark:bg-stone-900 dark:border-yellow-600 dark:text-yellow-500'

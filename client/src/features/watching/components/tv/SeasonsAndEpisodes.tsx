@@ -94,7 +94,7 @@ const SeasonsAndEpisodes: React.FC<SeasonsAndEpisodesProps> = (props) => {
                     setSeasonAndEpisode((prev) => ({ ...(prev ?? {}), episode: episodeIndex + 1 }));
                     options?.ref.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
                   }}
-                  className={` w-[300px] h-[14rem] rounded-lg overflow-hidden flex flex-col  relative shadow-sm bg-stone-200 dark:bg-stone-900 dark:shadow-yellow-500 ${
+                  className={`max-w-[300px] min-w-[200px] max-h-[14rem] h-auto rounded-lg overflow-hidden flex flex-col  relative shadow-sm bg-stone-200 dark:bg-stone-900 dark:shadow-yellow-500 ${
                     seasonAndEpisode?.episode === episodeIndex + 1
                       ? 'bg-stone-900 ring-4 dark:bg-yellow-400 dark:bg-opacity-70 dark:ring-transparent text-white dark:text-stone-900 ring-stone-700'
                       : 'dark:text-yellow-400 text-stone-900'
@@ -105,7 +105,7 @@ const SeasonsAndEpisodes: React.FC<SeasonsAndEpisodesProps> = (props) => {
                     path={episode?.still_path ?? episode}
                     styles={{
                       image:
-                        'w-[300px]  overflow-hidden bg-gradient-to-tr from-stone-900 to-stone-700  grow dark:to-yellow-500',
+                        'max-w-[300px] h-auto min-w-[200px] overflow-hidden bg-gradient-to-tr from-stone-900 to-stone-700  grow dark:to-yellow-500',
                       size: episode?.still_path ? 'w300' : undefined,
                     }}
                   />

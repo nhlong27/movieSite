@@ -61,7 +61,7 @@ const MediaActions: React.FC<MediaActionsProps> = (props) => {
     );
   } else
     return (
-      <div className={`w-2/3 text-stone-200 py-4 flex gap-4 items-center ${styles?.others}`}>
+      <div className={`w-full text-stone-200 py-4 flex gap-4 items-center ${styles?.others}`}>
         {shouldMediaActionsModalDisplay ? (
           <MediaActionModalComponent cancelFunction={setShouldMediaActionsModalDisplay} />
         ) : null}
@@ -142,7 +142,7 @@ function DefaultOtherActionsComponent({ styles }: { styles?: Record<string, any>
   const [shouldMediaActionsModalDisplay, setShouldMediaActionsModalDisplay] = React.useState(false);
 
   return (
-    <div className={`w-2/3 text-stone-200 py-4 flex gap-4 items-center ${styles?.others}`}>
+    <div className={`w-full text-stone-200 py-4 flex gap-4 items-center ${styles?.others}`}>
       {shouldMediaActionsModalDisplay ? (
         <MediaActionModalComponent cancelFunction={setShouldMediaActionsModalDisplay} />
       ) : null}

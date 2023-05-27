@@ -58,16 +58,16 @@ const MediaActionModalComponent: React.FC<MediaActionModalComponentProps> = (pro
                 </div>
                 <div className='mt-3 grow text-center sm:ml-4 sm:mt-0 sm:text-left'>
                   <h3
-                    className='text-2xl font-semibold leading-6 text-stone-900 tracking-[0.1rem] dark:text-lime-400'
+                    className='text-xl font-semibold leading-6 text-stone-900 tracking-[0.1rem] dark:text-lime-400'
                     id='modal-title'
                   >
                     Update media
                   </h3>
                   <div className='mt-4'>
-                    <p className='text-lg text-stone-900 dark:text-stone-100'>
+                    <p className='text-base text-stone-900 dark:text-stone-100'>
                       You can always change this later in your profile lists.
                     </p>
-                    <div className='mt-4 w-5/6 text-lg dark:text-stone-50 text-stone-900 font-black pt-4'>
+                    <div className='mt-4 w-5/6 text-base dark:text-stone-50 text-stone-900 pt-4 flex justify-center items-start pl-4 flex-col'>
                       <div className='flex gap-4 items-center h-[4rem]'>
                         <span>Add to list</span>
                         <SelectComponent
@@ -77,7 +77,7 @@ const MediaActionModalComponent: React.FC<MediaActionModalComponentProps> = (pro
                             { value: 'Dropped', label: 'Dropped' },
                           ]}
                           name={'status'}
-                          className='bg-stone-50 rounded-sm w-[10rem]  text-stone-900 my-4'
+                          className='bg-stone-50 rounded-sm w-[10rem] text-stone-900 my-4'
                           placeholder={serverMedia?.status ?? 'Add status'}
                           extras={{ isSearchable: false, isClearable: true }}
                           handleOnChange={(val: any) => handleMediaUpdate('status', val)}
@@ -157,10 +157,7 @@ const NotSignedInDefaultComponent = ({
 }) => {
   return (
     <div
-      className='relative font-poppins z-30'
-      aria-labelledby='modal-title'
-      role='dialog'
-      aria-modal='true'
+      className='relative font-poppins z-50'
     >
       <div className='fixed inset-0 bg-stone-700 dark:bg-stone-900 dark:bg-opacity-75 bg-opacity-75 transition-opacity'></div>
       <div className='fixed inset-0 z-10 overflow-y-auto'>
@@ -168,9 +165,9 @@ const NotSignedInDefaultComponent = ({
           <div className='relative transform overflow-hidden rounded-lg bg-stone-200 text-left shadow-sm transition-all sm:my-8 sm:w-full sm:max-w-lg dark:bg-stone-900 dark:shadow-yellow-500 shadow-stone-50'>
             <div className='bg-stone-200 px-4 pb-4 pt-5 sm:p-8 sm:pr-8 sm:pl-8 sm:pb-4 dark:bg-stone-900'>
               <div className='sm:flex sm:items-start'>
-                <div className='mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 dark:bg-rose-300 sm:mx-0 sm:h-10 sm:w-10'>
+                <div className='mx-auto flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-red-100 dark:bg-rose-300 sm:mx-0 sm:h-10 sm:w-10'>
                   <svg
-                    className='h-8 w-8 text-red-600'
+                    className='h-6 w-6 text-red-600'
                     fill='none'
                     viewBox='0 0 24 24'
                     strokeWidth='1.5'
@@ -186,30 +183,30 @@ const NotSignedInDefaultComponent = ({
                 </div>
                 <div className='mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left'>
                   <h3
-                    className='text-2xl font-semibold leading-6 text-stone-900 dark:text-stone-100 tracking-wider'
+                    className='text-xl font-semibold leading-6 text-stone-900 dark:text-stone-100 tracking-wider'
                     id='modal-title'
                   >
                     You need an account
                   </h3>
                   <div className='mt-4'>
-                    <p className='text-lg text-stone-500 dark:text-stone-100'>
+                    <p className='text-base text-stone-500 dark:text-stone-100'>
                       An account lets you favorite, rate or add to lists. e.g. 'Plan to Watch'.
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-            <div className='bg-stone-300 px-4 py-4 sm:py-6 mt-4 gap-4 flex sm:gap-0 sm:px-8 w-full justify-end dark:bg-stone-700'>
+            <div className='bg-stone-300 px-4 py-4 sm:py-6 mt-4 gap-4 flex sm:gap-0 sm:px-8 w-full items-center justify-end dark:bg-stone-700'>
               <ButtonComponent
                 onClick={() => cancelFunction(false)}
                 type='button'
-                className='ml-auto mt-3 inline-flex w-full justify-center rounded-md bg-stone-100 px-6 py-2 text-base text-gray-900 shadow-sm ring-1 ring-inset ring-stone-300 hover:bg-stone-50 sm:mt-0 sm:w-auto'
+                className='ml-auto inline-flex justify-center rounded-md bg-stone-100 hover:bg-stone-200 px-6 py-2 text-base text-stone-800 hover:text-stone-900 shadow-sm  sm:mt-0 sm:w-auto'
               >
                 Back
               </ButtonComponent>
               <Link
                 to='/profile'
-                className='inline-flex w-full justify-center rounded-md bg-blue-600 px-6 py-2 text-base tracking-wider font-semibold text-stone-100 shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto'
+                className='inline-flex h-[2.5rem] md:h-[2.6rem] justify-center rounded-md bg-blue-500 px-6 py-2 text-base tracking-wider font-semibold text-stone-100 hover:text-stone-200 shadow-sm hover:bg-blue-600 sm:ml-3 sm:w-auto'
               >
                 Sign in
               </Link>

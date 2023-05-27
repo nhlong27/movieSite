@@ -8,9 +8,9 @@ import { mediaTypeConfig } from '../../queries';
 const MovieFilterSection = () => {
   const movieFiltersStore = useMovieFiltersStore();
   return (
-    <div className='w-full min-h-screen flex flex-col justify-start items-center dark:bg-yellow-500'>
-      <div className='w-full text-base text-stone-400 font-normal px-4 py-2 mt-4 dark:text-stone-900  dark:border-b-2 dark:border-stone-500'>
-        <span className='pl-2 border-l-4 text-lg border-stone-800 font-bold '>Status</span>
+    <div className='w-full lg:min-h-screen flex flex-col justify-start items-center dark:bg-stone-800'>
+      <div className='w-full text-base text-stone-400 font-normal px-4 py-2 mt-4 dark:text-yellow-400  dark:border-b-2 dark:border-none'>
+        <span className='pl-2 border-l-4 text-lg border-stone-800  '>Status</span>
         <SelectComponent
           options={[
             { value: 'popularity.desc', label: 'Most popular' },
@@ -25,17 +25,17 @@ const MovieFilterSection = () => {
           handleOnChange={(val: any) => movieFiltersStore.addSortBy(val?.value)}
         />
       </div>
-      <div className='w-full text-base text-stone-400 font-normal px-4 py-2 pb-8 dark:text-stone-900  dark:border-b-2 dark:border-stone-500 mt-4'>
-        <h1 className='pl-2 border-l-4 text-lg border-stone-800 font-bold'>
+      <div className='w-full text-base text-stone-400 font-normal px-4 py-2 pb-8 dark:text-yellow-400  dark:border-b-2 dark:border-none mt-4'>
+        <h1 className='pl-2 border-l-4 text-lg border-stone-800 '>
           Genres
         </h1>
-        <div className='mt-4 w-full py-4 px-2 flex-wrap flex shadow-inner gap-4 rounded-xl ring-2 ring-stone-400 bg-stone-300 dark:bg-amber-400  dark:ring-stone-900'>
+        <div className='mt-4 w-full py-4 px-2 flex-wrap flex shadow-inner gap-4 rounded-xl ring-2 ring-stone-400 bg-stone-300 dark:bg-stone-700  dark:ring-stone-900'>
           {[...(mediaTypeConfig.movie.discover.paramList.with_genres ?? [])].map((genreObject) => (
             <ButtonComponent
               className={`rounded-xl ring-2 ring-stone-500 px-2 py-[2px] shadow-lg font-semibold text-stone-600  dark:ring-stone-900 ${
                 movieFiltersStore.with_genres?.has(genreObject[0]!)
                   ? 'bg-amber-200 dark:bg-stone-800  dark:text-lime-300'
-                  : 'bg-stone-200 dark:bg-amber-300 dark:text-stone-900 dark:hover:bg-amber-400'
+                  : 'bg-stone-200 dark:bg-stone-500 dark:text-stone-900 dark:hover:bg-stone-600'
               }`}
               onClick={() => movieFiltersStore.addGenres(genreObject[0]!)}
               key={genreObject[0]}
@@ -45,8 +45,8 @@ const MovieFilterSection = () => {
           ))}
         </div>
       </div>
-      <div className='w-full text-base text-stone-400 font-normal px-4 py-2 dark:text-stone-900  dark:border-b-2 dark:border-stone-500 mt-4'>
-        <h1 className='pl-2 border-l-4 text-lg border-stone-800 font-bold'>From year</h1>
+      <div className='w-full text-base text-stone-400 font-normal px-4 py-2 dark:text-yellow-400  mt-4'>
+        <h1 className='pl-2 border-l-4 text-lg border-stone-800 '>From year</h1>
         <SelectComponent
           options={[
             ...Array.from(

@@ -11,9 +11,9 @@ const ListFilters = ({
 }) => {
   return (
     <div className='flex flex-col w-full md:justify-between items-center '>
-      <div className='flex flex-wrap md:flex-row w-full gap-4 md:mt-0 border-b-2 border-stone-300 py-4 dark:border-yellow-500'>
+      <div className='flex flex-wrap md:flex-row w-full gap-4 md:mt-0 pt-4'>
         <ButtonComponent
-          className={` py-2 rounded-lg mt-4 text-sm   dark:ring-transparent shadow-xl px-4 font-bold  transition-full duration-200 bg-stone-700 text-amber-300 hover:text-amber-400 hover:bg-stone-800 ${
+          className={`py-2 rounded-lg mt-4 text-sm   dark:ring-transparent shadow-xl px-4 font-bold  transition-full duration-200 bg-stone-700 text-amber-300 hover:text-amber-400 hover:bg-stone-800 ${
             listFilter === 'All' ? 'text-lime-400 bg-stone-800' : ''
           }`}
           onClick={() => setListFilter('All')}
@@ -31,7 +31,7 @@ const ListFilters = ({
           Favorited
         </ButtonComponent>
       </div>
-      <div className={`flex md:flex-row w-full flex-wrap gap-4 py-4 border-b-2 border-stone-300 dark:border-yellow-500 ${listFilter === 'isFavorited' ? 'opacity-50' : 'opacity-100'}`}>
+      <div className={`flex md:flex-row w-full flex-wrap gap-4 py-4 ${listFilter === 'isFavorited' ? 'opacity-50' : 'opacity-100'}`}>
         <ButtonComponent
           className={` py-2 rounded-lg mt-4 text-sm   dark:ring-transparent shadow-xl px-4 font-bold  transition-full duration-200 bg-stone-700 text-amber-300 hover:text-amber-400 hover:bg-stone-800 ${
             listFilter === 'Watching' ? 'text-lime-400 bg-stone-800' : ''

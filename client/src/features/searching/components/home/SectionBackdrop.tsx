@@ -9,7 +9,7 @@ const SectionBackdrop = ({ mediaType, section }: { mediaType?: string; section?:
   const sectionBackdropItemStore = useSectionBackdropItemsStore();
   const sectionBackdropItem = sectionBackdropItemStore.getSectionBackdropItem(section!);
   return (
-    <div className=' absolute aspect-[18/9] top-0 w-full flex z-0 items-top overflow-hidden'>
+    <div className='absolute lg:aspect-[18/9] hidden lg:visible  top-0 w-full lg:flex z-0 items-top overflow-hidden'>
       <LazyLoadImageComponent
         path={sectionBackdropItem?.backdrop_path ?? imageHelper.backdrop}
         styles={{

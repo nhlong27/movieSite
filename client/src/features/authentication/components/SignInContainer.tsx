@@ -29,7 +29,7 @@ const SignInContainer = ({
           inputName:
             'text-lg mt-8 block md:text-lg font-semibold leading-6 text-white tracking-wider flex justify-start w-full ',
           button:
-            'ml-auto flex justify-center rounded-lg bg-stone-900 px-5 py-2 px-6 transition-full duration-200  text-lg leading-6 text-white shadow-lg mt-8 xs:mt-16 hover:bg-yellow-400 hover:text-stone-900 hover:ring-2 hover:ring-stone-900 hover:font-semibold',
+            'ml-auto mt-12 py-3 px-4 rounded-lg mt-4 text-sm   bg-stone-700 dark:ring-transparent shadow-xl text-white px-4 dark:hover:text-stone-100 dark:hover:bg-stone-900 transition-full duration-200',
           reset: 'none',
         }}
         submitBn='Sign In'
@@ -65,7 +65,7 @@ const SignInContainer = ({
       <div className=' flex justify-center items-center w-11/12 md:w-3/4 px-4 mt-10 gap-4 md:font-semibold text-center text-base text-stone-900 bg-yellow-500 py-3 rounded-md shadow-lg'>
         <h2>Not a member?</h2>
         <ButtonComponent
-          className='md:font-black font-semibold leading-6 text-green-700 hover:text-green-600 text-lg'
+          className='leading-6 text-green-700 hover:text-green-600 text-lg'
           onClick={() => setShouldSignInDisplay(false)}
         >
           Create a new account
