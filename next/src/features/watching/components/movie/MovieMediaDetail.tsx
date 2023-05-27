@@ -10,10 +10,10 @@ const MovieMediaDetail= () => {
 
   const [animationParentRef] = useAutoAnimate();
 
-  return data ? (
+  return (
     <div ref={animationParentRef}>
       <h1 className='truncate font-poppins font-black text-2xl  tracking-wide py-4 md:text-3xl md:uppercase text-yellow-300'>
-        {(data as MovieDetailType)?.title}
+        {(data as MovieDetailType).title}
       </h1>
     
       <div className='flex justify-start gap-4 flex-wrap text-lg py-4 md:py-0'>
@@ -27,7 +27,7 @@ const MovieMediaDetail= () => {
         ))}
       </div>
       <div className='text-base font-bold flex items-center py-4 text-white'>
-        <p className='md:text-base'>{(data as MovieDetailType)?.release_date}</p>
+        <p className='md:text-base'>{(data as MovieDetailType).release_date}</p>
         <div className='ml-16 flex items-center rounded-lg tracking-[0.2rem] dark:bg-stone-900 px-2 py-[4px]'>
           <svg
             aria-hidden='true'
@@ -45,33 +45,33 @@ const MovieMediaDetail= () => {
         </div>
       </div>
       <p className='text-white mb-2 md:text-lg border-l-4 border-yellow-500 pl-4 py-4'>
-        {(data as MovieDetailType)?.overview}
+        {(data as MovieDetailType).overview}
       </p>
 
       <div className='border-t-4 border-stone-300 pl-8 md:mt-0 md:border-0 py-4 mt-8 grid grid-cols-4 gap-x-16 md:gap-x-8 gap-y-4 text-sm text-white md:text-base md:gap-y-0'>
         <h3 className='col-span-1 '>Language</h3>
         <p className='col-start-2 col-span-3'>
-          {(data as MovieDetailType)?.original_language === 'en'
+          {(data as MovieDetailType).original_language === 'en'
             ? 'English'
-            : (data as MovieDetailType)?.original_language ?? 'No information'}
+            : (data as MovieDetailType).original_language ?? 'No information'}
         </p>
         <h3 className='col-span-1 '>Duration</h3>
         <p className='col-start-2 col-span-3'>
-          {(data as MovieDetailType)?.runtime
-            ? (data as MovieDetailType)?.runtime + 'min'
+          {(data as MovieDetailType).runtime
+            ? (data as MovieDetailType).runtime + 'min'
             : 'No information'}
         </p>
 
         <h3 className='col-span-1 '>Budget</h3>
         <p className='col-start-2 col-span-3'>
-          {(data as MovieDetailType)?.budget
-            ? Math.floor((data as MovieDetailType)?.budget! / 1000000) + 'mil'
+          {(data as MovieDetailType).budget
+            ? Math.floor((data as MovieDetailType).budget! / 1000000) + 'mil'
             : 'No information'}
         </p>
         <h3 className='col-span-1 '>Revenue</h3>
         <p className='col-start-2 col-span-3'>
-          {(data as MovieDetailType)?.revenue
-            ? Math.floor((data as MovieDetailType)?.revenue! / 1000000) + 'mil'
+          {(data as MovieDetailType).revenue
+            ? Math.floor((data as MovieDetailType).revenue! / 1000000) + 'mil'
             : 'No information'}
         </p>
         <h3 className='col-span-1'>Status</h3>
@@ -101,7 +101,7 @@ const MovieMediaDetail= () => {
         </ul>
       </div>
     </div>
-  ) : <div>loading</div>
+  );
 };
 
 export default MovieMediaDetail;

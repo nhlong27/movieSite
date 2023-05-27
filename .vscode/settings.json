@@ -3,5 +3,9 @@
   "editor.formatOnSave": true,
   "editor.formatOnPaste": false,
   // Runs Prettier, then ESLint
-  "editor.codeActionsOnSave": ["source.formatDocument", "source.fixAll.eslint"]
+  "editor.codeActionsOnSave": [
+    "source.formatDocument",
+    "source.fixAll.eslint"
+  ],
+  "files.autoSave": "afterDelay"
 }
