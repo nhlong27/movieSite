@@ -9,6 +9,7 @@ import { FilteredMovieListType, FilteredTVListType } from '../../types';
 import { Link } from 'react-router-dom';
 import { undefined } from 'zod';
 import { iconHelper } from '@/config/icons';
+import { handleOnDown, handleOnMove, handleOnUp } from '@/utils/imageTrack';
 
 interface SwiperContainerProps {
   sectionName?: 'trending' | 'comingSoon' | 'airing' | 'popular' | 'top_rated' | 'history';
@@ -22,10 +23,6 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
 
   const [slideIndex, setSlideIndex] = React.useState(0);
   const sectionBackdropItems = useSectionBackdropItemsStore();
-
-  const sectionBackdropItem = sectionName
-    ? sectionBackdropItems.getSectionBackdropItem(sectionName)
-    : null;
 
   const handleClick = () => {
     const slider = document.querySelector(`.${sliderName}`) as HTMLElement;
@@ -54,6 +51,9 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
           {iconHelper.before()}
         </ButtonComponent>
         <div
+          id='image-track'
+          data-mouse-down-at='0'
+          data-prev-percentage='0'
           className={`w-full gap-x-custom-x-max-normal absolute bottom-0 flex slider ml-20 -translate-x-[(calc(var(--slider-index)*(100%/var(--items-per-screen)*(var(--items-per-screen)-1))))] h-full transition-transform duration-500 ${sliderName}`}
         >
           {data?.results?.map((media: MovieType | TVType, index: number) => {
@@ -99,7 +99,7 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
                     }}
                     media={media}
                     styles={{
-                      button: `transition-all
+                      button: ` transition-all
                       ease-in-out
                       duration-300
                       h-full rounded-xl overflow-hidden bg-gradient-to-t 
@@ -192,7 +192,7 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
                 ' rounded-xl shadow-xl  overflow-hidden  bg-gradient-to-tr  from-white  to-black  dark:from-stone-900 dark:to-yellow-500 grow',
               detail:
                 'flex flex-col pb-2 absolute z-30 inset-0 bg-gradient-to-t from-stone-900 to-transparent px-4',
-              size: data?.results[slideIndex].poster_path ? 'w400' : undefined,
+              size: data?.results[slideIndex].poster_path ? 'w500' : undefined,
             }}
           />
         ) : null}

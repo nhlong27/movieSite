@@ -10,6 +10,7 @@ import {
   AiOutlineSearch,
   AiFillHeart,
   AiFillGithub
+  , AiFillLinkedin
 } from 'react-icons/ai';
 import { BsTrash, BsPlayFill, BsListNested, BsFacebook } from 'react-icons/bs';
 import { FaListUl, FaSignOutAlt } from 'react-icons/fa';
@@ -60,4 +61,5 @@ export const iconHelper: Record<string, Function> = {
   trash: (className: string) => <BsTrash className={className} />,
   github: (className: string) => <AiFillGithub className={className} />,
   facebook: (className: string) => <BsFacebook className={className} />,
+  linkedin: (className: string) => <AiFillLinkedin className={className} />,
 };
