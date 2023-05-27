@@ -54,7 +54,7 @@ const FormComponent: React.FC<FormComponentProps> = (props) => {
           );
         })}
         <div className='flex justify-between items-center w-full'>
-          {!props.styles?.reset && <ButtonComponent className='text-stone-400 dark:text-stone-700' onClick={() => reset()}>
+          {!props.styles?.reset && <ButtonComponent className='text-stone-400 dark:text-stone-500' onClick={() => reset()}>
             Reset
           </ButtonComponent>}
           <ButtonComponent className={props.styles?.button} type='submit'>

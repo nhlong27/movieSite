@@ -2,7 +2,7 @@ import React from 'react';
 
 const Ratings = ({rating} : {rating: number}) => {
   return (
-    <ul className='flex justify-center'>
+    <ul className='flex justify-center w-full'>
       {Array(10)
         .fill('')
         .map((each, index) => (
@@ -13,7 +13,7 @@ const Ratings = ({rating} : {rating: number}) => {
               viewBox='0 0 24 24'
               strokeWidth='1.5'
               stroke='currentColor'
-              className='mr-1 h-8 w-8 text-warning text-amber-400'
+              className='mr-1 md:h-8 md:w-8 w-6 h-6 text-warning text-amber-400'
             >
               <path
                 strokeLinecap='round'

@@ -18,22 +18,22 @@ const FilterSection: React.FC = () => {
   const [_, setQuery] = useAtom(queryAtom);
 
   return (
-    <div className='order-first px-2 col-start-1 md:col-start-4 h-auto'>
+    <div className='order-first px-2 col-start-1 lg:col-start-4 h-auto'>
       <div
         ref={animationParentRef}
-        className='h-auto w-full flex flex-col rounded-xl bg-stone-200 dark:bg-yellow-500 justify-start items-center font-poppins shadow-xl'
+        className='h-auto lg:w-full w-3/4 mx-auto flex flex-col rounded-xl bg-stone-200 dark:bg-transparent justify-start items-center font-poppins shadow-xl'
       >
         {!hasQueryFilters && (
-          <div className=' bg-stone-300 w-full rounded-xl dark:bg-yellow-500'>
-            <h1 className='text-lg border-b-2 border-stone-500  dark:border-yellow-600 text-yellow-700 font-bold tracking-wider px-4 py-2 dark:text-stone-900'>
+          <div className=' bg-stone-300 w-full rounded-xl dark:bg-transparent'>
+            <h1 className='text-lg border-b-2 border-stone-500  dark:border-yellow-500 text-yellow-700 font-bold tracking-wider px-4 py-2 dark:text-yellow-400'>
               Previous searches
             </h1>
-            <ul className=' bg-yellow-400 shadow-inner'>
+            <ul className=' bg-transparent shadow-inner'>
               {JSON.parse(localStorage.getItem('queries') ?? JSON.stringify([]))
                 .reverse()
                 .map((query: string | undefined, index: number) => (
                   <li
-                    className='cursor-pointer font-bold tracking-wide text-stone-500 hover:bg-stone-500 pl-4 hover:text-stone-300 dark:text-stone-700 py-2 dark:hover:bg-yellow-500'
+                    className='cursor-pointer font-bold tracking-wide text-stone-500 hover:bg-stone-500 pl-4 hover:text-stone-300 dark:text-stone-300 py-2 dark:hover:text-stone-500 dark:hover:bg-transparent'
                     key={index}
                     onClick={(e) => {
                       handleQueryInput(e.currentTarget.innerText);
@@ -66,12 +66,12 @@ const FilterSection: React.FC = () => {
         </ButtonComponent>
         {hasQueryFilters && (
           <div className={`w-full font-poppins`}>
-            <div className='flex justify-evenly py-4 text-lg font-semibold tracking-wide dark:border-b-2 dark:border-stone-800 dark:bg-amber-400'>
+            <div className='flex justify-evenly py-4 text-lg font-semibold tracking-wide dark:border-b-2 dark:border-stone-800 dark:bg-stone-800'>
               <ButtonComponent
                 className={`${
                   mediaType === 'movie'
-                    ? 'border-b-4 border-stone-500 text-stone-600 bg-amber-100 dark:bg-stone-900 dark:text-yellow-500 dark:border-none'
-                    : 'text-stone-500 dark:text-stone-900'
+                    ? 'border-b-4 border-stone-500 text-stone-600 bg-amber-100 dark:bg-stone-700 dark:text-yellow-400 dark:border-none'
+                    : 'text-stone-500 dark:text-stone-300 dark:bg-stone-600'
                 } px-8 py-2 transition-all duration-500 rounded-sm`}
                 onClick={() => {
                   setMediaType('movie');
@@ -83,8 +83,8 @@ const FilterSection: React.FC = () => {
               <ButtonComponent
                 className={`${
                   mediaType === 'tv'
-                    ? 'border-b-4 border-stone-500 text-stone-600 bg-amber-100 dark:bg-stone-900  dark:text-yellow-500 dark:border-none'
-                    : 'text-stone-500 dark:text-stone-900'
+                    ? 'border-b-4 border-stone-500 text-stone-600 bg-amber-100 dark:bg-stone-700 dark:text-yellow-400 dark:border-none'
+                    : 'text-stone-500 dark:text-stone-300 dark:bg-stone-600'
                 } px-8 py-2 transition-all duration-500 rounded-sm`}
                 onClick={() => {
                   setMediaType('tv');
@@ -98,7 +98,7 @@ const FilterSection: React.FC = () => {
           </div>
         )}
         {!hasQueryFilters && (
-          <div className='h-auto w-full overflow-hidden'>
+          <div className='h-auto w-full hidden lg:flex overflow-hidden'>
             <img src={imageHelper.background2} alt='background' className='object-cover' />
           </div>
         )}

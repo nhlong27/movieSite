@@ -30,9 +30,9 @@ const AiringSection = () => {
   const { isXs } = useMediaQueries();
 
   return (
-    <div className='relative 4k:aspect-[18/9] xl:aspect-[15/5] xs:aspect-[9/6] w-full flex justify-center items-center z-0 bg-stone-200 py-4 rounded-lg shadow-lg dark:bg-stone-900'>
+    <div className='relative max-h-[50rem] xl:aspect-[15/5] lg:h-auto xs:h-[33rem] w-full flex justify-center items-center z-0 bg-stone-200 dark:bg-stone-900 py-4 rounded-lg shadow-lgstone-900'>
       <div className='w-11/12 flex flex-col z-10'>
-        <div className='z-10 grow xl:aspect-[22/14] lg:aspect-[12/9] xs:aspect-square w-full font-poppins text-xl font-black tracking-[0.3rem] text-stone-500 uppercase dark:text-yellow-400'>
+        <div className='max-h-[50rem] xl:aspect-[22/14] lg:aspect-[12/9] z-20 w-full lg:h-auto xs:h-[33rem] font-poppins text-xl font-black tracking-[0.3rem] text-stone-500 dark:text-yellow-400 uppercase'>
           <div className='py-2 border-b-2 border-stone-300 mb-4 dark:border-yellow-600'>Now Airing</div>
           <div className='w-full py-2 flex gap-4 text-lg'>
             {isXs ? (

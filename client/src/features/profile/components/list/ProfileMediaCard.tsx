@@ -54,7 +54,7 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
   };
 
   return (
-    <div className='w-[200px] rounded-xl shadow-sm shadow-stone-600 flex flex-col justify-center items-center bg-stone-200 dark:bg-amber-400 dark:shadow-yellow-900 dark:hover:shadow-md dark:hover:shadow-yellow-500 hover:shadow-md hover:shadow-stone-50 transition-full duration-200'>
+    <div className='w-[200px] rounded-xl shadow-sm shadow-stone-600 flex flex-col justify-center items-center bg-stone-200 dark:bg-stone-800 transition-full duration-200'>
       <Link
         to={`/${media.title ? 'movie' : 'tv'}/${media.id}`}
         className='w-[200px] overflow-hidden flex items-center flex-col rounded-t-xl'
@@ -67,14 +67,14 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
           }}
           path={media?.poster_path ?? imageHelper.poster}
         />
-        <div className={`w-full px-4 flex flex-col bg-stone-100 my-4 dark:bg-amber-400`}>
-          <h1 className='truncate font-poppins font-bold text-lg text-stone-600 tracking-wide dark:text-stone-900'>
+        <div className={`w-full px-4 flex flex-col my-4 `}>
+          <h1 className='truncate font-poppins text-lg text-stone-600 tracking-wide dark:text-white'>
             {media.title ? media.title : media.name}
           </h1>
-          <div className='flex justify-between font-poppins text-stone-300 dark:text-stone-800 text-sm'>
+          <div className='flex justify-between font-poppins text-stone-300 dark:text-stone-200 text-sm'>
             <p>
               Last updated:{' '}
-              <span className='text-stone-400 dark:text-stone-800'>
+              <span className='text-stone-400 dark:text-stone-200'>
                 {new Date(Date.parse((media as any).updatedAt)).toLocaleString('sv')}
               </span>
             </p>
@@ -84,7 +84,7 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
       <div className='py-4 w-full flex flex-col justify-start gap-4 items-center border-t-2 border-stone-500'>
         <ButtonComponent
           role='trueFalse'
-          className={`flex gap-2 items-center py-2 rounded-lg text-sm  ri shadow-xl px-4 font-bold  transition-full duration-200 bg-stone-700 hover:bg-stone-900 ${
+          className={`flex gap-2 items-center py-2 rounded-lg text-sm  ri shadow-xl px-4 font-bold  transition-full duration-200 bg-stone-600 hover:bg-stone-700 ${
               media?.isFavorited
                 ? 'text-rose-300 hover:text-rose-400'
                 : ' text-white hover:text-stone-100'
@@ -98,7 +98,7 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
           Favorite
         </ButtonComponent>
       </div>
-      <div className='w-full text-base text-stone-400 pt-2 border-t-2 border-stone-400 dark:border-stone-500 dark:bg-yellow-500'>
+      <div className='w-full text-base text-stone-400 pt-2'>
         <SelectComponent
           options={[
             { value: 'Watching', label: 'Watching' },
@@ -107,7 +107,7 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
             { value: 'Dropped', label: 'Dropped' },
           ]}
           name={'status'}
-          className='bg-stone-50 rounded-md shadow-inner  dark:bg-yellow-400 dark:text-stone-900 text-amber-900 my-2 mx-4'
+          className='bg-stone-50 rounded-md shadow-inner   dark:text-stone-900 text-amber-900 my-2 mx-4'
           placeholder={media.status ?? 'Add status'}
           extras={{ isSearchable: false, isClearable: true }}
           handleOnChange={(val: any) => handleUpdateShow('status', val)}
@@ -132,7 +132,7 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
           handleOnChange={(val: any) => handleUpdateShow('score', val)}
         />
 
-        <div className='w-full grid place-items-center border-t-2 border-stone-500 bg-gray-500 hover:bg-gray-600 mt-4 dark:text-stone-800 hover:text-stone-200 transition-full duration-200'>
+        <div className='w-full grid place-items-center  bg-gray-600 hover:bg-gray-700 mt-4 dark:text-stone-800 hover:text-stone-200 transition-full duration-200'>
           <ButtonComponent
             className='flex py-2 px-4 gap-2 items-center rounded-lg  '
             role='delete'

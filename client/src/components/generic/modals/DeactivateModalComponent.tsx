@@ -20,9 +20,9 @@ const DeactivateModalComponent = ({
           <div className='relative transform overflow-hidden rounded-lg bg-stone-200 text-left shadow-sm transition-all sm:my-8 sm:w-full sm:max-w-lg dark:bg-stone-900 dark:shadow-yellow-500 shadow-stone-50'>
             <div className='bg-stone-200 px-4 pb-4 pt-5 sm:p-8 sm:pr-8 sm:pl-8 sm:pb-4 dark:bg-stone-900'>
               <div className='sm:flex sm:items-start'>
-                <div className='mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 dark:bg-rose-300 sm:mx-0 sm:h-10 sm:w-10'>
+                <div className='mx-auto flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-red-100 dark:bg-rose-300 sm:mx-0 sm:h-10 sm:w-10'>
                   <svg
-                    className='h-8 w-8 text-red-600'
+                    className='h-6 w-6 text-red-600'
                     fill='none'
                     viewBox='0 0 24 24'
                     strokeWidth='1.5'
@@ -38,13 +38,13 @@ const DeactivateModalComponent = ({
                 </div>
                 <div className='mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left'>
                   <h3
-                    className='text-2xl font-semibold leading-6 text-stone-900 tracking-[0.1rem] dark:text-rose-400'
+                    className='text-xl font-semibold leading-6 text-stone-900 tracking-[0.1rem] dark:text-rose-400'
                     id='modal-title'
                   >
                     Deactivate account
                   </h3>
                   <div className='mt-8'>
-                    <p className='text-lg text-stone-900 dark:text-yellow-50'>
+                    <p className='text-base text-stone-900 dark:text-yellow-50'>
                       Are you sure you want to deactivate your account? All of your data will be
                       permanently removed. This action cannot be undone.
                     </p>

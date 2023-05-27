@@ -11,8 +11,8 @@ const ExtraSection = () => {
   return popular && top_rated ? (
     <>
       <div className='relative w-full flex justify-center items-center bg-stone-200 dark:bg-stone-900 py-4 rounded-lg shadow-lg'>
-        <div className='w-full flex flex-col relative font-poppins text-xl font-black tracking-[0.3rem] text-stone-500 dark:text-yellow-400 items-center'>
-          <div className='z-10 w-11/12 py-2 border-b-2 border-stone-300 mb-4 uppercase dark:border-yellow-600'>
+        <div className='w-full flex flex-col relative font-poppins text-xl tracking-[0.3rem] text-stone-500 dark:text-yellow-400 items-center'>
+          <div className='z-10 w-11/12 py-2 border-b-2 border-stone-300 mb-4 uppercase dark:border-yellow-600 font-black'>
           Popular</div>
           <SwiperContainer
             styles={{ swiper: 'relative' }}
@@ -24,8 +24,8 @@ const ExtraSection = () => {
         </div>
       </div>
       <div className='relative w-full flex justify-center items-center bg-stone-200 dark:bg-stone-900 py-4 rounded-lg shadow-lg '>
-        <div className='w-full flex flex-col font-poppins text-xl font-black tracking-[0.3rem] text-stone-500 dark:text-yellow-400 items-center'>
-          <div className='z-10 grow w-11/12 py-2 border-b-2 border-stone-300 mb-4 uppercase  dark:border-yellow-600'>Top Rated</div>
+        <div className='w-full flex flex-col font-poppins text-xl  tracking-[0.3rem] text-stone-500 dark:text-yellow-400 items-center'>
+          <div className='z-10 grow w-11/12 py-2 border-b-2 border-stone-300 mb-4 uppercase  dark:border-yellow-600 font-black'>Top Rated</div>
           <SwiperContainer
             styles={{ swiper: 'relative' }}
             sliderName={'slider5'}

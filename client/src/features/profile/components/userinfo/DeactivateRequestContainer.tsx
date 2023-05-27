@@ -30,7 +30,7 @@ const DeactivateRequestContainer = ({
   });
   return (
     <div className='w-full font-poppins text-lg flex flex-col items-center mt-4'>
-      <p className='dark:text-yellow-50 text-xl'>Type in your password to deactivate.</p>
+      <p className='dark:text-yellow-50 text-base'>Type in your password to deactivate.</p>
       <form
         className='w-full flex flex-col'
         onSubmit={handleSubmit((formInputs) =>
@@ -55,7 +55,7 @@ const DeactivateRequestContainer = ({
         )}
       >
         <input
-          className='rounded-md pl-2 py-2 mx-auto w-[20rem] ring-2 ring-stone-700 my-4 dark:bg-stone-700 dark:bg-opacity-75  dark:text-stone-50 dark:ring-transparent'
+          className='rounded-md pl-2 py-2 mx-auto w-[20rem] ring-2 ring-stone-700 my-4 dark:bg-stone-700 dark:bg-opacity-75  dark:text-stone-50 dark:ring-transparent outline-none'
           type='password'
           {...register(`password` as never)}
         />

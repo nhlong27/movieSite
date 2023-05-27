@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   currentURLPathAtom,
+  hasQueryFiltersAtom,
   loadingBarProgress,
   mediaTypeAtom,
   shouldDropdownDisplayAtom,
@@ -171,32 +172,36 @@ const NavBar = () => {
           setMediaType('movie');
         }}
       >
-        <img src={imageHelper.logo_better} className=' overflow-hidden object-full h-[4rem] w-[4rem]' />
+        <img
+          src={imageHelper.logo_better}
+          className=' overflow-hidden object-full h-[4rem] w-[4rem]'
+        />
         {currentPath === 'home' && (
           <span className='text-stone-500 dark:text-yellow-500 font-extrabold tracking-wider uppercase font-poppins text-[17px]'>
             Fir Media
           </span>
         )}
       </Link>
-      <div className='h-1/2 rounded-lg my-auto w-full whitespace-nowrap flex items-center col-span-1 justify-center bg-stone-300 dark:bg-stone-700 gap-4 z-10'>
-        <ButtonComponent
-          className={`w-4 h-4 rounded-full grid place-items-center  ${
-            theme === 'light' ? 'text-yellow-600' : 'text-stone-800 '
-          }`}
-          onClick={() => setTheme('light')}
-        >
-          {iconHelper.light('text-lg')}
-        </ButtonComponent>
 
-        <ButtonComponent
-          className={`w-4 h-4 rounded-full grid place-items-center   ${
-            theme === 'dark' ? 'text-yellow-600' : 'text-stone-800'
-          }`}
-          onClick={() => setTheme('dark')}
-        >
-          {iconHelper.dark('text-base')}
-        </ButtonComponent>
-      </div>
+        <div className={`h-1/2 rounded-lg my-auto w-full whitespace-nowrap flex items-center col-span-1 justify-center bg-stone-300 dark:bg-stone-700 gap-4 z-10 ${currentPath === 'discover' && 'opacity-0 z-0'}`}>
+          <ButtonComponent
+            className={`w-4 h-4 rounded-full grid place-items-center  ${
+              theme === 'light' ? 'text-yellow-600' : 'text-stone-800 '
+            }`}
+            onClick={() => setTheme('light')}
+          >
+            {iconHelper.light('text-lg')}
+          </ButtonComponent>
+
+          <ButtonComponent
+            className={`w-4 h-4 rounded-full grid place-items-center   ${
+              theme === 'dark' ? 'text-yellow-600' : 'text-stone-800'
+            }`}
+            onClick={() => setTheme('dark')}
+          >
+            {iconHelper.dark('text-base')}
+          </ButtonComponent>
+        </div>
       <Link
         className={`flex justify-center items-center ${
           currentPath === 'home' ? 'col-span-1' : 'col-span-2'
