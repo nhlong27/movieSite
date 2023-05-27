@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+@layer component {
+  .slider1 {
+    --slider-index: 0;
+    --items-per-screen: 9;
+  }
+  .slider2 {
+    --slider-index: 0;
+    --items-per-screen: 9;
+  }
+  .slider3 {
+    --slider-index: 0;
+    --items-per-screen: 9;
+  }
+  .slider4 {
+    --slider-index: 0;
+    --items-per-screen: 9;
+  }
+  .slider5 {
+    --slider-index: 0;
+    --items-per-screen: 9;
+  }
+  .slider6 {
+    --slider-index: 0;
+    --items-per-screen: 9;
+  }
+
+  .slider7 {
+    --slider-index: 0;
+    --items-per-screen: 9;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* For IE, Edge and Firefox */
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+@media (max-width: 1950px) {
+  .slider {
+    --items-per-screen: 8;
+  }
+}
+@media (max-width: 1750px) {
+  .slider {
+    --items-per-screen: 7;
+  }
+}
+@media (max-width: 1550px) {
+  .slider {
+    --items-per-screen: 6;
+  }
+}
+
+@media (max-width: 1280px) {
+  .slider {
+    --items-per-screen: 5;
+  }
+}
+@media (max-width: 1024px) {
+  .slider {
+    --items-per-screen: 4;
+  }
+}
+@media (max-width: 768px) {
+  .slider {
+    --items-per-screen: 3;
+  }
+}
+
+@media (max-width: 500px) {
+  .slider {
+    --items-per-screen: 2;
+  }
+}

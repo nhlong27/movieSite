@@ -12,16 +12,17 @@ interface TVMediaDetailProps {
 }
 
 const TVMediaDetail: React.FC<TVMediaDetailProps> = (props) => {
+  const { role } = props;
 
   const [shouldMoreInformationDisplay, setShouldMoreInformationDisplay] = React.useState(false);
 
   const [animationParentRef] = useAutoAnimate();
 
   const { data } = useGetItemDetailQuery();
-  return data ? (
+  return (
     <div ref={animationParentRef}>
       <h1 className='truncate font-poppins font-black text-2xl  tracking-wide py-4 md:text-3xl md:uppercase text-yellow-300'>
-        {(data as TVDetailType)?.name}
+        {(data as TVDetailType).name}
       </h1>
 
       <div className='flex justify-start gap-4 flex-wrap text-lg py-4 md:py-0'>
@@ -36,7 +37,7 @@ const TVMediaDetail: React.FC<TVMediaDetailProps> = (props) => {
       </div>
 
       <div className='text-base font-bold flex items-center py-4 text-white'>
-        <p className='md:text-base'> {(data as TVDetailType)?.first_air_date}</p>
+        <p className='md:text-base'> {(data as TVDetailType).first_air_date}</p>
         <div className='ml-16 flex items-center rounded-lg tracking-[0.2rem] dark:bg-stone-900 px-2 py-[4px]'>
           <svg
             aria-hidden='true'
@@ -54,24 +55,24 @@ const TVMediaDetail: React.FC<TVMediaDetailProps> = (props) => {
         </div>
       </div>
 
-      <p className='text-white mb-2 md:text-lg border-l-4 border-yellow-500 pl-4 py-4'>{(data as TVDetailType)?.overview}</p>
+      <p className='text-white mb-2 md:text-lg border-l-4 border-yellow-500 pl-4 py-4'>{(data as TVDetailType).overview}</p>
 
       <div className='border-t-4 border-stone-300 pl-8 md:mt-0 md:border-0 py-4 mt-8 grid grid-cols-4 gap-x-16 md:gap-x-8 gap-y-4 text-sm  text-white md:text-base md:gap-y-0'>
         <h3 className='col-span-1 '>Language</h3>
         <p className='col-start-2 col-span-3'>
-          {(data as TVDetailType)?.original_language === 'en'
+          {(data as TVDetailType).original_language === 'en'
             ? 'English'
-            : (data as TVDetailType)?.original_language ?? 'No information'}
+            : (data as TVDetailType).original_language ?? 'No information'}
         </p>
         <h3 className='col-span-1 '>Episode duration</h3>
         <p className='col-start-2 col-span-3'>
-          {((data as TVDetailType)?.episode_run_time ?? []).reduce((a, b) => a + b, 0) /
-            ((data as TVDetailType)?.episode_run_time ?? []).length || 'No information'}
+          {((data as TVDetailType).episode_run_time ?? []).reduce((a, b) => a + b, 0) /
+            ((data as TVDetailType).episode_run_time ?? []).length || 'No information'}
         </p>
         <h3 className='col-span-1 '>Seasons</h3>
-        <p className='col-start-2 col-span-3'>{(data as TVDetailType)?.number_of_seasons ?? 'No information'}</p>
+        <p className='col-start-2 col-span-3'>{(data as TVDetailType).number_of_seasons ?? 'No information'}</p>
         <h3 className='col-span-1 '>Episodes</h3>
-        <p className='col-start-2 col-span-3'>{(data as TVDetailType)?.number_of_episodes ?? 'No information'}</p>
+        <p className='col-start-2 col-span-3'>{(data as TVDetailType).number_of_episodes ?? 'No information'}</p>
       </div>
 
       {shouldMoreInformationDisplay ? null : (
@@ -87,7 +88,7 @@ const TVMediaDetail: React.FC<TVMediaDetailProps> = (props) => {
           <h3 className='col-span-1 '>Status</h3>
           <p className='col-start-2 col-span-3'>{data.status ?? 'No information'}</p>
           <h3 className='col-span-1 '>Type</h3>
-          <p className='col-start-2 col-span-3'>{(data as TVDetailType)?.type ?? 'No information'}</p>
+          <p className='col-start-2 col-span-3'>{(data as TVDetailType).type ?? 'No information'}</p>
           <h3 className='col-span-1 '>Country</h3>
           <p className='col-start-2 col-span-3'>
             {data?.production_countries?.length ?? 0 > 0 ? data?.production_countries?.map((country) => country.name)?.join(', ') : 'No information'}
@@ -146,7 +147,7 @@ const TVMediaDetail: React.FC<TVMediaDetailProps> = (props) => {
         </ButtonComponent>
       ) : null}
     </div>
-  ) : <div>loading..</div>
+  );
 };
 
 export default TVMediaDetail;

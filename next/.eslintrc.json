@@ -1,0 +1,14 @@
+{
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "rules": {
+    "prefer-const": "off" // Turn rule off
+    // I suggest you add those two rules:
+    // "@typescript-eslint/no-unused-vars": "error",
+    // "@typescript-eslint/no-explicit-any": "error"
+  }
+}
