@@ -13,7 +13,6 @@ const ProfilePage = () => {
   );
 };
 
-// eslint-disable-next-line react/display-name
 export default ()=>(
   <ProtectedRoute>
     <ProfilePage />
