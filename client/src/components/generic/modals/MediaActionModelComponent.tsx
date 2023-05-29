@@ -46,19 +46,19 @@ const MediaActionModalComponent: React.FC<MediaActionModalComponentProps> = (pro
       role='dialog'
       aria-modal='true'
     >
-      <div className='fixed inset-0 bg-stone-700 dark:bg-stone-900 dark:bg-opacity-75  bg-opacity-75 transition-opacity'></div>
+      <div className='fixed inset-0 bg-slate-700 dark:bg-stone-900 dark:bg-opacity-75 bg-opacity-75 transition-opacity'></div>
 
       <div className='fixed inset-0 z-10 overflow-y-auto'>
         <div className='flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0'>
-          <div className='relative transform rounded-lg bg-stone-200  text-left shadow-sm transition-all sm:my-8 sm:w-full sm:max-w-lg dark:bg-stone-900 dark:shadow-yellow-500 shadow-stone-50'>
-            <div className='bg-stone-200 px-4 pb-4 pt-5 sm:p-8 sm:pr-8 sm:pl-8 sm:pb-4 dark:bg-stone-900'>
+          <div className=' rounded-lg relative transform  bg-white text-left shadow-sm transition-all sm:my-8 sm:w-full sm:max-w-lg dark:bg-stone-900 dark:shadow-yellow-500 shadow-stone-50'>
+            <div className='rounded-lg bg-white px-4 pb-4 pt-5 sm:p-8 sm:pr-8 sm:pl-8 sm:pb-4 dark:bg-stone-900'>
               <div className='sm:flex sm:items-start'>
                 <div className='mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-lime-100 dark:bg-lime-300 sm:mx-0 sm:h-10 sm:w-10'>
                   {iconHelper.update('text-xl text-blue-700')}
                 </div>
                 <div className='mt-3 grow text-center sm:ml-4 sm:mt-0 sm:text-left'>
                   <h3
-                    className='text-xl font-semibold leading-6 text-stone-900 tracking-[0.1rem] dark:text-lime-400'
+                    className='text-xl font-semibold leading-6 text-slate-900 tracking-[0.1rem] dark:text-lime-400'
                     id='modal-title'
                   >
                     Update media
@@ -67,7 +67,7 @@ const MediaActionModalComponent: React.FC<MediaActionModalComponentProps> = (pro
                     <p className='text-base text-stone-900 dark:text-stone-100'>
                       You can always change this later in your profile lists.
                     </p>
-                    <div className='mt-4 w-5/6 text-base dark:text-stone-50 text-stone-900 pt-4 flex justify-center items-start pl-4 flex-col'>
+                    <div className='mt-4 w-5/6 text-base dark:text-stone-50 text-stone-900 flex justify-center items-start pl-4 flex-col'>
                       <div className='flex gap-4 items-center h-[4rem]'>
                         <span>Add to list</span>
                         <SelectComponent
@@ -83,7 +83,7 @@ const MediaActionModalComponent: React.FC<MediaActionModalComponentProps> = (pro
                           handleOnChange={(val: any) => handleMediaUpdate('status', val)}
                         />
                       </div>
-                      <div className='flex gap-4 items-center h-[4rem] mt-8'>
+                      <div className='flex gap-4 items-center h-[4rem]'>
                         <span>Select score</span>
                         <SelectComponent
                           options={[
@@ -109,7 +109,7 @@ const MediaActionModalComponent: React.FC<MediaActionModalComponentProps> = (pro
                       <div className='py-2 w-full flex justify-between items-center mt-8'>
                         {serverMedia?.isFavorited ? (
                           <ButtonComponent
-                            className='inline-flex justify-center rounded-md bg-rose-400 px-6 py-2 text-base tracking-wider font-semibold text-stone-900 shadow-sm hover:bg-rose-500 sm:ml-3 sm:w-auto'
+                            className='inline-flex justify-center rounded-md dark:bg-rose-400 bg-rose-300 px-6 py-2 text-base tracking-wider font-semibold text-stone-900  dark:hover:bg-rose-500 hover:bg-rose-400 sm:ml-3 sm:w-auto shadow-md'
                             onClick={() => {
                               handleMediaUpdate('isFavorited', { value: !isFavorited });
                               setIsFavorited((prev) => !prev);
@@ -119,7 +119,7 @@ const MediaActionModalComponent: React.FC<MediaActionModalComponentProps> = (pro
                           </ButtonComponent>
                         ) : (
                           <ButtonComponent
-                            className='inline-flex justify-center rounded-md bg-stone-100 px-6 py-2 text-base font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-stone-300 hover:bg-stone-50 sm:mt-0 sm:w-auto'
+                            className='inline-flex justify-center rounded-md bg-slate-200 px-6 py-2 text-base font-semibold  hover:bg-slate-300 text-slate-700 hover:text-slate-900 dark:bg-stone-500 dark:hover:bg-stone-600 sm:mt-0 sm:w-auto shadow-md'
                             onClick={() => {
                               handleMediaUpdate('isFavorited', { value: !isFavorited });
                               setIsFavorited((prev) => !prev);
@@ -134,11 +134,11 @@ const MediaActionModalComponent: React.FC<MediaActionModalComponentProps> = (pro
                 </div>
               </div>
             </div>
-            <div className='bg-stone-300 px-4 py-4 sm:py-6 mt-4 gap-4 flex sm:gap-0 sm:px-8 w-full justify-end dark:bg-stone-700'>
+            <div className='bg-slate-100 px-4 py-4 sm:py-6 mt-4 gap-4 flex sm:gap-0 sm:px-8 w-full justify-end dark:bg-stone-700'>
               <ButtonComponent
                 onClick={() => cancelFunction(false)}
                 type='button'
-                className='ml-auto inline-flex justify-center rounded-md bg-lime-500 px-6 py-2 text-base tracking-wider font-semibold text-stone-100 shadow-sm hover:bg-lime-400 sm:ml-3'
+                className='ml-auto inline-flex justify-center rounded-md bg-slate-200 px-6 py-2 text-base tracking-wider font-semibold text-slate-700 hover:text-slate-900 hover:bg-slate-300 sm:ml-3 shadow-md'
               >
                 Done
               </ButtonComponent>
@@ -159,11 +159,11 @@ const NotSignedInDefaultComponent = ({
     <div
       className='relative font-poppins z-50'
     >
-      <div className='fixed inset-0 bg-stone-700 dark:bg-stone-900 dark:bg-opacity-75 bg-opacity-75 transition-opacity'></div>
+      <div className='fixed inset-0 bg-slate-700 dark:bg-stone-900 dark:bg-opacity-75 bg-opacity-75 transition-opacity'></div>
       <div className='fixed inset-0 z-10 overflow-y-auto'>
         <div className='flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0'>
-          <div className='relative transform overflow-hidden rounded-lg bg-stone-200 text-left shadow-sm transition-all sm:my-8 sm:w-full sm:max-w-lg dark:bg-stone-900 dark:shadow-yellow-500 shadow-stone-50'>
-            <div className='bg-stone-200 px-4 pb-4 pt-5 sm:p-8 sm:pr-8 sm:pl-8 sm:pb-4 dark:bg-stone-900'>
+          <div className='relative transform overflow-hidden rounded-lg bg-white text-left shadow-sm transition-all sm:my-8 sm:w-full sm:max-w-lg dark:bg-stone-900 dark:shadow-yellow-500 shadow-stone-50'>
+            <div className='bg-white px-4 pb-4 pt-5 sm:p-8 sm:pr-8 sm:pl-8 sm:pb-4 dark:bg-stone-900'>
               <div className='sm:flex sm:items-start'>
                 <div className='mx-auto flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-red-100 dark:bg-rose-300 sm:mx-0 sm:h-10 sm:w-10'>
                   <svg
@@ -183,30 +183,30 @@ const NotSignedInDefaultComponent = ({
                 </div>
                 <div className='mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left'>
                   <h3
-                    className='text-xl font-semibold leading-6 text-stone-900 dark:text-stone-100 tracking-wider'
+                    className='text-xl font-semibold leading-6 text-slate-900 dark:text-stone-100 tracking-wider'
                     id='modal-title'
                   >
                     You need an account
                   </h3>
                   <div className='mt-4'>
-                    <p className='text-base text-stone-500 dark:text-stone-100'>
+                    <p className='text-base text-slate-700 dark:text-stone-100'>
                       An account lets you favorite, rate or add to lists. e.g. 'Plan to Watch'.
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-            <div className='bg-stone-300 px-4 py-4 sm:py-6 mt-4 gap-4 flex sm:gap-0 sm:px-8 w-full items-center justify-end dark:bg-stone-700'>
+            <div className='bg-slate-100 px-4 py-4 sm:py-6 mt-4 gap-4 flex sm:gap-0 sm:px-8 w-full items-center justify-end dark:bg-stone-700'>
               <ButtonComponent
                 onClick={() => cancelFunction(false)}
                 type='button'
-                className='ml-auto inline-flex justify-center rounded-md bg-stone-100 hover:bg-stone-200 px-6 py-2 text-base text-stone-800 hover:text-stone-900 shadow-sm  sm:mt-0 sm:w-auto'
+                className='ml-auto inline-flex justify-center rounded-md bg-slate-200 hover:bg-slate-300 px-4 py-2 text-base text-slate-700 hover:text-slate-900 shadow-md sm:mt-0 sm:w-auto'
               >
                 Back
               </ButtonComponent>
               <Link
                 to='/profile'
-                className='inline-flex h-[2.5rem] md:h-[2.6rem] justify-center rounded-md bg-blue-500 px-6 py-2 text-base tracking-wider font-semibold text-stone-100 hover:text-stone-200 shadow-sm hover:bg-blue-600 sm:ml-3 sm:w-auto'
+                className='inline-flex h-[2.5rem] md:h-[2.6rem] justify-center rounded-md bg-blue-500 px-4 py-2 text-base tracking-wider font-semibold text-stone-100 hover:text-stone-200 shadow-md hover:bg-blue-600 sm:ml-3 sm:w-auto'
               >
                 Sign in
               </Link>

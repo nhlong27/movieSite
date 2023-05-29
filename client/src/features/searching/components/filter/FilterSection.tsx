@@ -21,11 +21,11 @@ const FilterSection: React.FC = () => {
     <div className='order-first px-2 col-start-1 lg:col-start-4 h-auto'>
       <div
         ref={animationParentRef}
-        className='h-auto lg:w-full w-3/4 mx-auto flex flex-col rounded-xl bg-stone-200 dark:bg-transparent justify-start items-center font-poppins shadow-xl'
+        className='h-auto lg:w-full w-3/4 mx-auto flex flex-col rounded-xl bg-slate-50 dark:bg-transparent justify-start items-center font-poppins shadow-xl'
       >
         {!hasQueryFilters && (
-          <div className=' bg-stone-300 w-full rounded-xl dark:bg-transparent'>
-            <h1 className='text-lg border-b-2 border-stone-500  dark:border-yellow-500 text-yellow-700 font-bold tracking-wider px-4 py-2 dark:text-yellow-400'>
+          <div className=' bg-slate-50 w-full rounded-xl dark:bg-transparent'>
+            <h1 className='text-lg border-b-2 border-slate-200  dark:border-yellow-500 text-slate-800 font-bold tracking-wider px-4 py-2 dark:text-yellow-400'>
               Previous searches
             </h1>
             <ul className=' bg-transparent shadow-inner'>
@@ -33,7 +33,7 @@ const FilterSection: React.FC = () => {
                 .reverse()
                 .map((query: string | undefined, index: number) => (
                   <li
-                    className='cursor-pointer font-bold tracking-wide text-stone-500 hover:bg-stone-500 pl-4 hover:text-stone-300 dark:text-stone-300 py-2 dark:hover:text-stone-500 dark:hover:bg-transparent'
+                    className='cursor-pointer tracking-wide text-slate-400 pl-4 hover:text-slate-600 dark:text-stone-300 py-2 dark:hover:text-stone-500'
                     key={index}
                     onClick={(e) => {
                       handleQueryInput(e.currentTarget.innerText);
@@ -47,20 +47,20 @@ const FilterSection: React.FC = () => {
           </div>
         )}
         <ButtonComponent
-          className='bg-stone-300 hover:bg-stone-400 w-full  grid place-items-center font-poppins py-4  dark:bg-stone-800  text-stone-600  dark:text-yellow-500  '
+          className='bg-slate-200 hover:bg-slate-300 w-full  grid place-items-center font-poppins  dark:bg-stone-800  text-stone-600  dark:text-yellow-500  '
           onClick={() => {
             setHasQueryFilters((prev) => !prev);
             window.scrollTo(0, 0);
           }}
         >
-          <div className='w-11/12 dark:ring-2 dark:hover:bg-yellow-400  dark:ring-yellow-500 dark:hover:text-stone-900 dark:hover:ring-stone-900 px-4 py-2 flex items-center justify-center gap-2  rounded-sm'>
-            <span className='text-lg tracking-wide '>
+          <div className='w-11/12 dark:ring-2 dark:hover:bg-yellow-500  dark:ring-yellow-500 dark:hover:text-stone-900 dark:hover:ring-stone-900 px-4 py-2 flex items-center justify-center gap-2  rounded-sm'>
+            <span className='text-base tracking-wide '>
               {hasQueryFilters ? 'Hide' : 'Show'} options
             </span>
             {hasQueryFilters ? (
-              <div className='ring-2 ring-stone-600 rounded-sm'>{iconHelper.close('text-lg')}</div>
+              <div className='ring-2 ring-slate-500 rounded-sm'>{iconHelper.close('text-lg')}</div>
             ) : (
-              <div>{iconHelper.open('text-2xl')}</div>
+              <div>{iconHelper.open('text-xl')}</div>
             )}
           </div>
         </ButtonComponent>
@@ -70,7 +70,7 @@ const FilterSection: React.FC = () => {
               <ButtonComponent
                 className={`${
                   mediaType === 'movie'
-                    ? 'border-b-4 border-stone-500 text-stone-600 bg-amber-100 dark:bg-stone-700 dark:text-yellow-400 dark:border-none'
+                    ? 'border-b-4 border-slate-300 text-slate-900 bg-slate-300 dark:bg-stone-700 dark:text-yellow-400 dark:border-none'
                     : 'text-stone-500 dark:text-stone-300 dark:bg-stone-600'
                 } px-8 py-2 transition-all duration-500 rounded-sm`}
                 onClick={() => {
@@ -83,7 +83,7 @@ const FilterSection: React.FC = () => {
               <ButtonComponent
                 className={`${
                   mediaType === 'tv'
-                    ? 'border-b-4 border-stone-500 text-stone-600 bg-amber-100 dark:bg-stone-700 dark:text-yellow-400 dark:border-none'
+                    ? 'border-b-4 border-slate-300 text-slate-900 bg-slate-300 dark:bg-stone-700 dark:text-yellow-400 dark:border-none'
                     : 'text-stone-500 dark:text-stone-300 dark:bg-stone-600'
                 } px-8 py-2 transition-all duration-500 rounded-sm`}
                 onClick={() => {

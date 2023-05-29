@@ -55,7 +55,7 @@ const DeactivateRequestContainer = ({
         )}
       >
         <input
-          className='rounded-md pl-2 py-2 mx-auto w-[20rem] ring-2 ring-stone-700 my-4 dark:bg-stone-700 dark:bg-opacity-75  dark:text-stone-50 dark:ring-transparent outline-none'
+          className='rounded-md pl-4 py-2 mx-auto w-[20rem] my-4 bg-slate-200 dark:bg-stone-700 dark:bg-opacity-75  dark:text-stone-50 dark:ring-transparent outline-none'
           type='password'
           {...register(`password` as never)}
         />
@@ -66,17 +66,17 @@ const DeactivateRequestContainer = ({
           </div>
         )}
 
-        <div className='bg-stone-300 px-4 py-4 sm:py-6 mt-4 gap-4 flex flex-col sm:flex-row sm:gap-0 sm:px-8 w-full grow dark:bg-yellow-500'>
+        <div className='bg-slate-100 px-4 py-4 sm:py-6 mt-4 gap-4 flex flex-col sm:flex-row sm:gap-0 sm:px-8 w-full grow dark:bg-stone-800'>
           <ButtonComponent
             onClick={() => cancelFunction(false)}
             type='button'
-            className='ml-auto mt-3 inline-flex w-full justify-center rounded-md bg-stone-100 px-6 py-2 text-base font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-stone-300 hover:bg-stone-50 sm:mt-0 sm:w-auto dark:bg-yellow-600 dark:ring-yellow-700 dark:hover:bg-yellow-700'
+            className='ml-auto mt-3 inline-flex w-full justify-center rounded-md bg-slate-100 px-4 py-2 text-base text-slate-900 shadow-sm ring-1 ring-inset ring-stone-300 hover:bg-slate-200 sm:mt-0 sm:w-auto dark:bg-yellow-600 dark:ring-yellow-700 dark:hover:bg-yellow-700'
           >
             Cancel
           </ButtonComponent>
           <ButtonComponent
             type='submit'
-            className='inline-flex w-full justify-center rounded-md bg-red-600 px-6 py-2 text-base tracking-wider font-semibold text-stone-100 shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto'
+            className='inline-flex w-full justify-center rounded-md bg-red-600 px-6 py-2 text-base tracking-wider font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto'
           >
             Deactivate
           </ButtonComponent>

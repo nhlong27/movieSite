@@ -5,11 +5,11 @@ import { MovieType, TVType } from '@/types/types';
 import { mediaTypeConfig } from '../../queries';
 import { imageHelper } from '@/config/images';
 
-const SectionBackdrop = ({ mediaType, section }: { mediaType?: string; section?: string }) => {
+const SectionBackdrop = ({ mediaType, section, styles }: { mediaType?: string; section?: string, styles?: Record<string, string>}) => {
   const sectionBackdropItemStore = useSectionBackdropItemsStore();
   const sectionBackdropItem = sectionBackdropItemStore.getSectionBackdropItem(section!);
   return (
-    <div className='absolute lg:aspect-[18/9] hidden lg:visible  top-0 w-full lg:flex z-0 items-top overflow-hidden'>
+    <div className={`absolute  max-h-[50rem] lg:aspect-[18/9] hidden lg:visible  top-0 w-full lg:flex z-0 items-top overflow-hidden ${styles?.wrapper}`}>
       <LazyLoadImageComponent
         path={sectionBackdropItem?.backdrop_path ?? imageHelper.backdrop}
         styles={{

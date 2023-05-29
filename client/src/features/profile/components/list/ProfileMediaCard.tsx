@@ -54,7 +54,7 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
   };
 
   return (
-    <div className='w-[200px] rounded-xl shadow-sm shadow-stone-600 flex flex-col justify-center items-center bg-stone-200 dark:bg-stone-800 transition-full duration-200'>
+    <div className='w-[200px] rounded-lg shadow-md shadow-slate-300 dark:shadow-sm dark:shadow-stone-500 flex flex-col justify-center items-center bg-slate-100 dark:bg-stone-800 transition-full duration-200'>
       <Link
         to={`/${media.title ? 'movie' : 'tv'}/${media.id}`}
         className='w-[200px] overflow-hidden flex items-center flex-col rounded-t-xl'
@@ -62,32 +62,32 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
         <LazyLoadImageComponent
           styles={{
             image:
-              'overflow-hidden h-[18rem] bg-gradient-to-tr  from-white  to-black  dark:from-stone-900 dark:to-yellow-500 grow',
+              'overflow-hidden h-[18rem] bg-gradient-to-tr  from-white to-black dark:from-stone-900 dark:to-yellow-500 grow',
             size: media?.poster_path ? 'w200' : undefined,
           }}
           path={media?.poster_path ?? imageHelper.poster}
         />
         <div className={`w-full px-4 flex flex-col my-4 `}>
-          <h1 className='truncate font-poppins text-lg text-stone-600 tracking-wide dark:text-white'>
+          <h1 className='truncate font-poppins text-lg text-slate-900 tracking-wide dark:text-white'>
             {media.title ? media.title : media.name}
           </h1>
-          <div className='flex justify-between font-poppins text-stone-300 dark:text-stone-200 text-sm'>
+          <div className='flex justify-between font-poppins text-slate-700 dark:text-stone-400 text-sm'>
             <p>
               Last updated:{' '}
-              <span className='text-stone-400 dark:text-stone-200'>
+              <span className='text-slate-700 dark:text-stone-400'>
                 {new Date(Date.parse((media as any).updatedAt)).toLocaleString('sv')}
               </span>
             </p>
           </div>
         </div>
       </Link>
-      <div className='py-4 w-full flex flex-col justify-start gap-4 items-center border-t-2 border-stone-500'>
+      <div className='py-4 w-full flex flex-col justify-start gap-4 items-center border-t-2 border-slate-200 dark:border-stone-600'>
         <ButtonComponent
           role='trueFalse'
-          className={`flex gap-2 items-center py-2 rounded-lg text-sm  ri shadow-xl px-4 font-bold  transition-full duration-200 bg-stone-600 hover:bg-stone-700 ${
+          className={`flex gap-2 items-center py-2 rounded-lg text-sm  ri shadow-md px-4 font-bold  transition-full duration-200 bg-slate-300 hover:bg-slate-400 dark:bg-stone-600 dark:hover:bg-stone-700 ${
               media?.isFavorited
-                ? 'text-rose-300 hover:text-rose-400'
-                : ' text-white hover:text-stone-100'
+                ? 'dark:text-rose-300 dark:hover:text-rose-400 text-red-500 hover:text-red-600'
+                : ' text-slate-900 dark:text-white dark:hover:text-stone-100'
             }`}
           onClick={() => {
             handleUpdateShow('isFavorited', { value: !isFavorited });
@@ -98,7 +98,7 @@ const ProfileMediaCard: React.FC<ProfileMediaCardProps> = (props) => {
           Favorite
         </ButtonComponent>
       </div>
-      <div className='w-full text-base text-stone-400 pt-2'>
+      <div className='w-full text-base text-stone-400'>
         <SelectComponent
           options={[
             { value: 'Watching', label: 'Watching' },

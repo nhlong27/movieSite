@@ -38,13 +38,13 @@ const SeasonsAndEpisodes: React.FC<SeasonsAndEpisodesProps> = (props) => {
 
   return <div
       ref={animationParentRef}
-      className='flex flex-col rounded-lg py-4 font-poppins bg-stone-200 md:bg-stone-300 dark:bg-stone-900 dark:ring-2 dark:ring-yellow-500'
+      className='flex flex-col  py-4 font-poppins  dark:bg-stone-900'
     >
       <ButtonComponent
         onClick={() => setShouldSeasonsDisplay((prev) => !prev)}
-        className='flex justify-between items-center py-2 px-4 hover:bg-stone-300 md:hover:bg-stone-400 dark:hover:bg-stone-900  transition-all duration-300'
+        className='flex justify-between items-center py-2 px-4'
       >
-        <h1 className='text-lg md:text-xl font-bold flex gap-2 items-center text-stone-600 dark:text-yellow-500 '>
+        <h1 className='text-lg md:text-xl font-bold flex gap-2 items-center text-slate-900 dark:text-yellow-500 '>
           {iconHelper.list('text-lg md:text-xl')}
           Season {seasonAndEpisode?.season}
         </h1>
@@ -57,14 +57,14 @@ const SeasonsAndEpisodes: React.FC<SeasonsAndEpisodesProps> = (props) => {
                 onClick={() =>
                   setSeasonAndEpisode((prev) => ({ ...(prev ?? {}), season: seasonIndex + 1 }))
                 }
-                className={` overflow-hidden  w-full flex justify-between items-center md:grid md:grid-cols-2 md:place-items-start py-2 pl-8 pr-4 bg-stone-300 hover:bg-stone-400  dark:hover:bg-stone-900 dark:bg-stone-900 hover:pl-4 transition-all duration-100 `}
+                className={` overflow-hidden  w-full flex justify-between items-center md:grid md:grid-cols-2 md:place-items-start py-2 pl-8 pr-4 bg-slate-50 dark:bg-stone-900 hover:pl-4 transition-all duration-100 `}
                 key={seasonIndex}
               >
-                <p className=' text-stone-900 flex items-center gap-2 dark:text-white'>
+                <p className=' text-slate-900 flex items-center gap-2 dark:text-white'>
                   {iconHelper.listNested('text-lg')}
                   Season {seasonIndex + 1}
                 </p>
-                <p className='text-lg text-stone-900 w-[10rem] truncate md:w-[30rem] dark:text-yellow-400'>
+                <p className='text-lg text-slate-900 w-[10rem] truncate md:w-[30rem] dark:text-yellow-400'>
                   {season?.name}
                 </p>
               </ButtonComponent>
@@ -74,17 +74,16 @@ const SeasonsAndEpisodes: React.FC<SeasonsAndEpisodesProps> = (props) => {
       ) : null}
       <ButtonComponent
         onClick={() => setShouldEpisodesDisplay((prev) => !prev)}
-        className='flex justify-between items-center py-2 px-4 pl-3 hover:bg-stone-300 md:hover:bg-stone-400 mt-8  transition-all duration-300
-        dark:hover:bg-stone-900'
+        className='flex justify-between items-center py-2 px-4 pl-3  mt-8 '
       >
-        <h1 className='text-lg font-bold flex gap-2 items-center text-stone-600 md:text-xl dark:text-yellow-500'>
+        <h1 className='text-lg font-bold flex gap-2 items-center text-slate-900 md:text-xl dark:text-yellow-500'>
           {iconHelper.play('text-2xl md:text-[1.5rem]')}
           Episode {seasonAndEpisode?.episode}
         </h1>
       </ButtonComponent>
       {shouldEpisodesDisplay ? (
         <div
-          className={`flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 2xl:grid-cols-6md:place-content-start md:place-items-center justify-start items-center gap-8 md:bg-stone-400 px-8 py-8 dark:bg-stone-900`}
+          className={`flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 2xl:grid-cols-6md:place-content-start md:place-items-center justify-start items-center gap-8 bg-slate-200 rounded-lg px-8 py-8 dark:bg-stone-900`}
         >
           {seasonList[`${seasonAndEpisode?.season! - 1}` as any]?.episodes?.map(
             (episode: any, episodeIndex) => {
@@ -94,10 +93,10 @@ const SeasonsAndEpisodes: React.FC<SeasonsAndEpisodesProps> = (props) => {
                     setSeasonAndEpisode((prev) => ({ ...(prev ?? {}), episode: episodeIndex + 1 }));
                     options?.ref.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
                   }}
-                  className={`max-w-[300px] min-w-[200px] max-h-[14rem] h-auto rounded-lg overflow-hidden flex flex-col  relative shadow-sm bg-stone-200 dark:bg-stone-900 dark:shadow-yellow-500 ${
+                  className={`max-w-[300px] min-w-[200px] max-h-[14rem] h-auto rounded-lg overflow-hidden shadow-md flex flex-col  relative bg-slate-100   ${
                     seasonAndEpisode?.episode === episodeIndex + 1
-                      ? 'bg-stone-900 ring-4 dark:bg-yellow-400 dark:bg-opacity-70 dark:ring-transparent text-white dark:text-stone-900 ring-stone-700'
-                      : 'dark:text-yellow-400 text-stone-900'
+                      ? 'bg-yellow-200 dark:bg-yellow-500  text-slate-900 dark:text-stone-900 ring-stone-700'
+                      : 'dark:text-yellow-400 text-slate-900 dark:bg-stone-900'
                   }`}
                   key={episodeIndex}
                 >
@@ -105,7 +104,7 @@ const SeasonsAndEpisodes: React.FC<SeasonsAndEpisodesProps> = (props) => {
                     path={episode?.still_path ?? episode}
                     styles={{
                       image:
-                        'max-w-[300px] h-auto min-w-[200px] overflow-hidden bg-gradient-to-tr from-stone-900 to-stone-700  grow dark:to-yellow-500',
+                        'max-w-[300px] h-auto min-w-[200px] overflow-hidden bg-gradient-to-tr from-stone-900 to-stone-700 grow dark:to-yellow-500',
                       size: episode?.still_path ? 'w300' : undefined,
                     }}
                   />
@@ -119,7 +118,7 @@ const SeasonsAndEpisodes: React.FC<SeasonsAndEpisodesProps> = (props) => {
                       {episode?.name}
                     </h2>
                   </div>
-                  <div className='absolute top-0 h-full w-full z-30 grid place-items-center hover:bg-stone-900  hover:bg-opacity-70 text-xl font-poppins font-black uppercase tracking-wider opacity-0 hover:opacity-100 text-stone-300 transition-full duration-200'>
+                  <div className='absolute top-0 h-full w-full z-30 grid place-items-center hover:bg-stone-900  hover:bg-opacity-70 text-xl font-poppins font-black uppercase tracking-wider opacity-0 hover:opacity-100 text-slate-300 transition-full duration-200'>
                     Play
                   </div>
                 </ButtonComponent>

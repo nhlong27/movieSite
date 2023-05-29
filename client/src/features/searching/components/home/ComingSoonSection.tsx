@@ -31,10 +31,10 @@ const ComingSoonSection = () => {
   const { isXs } = useMediaQueries();
 
   return (
-    <div className='relative max-h-[50rem] xl:aspect-[15/5] lg:h-auto xs:h-[33rem] w-full flex justify-center items-center z-0 bg-stone-200 dark:bg-stone-900 py-4 rounded-lg shadow-lgstone-900'>
+    <div className='relative max-h-[50rem] xl:aspect-[15/5] lg:h-auto xs:h-[33rem] w-full flex justify-center items-center z-0 bg-slate-100 dark:bg-stone-900 py-4 rounded-lg shadow-lg'>
       <div className='w-11/12 flex flex-col z-10'>
-        <div className='max-h-[50rem] xl:aspect-[22/14] lg:aspect-[12/9] z-20 w-full lg:h-auto xs:h-[33rem] font-poppins text-xl font-black tracking-[0.3rem] text-stone-500 dark:text-yellow-400 uppercase'>
-          <div className='py-2 border-b-2 border-stone-300 mb-4 dark:border-yellow-600'>Coming Soon</div>
+        <div className='max-h-[50rem] xl:aspect-[22/14] lg:aspect-[12/9] z-20 w-full lg:h-auto xs:h-[33rem] font-poppins text-xl font-black tracking-[0.3rem] text-slate-900 dark:text-yellow-400 uppercase'>
+          <div className='py-2 border-b-2 border-slate-300 mb-4 dark:border-yellow-600'>Coming Soon</div>
           <div className='w-full py-2 flex gap-4 text-lg'>
             {isXs ? (
               <Link
@@ -60,6 +60,8 @@ const ComingSoonSection = () => {
           data={data!.pages[0]}
           sectionName='comingSoon'
           mediaType={mediaType}
+          styles={{swiper:'absolute bottom-0 left-0 right-0 mb-4'}}
+
         />
       </div>
       {isXs ? <SectionBackdrop section='comingSoon' mediaType={mediaType} /> : null}

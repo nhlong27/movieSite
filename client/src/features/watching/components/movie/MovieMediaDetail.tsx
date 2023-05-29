@@ -12,21 +12,21 @@ const MovieMediaDetail= () => {
 
   return (
     <div ref={animationParentRef}>
-      <h1 className='truncate font-poppins font-black text-2xl  tracking-wide py-4 md:text-3xl md:uppercase text-yellow-300'>
+      <h1 className='truncate font-poppins font-black text-2xl text-slate-900 tracking-wide py-4 md:text-3xl md:uppercase dark:text-yellow-300'>
         {(data as MovieDetailType).title}
       </h1>
     
       <div className='flex justify-start gap-4 flex-wrap text-lg py-4 md:py-0'>
         {data?.genres?.map((genre, index) => (
           <span
-            className='rounded-lg md:ring-amber-700  md:bg-yellow-400 md:px-4 font-bold  bg-stone-300 text-stone-900 dark:bg-lime-500 dark:text-stone-900 dark:ring-transparent px-4 py-[2px]'
+            className='rounded-lg md:px-4 font-bold  bg-stone-300 text-stone-900 dark:bg-lime-500 dark:text-stone-900 text-base font-poppins  px-3 py-[2px]'
             key={index}
           >
             {genre.name}
           </span>
         ))}
       </div>
-      <div className='text-base font-bold flex items-center py-4 text-white'>
+      <div className='text-base font-bold flex items-center py-4 dark:text-white text-slate-700'>
         <p className='md:text-base'>{(data as MovieDetailType).release_date}</p>
         <div className='ml-16 flex items-center rounded-lg tracking-[0.2rem] dark:bg-stone-900 px-2 py-[4px]'>
           <svg
@@ -44,11 +44,11 @@ const MovieMediaDetail= () => {
           </p>
         </div>
       </div>
-      <p className='text-white mb-2 md:text-lg border-l-4 border-yellow-500 pl-4 py-4'>
+      <p className='dark:text-white text-slate-900 mb-2 md:text-lg border-l-4 dark:border-yellow-500 border-slate-200 pl-4 py-4'>
         {(data as MovieDetailType).overview}
       </p>
 
-      <div className='border-t-4 border-stone-300 pl-8 md:mt-0 md:border-0 py-4 mt-8 grid grid-cols-4 gap-x-16 md:gap-x-8 gap-y-4 text-sm text-white md:text-base md:gap-y-0'>
+      <div className=' pl-8 md:mt-0 py-4 mt-4 grid grid-cols-4 gap-x-16 md:gap-x-8 gap-y-4 text-sm dark:text-white text-slate-900 md:text-base md:gap-y-0'>
         <h3 className='col-span-1 '>Language</h3>
         <p className='col-start-2 col-span-3'>
           {(data as MovieDetailType).original_language === 'en'
@@ -90,7 +90,7 @@ const MovieMediaDetail= () => {
                   <LazyLoadImageComponent
                     path={company.logo_path ?? imageHelper.distributor}
                     styles={{
-                      image: ' object-cover w-[5rem] h-[3rem] overflow-hidden bg-gradient-to-tr from-stone-900 to-stone-700  grow',
+                      image: 'object-contain aspect-1/2  md:w-[5rem] w-[3rem] overflow-hidden',
                       size: company?.logo_path ? 'w200' : undefined,
                     }}
                   />

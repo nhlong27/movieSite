@@ -74,7 +74,7 @@ const AvatarContainer = () => {
 
   return (
     <div className='w-full flex flex-col justify-center items-center font-poppins px-4 py-4'>
-      <h1 className='w-11/12 text-stone-500 tracking-wide text-lg flex py-2 font-bold dark:text-yellow-400'>Avatar</h1>
+      <h1 className='w-11/12 text-slate-900 tracking-wide text-lg flex py-2 font-bold dark:text-yellow-400'>Avatar</h1>
       <Wrapper
         suspenseComponent={
           <div className='rounded-full object-cover overflow-hidden'>
@@ -82,7 +82,7 @@ const AvatarContainer = () => {
           </div>
         }
       >
-        <div className='w-full py-2 ring-2 ring-stone-400 grid place-items-center rounded-xl dark:ring-stone-800 bg-stone-300 dark:bg-transparent'>
+        <div className='w-full py-2 ring-2 ring-slate-200 grid place-items-center rounded-xl dark:ring-stone-800 bg-slate-100 dark:bg-transparent'>
           <AvatarComponent
             styles={{
               image: 'rounded-full object-cover overflow-hidden',
@@ -90,12 +90,12 @@ const AvatarContainer = () => {
               width: '150px',
             }}
           />
-          <div className='flex items-center gap-4 justify-center divide-stone-400 dark:text-yellow-400 divide-x-2 pt-4 h-[3rem] dark:divide-yellow-500 px-4 text-sm '>
+          <div className='flex items-center gap-4 justify-center divide-slate-200 dark:text-yellow-400 divide-x-2 pt-4 h-[3rem] dark:divide-yellow-500 px-4 text-sm '>
             <ButtonComponent
-              className='flex gap-2 items-center hover:border-b-2 justify-center hover:border-stone-400 dark:hover:border-yellow-500 transition-full duration-75'
+              className='flex gap-2 items-center hover:border-b-2 justify-center hover:border-slate-200 dark:hover:border-yellow-500 transition-full duration-75'
               onClick={handleUploadClick}
             >
-              {iconHelper.upload('text-stone-700 dark:text-yellow-400 text-xl')}
+              {iconHelper.upload('text-slate-900 dark:text-yellow-400 text-xl')}
               Upload new
             </ButtonComponent>
             <input
@@ -106,7 +106,7 @@ const AvatarContainer = () => {
               style={{ display: 'none' }}
             />
             <ButtonComponent
-              className='hover:border-b-2 hover:border-stone-400 dark:hover:border-yellow-500 px-4 transition-full duration-75'
+              className='hover:border-b-2 hover:border-slate-200 dark:hover:border-yellow-500 px-4 transition-full duration-75'
               onClick={setToDefault}
             >
               Set default
