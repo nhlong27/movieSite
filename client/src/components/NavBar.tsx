@@ -46,16 +46,16 @@ const NavBar = () => {
           src={imageHelper.logo_md}
           className=' overflow-hidden object-full h-[3.2rem] rounded-full min-w-[3.2rem]'
         />
-        <span className='text-stone-500 dark:text-yellow-400 font-extrabold tracking-wider text-2xl font-serif'>
+        <span className='dark:text-yellow-400 text-stone-900 font-extrabold tracking-wider text-2xl font-serif'>
           Fir Media
         </span>
       </Link>
       <div className='grid grid-cols-4 lg:col-start-3 col-span-2 place-items-center'>
         <Link
-          className={`col-span-1 h-full w-3/4   whitespace-nowrap grid place-items-center tracking-wider font-poppins text-xl transition-full duration-100 ${
+          className={`col-span-1 h-full w-3/4 whitespace-nowrap grid place-items-center tracking-wider font-poppins text-xl transition-full duration-100 ${
             currentPath === 'home' && mediaType === 'movie'
-              ? 'text-stone-600 dark:text-yellow-500 border-b-2 border-stone-500 dark:border-yellow-500 font-semibold'
-              : 'dark:text-yellow-500 text-xl'
+              ? 'text-yellow-500 border-b-2 border-yellow-500 font-semibold'
+              : 'text-yellow-500 text-xl'
           }`}
           to='/'
           onClick={() => {
@@ -69,8 +69,8 @@ const NavBar = () => {
         <Link
           className={`col-span-1 h-full w-3/4 whitespace-nowrap grid place-items-center tracking-wider font-poppins text-xl transition-full duration-100 ${
             currentPath === 'home' && mediaType === 'tv'
-              ? 'text-stone-600 dark:text-yellow-400 border-b-2 border-stone-500 dark:border-yellow-500 font-semibold'
-              : 'dark:text-yellow-500 text-xl'
+              ? 'text-yellow-400 border-b-2 border-yellow-500 font-semibold'
+              : 'text-yellow-500 text-xl'
           }`}
           to='/'
           onClick={() => {
@@ -92,11 +92,23 @@ const NavBar = () => {
           errorComponent={() => (
             <div className='col-span-1 h-full group flex justify-center items-center w-full overflow-hidden'>
               <div className='rounded-full grid place-items-center w-12  group-hover:max-w-0 transition-all duration-500 overflow-hidden opacity-100 group-hover:opacity-0'>
-                <LazyLoadImage src={imageHelper.logo_better} alt='default_avatar' effect='blur' />
+                {theme === 'light' ? (
+                  <LazyLoadImage
+                    src={imageHelper.logo}
+                    alt='default_avatar'
+                    effect='blur'
+                  />
+                ) : (
+                  <LazyLoadImage
+                    src={imageHelper.logo_better}
+                    alt='default_avatar'
+                    effect='blur'
+                  />
+                )}
               </div>
               <Link
-                className='h-0 max-w-0 group-hover:max-w-full overflow-hidden group-hover:h-3/4 opacity-0 invisible group-hover:visible group-hover:opacity-100 transition-all duration-500 grid place-items-center  font-poppins text-base px-4 py-2 rounded-lg dark:bg-yellow-400
-                dark:text-stone-900 dark:hover:bg-yellow-500 bg-stone-600 text-stone-50 shadow-lg font-bold  whitespace-nowrap'
+                className='h-0 max-w-0 group-hover:max-w-full overflow-hidden group-hover:h-3/4 opacity-0 invisible group-hover:visible group-hover:opacity-100 transition-all duration-500 grid place-items-center  font-poppins text-base px-3 py-[2px] rounded-lg bg-slate-500 hover:bg-slate-600 dark:bg-yellow-400
+                dark:text-stone-900 text-white dark:hover:bg-yellow-500 shadow-lg font-bold  whitespace-nowrap'
                 to='/profile'
                 onClick={() => {
                   setProgress(100);
@@ -119,15 +131,13 @@ const NavBar = () => {
             <AvatarComponent
               styles={{
                 image: `rounded-full overflow-hidden grid w-12 place-items-center object-cover aspect-square ${
-                  currentPath === 'profile'
-                    ? 'text-stone-500 border-b-4 border-stone-400 dark:border-yellow-500'
-                    : ''
+                  currentPath === 'profile' ? 'border-b-4 border-yellow-500' : ''
                 }`,
               }}
             />
           </Link>
         </Wrapper>
-        <div className='ml-16 min-h-1/2 py-2 my-auto w-3/4 whitespace-nowrap flex items-center col-span-1 justify-center gap-4 rounded-lg px-2 bg-stone-700   dark:bg-stone-700 dark:bg-opacity-70 shadow-inner z-10'>
+        <div className='ml-16 min-h-1/2 py-2 my-auto w-3/4 whitespace-nowrap flex items-center col-span-1 justify-center gap-4 rounded-lg px-2 dark:bg-stone-700 bg-slate-200 bg-opacity-70 shadow-inner z-10'>
           <ButtonComponent
             className={`w-6 h-6 rounded-full flex justify-center items-center ${
               theme === 'light' ? 'text-yellow-500' : 'text-stone-300'
@@ -177,31 +187,35 @@ const NavBar = () => {
           className=' overflow-hidden object-full h-[4rem] w-[4rem]'
         />
         {currentPath === 'home' && (
-          <span className='text-stone-500 dark:text-yellow-500 font-extrabold tracking-wider uppercase font-poppins text-[17px]'>
+          <span className='text-yellow-500 font-extrabold tracking-wider uppercase font-poppins text-[17px]'>
             Fir Media
           </span>
         )}
       </Link>
 
-        <div className={`h-1/2 rounded-lg my-auto w-full whitespace-nowrap flex items-center col-span-1 justify-center bg-stone-300 dark:bg-stone-700 gap-4 z-10 ${currentPath === 'discover' && 'opacity-0 z-0'}`}>
-          <ButtonComponent
-            className={`w-4 h-4 rounded-full grid place-items-center  ${
-              theme === 'light' ? 'text-yellow-600' : 'text-stone-800 '
-            }`}
-            onClick={() => setTheme('light')}
-          >
-            {iconHelper.light('text-lg')}
-          </ButtonComponent>
+      <div
+        className={`h-1/2 rounded-lg my-auto w-full whitespace-nowrap flex items-center col-span-1 justify-center dark:bg-stone-700 bg-slate-200 gap-4 bg-opacity-70 z-10 ${
+          currentPath === 'discover' && 'opacity-0 z-0'
+        }`}
+      >
+        <ButtonComponent
+          className={`w-4 h-4 rounded-full grid place-items-center  ${
+            theme === 'light' ? 'text-yellow-600' : 'text-stone-800 '
+          }`}
+          onClick={() => setTheme('light')}
+        >
+          {iconHelper.light('text-lg')}
+        </ButtonComponent>
 
-          <ButtonComponent
-            className={`w-4 h-4 rounded-full grid place-items-center   ${
-              theme === 'dark' ? 'text-yellow-600' : 'text-stone-800'
-            }`}
-            onClick={() => setTheme('dark')}
-          >
-            {iconHelper.dark('text-base')}
-          </ButtonComponent>
-        </div>
+        <ButtonComponent
+          className={`w-4 h-4 rounded-full grid place-items-center   ${
+            theme === 'dark' ? 'text-yellow-600' : 'text-stone-800'
+          }`}
+          onClick={() => setTheme('dark')}
+        >
+          {iconHelper.dark('text-base')}
+        </ButtonComponent>
+      </div>
       <Link
         className={`flex justify-center items-center ${
           currentPath === 'home' ? 'col-span-1' : 'col-span-2'
@@ -220,7 +234,7 @@ const NavBar = () => {
         className='flex justify-end items-center'
       >
         {iconHelper.menu(
-          `h-6 w-6 mr-4 text-stone-400 dark:text-yellow-500 ${
+          `h-6 w-6 mr-4 text-yellow-500 ${
             shouldDropdownDisplay && 'rotate-90'
           } transition-transform duration-300`,
         )}

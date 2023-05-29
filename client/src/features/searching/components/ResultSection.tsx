@@ -23,7 +23,7 @@ const ResultSection = () => {
       className='lg:row-start-1 lg:col-start-1 lg:col-span-3 w-full flex flex-col'
     >
       <ButtonComponent
-        className='flex font-poppins text-lg font-black tracking-[0.1rem] text-stone-600 px-8 items-center gap-4 bg-stone-200 rounded-t-xl py-4 border-b-4 border-stone-400 shadow-xl dark:bg-stone-900 dark:border-yellow-600 dark:text-yellow-500'
+        className='flex font-poppins text-lg font-black tracking-[0.1rem] text-slate-900 px-8 items-center gap-4 bg-slate-50 rounded-t-xl py-4 border-b-4 border-slate-200 shadow-xl dark:bg-stone-900 dark:border-yellow-600 dark:text-yellow-500'
         onClick={() => {
           setHasQueryFilters((prev) => !prev);
           window.scrollTo(0, 0);
@@ -31,16 +31,16 @@ const ResultSection = () => {
       >
         <div className='flex items-center gap-4'>
           <div>Search Results for </div>
-          <div className='px-4 py-2 rounded-lg bg-stone-500 text-stone-200 uppercase font-extrabold dark:bg-yellow-400 dark:text-stone-900'>
+          <div className='px-2 py-[2px] rounded-lg bg-slate-300 text-slate-900 uppercase font-extrabold dark:bg-yellow-400 dark:text-stone-900'>
             {query ?? '?'}
           </div>
         </div>
         {hasQueryFilters ? (
-          <div className='rounded-full bg-stone-300 ring-2 ring-stone-500 grid place-items-center w-[1.8rem] h-[1.8rem] dark:bg-stone-900 dark:ring-yellow-500 dark:text-yellow-500 text-stone-500 ml-auto'>
+          <div className='rounded-full bg-slate-200 ring-2 ring-slate-300 grid place-items-center w-[1.8rem] h-[1.8rem] dark:bg-stone-900 dark:ring-yellow-500 dark:text-yellow-500 text-slate-900 ml-auto'>
             {iconHelper.down('text-xl font-black ')}
           </div>
         ) : (
-          <div className='rounded-full bg-stone-300 ring-2 ring-stone-500 grid place-items-center w-[1.8rem] h-[1.8rem] dark:bg-stone-900 dark:ring-yellow-500 dark:text-yellow-500 text-stone-500 ml-auto'>
+          <div className='rounded-full bg-slate-200 ring-2 ring-slate-300 grid place-items-center w-[1.8rem] h-[1.8rem] dark:bg-stone-900 dark:ring-yellow-500 dark:text-yellow-500 text-slate-900 ml-auto'>
             {iconHelper.up('text-xl ')}
           </div>
         )}
@@ -51,7 +51,7 @@ const ResultSection = () => {
           <img src={imageHelper.background3} alt='background' className='object-contain' />
         </div>
       )}
-      <h1 className='mt-8 font-poppins text-lg font-black tracking-[0.1rem] text-stone-600 bg-stone-200 rounded-t-xl py-4 border-b-4 px-8 border-stone-400 shadow-xl flex items-center gap-4 flex-wrap dark:bg-stone-900 dark:text-yellow-500 dark:border-yellow-600'>
+      <h1 className='mt-8 font-poppins text-lg tracking-[0.1rem] text-slate-900 bg-slate-50 rounded-t-xl py-4 border-b-4 px-8 border-slate-200 shadow-xl flex items-center gap-4 flex-wrap dark:bg-stone-900 dark:text-yellow-500 dark:border-yellow-600'>
         <span>Filter Results by</span>
         {mediaType === 'movie'
           ? [
@@ -63,8 +63,8 @@ const ResultSection = () => {
               <ButtonComponent
                 onClick={() => setHasQueryFilters(true)}
                 key={index}
-                className='px-2 py-[2px] rounded-lg bg-stone-500 text-lime-200 capitalize
-                text-base dark:bg-lime-400 dark:hover:bg-lime-500 dark:text-stone-900'
+                className='px-2 py-[2px] rounded-lg bg-slate-200 hover:bg-slate-300 text-lime-700 capitalize
+                text-base dark:bg-lime-600 dark:hover:bg-lime-700 dark:text-lime-100'
               >
                 {item ?? '?'}
               </ButtonComponent>
@@ -80,8 +80,8 @@ const ResultSection = () => {
               <ButtonComponent
                 onClick={() => setHasQueryFilters(true)}
                 key={index}
-                className='px-2 py-[2px] rounded-lg bg-stone-500 text-stone-200 capitalize
-                text-base dark:bg-yellow-400 dark:text-stone-900'
+                className='px-2 py-[2px] rounded-lg bg-slate-300 text-green-700 capitalize
+                text-base dark:bg-lime-400 dark:hover:bg-lime-500 dark:text-stone-900'
               >
                 {item ?? '?'}
               </ButtonComponent>

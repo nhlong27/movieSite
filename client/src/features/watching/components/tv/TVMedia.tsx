@@ -43,7 +43,7 @@ const TVMedia = () => {
     <div className='w-11/12 min-h-screen flex flex-col justify-start items-center z-0 rounded-xl shadow-xl font-poppins'>
       <div className='relative z-10 aspect-[22/12] w-full grid grid-cols-3 grid-rows-2 overflow-hidden'>
         <div className='ml-6 mt-4 absolute top-0 left-0'>
-          <div className='flex items-center bg-opacity-70 bg-stone-600 px-2 py-[2px] dark:bg-amber-400'>
+          <div className='flex items-center bg-opacity-70 px-2 py-[2px] dark:bg-amber-400'>
             <svg
               aria-hidden='true'
               className='w-6 h-6 text-amber-400  dark:text-stone-900'
@@ -67,7 +67,7 @@ const TVMedia = () => {
             </p>
             <div className='h-3 text-2xl text-right text-stone-300'>”</div>
           </h2>
-          <div className='w-2/3 font-black capitalize text-[2.8rem] lg:text-[3.3rem] text-stone-200 font-serif tracking-[0.2rem] dark:text-yellow-500 grow text-ellipsis whitespace-nowrap overflow-x-hidden'>
+          <div className='w-2/3 font-black capitalize text-[2.8rem] lg:text-[3.3rem] text-stone-200 font-serif tracking-[0.2rem] dark:text-yellow-500 grow text-ellipsis whitespace-nowrap overflow-hidden'>
             {(data as TVType).name}
           </div>
           <div className='w-2/3 text-stone-200 lg:py-4 flex gap-4 items-center'>
@@ -100,7 +100,7 @@ const TVMedia = () => {
             }}
           />
         </div>
-        <div ref={trailerRef} className='col-start-2 col-span-3 p-2'>
+        <div ref={trailerRef} className='col-start-2 col-span-3 p-4 bg-slate-50 dark:bg-stone-900 rounded-r-md'>
           {selectedTrailer ? (
             <>
               <ReactPlayerComponent className='h-[30rem]' trailerSource={selectedTrailer} />
@@ -199,7 +199,7 @@ const TVMedia = () => {
 
       <div
         ref={seasonsAndEpisodesRef}
-        className='relative w-full  py-4 px-4 bg-opacity-20 bg-stone-300 z-0 rounded-xl shadow-xl dark:bg-stone-900'
+        className='relative w-full py-4 px-4 bg-slate-50 z-0 shadow-lg rounded-t-lg dark:bg-stone-900'
       >
         <SeasonsAndEpisodes
           options={{
@@ -210,13 +210,13 @@ const TVMedia = () => {
 
       <div
         className='relative w-full py-4 px-4 
-         bg-stone-300 rounded-b-xl shadow-xl bg-opacity-20 dark:bg-stone-900'
+         bg-slate-50 dark:bg-stone-900'
       >
-        <h1 className='py-2 px-4 text-left font-poppins text-stone-500 uppercase border-b-4 border-stone-400 bg-stone-200 rounded-t-lg text-2xl bg-opacity-90 dark:bg-stone-900 dark:border-yellow-600  dark:text-yellow-400'>
+        <h1 className='py-2 px-4 text-left font-poppins text-slate-900 uppercase bg-slate-50 rounded-t-lg text-2xl dark:bg-stone-900 border-b-2 border-slate-200 dark:border-yellow-600 dark:text-yellow-400'>
           You may also like
         </h1>
         {extraData.similar?.results?.length ?? 0 > 0 ? (
-          <div className='grid grid-cols-1 md:grid-cols-3 xs:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 3xl:grid-cols-6 4k:grid-cols-7 place-items-center w-full gap-4 2xl:gap-4 min-h-screen  place-content-start bg-stone-200 rounded-b-xl shadow-xl py-8 dark:bg-stone-900'>
+          <div className='grid grid-cols-1 md:grid-cols-3 xs:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 3xl:grid-cols-6 4k:grid-cols-7 place-items-center w-full gap-4 2xl:gap-4 min-h-screen  place-content-start bg-slate-50 rounded-b-xl shadow-xl py-8 dark:bg-stone-900'>
             {extraData.similar?.results?.map((media: any, index) => {
               return (
                 <LinkMediaCard
@@ -224,7 +224,7 @@ const TVMedia = () => {
                   media={media}
                   role='linkTVCard'
                   styles={{
-                    link: 'relative h-[20rem] w-[200px] overflow-hidden flex justify-center items-center flex-col rounded-xl  bg-gradient-to-t from-stone-900 to-yellow-500  transition-full duration-200 hover:transform hover:scale-110',
+                    link: 'relative h-[20rem] w-[200px] overflow-hidden flex justify-center items-center flex-col rounded-xl  bg-gradient-to-t from-stone-900 to-yellow-500  transition-full duration-200 hover:transform hover:scale-110 shadow-lg',
                     image:
                       'overflow-hidden  bg-gradient-to-tr  from-white  to-black  dark:from-stone-900 dark:to-yellow-500 grow',
                     size: (media as any).poster_path ? 'w400' : undefined,
@@ -234,12 +234,12 @@ const TVMedia = () => {
             })}
           </div>
         ) : (
-          <div className='relative w-full flex flex-row  h-[4rem] justify-center items-baseline gap-4 bg-stone-300 bg-opacity-20 shadow-inner border-2 border-stone-400 font-poppins text-normal font-semibold px-8 py-8 dark:bg-stone-900 dark:border-yellow-600'>
-            <h1 className='text-stone-400 text-sm dark:text-yellow-500'>
+          <div className='relative w-full flex flex-row h-auto justify-center items-baseline gap-4 bg-slate-50 bg-opacity-20 shadow-inner border-2 border-slate-200 font-poppins text-normal font-semibold px-8 py-8 dark:bg-stone-900 dark:border-yellow-600'>
+            <h1 className='text-slate-900 text-sm dark:text-yellow-500'>
               No movies or TV shows for this media
             </h1>
             <Link
-              className='w-3/4 px-6 py-2 font-poppins rounded-xl bg-stone-300 grid place-items-center ring-2 ring-stone-400 text-stone-400 hover:bg-stone-400 hover:text-stone-600 text-lg hover:ring-stone-600 dark:bg-stone-900 dark:ring-transparent dark:text-yellow-500 dark:hover:bg-yellow-400 dark:hover:text-stone-900 dark:hover:ring-stone-800 dark:hover:shadow-2xl dark:hover:shadow-yellow-500 hover:shadow-xl hover:shadow-stone-900 transition-full duration-300'
+              className='w-auto px-4 py-[2px] font-poppins rounded-xl bg-slate-200 grid place-items-center text-slate-900 hover:bg-slate-300 text-base  dark:bg-stone-900  dark:text-yellow-500 dark:hover:bg-yellow-400 dark:hover:text-stone-900 dark:hover:shadow-md dark:hover:shadow-yellow-500 hover:shadow-md hover:shadow-stone-900 transition-full duration-300'
               to='/discover'
               onClick={() => {
                 console.log('navigating to exploring page..');
@@ -253,7 +253,7 @@ const TVMedia = () => {
           </div>
         )}
       </div>
-      <div className='w-full flex flex-col justify-center items-center gap-4 bg-stone-300 shadow-inner border-t-2 border-stone-400 font-poppins text-normal px-8 py-8 dark:bg-stone-900 dark:border-yellow-600'>
+      <div className='w-full flex flex-col justify-center items-center gap-4 rounded-b-lg bg-slate-50 shadow-inner font-poppins text-normal px-8 py-4 dark:bg-stone-900'>
         <CommentSection mediaId={data.id?.toString() ?? '404'} />
       </div>
     </div>
@@ -270,8 +270,8 @@ const TVMedia = () => {
           />
         </div>
         <div
-          className='sm:w-4/5 w-[90%] bg-stone-100 -mt-[4rem]  py-4 px-8
-          rounded-xl shadow-xl flex flex-col items-center dark:bg-gradient-to-t  dark:from-stone-900 dark:to-yellow-500  dark:ring-2 dark:ring-yellow-500'
+          className='sm:w-4/5 w-[90%] bg-slate-50 -mt-[4rem]  py-4 px-8
+          rounded-xl shadow-xl flex flex-col items-center dark:bg-gradient-to-t  dark:from-stone-900 dark:to-yellow-500  dark:ring-2 dark:ring-yellow-500 font-poppins'
         >
           <div className='grid place-items-center w-full py-4'>
             <MediaActions
@@ -287,14 +287,14 @@ const TVMedia = () => {
         </div>
         <div
           className='sm:w-4/5 w-[90%] py-4 
-        px-custom-x-max-medium bg-transparent rounded-xl shadow-xl '
+        px-custom-x-max-medium dark:bg-transparent rounded-xl bg-slate-50 shadow-lg '
         >
           <TVMediaDetail />
         </div>
         <div
           ref={animationParentRef}
           className='sm:w-4/5 w-[90%] relative py-4
-    px-custom-x-max-medium flex flex-col bg-stone-200 rounded-xl shadow-xl items-center justify-start font-poppins dark:bg-stone-900'
+    px-custom-x-max-medium flex flex-col bg-slate-50 rounded-xl shadow-md items-center justify-start font-poppins dark:bg-stone-900'
         >
           <Trailers />
         </div>
@@ -325,7 +325,7 @@ const TVMedia = () => {
                 switch to another streaming server.
               </div>
             </div>
-            <div className='relative h-0 pb-[56.25%]'>
+            <div className='relative h-0 pb-[56.25%] '>
               <ReactPlayerComponent
                 seasonNumber={seasonAndEpisode?.season?.toString()}
                 episodeNumber={seasonAndEpisode?.episode?.toString()}
@@ -336,12 +336,12 @@ const TVMedia = () => {
           </div>
         ) : null}
       </div>
-      <div className='w-full md:w-3/4 xl:w-1/2 bg-stone-300 grid place-items-center font-poppins py-4 dark:bg-stone-900'>
-        <div className='w-11/12 flex flex-col justify-center items-center gap-x-custom-x-max-medium bg-stone-400 rounded shadow-inner py-4 px-8 dark:bg-yellow-500 dark:bg-opacity-40'>
-          <p className='text-left text-sm font-bold text-stone-700 py-4 dark:text-stone-900'>
+      <div className='w-full md:w-3/4 xl:w-1/2 bg-slate-50 grid place-items-center font-poppins py-4 dark:bg-stone-900'>
+        <div className='w-11/12 flex flex-col justify-center items-center gap-x-custom-x-max-medium bg-slate-50 rounded shadow-inner py-4 px-8 dark:bg-stone-800'>
+          <p className='text-left text-sm font-bold text-stone-700 py-4 dark:text-yellow-400'>
             If current server doesn't work please try other servers below.
           </p>
-          <div className='flex xs:flex-row flex-col gap-2 justify-between text-stone-500 font-bold'>
+          <div className='flex md:flex-row flex-col gap-2 justify-between text-stone-500 font-bold'>
             <ButtonComponent
               className='uppercase  flex items-center gap-2 px-4 py-2 bg-stone-300 rounded-lg hover:bg-stone-200 dark:bg-amber-200 dark:hover:bg-amber-300 transition-full duration-200'
               onClick={() => setServerSource('2embed.to')}
@@ -379,7 +379,7 @@ const TVMedia = () => {
 
       <div
         ref={seasonsAndEpisodesRef}
-        className='relative w-full py-4 px-4 bg-stone-300 dark:bg-stone-900'
+        className='relative w-full py-4 px-4 bg-slate-50 dark:bg-stone-900'
       >
         <SeasonsAndEpisodes
           options={{
@@ -390,13 +390,13 @@ const TVMedia = () => {
 
       <div
         className='relative w-full py-4 
-        px-custom-x-max-medium bg-stone-300 rounded-b-xl shadow-xl dark:bg-stone-900'
+        px-custom-x-max-medium bg-slate-50 shadow-lg dark:bg-stone-900'
       >
-        <h1 className='py-2 px-4 text-left font-poppins text-stone-500 text-xl uppercase border-b-4 border-stone-400 bg-stone-200 rounded-t-lg dark:bg-stone-900 dark:text-yellow-400 dark:border-yellow-600'>
+        <h1 className='py-2 px-4 text-left font-poppins text-slate-900 text-xl uppercase border-b-4 border-slate-200 bg-slate-50 rounded-t-lg dark:bg-stone-900 dark:text-yellow-400 dark:border-yellow-600'>
           You may also like
         </h1>
         {extraData.similar?.results?.length ?? 0 > 0 ? (
-          <div className='grid grid-cols-1 md:grid-cols-3 xs:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 3xl:grid-cols-6 4k:grid-cols-7 place-items-center w-full gap-4 2xl:gap-4 min-h-screen  place-content-start bg-stone-200 rounded-b-xl shadow-xl py-8 dark:bg-stone-900'>
+          <div className='grid grid-cols-1 md:grid-cols-3 xs:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 3xl:grid-cols-6 4k:grid-cols-7 place-items-center w-full gap-4 2xl:gap-4 min-h-screen  place-content-start bg-slate-50 rounded-b-xl shadow-xl py-8 dark:bg-stone-900'>
             {extraData.similar?.results?.map((media, index) => {
               return (
                 <LinkMediaCard
@@ -404,7 +404,7 @@ const TVMedia = () => {
                   media={media}
                   role='linkTVCard'
                   styles={{
-                    link: 'relative h-[20rem] w-[200px] overflow-hidden flex justify-center items-center flex-col rounded-xl  bg-gradient-to-t from-stone-900 to-yellow-500  transition-full duration-200 hover:transform hover:scale-110',
+                    link: 'relative h-[20rem] w-[200px] overflow-hidden flex justify-center items-center flex-col rounded-xl  bg-gradient-to-t from-stone-900 to-yellow-500  transition-full duration-200 hover:transform hover:scale-110 shadow-lg',
                     image:
                       'overflow-hidden bg-gradient-to-tr  from-white  to-black  dark:from-stone-900 dark:to-yellow-500 grow',
                     size: (media as any).poster_path ? 'w400' : undefined,
@@ -414,26 +414,23 @@ const TVMedia = () => {
             })}
           </div>
         ) : (
-          <div className='relative w-full flex md:flex-row flex-col h-[4rem] justify-center items-baseline gap-4 bg-stone-300 shadow-inner border-2 border-stone-400 font-poppins text-normal font-bold px-8 py-8 dark:bg-stone-900 dark:border-yellow-600'>
+          <div className='relative w-full flex flex-row h-auto justify-center items-baseline gap-4 bg-slate-50 bg-opacity-20 shadow-inner border-2 border-slate-200 font-poppins text-normal font-semibold px-8 py-8 dark:bg-stone-900 dark:border-yellow-600'>
             <h1 className='text-stone-400 text-sm dark:text-yellow-500'>
               No movies or TV shows for this media
             </h1>
             <Link
-              className='w-3/4 px-6 py-2 font-poppins rounded-xl bg-stone-300 grid place-items-center ring-2 ring-stone-400 text-stone-400 hover:bg-stone-400 hover:text-stone-600 text-lg hover:ring-stone-600 dark:bg-stone-900 dark:ring-transparent dark:text-yellow-500 dark:hover:bg-yellow-400 dark:hover:text-stone-900 dark:hover:ring-stone-800 transition-full duration-300'
+              className='w-auto px-4 py-[2px] font-poppins rounded-xl bg-slate-200 grid place-items-center text-slate-900 hover:bg-slate-300 text-base  dark:bg-stone-900  dark:text-yellow-500 dark:hover:bg-yellow-400 dark:hover:text-stone-900 dark:hover:shadow-md dark:hover:shadow-yellow-500 hover:shadow-md hover:shadow-stone-900 transition-full duration-300'
               to='/discover'
               onClick={() => {
                 console.log('navigating to exploring page..');
               }}
             >
               <span> Find something else to watch</span>
-              <div className='rounded-full w-[1.5rem] grid place-items-center h-[1.5rem] bg-stone-400 absolute bottom-0 -right-8 md:right-16'>
-                {/* {iconHelper.search('text-lg text-stone-700')} */}
-              </div>
             </Link>
           </div>
         )}
       </div>
-      <div className='w-full flex flex-col justify-center items-center gap-4 bg-stone-300 shadow-inner border-t-2 border-stone-400 font-poppins text-normal font-bold py-8 dark:bg-stone-900 dark:border-yellow-600'>
+      <div className='w-full flex flex-col justify-center items-center rounded-b-lg bg-slate-50 shadow-inner font-poppins text-normal px-4 py-4 dark:bg-stone-900'>
         <CommentSection mediaId={data.id?.toString() ?? '404'} />
       </div>
     </div>

@@ -8,7 +8,7 @@ const AuthPage = () => {
   return (
     <div className='w-full max-w-[1920px] min-w-[300px]  min-h-screen flex relative top-0 bottom-0 z-0 grow'>
       <div
-        className={`screen text-white grid place-items-center border-2 grow border-yellow-600 bg-yellow-500 relative`}
+        className={`screen text-white grid place-items-center grow bg-yellow-500 relative`}
       >
         <div
           className='screen-image'

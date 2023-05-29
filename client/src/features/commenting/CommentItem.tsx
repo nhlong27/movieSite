@@ -62,28 +62,28 @@ const CommentItem = ({
   };
 
   return (
-    <div ref={animationParentRef} className={`flex flex-col ml-2 md:ml-12 ${item?.isRoot && 'mt-8'}`}>
-      <div className='flex justify-between rounded-md ring-2 ring-stone-500 bg-stone-100 dark:bg-stone-800  dark:ring-transparent'>
+    <div ref={animationParentRef} className={`flex flex-col ml-2 md:ml-12 ${item?.isRoot && 'mt-4'}`}>
+      <div className='flex justify-between rounded-md bg-slate-50 shadow-md dark:bg-stone-800  '>
         <div className='p-3 flex flex-col items-start'>
           <div className='flex gap-3 items-center'>
             <img
               src={item?.avatar}
               className='object-cover w-10 h-10 rounded-full border-2 border-yellow-400  shadow-yellow-400'
             />
-            <h3 className='font-bold dark:text-stone-50 text-left text-sm'>
+            <h3 className='font-bold dark:text-stone-50 text-left text-slate-900 text-sm'>
               {item?.userName}
               <br />
-              <span className='text-xs text-gray-400 dark:text-yellow-600 font-normal'>
+              <span className='text-xs text-slate-400 dark:text-yellow-600 font-normal'>
                 {new Date(Date.parse(item?.updatedAt)).toLocaleString('sv')}
               </span>
             </h3>
           </div>
-          <p className='text-gray-600 my-2 pl-4 text-sm md:text-base dark:text-stone-100'>{item?.content}</p>
+          <p className='text-slate-800 my-2 pl-4 text-sm md:text-base dark:text-stone-100'>{item?.content}</p>
           {item?.content !== 'Comment has been deleted' && (
-            <div>
+            <div className='pl-4'>
               <button
                 onClick={() => setShouldReplayBoxDisplay(true)}
-                className='mr-4 text-right text-yellow-400 hover:text-yellow-300'
+                className='mr-4 text-sm text-right text-yellow-600 hover:text-yellow-800'
               >
                 Reply
               </button>
@@ -96,7 +96,7 @@ const CommentItem = ({
                         content: 'Comment has been deleted',
                       });
                     }}
-                    className='mr-4 text-right text-red-500 hover:text-red-400'
+                    className='mr-4 text-sm text-right text-red-600 hover:text-red-800'
                   >
                     Delete
                   </button>
@@ -140,9 +140,9 @@ const CommentItem = ({
       </div>
 
       {shouldReplyBoxDisplay ? (
-        <div className='flex w-full  items-center justify-center -mt-4 mb-4 bg-stone-100 py-2 rounded-md shadow-lg dark:bg-stone-800'>
+        <div className='flex w-full items-center justify-center -mt-4 mb-4 bg-slate-50 py-2 dark:bg-stone-800'>
           <form
-            className='w-11/12 ring-2 ring-stone-500 bg-stone-100 rounded-lg px-4 pt-2 shadow-xl dark:ring-transparent dark:bg-stone-700'
+            className='w-11/12 bg-slate-50 rounded-lg px-4 pt-2 dark:ring-transparent dark:bg-stone-700'
             onSubmit={async (e) => {
               e.preventDefault();
               let newChildId = await handleUpdateComment(
@@ -157,12 +157,12 @@ const CommentItem = ({
             }}
           >
             <div className='flex md:flex-row flex-col -mx-3 mb-2'>
-              <h2 className='md:px-4 pt-3 pb-2 w-[10rem] text-stone-800 text-sm md:text-base text-end md:pr-4 dark:text-stone-100'>
+              <h2 className='md:px-4 pt-3 pb-2 w-[10rem] text-slate-900 text-sm md:text-base text-end md:pr-4 dark:text-stone-100'>
                 Add a reply
               </h2>
               <div className='grow px-3 mb-2 mt-2'>
                 <textarea
-                  className='bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-16 text-sm py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white dark:bg-stone-600 dark:border-none dark:focus:bg-stone-600 dark:placeholder-stone-200 dark:text-white'
+                  className='bg-slate-200 rounded leading-normal resize-none w-full h-16 text-sm py-2 px-3 font-medium placeholder-slate-700 focus:outline-none focus:bg-slate-100 dark:bg-stone-600 dark:border-none dark:focus:bg-stone-600 dark:placeholder-stone-200 dark:text-white'
                   name='content'
                   placeholder='Type Your Reply'
                   required
@@ -172,7 +172,7 @@ const CommentItem = ({
                 <div className='-mr-1 '>
                   <input
                     type='submit'
-                    className='bg-white text-gray-700 font-medium border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100 dark:bg-yellow-600 dark:border-none dark:text-stone-50 dark:hover:bg-yellow-700 cursor-pointer px-4 py-2'
+                    className='bg-slate-200 text-slate-700 font-semibold rounded-lg shadow-md tracking-wide mr-1 text-sm hover:bg-slate-300 hover:text-slate-900 dark:bg-yellow-600  dark:text-stone-50 dark:hover:bg-yellow-700 cursor-pointer px-4 py-2'
                     value='Post'
                   />
                 </div>

@@ -23,32 +23,32 @@ const Trailers: React.FC<TrailersProps> = (props) => {
   const [shouldTrailersDisplay, setShouldTrailersDisplay] = React.useState(
     shouldTrailersDisplayProp ?? true,
   );
-  const { isXs } = useMediaQueries();
-  return isXs ? (
+  const { isMd } = useMediaQueries();
+  return isMd ? (
     <>
       <ButtonComponent
-        className='flex items-center gap-2 tracking-[0.1rem] bg-transparent px-4 py-2 border-t-2 border-stone-400 hover:bg-stone-600 hover:bg-opacity-50 font-semibold capitalize text-stone-300 dark:text-yellow-400 text-base'
+        className='flex items-center gap-2 tracking-[0.1rem] bg-transparent px-4 py-2 capitalize text-white hover:text-stone-300 text-base'
         onClick={() => setShouldTrailersDisplay((prev) => !prev)}
       >
-        {iconHelper.trailer('text-xl')}
+        {iconHelper.trailer('text-lg')}
         Trailers
       </ButtonComponent>
       {shouldTrailersDisplay && (
         <div
-          className={`overflow-scroll scrollbar-hide flex w-11/12 flex-col gap-8 justify-start pr-8 items-end py-8 border-r-4 border-stone-600`}
+          className={`overflow-scroll scrollbar-hide flex w-11/12 flex-col gap-8 justify-start pr-8 items-end py-8 border-r-2 border-slate-400 dark:border-stone-400`}
         >
           {data.videos.results?.slice(0, 5).map((video: VideoType, index) => {
             return (
               <div
                 key={index}
                 className='
-                   shadow-lg shadow-stone-600 ring-offset-2 ring-offset-stone-200 relative'
+                   shadow-lg ring-offset-2 ring-offset-stone-200 relative'
                 onClick={() => {setSelectedTrailer && setSelectedTrailer(video);
                 props.refs?.playRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }}
               >
                 <ReactPlayerComponent
-                  trailerType={isXs ? 'image' : 'video'}
+                  trailerType={isMd ? 'image' : 'video'}
                   trailerSource={video}
                   className='w-full'
                 />
@@ -64,7 +64,7 @@ const Trailers: React.FC<TrailersProps> = (props) => {
   ) : (
     <>
       <ButtonComponent
-        className='flex items-center gap-2 bg-stone-300 px-4 py-2 rounded-lg hover:bg-stone-400 font-bold uppercase tracking-wider text-stone-500 shadow-lg mb-4  border-b-2 border-stone-400 dark:bg-stone-900 dark:border-transparent dark:text-yellow-500 dark:ring-2 dark:ring-yellow-500'
+        className='flex items-center gap-2  px-4 py-2 rounded-lg font-bold uppercase tracking-wider text-slate-900 shadow-md mb-4 dark:bg-stone-900  dark:text-yellow-500'
         onClick={() => setShouldTrailersDisplay((prev) => !prev)}
       >
         {iconHelper.trailer('text-lg')}
@@ -78,11 +78,11 @@ const Trailers: React.FC<TrailersProps> = (props) => {
             return (
               <div
                 key={index}
-                className='h-full w-full rounded-lg overflow-hidden shadow-lg ring-2 ring-stone-400 ring-offset-2 ring-offset-stone-200 dark:ring-transparent dark:ring-offset-transparent'
+                className='h-full w-full rounded-lg overflow-hidden shadow-lg'
                 onClick={() => setSelectedTrailer && setSelectedTrailer(video)}
               >
                 <ReactPlayerComponent
-                  trailerType={isXs ? 'image' : 'video'}
+                  trailerType={isMd ? 'image' : 'video'}
                   trailerSource={video}
                   className='w-full '
                 />

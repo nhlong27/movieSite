@@ -16,12 +16,12 @@ const ProfileInfo = () => {
     <div className='w-11/12 py-2'>
       <FormComponent
         styles={{
-          form: 'bg-stone-200 gap-2 flex flex-col dark:bg-transparent',
-          input: 'bg-stone-300 rounded-md py-[3px] pl-2 text-stone-400 dark:bg-stone-700 dark:text-white shadow-inner outline-none focus:ring-2 focus:ring-stone-900 dark:focus:ring-stone-500 text-base w-full',
+          form: 'bg-slate-50 gap-2 flex flex-col dark:bg-transparent',
+          input: 'bg-slate-100 rounded-md py-[3px] pl-2 text-slate-900 dark:bg-stone-700 dark:text-white shadow-inner outline-none focus:ring-2 focus:ring-slate-300 dark:focus:ring-stone-500 text-base w-full',
           button:
-            'ml-auto py-2 rounded-lg mt-4 text-sm bg-stone-300 ring-2 ring-stone-400 text-stone-500 hover:bg-stone-400 dark:bg-stone-600 dark:ring-transparent shadow-xl dark:text-amber-300 px-4 font-bold dark:hover:text-amber-400 dark:hover:bg-stone-700 transition-full duration-200',
+            'ml-auto py-2 rounded-lg mt-4 text-sm bg-slate-200 text-slate-900 hover:bg-slate-300 dark:bg-stone-600 dark:ring-transparent shadow-md dark:text-amber-300 px-4 font-bold dark:hover:text-amber-400 dark:hover:bg-stone-700 transition-full duration-200',
           inputName:
-            'font-bold text-stone-500 text-base flex items-center justify-between gap-4 pr-2 dark:text-white mt-4 font-normal',
+            'font-bold text-slate-900 text-base flex items-center justify-between gap-4 pr-2 dark:text-white mt-4 font-normal',
         }}
         schema={UserInfoUpdateForm}
         submitFn={(formInputs: any) =>

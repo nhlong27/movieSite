@@ -17,7 +17,7 @@ const Comments = ({
     <>
       {itemIds?.map((id) => (
         <React.Fragment key={id}>
-          {!options?.isRoot && <div className='text-stone-800 font-bold pl-14 text-left dark:text-yellow-50'>|</div>}
+          {!options?.isRoot && <div className='text-slate-900 pl-14 text-left dark:text-yellow-50'>|</div>}
           <CommentItem key={id} itemId={id} mediaId={mediaId} itemsById={itemsById} />
         </React.Fragment>
       ))}

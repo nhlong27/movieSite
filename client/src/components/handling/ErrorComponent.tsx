@@ -13,15 +13,15 @@ const ErrorComponent: React.FC<ErrorComponentProps> = (props) => {
     <div
       className={
         errorConfigs?.styles?.wrapper ??
-        'grid place-content-center place-items-center h-[10rem] w-full bg-stone-200 dark:bg-stone-900 font-poppins shadow-xl rounded-b-xl'
+        'grid place-content-center place-items-center h-[10rem] w-full bg-slate-50 dark:bg-stone-900 font-poppins shadow-xl rounded-b-xl'
       }
     >
-      <h1 className='text-base ring-stone-600 ring-2 text-stone-900 bg-stone-400 rounded-sm px-8 py-[2px] font-semibold flex gap-2 items-center dark:bg-stone-200 '>
-      {iconHelper.exclamation('text-2xl')}
+      <h1 className='text-base text-stone-900 bg-slate-200 rounded-md px-4 py-[3px] flex gap-2 items-center dark:bg-stone-800 dark:text-white'>
+      {iconHelper.exclamation('text-1xl')}
         {error.message ?? 'Failed to load resources'}
       </h1>
       <ButtonComponent
-        className='px-4 py-[2px] bg-primary rounded-md text-stone-900 text-lg mt-4 hover:bg-yellow-200  transition duration-300 flex gap-2 items-center dark:bg-yellow-500 font-semibold dark:hover:text-stone-900 dark:hover:bg-yellow-600'
+        className='px-4 py-[2px] bg-primary rounded-md text-slate-800 hover:text-slate-900 text-base mt-4 hover:bg-slate-200 transition duration-300 flex gap-2 items-center dark:bg-yellow-500 dark:hover:text-stone-900 dark:hover:bg-yellow-600'
         onClick={() => {
           console.log('reloading the page..');
           window.location.reload();
