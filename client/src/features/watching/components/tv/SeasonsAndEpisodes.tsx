@@ -104,7 +104,7 @@ const SeasonsAndEpisodes: React.FC<SeasonsAndEpisodesProps> = (props) => {
                     path={episode?.still_path ?? episode}
                     styles={{
                       image:
-                        'max-w-[300px] h-auto min-w-[200px] overflow-hidden bg-gradient-to-tr from-stone-900 to-stone-700 grow dark:to-yellow-500',
+                        'min-w-[300px] h-auto min-h-[10rem] overflow-hidden bg-gradient-to-tr from-stone-900 to-stone-700 grow dark:to-yellow-500',
                       size: episode?.still_path ? 'w300' : undefined,
                     }}
                   />

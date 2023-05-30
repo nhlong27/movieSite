@@ -89,9 +89,9 @@ const WatchHistorySection = () => {
       </Link>
     </div>
   ) : (
-    <div className='h-[5rem] w-full group flex justify-center items-center bg-stone-300 shadow-inner border-2 border-stone-400 font-poppins text-normal font-bold text-stone-800 px-8 '>
-      <div className='xs:min-w-[20rem] min-w-[15rem] group-hover:max-w-0 transition-all duration-300 overflow-hidden opacity-100 group-hover:opacity-0 flex justify-start items-start gap-2 md:items-center '>
-        <Skeleton className='h-full w-full' />
+    <div className='h-[5rem] w-full group flex justify-center items-center bg-slate-200 font-poppins text-normal font-bold text-stone-800 px-8 dark:bg-gradient-to-r rounded-lg dark:from-stone-900 dark:via-stone-800 dark:to-stone-900  dark:text-yellow-500 shadow-sm dark:shadow-yellow-400'>
+      <div className='xs:min-w-[20rem] min-w-[15rem] group-hover:max-w-0 transition-all duration-300 overflow-hidden opacity-100 group-hover:opacity-0 flex justify-start items-start gap-2 md:items-center'>
+        <Skeleton className='h-full w-full'/>
       </div>
     </div>
   );

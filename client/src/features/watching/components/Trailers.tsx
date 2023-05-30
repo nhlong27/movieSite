@@ -35,7 +35,7 @@ const Trailers: React.FC<TrailersProps> = (props) => {
       </ButtonComponent>
       {shouldTrailersDisplay && (
         <div
-          className={`overflow-scroll scrollbar-hide flex w-11/12 flex-col gap-8 justify-start pr-8 items-end py-8 border-r-2 border-slate-400 dark:border-stone-400`}
+          className={`overflow-scroll scrollbar-hide flex w-11/12 flex-col gap-8 justify-start pr-8 items-end pt-8 pb-[20rem] border-r-2 border-slate-400 dark:border-stone-400`}
         >
           {data.videos.results?.slice(0, 5).map((video: VideoType, index) => {
             return (
@@ -48,7 +48,7 @@ const Trailers: React.FC<TrailersProps> = (props) => {
                 }}
               >
                 <ReactPlayerComponent
-                  trailerType={isMd ? 'image' : 'video'}
+                  trailerType={'image'}
                   trailerSource={video}
                   className='w-full'
                 />
@@ -82,7 +82,7 @@ const Trailers: React.FC<TrailersProps> = (props) => {
                 onClick={() => setSelectedTrailer && setSelectedTrailer(video)}
               >
                 <ReactPlayerComponent
-                  trailerType={isMd ? 'image' : 'video'}
+                  trailerType={'video'}
                   trailerSource={video}
                   className='w-full '
                 />

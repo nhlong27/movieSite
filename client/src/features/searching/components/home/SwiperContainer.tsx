@@ -146,18 +146,6 @@ const SwiperContainer: React.FC<SwiperContainerProps> = (props) => {
     </div>
   ) : (
     <div className={`relative z-20 w-full h-[24rem] overflow-hidden ${styles?.swiper}`}>
-      {/* {sectionName === 'trending' || sectionName === 'comingSoon' || sectionName === 'airing' ? (
-        <Link
-          to={`/${mediaType}/${sectionBackdropItem?.id}`}
-          className='w-full grid place-items-end text-xl absolute top-0 z-30 '
-        >
-          <div className='rounded-xl flex items-center mr-20 justify-center px-4 py-2 bg-stone-700 font-poppins text-stone-50 font-black text-sm gap-2 shadow-lg ring-2 ring-stone-200 dark:ring-stone-900 dark:bg-yellow-500 dark:text-stone-900'>
-            {iconHelper.play('text-xl font-bold')}
-            Watch
-          </div>
-        </Link>
-      ) : null} */}
-
       <ButtonComponent
         className='w-16 absolute h-full z-30 cursor-pointer opacity-50 hover:opacity-70 text-[5rem] rounded-lg bg-gradient-to-l from-stone-100 to-stone-200 flex justify-center items-center dark:from-stone-900 dark:to-stone-800 dark:text-yellow-200'
         onClick={() => {

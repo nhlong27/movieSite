@@ -4,7 +4,7 @@ import Skeleton from 'react-loading-skeleton';
 import { useMediaQueries } from '@/hooks/useMediaQueries';
 
 const HomeSectionSkeleton = (props: Record<string, any>) => {
-  const { isXs, isLg, is4k } = useMediaQueries();
+  const { isXs, isLg, is4k, isMd, isXl, is2xl } = useMediaQueries();
 
   return (
     <div className='relative 4k:aspect-[18/9] xl:aspect-[15/5] xs:aspect-[9/6] w-full flex justify-center items-center z-0'>
@@ -21,7 +21,7 @@ const HomeSectionSkeleton = (props: Record<string, any>) => {
               <Skeleton className='h-full w-full' />
             </div>
             <div className={`w-full justify-between absolute bottom-0 flex slider ml-20 h-full`}>
-              {Array(is4k ? 6 : isLg ? 4 : 1)
+              {Array(is4k ? 8 : is2xl ? 6 : isXl ? 5 : isLg ? 4 : isMd ? 3 : isXs ? 2 : 1)
                 .fill(0)
                 .map((item, index: number) => {
                   return (

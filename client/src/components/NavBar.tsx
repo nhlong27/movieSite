@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   currentURLPathAtom,
-  hasQueryFiltersAtom,
   loadingBarProgress,
   mediaTypeAtom,
   shouldDropdownDisplayAtom,
@@ -83,10 +82,8 @@ const NavBar = () => {
         </Link>
         <Wrapper
           suspenseComponent={
-            <div className='col-span-1 w-full h-full grid place-items-center'>
-              <div className='rounded-full overflow-hidden grid place-items-center xs:w-1/3 xl:w-1/4   aspect-square'>
+            <div className='col-span-1 h-3/4 w-12 max-w-[2.8rem] whitespace-nowrap grid place-items-center rounded-full'>
                 <Skeleton className='h-full w-full' />
-              </div>
             </div>
           }
           errorComponent={() => (

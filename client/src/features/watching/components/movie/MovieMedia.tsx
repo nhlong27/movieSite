@@ -86,13 +86,13 @@ const MovieMedia = () => {
           <Trailers setSelectedTrailer={setSelectedTrailer} refs={{ playRef: trailerRef }} />
         </div>
       </div>
-      <div className='relative min-h-[15vh] w-full pr-6 grid grid-cols-4 gap-4 overflow-hidden bg-transparent  rounded-xl'>
+      <div className='relative min-h-[15vh] w-full pr-6 grid grid-cols-4 gap-4 overflow-hidden bg-transparent'>
         <div className='col-start-1 col-span-1'>
           <LazyLoadImageComponent
             path={data?.poster_path ?? imageHelper.poster}
             styles={{
-              image: '-z-10 h-full w-full object-cover    overflow-hidden aspect-[12/16]',
-              size: data?.poster_path ? 'original' : undefined,
+              image: '-z-10 h-full w-full object-cover overflow-hidden aspect-[12/16]',
+              size: data?.poster_path ? 'w500' : undefined,
             }}
           />
         </div>

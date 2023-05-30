@@ -9,6 +9,7 @@ import { toast } from 'react-hot-toast';
 import ButtonComponent from '@/components/generic/ButtonComponent';
 import { iconHelper } from '@/config/icons';
 import { imageHelper } from '@/config/images';
+import { Link } from 'react-router-dom';
 
 const CommentSection = ({ mediaId }: { mediaId: string }) => {
   const { data: comments, error } = useGetCommentsByMediaIdQuery(mediaId);
@@ -172,7 +173,21 @@ const CommentSection = ({ mediaId }: { mediaId: string }) => {
 };
 
 export default ({ mediaId }: { mediaId: string }) => (
-  <Wrapper errorComponent={() => <div>You need to sign in to view this section</div>}>
+  <Wrapper
+    errorComponent={() => (
+      <div className='h-full w-full flex justify-center items-center gap-4'>
+        <div className='font-semibold dark:text-yellow-400 text-slate-900 py-8'>
+          You need to sign in to view this section
+        </div>
+        <Link
+          className='ml-8 overflow-hidden max-w-[10rem] opacity-100 transition-all duration-300 grid place-items-center px-4 py-2 rounded-lg bg-slate-500 hover:bg-slate-600 text-white shadow-lg dark:hover:bg-yellow-600 dark:bg-yellow-500 dark:text-stone-900 whitespace-nowrap'
+          to='/profile'
+        >
+          Sign in
+        </Link>
+      </div>
+    )}
+  >
     <CommentSection mediaId={mediaId} />
   </Wrapper>
 );
