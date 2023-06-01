@@ -6,8 +6,10 @@ import { SignOutContainer } from '@/features/authentication';
 import ButtonComponent from '@/components/generic/ButtonComponent';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { iconHelper } from '@/config/icons';
-import DeactivateModalComponent from '@/components/generic/modals/DeactivateModalComponent';
+import DeactivateModalComponent from '@/components/generic/modals/DeactivateModalBody';
 import { imageHelper } from '@/config/images';
+import Modal from '@/components/generic/modals/Modal';
+import DeactivateModalBody from '@/components/generic/modals/DeactivateModalBody';
 
 const UserInfoSection = () => {
   const [shouldUserInfoDisplay, setShouldUserInfoDisplay] = React.useState(true);
@@ -68,7 +70,7 @@ const UserInfoSection = () => {
               onClick={() => setShouldDeactivateModalDisplay(true)}
               className='w-full grow tracking-wide text-xl font-bold py-2'
             >
-              <div className='flex gap-2 md:flex-col items-center px-2 py-2 uppercase text-slate-900  hover:text-red-600 text-sm dark:text-stone-500'>
+              <div  className='flex gap-2 md:flex-col items-center px-2 py-2 uppercase text-slate-900  hover:text-red-600 text-sm dark:text-stone-500'>
                 <span className='flex gap-2 items-center'>
                   {iconHelper.exclamation('text-xl')}
                   Danger ! ! !
@@ -76,9 +78,9 @@ const UserInfoSection = () => {
                 <span className='capitalize'>Deactivate Account</span>
               </div>
             </ButtonComponent>
-            {shouldDeactivateModalDisplay ? (
-              <DeactivateModalComponent cancelFunction={setShouldDeactivateModalDisplay} />
-            ) : null}
+            <Modal open={shouldDeactivateModalDisplay} onRequestClose={() => setShouldDeactivateModalDisplay(false)}>
+              <DeactivateModalBody cancelFunction={setShouldDeactivateModalDisplay} />
+            </Modal>
           </div>
         </div>
       ) : null}
