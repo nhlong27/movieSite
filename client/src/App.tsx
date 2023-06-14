@@ -88,7 +88,7 @@ function App() {
     window.scrollTo(0, 0);
   }, [pathname]);
   return (
-    <div className='bg-slate-50 dark:bg-stone-900 min-h-dynamic-screen min-w-[300px] w-screen flex flex-col z-0 '>
+    <div className='bg-slate-200 dark:bg-stone-900 min-h-dynamic-screen min-w-[300px] w-screen flex flex-col z-0 '>
       <LoadingBar
         height={4}
         color='#292524'

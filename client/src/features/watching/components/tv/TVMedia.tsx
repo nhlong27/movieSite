@@ -90,7 +90,7 @@ const TVMedia = () => {
           <Trailers setSelectedTrailer={setSelectedTrailer} refs={{ playRef: trailerRef }} />
         </div>
       </div>
-      <div className='relative min-h-[15vh] w-full pr-6 grid grid-cols-4 gap-4 overflow-hidden bg-transparent'>
+      <div className='relative min-h-[15vh] w-full pr-6 grid grid-cols-4 gap-4 overflow-hidden dark:bg-transparent bg-slate-50'>
         <div className='col-start-1 col-span-1'>
           <LazyLoadImageComponent
             path={data?.poster_path ?? imageHelper.poster}

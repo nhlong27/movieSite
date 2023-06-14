@@ -47,7 +47,7 @@ const FilterSection: React.FC = () => {
           </div>
         )}
         <ButtonComponent
-          className='bg-slate-200 hover:bg-slate-300 w-full  grid place-items-center font-poppins  dark:bg-stone-800  text-stone-600  dark:text-yellow-500  '
+          className='bg-slate-100 hover:bg-slate-300 w-full  grid place-items-center font-poppins  dark:bg-stone-800  text-stone-600  dark:text-yellow-500  '
           onClick={() => {
             setHasQueryFilters((prev) => !prev);
             window.scrollTo(0, 0);

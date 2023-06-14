@@ -14,7 +14,7 @@ const WatchHistorySection = () => {
 
   return historyList ? (
     historyList?.filter((each) => each.status === 'Watching').length ?? 0 > 0 ? (
-      <div className='relative w-full flex justify-center items-center bg-slate-200 py-4 dark:bg-stone-900 dark:shadow-yellow-400 shadow-sm rounded-lg'>
+      <div className='relative w-full flex justify-center items-center bg-slate-50 py-4 dark:bg-stone-900 dark:shadow-yellow-400 shadow-sm rounded-lg'>
         <div className='w-full flex flex-col relative items-center' ref={animationParentRef}>
           <strong className='z-10 grow w-11/12 flex gap-4 font-poppins text-xl tracking-[0.1rem] text-slate-900 uppercase py-2 dark:text-yellow-500'>
             Continue Watching

@@ -12,7 +12,7 @@ const MovieMediaDetail= () => {
 
   return (
     <div ref={animationParentRef}>
-      <h1 className='truncate font-poppins font-black text-2xl text-slate-900 tracking-wide py-4 md:text-3xl md:uppercase dark:text-yellow-300'>
+      <h1 className='truncate font-poppins font-black text-2xl text-slate-900 tracking-wide py-4 md:text-3xl md:uppercase  dark:text-yellow-300'>
         {(data as MovieDetailType).title}
       </h1>
     

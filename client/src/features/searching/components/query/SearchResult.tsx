@@ -21,7 +21,7 @@ const SearchResult = () => {
         hasQueryFilters ? 'max-h-0' : 'max-h-min'
       } transition-all duration-500 overflow-hidden flex flex-col w-full bg-slate-50 dark:bg-stone-900 rounded-b-xl font-poppins shadow-xl`}
     >
-      <h1 className='w-full bg-slate-200 text-slate-900 grid place-items-center text-xl uppercase font-black tracking-[0.6rem] shadow-lg dark:bg-gradient-to-r dark:from-stone-900 dark:via-yellow-500 dark:to-stone-900 dark:text-stone-900 py-4'>
+      <h1 className='w-full bg-slate-300 text-slate-900 grid place-items-center text-xl uppercase font-black tracking-[0.6rem] shadow-lg dark:bg-gradient-to-r dark:from-stone-900 dark:via-yellow-500 dark:to-stone-900 dark:text-stone-900 py-4'>
         Movies
       </h1>
       <div className='flex justify-center items-start w-full'>
@@ -44,7 +44,7 @@ const SearchResult = () => {
             })}
         </div>
       </div>
-      <h1 className='w-full  bg-slate-200 text-slate-900 grid place-items-center text-xl uppercase font-black tracking-[0.6rem] shadow-lg dark:bg-gradient-to-r dark:from-stone-900 dark:via-yellow-500 dark:to-stone-900 dark:text-stone-900 py-4'>
+      <h1 className='w-full  bg-slate-300 text-slate-900 grid place-items-center text-xl uppercase font-black tracking-[0.6rem] shadow-lg dark:bg-gradient-to-r dark:from-stone-900 dark:via-yellow-500 dark:to-stone-900 dark:text-stone-900 py-4'>
         TV Shows
       </h1>
       <div className='flex justify-center items-start w-full place-content-start'>
