@@ -81,25 +81,28 @@ Fir Media celebrates the beauty and wonder of the natural world through the lens
 Note: some screenshots might have been outdated
 <details>
   <summary>Toggle Show/Hide </summary>
-  <h1>Home page</h1>
+  <!-- <h1>Home page</h1>
   <img src='./screenshots/homePage.png' name="homePage-screenshot">
+  <p align="right"><a href="#screenshot">back to section</a></p> -->
+  <h1>Light theme</h1>
+  <img src='./screenshots/homePage_light.png' name="homePage-screenshot">
   <p align="right"><a href="#screenshot">back to section</a></p>
 
-  <h1>Search by keyword</h1>
+  <!-- <h1>Search by keyword</h1>
   <img src='./screenshots/explorePage_search.png' name="explorePage_search-screenshot">
-  <p align="right"><a href="#screenshot">back to section</a></p>
+  <p align="right"><a href="#screenshot">back to section</a></p> -->
 
-  <h1>Search by filters</h1>
+  <!-- <h1>Search by filters</h1>
   <img src='./screenshots/explorePage_filter.png' name="explorePage_filter-screenshot">
-  <p align="right"><a href="#screenshot">back to section</a></p>
+  <p align="right"><a href="#screenshot">back to section</a></p> -->
 
-  <h1>Media page</h1>
+  <!-- <h1>Media page</h1>
   <img src='./screenshots/mediaPage.png' name="mediaPage-screenshot">
-  <p align="right"><a href="#screenshot">back to section</a></p>
+  <p align="right"><a href="#screenshot">back to section</a></p> -->
 
-  <h1>Profile page</h1>
+  <!-- <h1>Profile page</h1>
   <img src='./screenshots/profilePage.png' name="profilePage-screenshot">
-  <p align="right"><a href="#screenshot">back to section</a></p>
+  <p align="right"><a href="#screenshot">back to section</a></p> -->
 
   <h1>Sign in/ Sign up</h1>
   <img src='./screenshots/authPage.png' name="authPage-screenshot">
