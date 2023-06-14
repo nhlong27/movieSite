@@ -39,6 +39,7 @@
     "react-select": "^5.7.2",
     "react-top-loading-bar": "^2.3.1",
     "use-debounce": "^9.0.3",
+    "vite-plugin-rewrite-all": "^1.0.1",
     "zustand": "^4.3.3"
   },
   "devDependencies": {

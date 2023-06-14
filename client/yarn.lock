@@ -1984,6 +1984,11 @@
   "resolved" "https://registry.npmjs.org/concat-map/-/concat-map-0.0.1.tgz"
   "version" "0.0.1"
 
+"connect-history-api-fallback@^1.6.0":
+  "integrity" "sha512-e54B99q/OUoH64zYYRf3HBP5z24G38h5D3qXu23JGRoigpX5Ss4r9ZnDk3g0Z8uQC2x2lPaJ+UlWBc1ZWBWdLg=="
+  "resolved" "https://registry.npmjs.org/connect-history-api-fallback/-/connect-history-api-fallback-1.6.0.tgz"
+  "version" "1.6.0"
+
 "convert-source-map@^1.5.0", "convert-source-map@^1.7.0":
   "integrity" "sha512-+OQdjP49zViI/6i7nIJpA8rAl4sV/JdPfU9nZs3VqOwGIgizICvuN2ru6fMd+4llL0tar18UYJXfZ/TWtmhUjA=="
   "resolved" "https://registry.npmjs.org/convert-source-map/-/convert-source-map-1.8.0.tgz"
@@ -5164,6 +5169,13 @@
     "picocolors" "^1.0.0"
     "vite" "^3.0.0 || ^4.0.0"
 
+"vite-plugin-rewrite-all@^1.0.1":
+  "integrity" "sha512-W0DAchC8ynuQH0lYLIu5/5+JGfYlUTRD8GGNtHFXRJX4FzzB9MajtqHBp26zq/ly9sDt5BqrfdT08rv3RbB0LQ=="
+  "resolved" "https://registry.npmjs.org/vite-plugin-rewrite-all/-/vite-plugin-rewrite-all-1.0.1.tgz"
+  "version" "1.0.1"
+  dependencies:
+    "connect-history-api-fallback" "^1.6.0"
+
 "vite-tsconfig-paths@^3.5.0":
   "integrity" "sha512-NKIubr7gXgh/3uniQaOytSg+aKWPrjquP6anAy+zCWEn6h9fB8z2/qdlfQrTgZWaXJ2pHVlllrSdRZltHn9P4g=="
   "resolved" "https://registry.npmjs.org/vite-tsconfig-paths/-/vite-tsconfig-paths-3.5.0.tgz"
@@ -5174,7 +5186,7 @@
     "recrawl-sync" "^2.0.3"
     "tsconfig-paths" "^4.0.0"
 
-"vite@^3.0.0 || ^4.0.0", "vite@^4.2.1", "vite@>2.0.0-0":
+"vite@^2.0.0 || ^3.0.0 || ^4.0.0", "vite@^3.0.0 || ^4.0.0", "vite@^4.2.1", "vite@>2.0.0-0":
   "integrity" "sha512-7MKhqdy0ISo4wnvwtqZkjke6XN4taqQ2TBaTccLIpOKv7Vp2h4Y+NpmWCnGDeSvvn45KxvWgGyb0MkHvY1vgbg=="
   "resolved" "https://registry.npmjs.org/vite/-/vite-4.2.1.tgz"
   "version" "4.2.1"
