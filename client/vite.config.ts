@@ -5,7 +5,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import pluginRewriteAll from 'vite-plugin-rewrite-all';
-
+import path from 'path';
 //@ts-ignore
 // // For lazy loading modules 
 // import packageConfig from './package.json'  assert { type: 'json' }
@@ -26,6 +26,11 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: ['./src/test/setupTests.ts']
+  },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
   },
   // build: {
   //   sourcemap: false,
