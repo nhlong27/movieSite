@@ -45,24 +45,17 @@ Official website: <a href="https://firmedia.site/" target='_blank'>https://firme
     <li>
       <a href="#about">About The Project</a>
       <ul>
-        <li><a href="#screenshots">Screenshots</a></li>
         <li><a href="#duration">Duration</a></li>
-        <li><a href="#challenges">Challenges</a></li>
-        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#application-flow">Application flow</a></li>
+        <li><a href="#technologies">Technologies</a></li>
       </ul>
     </li>
     <li>
       <a href="#getting_started">Getting Started</a>
-      <ul>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
     </li>
     <!-- <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li> -->
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <!-- <li><a href="#contact">Contact</a></li> -->
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -73,131 +66,38 @@ Official website: <a href="https://firmedia.site/" target='_blank'>https://firme
 
 [![Product Name Screen Shot][homePage_preview-screenshot]](...url)
 
-Fir Media celebrates the beauty and wonder of the natural world through the lens of cinema. Browse and and let the power of films transport you to the world's most breathtaking landscapes.
+My interest in how to build a streaming websites lead me to design and develop a comprehensive movie website.I learned about server architecture, CRUD operations with Restful API using Express, and authentication using JSON Web Tokens (JWT). 
 
-#
-<a id='screenshot'></a>
-## Screenshots
-Note: some screenshots might have been outdated
-<details>
-  <summary>Toggle Show/Hide </summary>
-  <!-- <h1>Home page</h1>
-  <img src='./screenshots/homePage.png' name="homePage-screenshot">
-  <p align="right"><a href="#screenshot">back to section</a></p> -->
-  <h1>Light theme</h1>
-  <img src='./screenshots/homePage_light.png' name="homePage-screenshot">
-  <p align="right"><a href="#screenshot">back to section</a></p>
-
-  <!-- <h1>Search by keyword</h1>
-  <img src='./screenshots/explorePage_search.png' name="explorePage_search-screenshot">
-  <p align="right"><a href="#screenshot">back to section</a></p> -->
-
-  <!-- <h1>Search by filters</h1>
-  <img src='./screenshots/explorePage_filter.png' name="explorePage_filter-screenshot">
-  <p align="right"><a href="#screenshot">back to section</a></p> -->
-
-  <!-- <h1>Media page</h1>
-  <img src='./screenshots/mediaPage.png' name="mediaPage-screenshot">
-  <p align="right"><a href="#screenshot">back to section</a></p> -->
-
-  <!-- <h1>Profile page</h1>
-  <img src='./screenshots/profilePage.png' name="profilePage-screenshot">
-  <p align="right"><a href="#screenshot">back to section</a></p> -->
-
-  <h1>Sign in/ Sign up</h1>
-  <img src='./screenshots/authPage.png' name="authPage-screenshot">
-  <p align="right"><a href="#screenshot">back to section</a></p>
-</details>
-
-
-<!-- 
-[![Product Name Screen Shot][homePage-screenshot]](...url)
-[![Product Name Screen Shot][explorePage_search-screenshot]](...url)
-[![Product Name Screen Shot][explorePage_filter-screenshot]](...url)
-[![Product Name Screen Shot][mediaPage-screenshot]](...url)
-[![Product Name Screen Shot][profilePage-screenshot]](...url) -->
-#
+Leveraging modern technologies like Vite and TypeScript, I streamlined development processes and ensured robust code quality. Exploring state management solutions such as Jotai and Zustand further enriched my skill set. The successful deployment of the movie website on the internet served as a significant achievement at the very beginning of my career.
 
 <a id='duration'></a>
 ## Duration
 
-Around 2 months - March to May 2023 
-## User stories  
-<b>Note</b>: media = movie | TV shows
+March - May 2023 
+## Application flow
 <ul>
-  <li>User should be able to see recommended (Trending, Up coming, Airing now, Top rated, Most popular) media in <i>Home page</i>
+  <li>User signs up/ signs in with credentials</li>
+  <li>User edits profile information: <i>Username</i>, <i>email</i>, <i>image</i>, <i>password</i> and may deactivate account</li>
+  <li>User browses recommended (Trending, Up coming, Airing now, Top rated, Most popular) media in <i>Home page</i>
   </li>
-  <li>User should be able to search for media by: <i>keyword</i>, <i>filter options</i> 
+  <li>User searches for media by: <i>keyword</i>, <i>filter options</i> 
   </li>
-  <li>User should be able to see click and see further information about a media such as: <i>overview</i>, <i>trailers</i>, <i>genres</i>, <i>similar media</i>, etc.
+  <li>User views media details: <i>overview</i>, <i>trailers</i>, <i>genres</i>, <i>similar media</i>, etc.
   </li>
-  <li>User should be able to watch media or trailers of a media</li>
-  <li>User should be able to Sign in/ Sign up/ Sign out/ Deactivate account</li>
-  <li>User should be able to edit profile information such as: <i>Username</i>, <i>email</i>, <i>avatar</i>, <i>password</i></li>
-  <li>User should be able to add media to profile list and categorize them based on: <i>Favorite</i>, <i>Is Watching</i>, <i>Plan to Watch</i>, <i>Completed</i>, <i>Dropped</i>. The "Is Watching" category should be displayed in <i>Home page</i> </li>
-  <li>User should be able to change their score and categorization of any media </li>
-  <li>User should be able to see the comment section as well as add and delete their comments for a media </li>
+  <li>User adds media to list based on: <i>Favorite</i>, <i>Is Watching</i>, <i>Plan to Watch</i>, <i>Completed</i>, <i>Dropped</i>. 
+  <li>User rates media </li>
+  <li>User comments or removes their comments for a media </li>
 </ul>
 
-<a id='challenges'></a>
-<h2>Challenges</h2>
+<a id='technologies'></a>
+<h2>Technologies</h2>
 
-<ul>
-  <li>Use 100% Typescript with frontend and backend</li>
-  <li>Pick a suitable API</li>
-  <li>Pick state management library for client side (between Redux, Zustand, Jotai or React Context, + React Query)</li>
-  <li>Pick a UI routing options</li>
-  <li>Implement auth</li>
-  <li>Pick a suitable database paradigm</li>
-  <li>Create unit tests</li>
-  <li>Deploy frontend and backend on seperate machines</li>
-</ul>
-
-<a id='solutions'></a>
-<h2>Solutions</h2>
-
-<h3>API Source</h3>
 The Movie Database API. (refer https://developer.themoviedb.org/docs/getting-started)
-<br />
-(Please look into the ./client/src/config/urls.ts file for more resource details)
-
-### Solution Stack
-
-Here are all major frameworks/libraries used to bootstrap this project
-* [![React][React-badge]][React-url]
-* [![Typescript][Typescript-badge]][Typescript-url]
-* [![TailwindCSS][TailwindCSS-badge]][TailwindCSS-url]
-* [![Jotai][Jotai-badge]][Jotai-url]
-* [![Zustand][Zustand-badge]][Zustand-url]
-* [![Zod][Zod-badge]][Zod-url]
-* [![Vite][Vite-badge]][Vite-url]
-* [![NodeJS][NodeJS-badge]][NodeJS-url]
-* [![ExpressJS][ExpressJS-badge]][ExpressJS-url]
-* [![MongoDB][MongoDB-badge]][MongoDB-url]
-<br/> 
-<br/> 
-<b>Note</b>: necessary libraries may have been left out
-* React-Query with Axios
-* Mongoose
-* React Hook Form
-* React Router v6
-* React Auto-Animated
-* React Toastify
-* React Infinite Scroll Component
-* React Lazy Load Image Component
-* React Router Dom
-
-### Images & Icons
-* React Icons
-* Midjourney 
-
-### Deployment
-
-Frontend: React + Vite - render.com (refer https://render.com/docs/static-sites)
-<br />
-Backend logic: Express + Node - render.com (refer https://render.com/docs/web-services)
-<br />
-Database: Mongodb instance - railway.app (refer https://docs.railway.app/databases/mongodb)
+<ul>
+  <li>Client: React/TS + Vite, Tailwind, Jotai, Zustand</li>
+  <li>Server: JWT-based auth, Express + Restful API (zod), mongoose/MongoDB</li>
+  <li>Deploy: Onrender, Railway.app</li>
+</ul>
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -205,14 +105,6 @@ Database: Mongodb instance - railway.app (refer https://docs.railway.app/databas
 <!-- GETTING STARTED -->
 <a id='getting_started'></a>
 ## Getting Started
-<!-- 
-You can use this setup if you don't want to self-configure your project 
-* [vite-react-ts-eslint-prettier](https://github.com/igdev116/vite-react-ts-eslint-prettier) -->
-
-### Installation
-<a id='installation'></a>
-
-_Below is how you can install and set up your own app._
 
 1. Because this is an isolated monorepo which contains both the client and the server, you need to clone the repo and individually install the packet.json files of each directory ./client and ./server.
    ```sh
@@ -230,9 +122,8 @@ _Below is how you can install and set up your own app._
    npm run dev
    
    ```
-(if you have any troubles please either create an issue or email me. Or message me here: (link to be added))
+If you have any troubles please either create an issue or email me. Or message me here: (link to be added)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- CONTRIBUTING -->
@@ -256,18 +147,8 @@ See the [open issues](https://github.com/nhlong27/movieSite/issues) for a full l
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-<!-- LICENSE -->
-<a id='license'></a>
-## License
-
-<!-- Distributed under the MIT License. See `LICENSE.txt` for more information. -->
-To be added 
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- ACKNOWLEDGMENTS -->
-<a id='acknowledgments'></a>
+<!-- <a id='acknowledgments'></a>
 ## Acknowledgments
 
 This space is for resources I found helpful and would like to give credit to.
@@ -284,7 +165,7 @@ This space is for resources I found helpful and would like to give credit to.
 * [Midjourney](https://www.midjourney.com/)
 * [Testing with Vitest](https://eternaldev.com/blog/testing-a-react-application-with-vitest/)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
@@ -304,12 +185,6 @@ This space is for resources I found helpful and would like to give credit to.
 [linkedin-url]: https://www.linkedin.com/in/long-nguyen-95517b250/
 
 <!-- Screenshots -->
-[homePage-screenshot]: screenshots/homePage.png
-[explorePage_search-screenshot]: screenshots/explorePage_search.png
-[explorePage_filter-screenshot]: screenshots/explorePage_filter.png
-[mediaPage-screenshot]: screenshots/mediaPage.png
-[profilePage-screenshot]: screenshots/profilePage.png
-[authPage-screenshot]: screenshots/authPage.png
 [homePage_preview-screenshot]: screenshots/homePage_preview.png
 
 <!-- Frameworks/libraries -->
