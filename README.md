@@ -12,7 +12,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://firmedia.site/" target='_blank'>
+  <a href="https://movie-site-wheat.vercel.app/" target='_blank'>
     <img src="./client/public/assets/logos/logo-md.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -27,7 +27,7 @@
     <br />
     Email: nhlong2706@gmail.com 
     <br />
-    <a href="https://firmedia.site" target='_blank'>View Demo</a>
+    <a href="https://movie-site-wheat.vercel.app/" target='_blank'>View Demo</a>
     ·
     <a href="https://github.com/nhlong27/movieSite/issues" target='_blank'>Report Bug</a>
     ·
@@ -36,7 +36,7 @@
 </div>
 
 ## Live Demo
-Official website: <a href="https://firmedia.site/" target='_blank'>https://firmedia.site</a>
+Official website: <a href="https://movie-site-wheat.vercel.app/" target='_blank'>https://movie-site-wheat.vercel.app</a>
 
 <!-- TABLE OF CONTENTS -->
 <details>
