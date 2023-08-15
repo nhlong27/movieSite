@@ -66,9 +66,9 @@ Official website: <a href="https://firmedia.site/" target='_blank'>https://firme
 
 [![Product Name Screen Shot][homePage_preview-screenshot]](...url)
 
-My interest in how to build a streaming websites lead me to design and develop a comprehensive movie website.I learned about server architecture, CRUD operations with Restful API using Express, and authentication using JSON Web Tokens (JWT). 
+My interest in building streaming websites led me to design and develop a comprehensive movie website. I gained knowledge about server architecture, CRUD operations using Restful APIs with Express, and authentication through JSON Web Tokens (JWT).
 
-Leveraging modern technologies like Vite and TypeScript, I streamlined development processes and ensured robust code quality. Exploring state management solutions such as Jotai and Zustand further enriched my skill set. The successful deployment of the movie website on the internet served as a significant achievement at the very beginning of my career.
+Leveraging modern technologies like Vite and TypeScript, I streamlined development processes and ensured robust code quality. Exploring state management solutions such as Jotai and Zustand further enriched my skill set. Successfully deploying the movie website on the internet marked a significant achievement at the very beginning of my career.
 
 <a id='duration'></a>
 ## Duration
