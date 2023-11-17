@@ -20,7 +20,7 @@ const SignInContainer = ({
   return (
     <div className='w-full h-full p-4 flex flex-col justify-start items-center font-poppins bg-transparent'>
       <div className='mb-[1rem] xs:mb-[2rem] text-center md:text-[2.5rem] text-[2rem] font-black tracking-wide leading-9 text-amber-50'>
-        <h1>Sign In to Fir Media</h1>
+        <h1 role='sign'>Sign In to Fir Media</h1>
       </div>
       <FormComponent
         styles={{
@@ -58,8 +58,8 @@ const SignInContainer = ({
           })
         }
         options={[
-          { extras: { type: 'text', placeholder: 'quan@gmail.com' }, name: 'email' },
-          { extras: { type: 'password', placeholder: '1234567' }, name: 'password' },
+          { extras: { type: 'text', placeholder: 'user@mail.com' }, name: 'email' },
+          { extras: { type: 'password', placeholder: 'user' }, name: 'password' },
         ]}
       />
       <div className=' flex justify-center items-center w-11/12 md:w-3/4 px-4 mt-10 gap-4 md:font-semibold text-center text-base text-stone-900 bg-yellow-500 py-3 rounded-md shadow-lg'>

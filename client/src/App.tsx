@@ -60,11 +60,11 @@ function App() {
   React.useEffect(() => {
     search_queries.mediaTypeConfig.movie.discover.paramList = {
       ...search_queries.mediaTypeConfig.movie.discover.paramList,
-      with_genres: new Map(initialData[0].genres.map(({ id, name }) => [id, name])),
+      with_genres: new Map(initialData[0].genres.map((genre) => genre ? [genre.id, genre.name] : [404, 'Server error'])),
     };
     search_queries.mediaTypeConfig.tv.discover.paramList = {
       ...search_queries.mediaTypeConfig.tv.discover.paramList,
-      with_genres: new Map(initialData[1].genres.map(({ id, name }) => [id, name])),
+      with_genres: new Map(initialData[1].genres.map(((genre) => genre ? [genre.id, genre.name] : [404, 'Server error']))),
     };
   }, []);
 

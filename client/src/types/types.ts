@@ -46,7 +46,7 @@ const PersonSchema = z.object({
 const GenreSchema = z.object({
   id: z.number().optional(),
   name: z.string().optional(),
-});
+}).nullable();
 
 const GenreListSchema = z.object({
   genres: z.array(GenreSchema),
