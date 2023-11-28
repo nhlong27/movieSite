@@ -59,7 +59,7 @@ const SignInContainer = ({
         }
         options={[
           { extras: { type: 'text', placeholder: 'user@mail.com' }, name: 'email' },
-          { extras: { type: 'password', placeholder: 'user' }, name: 'password' },
+          { extras: { type: 'password', placeholder: '********' }, name: 'password' },
         ]}
       />
       <div className=' flex justify-center items-center w-11/12 md:w-3/4 px-4 mt-10 gap-4 md:font-semibold text-center text-base text-stone-900 bg-yellow-500 py-3 rounded-md shadow-lg'>

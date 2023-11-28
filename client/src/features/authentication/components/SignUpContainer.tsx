@@ -58,7 +58,7 @@ const SignUpContainer = ({
         options={[
           { extras: { type: 'text', placeholder: 'user' }, name: 'name' },
           { extras: { type: 'text', placeholder: 'user@mail.com' }, name: 'email' },
-          { extras: { type: 'password', placeholder: 'user' }, name: 'password' },
+          { extras: { type: 'password', placeholder: '********' }, name: 'password' },
           {
             extras: { type: 'password', placeholder: 'Confirm Password' },
             name: 'passwordConfirmation',
